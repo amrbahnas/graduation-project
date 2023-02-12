@@ -13,7 +13,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   //   // get login state
-  const { login } = useSelector((store) => store.userSlice);
+  const { login, loading } = useSelector((store) => store.userSlice);
   //  // user cant access this page if he has login
   useEffect(() => {
     if (login) {
@@ -146,26 +146,33 @@ const Login = () => {
                       Remember me
                     </label>
                   </div>
-                  <a href="#!" className="text-gray-800">
+                  <span href="#!" className="text-gray-800">
                     Forgot password?
-                  </a>
+                  </span>
                 </div>
-
                 <div className="text-center lg:text-left">
-                  <button
-                    type="submit"
-                    className="inline-block py-3 text-sm font-medium leading-snug text-white uppercase transition duration-150 ease-in-out bg-blue-600 rounded shadow-md px-7 hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
-                  >
-                    Login
-                  </button>
+                  {loading ? (
+                    <img
+                      src="assets/svg/loading.svg"
+                      alt=""
+                      className=" w-10 h-10 ml-10"
+                    />
+                  ) : (
+                    <button
+                      type="submit"
+                      className="inline-block py-3 text-sm font-medium leading-snug text-white uppercase transition duration-150 ease-in-out bg-blue-600 rounded shadow-md px-7 hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
+                    >
+                      Login
+                    </button>
+                  )}
                   <p className="pt-1 mt-2 mb-0 text-sm font-semibold">
                     Don't have an account?
-                    <a
+                    <span
                       href="#!"
                       className="text-red-600 transition duration-200 ease-in-out hover:text-red-700 focus:text-red-700"
                     >
                       <Link to="/signup">Register</Link>
-                    </a>
+                    </span>
                   </p>
                 </div>
               </form>

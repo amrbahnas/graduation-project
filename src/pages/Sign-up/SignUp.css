@@ -4,3 +4,6 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+.registration .registration-form {
+  @apply p-6 text-left bg-white rounded-md shadow-lg w-80 md:w-4/5  lg:w-2/4 ;
+}

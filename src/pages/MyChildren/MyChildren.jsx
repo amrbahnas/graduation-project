@@ -32,7 +32,7 @@ const MyChildren = () => {
             <>
               <span>Add children</span>
               <div className="add">
-                <span onClick={(e) => setshowForm(true)}>Add</span>
+                <span onClick={(e) => setshowForm(true)}>Add Student</span>
               </div>
             </>
           )}

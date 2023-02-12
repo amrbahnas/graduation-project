@@ -7,23 +7,27 @@
   @apply bg-white my-4 p-7 rounded-md;
 }
 .MyChildren .wrapper >span {
-  @apply text-3xl font-bold block mb-4;
+  @apply text-3xl font-bold block mb-10;
 }
 .MyChildren .wrapper .add {
-  @apply w-2/3 h-2/3 bg-disabled border-2 m-auto mt-16 flex items-center justify-center rounded-md ;
+  background-color: rgba(135, 207, 235, 0.419);
+  @apply w-2/3 h-2/3  m-auto mt-16 flex items-center justify-center rounded-md border border-black border-dashed shadow-md ;
 }
 .MyChildren .wrapper .add span{
-    @apply  text-lg font-bold bg-white w-32 h-32 rounded-full flex items-center justify-center cursor-pointer
+    @apply  text-lg font-bold bg-blue-500  text-white w-32 h-32 rounded-full flex items-center justify-center cursor-pointer  hover:scale-105
 }
 .MyChildren .wrapper .userChildren{
-  @apply w-full
+  height: 480px;
+  @apply w-full flex p-4 flex-col items-start justify-start flex-wrap  gap-5 overflow-hidden
 }
 
 .MyChildren .wrapper .userChildren >span{
-  @apply underline cursor-pointer block w-fit m-auto text-gray-600 hover:text-gray-800
+    width: calc(50% - 20px);
+  @apply underline cursor-pointer block text-center py-4 text-gray-600 hover:text-gray-800
 }
 .MyChildren .wrapper .userChildren .child{
-  @apply border w-1/2 flex items-center  p-4 bg-slate-200 rounded-md mb-5 cursor-pointer
+  width: calc(50% - 20px);
+  @apply border  flex items-center p-4 bg-slate-200 rounded-md cursor-pointer hover:-translate-y-1 
 }
 .MyChildren .wrapper .userChildren .child .img{
   @apply w-24 h-24 flex items-center justify-center rounded-full mr-4 bg-green-500
