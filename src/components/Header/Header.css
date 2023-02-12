@@ -1,0 +1,25 @@
+header {
+  height: calc(100vh - 80px);
+  background-image: url("../../../public/assets/images/headerBackGround.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  @apply flex justify-center items-center text-gray-800;
+}
+header .wrapper {
+  @apply text-center -mt-10  px-6;
+}
+header h1 {
+  @apply text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight mb-12;
+}
+
+header h1 span {
+  @apply text-blue-600 block;
+}
+
+header a {
+  @apply inline-block px-7 py-3 mr-2 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out;
+}
+header a:last-child {
+  @apply text-blue-600  bg-transparent rounded  hover:text-blue-700 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none focus:ring-0 active:bg-gray-200;
+}

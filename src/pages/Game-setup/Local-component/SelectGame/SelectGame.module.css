@@ -1,0 +1,17 @@
+.selectGame{
+width: 100%;
+}
+
+.wrapper{
+    @apply p-8 flex justify-center items-center gap-3
+}
+
+.wrapper .game {
+    @apply hover:-translate-y-4 hover:shadow-2xl transition-all duration-500 ease-linear cursor-pointer flex-1 rounded-md p-4 overflow-hidden bg-slate-200
+}
+.wrapper .game img {
+    @apply w-full h-52 mb-4
+}
+.wrapper .game span {
+    @apply capitalize text-green-600 text-lg font-bold
+}

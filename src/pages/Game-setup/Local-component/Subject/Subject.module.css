@@ -1,0 +1,10 @@
+.subject {
+    width: 100%;
+}
+.subject .wrapper {
+    @apply px-8 flex gap-4
+}
+
+.subject .wrapper span{
+    @apply  flex-1 h-24 py-2 bg-gray-300 rounded-md  flex items-center justify-center hover:scale-105 cursor-pointer focus:border-l-2
+}

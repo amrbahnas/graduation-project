@@ -1,0 +1,45 @@
+/* .MyChildren {
+    @apply h-screen
+} */
+
+.MyChildren .wrapper {
+  height: calc( 100vh - 80px);
+  @apply bg-white my-4 p-7 rounded-md;
+}
+.MyChildren .wrapper >span {
+  @apply text-3xl font-bold block mb-4;
+}
+.MyChildren .wrapper .add {
+  @apply w-2/3 h-2/3 bg-disabled border-2 m-auto mt-16 flex items-center justify-center rounded-md ;
+}
+.MyChildren .wrapper .add span{
+    @apply  text-lg font-bold bg-white w-32 h-32 rounded-full flex items-center justify-center cursor-pointer
+}
+.MyChildren .wrapper .userChildren{
+  @apply w-full
+}
+
+.MyChildren .wrapper .userChildren >span{
+  @apply underline cursor-pointer block w-fit m-auto text-gray-600 hover:text-gray-800
+}
+.MyChildren .wrapper .userChildren .child{
+  @apply border w-1/2 flex items-center  p-4 bg-slate-200 rounded-md mb-5 cursor-pointer
+}
+.MyChildren .wrapper .userChildren .child .img{
+  @apply w-24 h-24 flex items-center justify-center rounded-full mr-4 bg-green-500
+}
+.MyChildren .wrapper .userChildren .child .img span{
+  @apply capitalize text-lg font-bold text-white
+}
+/* .MyChildren .wrapper .userChildren .child .img img{
+  @apply w-10 h-10 rounded-full 
+} */
+.MyChildren .wrapper .userChildren .child .info{
+  @apply flex flex-col  gap-2 
+}
+.MyChildren .wrapper .userChildren .child .info h2{
+  @apply font-bold underline capitalize text-lg
+}
+.MyChildren .wrapper .userChildren .child .info span{
+  @apply capitalize block
+}

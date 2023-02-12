@@ -1,0 +1,35 @@
+nav {
+  @apply h-20  bg-white flex items-center;
+}
+nav .wrapper {
+  @apply flex items-center justify-between;
+}
+
+nav ul {
+  @apply flex gap-6 items-center;
+}
+nav ul:first-of-type {
+  @apply hidden md:flex;
+}
+nav ul li {
+  @apply text-disabledTxt hover:text-black cursor-pointer;
+}
+
+nav .logo img {
+  @apply w-48;
+}
+
+nav ul:nth-child(2) li {
+  @apply uppercase text-sm;
+}
+
+nav ul .signUp {
+  @apply hover:no-underline;
+}
+nav ul .signout {
+  @apply p-2 border-2 rounded-md  hover:shadow-md;
+}
+
+nav ul .signUp a {
+  @apply bg-blue-500 hover:bg-blue-700 text-white py-2 w-32 text-center rounded-md  cursor-pointer block;
+}

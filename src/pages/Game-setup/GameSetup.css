@@ -1,0 +1,54 @@
+.gameSetup .wrapper{
+    min-height: calc(100vh - 80px);
+    @apply  bg-white my-4 rounded-md overflow-hidden
+}
+.gameSetup .wrapper .proccessLine{
+    @apply  flex justify-center items-center relative px-2 md:px-24 py-10
+}
+.gameSetup .wrapper .proccessLine .steps{
+    @apply flex-1  flex justify-between items-center relative
+}
+
+
+.gameSetup .wrapper .proccessLine .step{
+    @apply flex flex-col gap-2 items-center justify-center  z-10
+}
+
+
+.gameSetup .wrapper .proccessLine .step span:first-child{
+    @apply  w-8 h-8  text-white rounded-full p-1 flex items-center justify-center 
+}
+.gameSetup .wrapper .proccessLine .step span:last-child{
+    @apply  capitalize text-center 
+}
+
+
+.gameSetup .wrapper .proccessLine .line{
+    width: 80%;
+    top: 38%;
+    @apply  absolute h-0.5 bg-gray-200
+}
+.gameSetup .wrapper .proccessLine .line span{
+    @apply  block h-full bg-blue-500 transition-all duration-700
+}
+
+
+
+.gameSetup .wrapper .pages{
+    width: 300%;
+    @apply  flex justify-center items-center transition-all duration-700 
+}
+
+.gameSetup .wrapper .control  {
+    @apply w-full px-8 flex justify-end
+}
+.gameSetup .wrapper .control button:first-child {
+    @apply py-2 w-24 text-white bg-blue-500 rounded-md mr-4
+}
+.gameSetup .wrapper .control button:last-child {
+    @apply py-2 w-24 text-black bg-gray-300 rounded-md
+}
+
+
+
+
