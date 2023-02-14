@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-
 // create parent account
 export const createParentAccount = createAsyncThunk(
   "user/createParentAccount",
@@ -24,7 +23,7 @@ export const createParentAccount = createAsyncThunk(
 // create child account
 export const createChildAccount = createAsyncThunk(
   "user/createChildAccount",
-  async ( data , thunkAPI) => {
+  async (data, thunkAPI) => {
     const { rejectWithValue, getState } = thunkAPI;
     const { id } = getState().userSlice;
     try {
@@ -44,7 +43,6 @@ export const createChildAccount = createAsyncThunk(
     }
   }
 );
-
 
 // login
 export const loginAccount = createAsyncThunk(
@@ -100,9 +98,6 @@ const initialState = {
   loading: false,
   error: false,
 };
-
-
-
 
 export const userSlice = createSlice({
   name: "user",
@@ -171,10 +166,9 @@ export const userSlice = createSlice({
     [loginAccount.fulfilled]: (state, action) => {
       state.loading = false;
       state.error = false;
-      console.log( action.payload)
-      if (action.payload.massage.includes("correct password")) {
+      if (action.payload.massage === "correct password") {
         const { _id, parentName, parentAge, parentPhoneNumber } =
-          action.payload.info[0];
+        action.payload.info.parent[0];
         state.id = _id;
         state.userName = parentName;
         state.login = true;
