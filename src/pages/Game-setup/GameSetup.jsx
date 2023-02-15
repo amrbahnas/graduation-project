@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./GameSetup.css";
 // redux
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addChildQuestions } from "../../store/slices/userSlice";
 // icons
 import CheckIcon from "@mui/icons-material/Check";
@@ -12,15 +12,29 @@ import SelectGame from "./Local-component/SelectGame/SelectGame";
 // animation
 import { motion } from "framer-motion";
 // react-router
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+//component
+import SuccessCheck from "./../../components/SuccessCheck/SuccessCheck";
 
 const GameSetup = () => {
   // variables
+  const navigate = useNavigate();
+
   const dispatch = useDispatch();
   const [photoIndex, SetPhotoIndex] = useState(0);
   const [subject, setsubject] = useState("");
+  const [dataSend, setdataSend] = useState(false);
   const [subjectData, setsubjectData] = useState([]);
   const { id } = useParams();
+
+  // get login state
+  const { login } = useSelector((store) => store.userSlice);
+   // user cant access this page if he has login
+  useEffect(() => {
+    if (!login) {
+      navigate("/");
+    }
+  }, [login, navigate]);
   // functions
   const prevPage = () => {
     SetPhotoIndex(photoIndex === 0 ? 0 : (prev) => prev - 1);
@@ -28,11 +42,19 @@ const GameSetup = () => {
   // next slide or submit questions
   const nextPage = () => {
     if (photoIndex === 2) {
+      const questions = subjectData.map((subject) => ({
+        id: subject.id,
+        things: subject.wordImage,
+        defintionen: subject.defintionen,
+        defintionac: subject.defintionac,
+        unit: subject.unit,
+        lesson: subject.lesson,
+      }));
       const totalData = {
-        childId:id,
-        questions: subjectData,
+        childId: id,
+        questions,
       };
-      dispatch(addChildQuestions(totalData));
+      dispatch(addChildQuestions(totalData)).then(() => setdataSend(true));
     } else {
       SetPhotoIndex(photoIndex === 2 ? 2 : (prev) => prev + 1);
     }
@@ -62,7 +84,7 @@ const GameSetup = () => {
       </div>
     );
   };
-  
+
   return (
     /********************************** DOM ************************************************* */
     <div className="gameSetup">
@@ -97,6 +119,7 @@ const GameSetup = () => {
           </div>
         </div>
       </div>
+      {dataSend && <SuccessCheck />}
     </div>
   );
 };

@@ -70,6 +70,8 @@ export const addChildQuestions = createAsyncThunk(
   async ({ questions, childId }, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
+      console.log(questions);
+      console.log(process.env.REACT_APP_ADD_QUESTION_API + "/" + childId);
       const res = await fetch(
         process.env.REACT_APP_ADD_QUESTION_API + "/" + childId,
         {
@@ -160,18 +162,36 @@ export const userSlice = createSlice({
 
     // login
     [loginAccount.pending]: (state) => {
-      state.loading = true;
+      state.loading = false;
       state.error = false;
     },
     [loginAccount.fulfilled]: (state, action) => {
       state.loading = false;
       state.error = false;
+      console.log("sad", action.payload);
       if (action.payload.massage === "correct password") {
-        const { _id, parentName, parentAge, parentPhoneNumber } =
-        action.payload.info.parent[0];
-        state.id = _id;
-        state.userName = parentName;
-        state.login = true;
+        if (action.payload.info.student1) {
+          // having a children
+          const { _id, parentName, parentAge, parentPhoneNumber } =
+            action.payload.info.parent[0];
+          state.id = _id;
+          state.userName = parentName;
+          state.login = true;
+          /**************************** */
+          const info = action.payload.info;
+          delete info.parent;
+          state.children = Object.values(info);
+          console.log(state.children);
+        } else {
+          // not having a children
+          console.log("no children");
+          state.children = [];
+          const { _id, parentName, parentAge, parentPhoneNumber } =
+            action.payload.info.parent[0];
+          state.id = _id;
+          state.userName = parentName;
+          state.login = true;
+        }
       }
     },
     [loginAccount.rejected]: (state, action) => {

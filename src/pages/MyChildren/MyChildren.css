@@ -2,48 +2,48 @@
     @apply h-screen
 } */
 
-.MyChildren .wrapper {
+.MyChildren  .wrapper {
   height: calc( 100vh - 80px);
   @apply bg-white my-4 p-7 rounded-md;
 }
-.MyChildren .wrapper >span {
+.MyChildren  .wrapper >span {
   @apply text-3xl font-bold block mb-10;
 }
-.MyChildren .wrapper .add {
+.MyChildren  .wrapper .add {
   background-color: rgba(135, 207, 235, 0.419);
   @apply w-2/3 h-2/3  m-auto mt-16 flex items-center justify-center rounded-md border border-black border-dashed shadow-md ;
 }
-.MyChildren .wrapper .add span{
+.MyChildren  .wrapper .add span{
     @apply  text-lg font-bold bg-blue-500  text-white w-32 h-32 rounded-full flex items-center justify-center cursor-pointer  hover:scale-105
 }
-.MyChildren .wrapper .userChildren{
+.MyChildren  .wrapper .userChildren{
   height: 480px;
   @apply w-full flex p-4 flex-col items-start justify-start flex-wrap  gap-5 overflow-hidden
 }
 
-.MyChildren .wrapper .userChildren >span{
+.MyChildren  .wrapper .userChildren >span{
     width: calc(50% - 20px);
   @apply underline cursor-pointer block text-center py-4 text-gray-600 hover:text-gray-800
 }
-.MyChildren .wrapper .userChildren .child{
+.MyChildren  .wrapper .userChildren .child{
   width: calc(50% - 20px);
   @apply border  flex items-center p-4 bg-slate-200 rounded-md cursor-pointer hover:-translate-y-1 
 }
-.MyChildren .wrapper .userChildren .child .img{
+.MyChildren  .wrapper .userChildren .child .img{
   @apply w-24 h-24 flex items-center justify-center rounded-full mr-4 bg-green-500
 }
-.MyChildren .wrapper .userChildren .child .img span{
+.MyChildren  .wrapper .userChildren .child .img span{
   @apply capitalize text-lg font-bold text-white
 }
-/* .MyChildren .wrapper .userChildren .child .img img{
+/* .MyChildren  .wrapper .userChildren .child .img img{
   @apply w-10 h-10 rounded-full 
 } */
-.MyChildren .wrapper .userChildren .child .info{
+.MyChildren  .wrapper .userChildren .child .info{
   @apply flex flex-col  gap-2 
 }
-.MyChildren .wrapper .userChildren .child .info h2{
+.MyChildren  .wrapper .userChildren .child .info h2{
   @apply font-bold underline capitalize text-lg
 }
-.MyChildren .wrapper .userChildren .child .info span{
+.MyChildren  .wrapper .userChildren .child .info span{
   @apply capitalize block
 }

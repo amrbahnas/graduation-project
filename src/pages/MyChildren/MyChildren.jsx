@@ -9,11 +9,11 @@ const MyChildren = () => {
   const [showForm, setshowForm] = useState(false);
   const { children, login } = useSelector((store) => store.userSlice);
   //user cant access this page if he has login
-  // useEffect(() => {
-  //   if (!login) {
-  //     navigate("/");
-  //   }
-  // }, [login, navigate]);
+  useEffect(() => {
+    if (!login) {
+      navigate("/");
+    }
+  }, [login, navigate]);
   return (
     <div className="MyChildren">
       <div className="theContainer">
@@ -22,8 +22,8 @@ const MyChildren = () => {
             <>
               <span>My children</span>
               <div className="userChildren">
-                {children.map((child,indx) => (
-                  <Child child={child} key={indx} />
+                {children.map((child) => (
+                  <Child child={child} key={child.id} />
                 ))}
                 <span onClick={(e) => setshowForm(true)}>Add more One</span>
               </div>
@@ -45,20 +45,20 @@ const MyChildren = () => {
 
 const Child = ({ child }) => {
   return (
-    <div className="child">
-      <div className="img">
-        <span>{child.name.slice(0, 2)}</span>
-      </div>
-      <div className="info">
-        <Link to={"/gameSetup/" + child.name}>
-          <h2>{child.name}</h2>
-        </Link>
-        <div>
-          <span>Age: {child.age}</span>
-          <span>stage: {child.stage}</span>
+    
+      <Link to={"/gameSetup/" + child.id} className="child">
+        <div className="img">
+          <span>{child.studentName.slice(0, 2)}</span>
         </div>
-      </div>
-    </div>
+        <div className="info">
+          <h2>{child.studentName}</h2>
+          <div>
+            <span>Age: {child.studentstage}</span>
+            <span>stage: {child.studentstage}</span>
+          </div>
+        </div>
+      </Link>
+    
   );
 };
 

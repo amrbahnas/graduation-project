@@ -4,7 +4,6 @@ import { useNavigate, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { loginAccount } from "../..//store/slices/userSlice";
 //icon
-
 const Login = () => {
   // initialize
   const navigate = useNavigate();

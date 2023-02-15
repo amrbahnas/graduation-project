@@ -6,6 +6,23 @@
     @apply p-8 flex  gap-10 items-center justify-between mx-10
 }
 
+.unitLesson {
+    @apply flex-1 flex gap-5  items-center capitalize mb-8 
+}
+.unitLesson label {
+    @apply cursor-pointer font-bold
+}
+
+.unitLesson select {
+    @apply w-full bg-gray-200 p-2 rounded-md cursor-pointer focus:outline-none
+}
+
+.unit {
+    @apply flex-1 flex gap-2  items-center
+}
+.lesson {
+    @apply flex-1 flex gap-2  items-center
+}
 .addWord {
     @apply flex-1 flex gap-5  items-center
 }
@@ -64,6 +81,11 @@
 
 }
 .enteredData .word .controlBTN span {
-    @apply capitalize cursor-pointer
-
+    @apply cursor-pointer inline-block ml-2 hover:scale-105
+}
+.enteredData .word .controlBTN span:first-child {
+    @apply hover:text-green-600
+}
+.enteredData .word .controlBTN span:last-child {
+    @apply hover:text-red-600
 }

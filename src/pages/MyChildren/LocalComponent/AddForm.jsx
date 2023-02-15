@@ -4,6 +4,7 @@ import {
   addChildren,
   createChildAccount,
 } from "../../../store/slices/userSlice";
+import "react-toastify/dist/ReactToastify.css";
 import "./AddForm.css";
 const AddForm = ({ setshowForm }) => {
   const dispatch = useDispatch();
@@ -15,7 +16,6 @@ const AddForm = ({ setshowForm }) => {
   // onsubmit
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log("ce")
     const data = {
       name,
       age,
@@ -23,11 +23,21 @@ const AddForm = ({ setshowForm }) => {
       username,
       password,
     };
-    dispatch(addChildren(data));
-    dispatch(createChildAccount(data)); 
-    setshowForm(false);
+    const localData = {
+      studentName: name,
+      studentAge: age,
+      studentstage: stage,
+      username,
+      password,
+    };
+    dispatch(createChildAccount(data))
+      .then((action) => {
+        const id = action.payload.studentID._id;
+        dispatch(addChildren({ ...localData, id }));
+        setshowForm(false);
+      })
   };
-// close layout when click outside
+  // close layout when click outside
   const layout = useRef();
   useEffect(() => {
     const handler = (e) => {
@@ -75,10 +85,7 @@ const AddForm = ({ setshowForm }) => {
           </div>
           <div className="input">
             <label htmlFor="name">grade</label>
-            <select
-              value={stage}
-              onChange={(e) => setstage(e.target.value)}
-            >
+            <select value={stage} onChange={(e) => setstage(e.target.value)}>
               <option>please select the stage</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -111,6 +118,7 @@ const AddForm = ({ setshowForm }) => {
         </div>
         <button>create</button>
       </form>
+    
     </div>
   );
 };
