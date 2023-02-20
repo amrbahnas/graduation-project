@@ -37,7 +37,7 @@ const Login = () => {
   return (
     <section className="h-screen">
       <div className="h-full theContainer">
-        <div className="h-full px-6 text-gray-800">
+        <div className="h-full px-6 text-gray-800 dark:text-darkSText">
           <div className="flex flex-wrap items-center justify-center h-full xl:justify-center lg:justify-between g-6">
             <div className="mb-12 grow-0 shrink-1 md:shrink-0 basis-auto xl:w-6/12 lg:w-6/12 md:w-9/12 md:mb-0">
               <img
@@ -139,13 +139,13 @@ const Login = () => {
                       id="exampleCheck2"
                     />
                     <label
-                      className="inline-block text-gray-800 form-check-label"
+                      className="inline-block text-gray-800 dark:text-darkSText form-check-label"
                       htmlFor="exampleCheck2"
                     >
                       Remember me
                     </label>
                   </div>
-                  <span href="#!" className="text-gray-800">
+                  <span href="#!" className="text-gray-800 dark:text-darkSText">
                     Forgot password?
                   </span>
                 </div>
@@ -154,7 +154,7 @@ const Login = () => {
                     <img
                       src="assets/svg/loading.svg"
                       alt=""
-                      className=" w-10 h-10 ml-10"
+                      className="w-10 h-10 ml-10 "
                     />
                   ) : (
                     <button

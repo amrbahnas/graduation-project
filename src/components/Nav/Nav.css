@@ -1,8 +1,8 @@
 nav {
-  @apply h-20  bg-white flex items-center;
+  @apply h-20  bg-white  dark:bg-darkBody dark:text-darkPText flex items-center fixed w-full top-0 shadow-md z-40;
 }
 nav .wrapper {
-  @apply flex items-center justify-between;
+  @apply w-full flex items-center justify-between;
 }
 
 nav ul {
@@ -12,7 +12,10 @@ nav ul:first-of-type {
   @apply hidden md:flex;
 }
 nav ul li {
-  @apply text-disabledTxt hover:text-black cursor-pointer;
+  @apply text-disabledTxt hover:text-black dark:hover:text-darkPText cursor-pointer;
+}
+nav ul li link {
+  @apply w-full;
 }
 
 nav .logo img {
@@ -27,7 +30,7 @@ nav ul .signUp {
   @apply hover:no-underline;
 }
 nav ul .signout {
-  @apply p-2 border-2 rounded-md  hover:shadow-md;
+  @apply p-2 border rounded-md  hover:bg-gray-200 dark:hover:bg-darkHover;
 }
 
 nav ul .signUp a {

@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
 // create parent account
 export const createParentAccount = createAsyncThunk(
@@ -6,14 +7,12 @@ export const createParentAccount = createAsyncThunk(
   async (data, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-      const res = await fetch(process.env.REACT_APP_CREATE_PARENT_ACCOUNT_API, {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "content-type": "application/json; charset=UTF-8",
-        },
-      });
-      return await res.json();
+      const url = process.env.REACT_APP_CREATE_PARENT_ACCOUNT_API;
+      const headers = {
+        "content-type": "application/json; charset=UTF-8",
+      };
+      const res = await axios.post(url, data, { headers });
+      return await res.data;
     } catch (err) {
       return rejectWithValue(err);
     }
@@ -25,19 +24,14 @@ export const createChildAccount = createAsyncThunk(
   "user/createChildAccount",
   async (data, thunkAPI) => {
     const { rejectWithValue, getState } = thunkAPI;
-    const { id } = getState().userSlice;
+    const { _id } = getState().userSlice;
     try {
-      const res = await fetch(
-        process.env.REACT_APP_CREATE_CHILD_ACCOUNT_API + "/" + id,
-        {
-          method: "POST",
-          body: JSON.stringify(data),
-          headers: {
-            "content-type": "application/json; charset=UTF-8",
-          },
-        }
-      );
-      return await res.json();
+      const url = `${process.env.REACT_APP_CREATE_CHILD_ACCOUNT_API}/${_id}`;
+      const headers = {
+        "content-type": "application/json; charset=UTF-8",
+      };
+      const res = await axios.post(url, data, { headers });
+      return res.data;
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -50,53 +44,29 @@ export const loginAccount = createAsyncThunk(
   async (data, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-      const res = await fetch(process.env.REACT_APP_LOGIN_API, {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "content-type": "application/json; charset=UTF-8",
-        },
-      });
-      return await res.json();
+      const url = process.env.REACT_APP_LOGIN_API;
+      const headers = {
+        "content-type": "application/json; charset=UTF-8",
+      };
+      const res = await axios.post(url, data, { headers });
+      return res.data;
     } catch (error) {
       return rejectWithValue(error.message);
     }
   }
 );
 
-// addChildQuestions
-export const addChildQuestions = createAsyncThunk(
-  "user/addChildQuestions",
-  async ({ questions, childId }, thunkAPI) => {
-    const { rejectWithValue } = thunkAPI;
-    try {
-      console.log(questions);
-      console.log(process.env.REACT_APP_ADD_QUESTION_API + "/" + childId);
-      const res = await fetch(
-        process.env.REACT_APP_ADD_QUESTION_API + "/" + childId,
-        {
-          method: "POST",
-          body: JSON.stringify(questions),
-          headers: {
-            "content-type": "application/json; charset=UTF-8",
-          },
-        }
-      );
-      return await res.json();
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
+
 
 const initialState = {
   login: false,
-  id: "",
+  _id: "",
   userName: "",
   email: "",
   photoURL: "",
   userImage: "",
   children: [],
+  childrenQuestions: [],
   loading: false,
   error: false,
 };
@@ -125,6 +95,9 @@ export const userSlice = createSlice({
     },
     addChildren: (state, action) => {
       state.children.push(action.payload);
+    },
+    setChildrenQuestions: (state, action) => {
+      state.children = action.payload;
     },
   },
   extraReducers: {
@@ -170,28 +143,14 @@ export const userSlice = createSlice({
       state.error = false;
       console.log("sad", action.payload);
       if (action.payload.massage === "correct password") {
-        if (action.payload.info.student1) {
-          // having a children
-          const { _id, parentName, parentAge, parentPhoneNumber } =
-            action.payload.info.parent[0];
-          state.id = _id;
-          state.userName = parentName;
-          state.login = true;
-          /**************************** */
-          const info = action.payload.info;
-          delete info.parent;
-          state.children = Object.values(info);
-          console.log(state.children);
-        } else {
-          // not having a children
-          console.log("no children");
-          state.children = [];
-          const { _id, parentName, parentAge, parentPhoneNumber } =
-            action.payload.info.parent[0];
-          state.id = _id;
-          state.userName = parentName;
-          state.login = true;
-        }
+        // having a children
+        const { _id, parentName, parentAge, parentPhoneNumber } =
+          action.payload.parent;
+        state._id = _id;
+        state.userName = parentName;
+        state.login = true;
+        /**************************** */
+        state.children = action.payload.children;
       }
     },
     [loginAccount.rejected]: (state, action) => {
@@ -199,21 +158,6 @@ export const userSlice = createSlice({
       state.error = action.payload;
     },
 
-    // addQuestion
-    [addChildQuestions.pending]: (state) => {
-      state.loading = true;
-      state.error = false;
-    },
-    [addChildQuestions.fulfilled]: (state, action) => {
-      state.loading = false;
-      state.error = false;
-      console.log(action.payload);
-    },
-    [addChildQuestions.rejected]: (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-      console.log("sad", action.payload);
-    },
   },
 });
 

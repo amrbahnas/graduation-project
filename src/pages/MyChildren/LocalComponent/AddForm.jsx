@@ -4,6 +4,9 @@ import {
   addChildren,
   createChildAccount,
 } from "../../../store/slices/userSlice";
+// icons
+import CloseIcon from "@mui/icons-material/Close";
+//
 import "react-toastify/dist/ReactToastify.css";
 import "./AddForm.css";
 const AddForm = ({ setshowForm }) => {
@@ -32,8 +35,8 @@ const AddForm = ({ setshowForm }) => {
     };
     dispatch(createChildAccount(data))
       .then((action) => {
-        const id = action.payload.studentID._id;
-        dispatch(addChildren({ ...localData, id }));
+        const _id = action.payload.studentID._id;
+        dispatch(addChildren({ ...localData, _id }));
         setshowForm(false);
       })
   };
@@ -57,7 +60,7 @@ const AddForm = ({ setshowForm }) => {
       <form ref={layout} onSubmit={(e) => submitHandler(e)}>
         <div className="close">
           <span>create children</span>
-          <span onClick={(e) => setshowForm(false)}>x</span>
+          <span onClick={(e) => setshowForm(false)}><CloseIcon size="small"/></span>
         </div>
         <label className="title"> general Information:</label>
         <div className="inputs">

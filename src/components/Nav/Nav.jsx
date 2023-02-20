@@ -3,6 +3,7 @@ import { NavLink, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setLoginState } from "../..//store/slices/userSlice";
 
+import NightMode from "./../NightMode/NightMode";
 import "./Nav.css";
 const Nav = () => {
   const dispatch = useDispatch();
@@ -12,7 +13,7 @@ const Nav = () => {
   };
   return (
     <nav>
-      <div className="theContainer">
+      <div className="w-full theContainer ">
         <div className="wrapper">
           <span className="logo">
             <NavLink to="/">
@@ -21,7 +22,7 @@ const Nav = () => {
           </span>
           <ul>
             <li>
-              <NavLink>Home</NavLink>
+              <NavLink to="/" end className="w-full">Home</NavLink>
             </li>
             <li>
               <NavLink>Contact</NavLink>
@@ -30,16 +31,23 @@ const Nav = () => {
               <NavLink>About</NavLink>
             </li>
           </ul>
+
           <ul>
             {login ? (
               <>
-                <li>welome {userName}</li>
+                <li>
+                  <NightMode />
+                </li>
+                <li className="hidden md:inline-block">welome: {userName}</li>
                 <li className="signout" onClick={signUp}>
                   sign out
                 </li>
               </>
             ) : (
               <>
+                <li>
+                  <NightMode />
+                </li>
                 <li>
                   <Link to="/login">login</Link>
                 </li>

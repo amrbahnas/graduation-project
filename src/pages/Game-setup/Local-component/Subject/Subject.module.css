@@ -1,11 +1,12 @@
 .subject {
-    width: 100%;
+   @apply w-1/3;
+
 }
 .subject .wrapper {
-    @apply px-8 flex gap-4
+    @apply flex flex-col h-80 gap-4 justify-start items-center px-4 mb-6
 }
 
-.subject .wrapper span{
+.subject .wrapper div{
     
-    @apply  flex-1 h-44 py-2 bg-gray-300  flex items-center justify-center hover:scale-105 cursor-pointer 
+    @apply w-2/3 text-lg font-bold rounded-md  flex-1 py-2   flex items-center justify-center cursor-pointer 
 }

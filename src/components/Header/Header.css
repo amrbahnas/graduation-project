@@ -4,7 +4,7 @@ header {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  @apply flex justify-center items-center text-gray-800;
+  @apply flex justify-center items-center text-gray-800 mt-20;
 }
 header .wrapper {
   @apply text-center -mt-10  px-6;

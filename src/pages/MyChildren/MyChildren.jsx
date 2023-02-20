@@ -23,7 +23,7 @@ const MyChildren = () => {
               <span>My children</span>
               <div className="userChildren">
                 {children.map((child) => (
-                  <Child child={child} key={child.id} />
+                  <Child child={child} key={child._id} />
                 ))}
                 <span onClick={(e) => setshowForm(true)}>Add more One</span>
               </div>
@@ -32,7 +32,7 @@ const MyChildren = () => {
             <>
               <span>Add children</span>
               <div className="add">
-                <span onClick={(e) => setshowForm(true)}>Add Student</span>
+                <span onClick={(e) => setshowForm(true)}>Add child</span>
               </div>
             </>
           )}
@@ -45,20 +45,26 @@ const MyChildren = () => {
 
 const Child = ({ child }) => {
   return (
-    
-      <Link to={"/gameSetup/" + child.id} className="child">
-        <div className="img">
-          <span>{child.studentName.slice(0, 2)}</span>
+    <dir className="child">
+      <div className="img">
+        <span>{child.studentName.slice(0, 2)}</span>
+      </div>
+      <div className="info">
+        <h2 className="dark:text-darkPText">{child.studentName}</h2>
+        <div className="options">
+            <Link to={"/studentProfile/" + child._id}>
+          <span>
+            Profile
+          </span>
+            </Link>
+            <Link to={"/gameSetup/" + child._id}>
+          <span>
+            Add Subject
+          </span>
+            </Link>
         </div>
-        <div className="info">
-          <h2>{child.studentName}</h2>
-          <div>
-            <span>Age: {child.studentstage}</span>
-            <span>stage: {child.studentstage}</span>
-          </div>
-        </div>
-      </Link>
-    
+      </div>
+    </dir>
   );
 };
 

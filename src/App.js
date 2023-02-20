@@ -9,6 +9,7 @@ import LogIn from "./pages/Log-in/LogIn";
 import SignUp from "./pages/Sign-up/SignUp";
 import MyChildren from "./pages/MyChildren/MyChildren.jsx";
 import GameSetup from "./pages/Game-setup/GameSetup";
+import StudentProfile from "./pages/StudentProfile/StudentProfile";
 
 const router = createBrowserRouter([
   {
@@ -24,8 +25,12 @@ const router = createBrowserRouter([
         element: <MyChildren />,
       },
       {
-        path: "/gameSetup/:id",
+        path: "/gameSetup/:_id",
         element: <GameSetup />,
+      },
+      {
+        path: "/studentProfile/:_id",
+        element: <StudentProfile />,
       },
     ],
   },

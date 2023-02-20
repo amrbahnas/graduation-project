@@ -1,20 +1,27 @@
-import { useState } from "react";
+import React,{ useState } from "react";
 import { v4 } from "uuid";
 import styles from "./SubjectData.module.css";
 //icons
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
-const SubjectData = ({ setsubjectData }) => {
+// redux
+import { useSelector } from "react-redux";
+
+/******************************start********************************** */
+const SubjectData = ({ setsubjectData, currentUnit, currentLesson,children }) => {
+  // global variables
+  const { english } = useSelector((store) => store.questionsDataSlice);
   // component variables
+  const oldWords = english.filter(
+    (word) => +word.Lesson === +currentLesson && +word.Unit === +currentUnit
+  );
   const [editWord, seteditWord] = useState({ state: false, id: "" });
   const [enteredWords, setenteredWords] = useState([]);
   const [previewImage, setpreviewImage] = useState(null);
   const [wordImage, setwordImage] = useState(null);
-  const [defintionen, setdefintionen] = useState("");
-  const [defintionac, setdefintionac] = useState("");
-  const [unit, setunit] = useState("");
-  const [lesson, setlesson] = useState("");
+  const [DefintioninEn, setDefintioninEn] = useState("");
+  const [DefintionAc, setDefintionAc] = useState("");
   // take img from input file then show it
   const previewImg = (files) => {
     if (files.length > 0) {
@@ -28,8 +35,8 @@ const SubjectData = ({ setsubjectData }) => {
   };
   // clean input for next proccess
   const cleanInputs = () => {
-    setdefintionac("");
-    setdefintionen("");
+    setDefintionAc("");
+    setDefintioninEn("");
     setwordImage(null);
     setpreviewImage("");
   };
@@ -40,29 +47,29 @@ const SubjectData = ({ setsubjectData }) => {
         id: v4(),
         wordImage,
         previewImage,
-        defintionen,
-        defintionac,
-        unit,
-        lesson
+        DefintioninEn,
+        DefintionAc,
+        unit: currentUnit,
+        lesson: currentLesson,
       };
       setenteredWords(
         enteredWords.map((word) => (word.id === editWord.id ? newData : word))
       );
       seteditWord({ state: false, id: "" });
-      cleanInputs();
+      // cleanInputs();
     } else {
       const data = {
         id: v4(),
         wordImage,
         previewImage,
-        defintionen,
-        defintionac,
-        unit,
-        lesson,
+        DefintioninEn,
+        DefintionAc,
+        unit: currentUnit,
+        lesson: currentLesson,
       };
       setenteredWords([...enteredWords, data]);
       setsubjectData([...enteredWords, data]);
-      cleanInputs();
+      // cleanInputs();
     }
   };
 
@@ -75,10 +82,11 @@ const SubjectData = ({ setsubjectData }) => {
     e.target.parentElement.parentElement.style.border = "1px solid black";
     // logic
     seteditWord({ state: true, id });
-    const { defintionen, defintionac, wordImage, } =
-      enteredWords.find((w) => w.id === id);
-    setdefintionac(defintionac);
-    setdefintionen(defintionen);
+    const { DefintioninEn, DefintionAc, wordImage } = enteredWords.find(
+      (w) => w.id === id
+    );
+    setDefintionAc(DefintionAc);
+    setDefintioninEn(DefintioninEn);
     setwordImage(wordImage);
     const fileReader = new FileReader();
     fileReader.onload = (event) => {
@@ -94,13 +102,21 @@ const SubjectData = ({ setsubjectData }) => {
   };
 
   // small component representing single word
-  const Word = ({ wordData }) => {
+  const Word = ({ wordData, image }) => {
+    let imgUrl = null;
+    if (image) {
+      imgUrl = `http://localhost:3000/${image}`;
+    } else {
+      imgUrl = wordData.previewImage;
+    }
     return (
-      <div className={`${styles.word}`}>
+      <div
+        className={`${styles.word} bg-slate-200  dark:bg-darkBody hover:bg-slate-300 dark:hover:bg-darkHover rounded-md`}
+      >
         <div className={`${styles.info}`}>
-          <img src={wordData.previewImage} alt="" />
-          <span>{wordData.defintionen}</span>
-          <span>{wordData.defintionac}</span>
+          <img src={imgUrl} alt="" />
+          <span>{wordData.DefintioninEn}</span>
+          <span>{wordData.DefintionAc}</span>
         </div>
         <div className={`${styles.controlBTN}`}>
           <span onClick={(e) => editWordHandler(wordData.id, e)}>
@@ -119,41 +135,20 @@ const SubjectData = ({ setsubjectData }) => {
       <div className={styles.wrapper}>
         <div className={styles.word}>
           <div className={styles.unitLesson}>
-            <div className={styles.unit}>
-              <label htmlFor="unit">unit</label>
-              <select
-                name="unit"
-                id="unit"
-                value={unit}
-                onChange={(e) => setunit(e.target.value)}
-              >
-                <option>select</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-              </select>
-            </div>
-            <div className={styles.lesson}>
-              <label htmlFor="lesson">lesson</label>
-              <select
-                name="lesson"
-                id="lesson"
-                value={lesson}
-                onChange={(e) => setlesson(e.target.value)}
-              >
-                <option>select</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-              </select>
-            </div>
+            <span>unit: {currentUnit}</span>
+            <span>lesson: {currentLesson}</span>
           </div>
           <div className={styles.addWord}>
-            <div className={`${styles.image}`}>
+            <div className={`${styles.image}  dark:border-darkSText`}>
               {previewImage && <img src={previewImage} alt="" />}
-              <label htmlFor="file">
-                <span> <AddPhotoAlternateIcon color="primary" /> Upload Img</span>
-              </label>
+              {!previewImage && (
+                <label htmlFor="file">
+                  <span>
+                    {" "}
+                    <AddPhotoAlternateIcon color="primary" /> Upload Img
+                  </span>
+                </label>
+              )}
               <input
                 type="file"
                 name=""
@@ -168,8 +163,9 @@ const SubjectData = ({ setsubjectData }) => {
                   type="text"
                   name=""
                   id="word"
-                  value={defintionen}
-                  onChange={(e) => setdefintionen(e.target.value)}
+                  value={DefintioninEn}
+                  onChange={(e) => setDefintioninEn(e.target.value)}
+                  className="bg-gray-200 dark:bg-darkBody"
                 />
               </div>
               <div className={`${styles.input}`}>
@@ -177,8 +173,9 @@ const SubjectData = ({ setsubjectData }) => {
                 <input
                   type="text"
                   id="meaning"
-                  value={defintionac}
-                  onChange={(e) => setdefintionac(e.target.value)}
+                  value={DefintionAc}
+                  onChange={(e) => setDefintionAc(e.target.value)}
+                  className="bg-gray-200 dark:bg-darkBody"
                 />
               </div>
               <button onClick={addOrUpdateWord} className="text-white">
@@ -187,15 +184,23 @@ const SubjectData = ({ setsubjectData }) => {
             </div>
           </div>
         </div>
-        <div className={`${styles.enteredData}`} id="words">
-          <span className="fixed capitalize top-2">
-            {enteredWords.length} words
-          </span>
-          {enteredWords.map((word) => {
-            return <Word wordData={word} key={word.id} />;
-          })}
+
+        <div className={`${styles.data}`}>
+          <span>{enteredWords.length + oldWords.length} words</span>
+          <div
+            className={`${styles.enteredData} dark:border-darkSText`}
+            id="words"
+          >
+            {oldWords.map((word) => {
+              return <Word wordData={word} key={word.id} image={word.Image} />;
+            })}
+            {enteredWords.map((word) => {
+              return <Word wordData={word} key={word.id} />;
+            })}
+          </div>
         </div>
       </div>
+      {React.cloneElement(children)}
     </div>
   );
 };

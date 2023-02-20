@@ -1,17 +1,35 @@
-.selectGame{
-width: 100%;
+.unitLesson {
+  @apply w-1/3 
+}
+.wrapper {
+  @apply flex  gap-5  flex-col lg:flex-row items-center justify-center capitalize  w-full px-4 mb-4;
+}
+.wrapper > div {
+  @apply flex flex-col items-start;
 }
 
-.wrapper{
-    @apply p-8 flex justify-center items-center gap-3
+.wrapper label {
+  @apply cursor-pointer font-bold text-center w-full;
+}
+.wrapper button {
+  @apply w-24 py-2 mx-auto border mt-2  rounded-md;
 }
 
-.wrapper .game {
-    @apply hover:-translate-y-4 hover:shadow-2xl transition-all duration-500 ease-linear cursor-pointer flex-1 rounded-md p-4 overflow-hidden bg-slate-200
+.wrapper .box {
+  @apply h-80 w-full p-2 overflow-y-scroll;
 }
-.wrapper .game img {
-    @apply w-full h-52 mb-4
+
+.units {
+  @apply w-full  lg:flex-1 ;
 }
-.wrapper .game span {
-    @apply capitalize text-green-600 text-lg font-bold
+.lessons {
+  @apply w-full lg:flex-1;
+}
+
+
+.unit {
+    @apply h-20 cursor-pointer mb-2 p-4 flex items-center justify-start
+}
+.lesson {
+    @apply h-12 cursor-pointer mb-2 p-4 flex items-center justify-start
 }

@@ -1,6 +1,7 @@
 
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import userSlice from "./slices/userSlice";
+import questionsDataSlice from "./slices/questionsDataSlice";
 import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
 import thunk from 'redux-thunk';
@@ -11,6 +12,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   userSlice,
+  questionsDataSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

@@ -1,91 +1,87 @@
 .SubjectData {
-    width: 100%;
+   @apply w-1/3  ;
+
 }
 
 .SubjectData .wrapper {
-    @apply p-8 flex  gap-10 items-center justify-between mx-10
+  @apply  flex flex-wrap  gap-10 items-center justify-between  lg:mx-10 px-4 mb-4;
 }
-
+.SubjectData .wrapper > .word {
+  @apply flex-1;
+}
 .unitLesson {
-    @apply flex-1 flex gap-5  items-center capitalize mb-8 
-}
-.unitLesson label {
-    @apply cursor-pointer font-bold
+  @apply  flex  gap-5  items-center justify-start capitalize mb-8;
 }
 
-.unitLesson select {
-    @apply w-full bg-gray-200 p-2 rounded-md cursor-pointer focus:outline-none
-}
-
-.unit {
-    @apply flex-1 flex gap-2  items-center
-}
-.lesson {
-    @apply flex-1 flex gap-2  items-center
-}
 .addWord {
-    @apply flex-1 flex gap-5  items-center
+  @apply flex-1 flex flex-col lg:flex-row gap-5  items-center;
 }
 
-.SubjectData .image{
-    @apply w-52 h-52  relative border p-4 
+.SubjectData .image {
+  @apply w-full h-52   lg:w-52 lg:h-52  relative border p-4;
 }
 
-.SubjectData .image img{
-    @apply w-full h-full object-cover -z-10
+.SubjectData .image img {
+  @apply w-full h-full object-cover -z-10;
 }
-.SubjectData .image label{
-    @apply  absolute w-full h-full top-0 left-0  flex justify-center items-center cursor-pointer
+.SubjectData .image label {
+  @apply absolute w-full h-full top-0 left-0  flex justify-center items-center cursor-pointer;
 }
-.SubjectData .image label span{
-    @apply font-bold flex flex-col gap-2 items-center justify-center
+.SubjectData .image label span {
+  @apply font-bold flex flex-col gap-2 items-center justify-center;
 }
-.SubjectData .image input{
-    @apply hidden 
-} 
+.SubjectData .image input {
+  @apply hidden;
+}
 
-.inputs{
- @apply flex  flex-col gap-4
+.inputs {
+  @apply w-full lg:flex-1 flex   flex-col gap-4;
 }
 .inputs .input {
- @apply flex  flex-col gap-2
-
+  @apply flex  flex-col gap-2;
 }
-.inputs .input label{
-    @apply font-semibold
+.inputs .input label {
+  @apply font-semibold;
 }
 .inputs .input input {
-    @apply p-3 bg-gray-200 focus:outline-none rounded-md
+  @apply p-3 focus:outline-none rounded-md;
 }
 
-.inputs > button{
-    @apply py-2 bg-green-600 rounded-md
+.inputs > button {
+  @apply py-2 bg-green-600 rounded-md;
 }
-
-
+.data{
+  @apply flex-1
+}
+.data > span{
+  @apply block mb-2
+}
 .enteredData {
-    height: 300px;
-    @apply flex-1 flex flex-col  gap-4 overflow-y-scroll border-2 p-2
+  height: 300px;
+  min-width: 300px;
+  @apply flex-1  flex flex-col  gap-2 overflow-y-scroll border-2 p-2 relative rounded-md;
 }
+/* .enteredData >span {
+  @apply absolute top-0 capitalize 
+} */
 .enteredData .word {
-    @apply w-full flex justify-between items-center border p-3 bg-slate-200 shadow-md
+  @apply w-full h-20 flex justify-between items-center border p-3  shadow-md;
 }
 .enteredData .word .info {
-    @apply flex gap-2 items-center
+  @apply flex gap-2 items-center;
 }
 .enteredData .word .info img {
-    @apply w-10 h-10
+  @apply w-12 h-12;
 }
 .enteredData .word .controlBTN {
-    @apply flex gap-2 rounded-md 
-
+  @apply flex gap-2 rounded-md;
 }
 .enteredData .word .controlBTN span {
-    @apply cursor-pointer inline-block ml-2 hover:scale-105
+  @apply cursor-pointer inline-block ml-2 hover:scale-105;
 }
 .enteredData .word .controlBTN span:first-child {
-    @apply hover:text-green-600
+  @apply hover:text-green-600;
 }
 .enteredData .word .controlBTN span:last-child {
-    @apply hover:text-red-600
+  @apply hover:text-red-600;
 }
