@@ -1,16 +1,16 @@
 .SubjectData {
-   @apply w-1/3  ;
-
+  /* @apply w-1/3  ; */
+  @apply w-full;
 }
 
 .SubjectData .wrapper {
-  @apply  flex flex-wrap  gap-10 items-center justify-between  lg:mx-10 px-4 mb-4;
+  @apply flex flex-wrap  gap-10 items-center justify-between  lg:mx-10 px-4 mb-4;
 }
 .SubjectData .wrapper > .word {
   @apply flex-1;
 }
 .unitLesson {
-  @apply  flex  gap-5  items-center justify-start capitalize mb-8 font-bold;
+  @apply flex  gap-5  items-center justify-start capitalize mb-8 font-bold;
 }
 
 .addWord {
@@ -50,25 +50,28 @@
 .inputs > button {
   @apply py-2 bg-green-600 rounded-md;
 }
-.data{
-  @apply flex-1
+.data {
+  @apply flex-1;
 }
-.data > span{
-  @apply block mb-2
+.data > span {
+  @apply block mb-2;
 }
 .enteredData {
   height: 300px;
   min-width: 300px;
   @apply flex-1  flex flex-col  gap-2 overflow-y-scroll border-2 p-2 relative rounded-md;
 }
-.oldData {
-  @apply flex flex-col gap-2 relative
+.enteredData .loading {
+  @apply w-10 h-10 bg-transparent absolute self-center;
 }
-.oldData::after {
+.oldData {
+  @apply flex flex-col gap-2 relative;
+}
+/* .oldData::after {
   content: "";
   background-color: rgba(255, 255, 255, 0.59);
-  @apply absolute w-full h-full cursor-not-allowed                                    
-}
+  @apply absolute w-full h-full cursor-not-allowed;
+} */
 
 .enteredData .word {
   @apply w-full h-20 flex justify-between items-center border p-3  shadow-md;

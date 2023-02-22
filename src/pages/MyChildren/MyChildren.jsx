@@ -47,7 +47,10 @@ const Child = ({ child }) => {
   return (
     <dir className="child">
       <div className="img">
-        <img src={"https://source.unsplash.com/random"} alt="" />
+        <img
+          src={process.env.REACT_APP_SERVER_DOMAIL + "/" + child.studentPic}
+          alt=""
+        />
       </div>
       <div className="info">
         <h2 className="dark:text-darkPText">{child.studentName}</h2>

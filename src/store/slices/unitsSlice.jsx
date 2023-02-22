@@ -1,18 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  subject:"",
+  subject: "",
   units: [
     {
       unit: 1,
       lessons: [
         {
           lesson: 1,
-          title: "animal",
-        },
-        {
-          lesson: 2,
-          title: "school",
+          title: "Enter The Lesson Name",
         },
       ],
     },
@@ -22,17 +18,13 @@ const initialState = {
     lessons: [
       {
         lesson: 1,
-        title: "animal",
-      },
-      {
-        lesson: 2,
-        title: "school",
+        title: "Enter The Lesson Name",
       },
     ],
   },
-  currentLesson:{lesson:1,title: "animal"},
-  subjectData:[],
-  dataSend: false,
+  currentLesson: { lesson: 1, title: "Enter The Lesson Name" },
+  subjectData: [],
+  stepNumber: 0,
 };
 
 export const unitsSlice = createSlice({
@@ -48,14 +40,14 @@ export const unitsSlice = createSlice({
     setcurrentLesson: (state, action) => {
       state.currentLesson = action.payload;
     },
-    setdataSend: (state, action) => {
-      state.dataSend = action.payload;
-    },
     setsubject: (state, action) => {
       state.subject = action.payload;
     },
     setsubjectData: (state, action) => {
       state.subjectData = action.payload;
+    },
+    setstepNumber: (state, action) => {
+      state.stepNumber = action.payload;
     },
   },
 });
@@ -66,6 +58,6 @@ export const {
   setcurrentUnit,
   setcurrentLesson,
   setsubjectData,
-  setdataSend,
+  setstepNumber,
 } = unitsSlice.actions;
 export default unitsSlice.reducer;

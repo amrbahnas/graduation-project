@@ -1,23 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 // redux
-import {
-  setcurrentUnit,
-  setunits,
-  setcurrentLesson,
-} from "../../../../store/slices/unitsSlice";
+import { setunits, setstepNumber } from "../../../../store/slices/unitsSlice";
 import { useDispatch, useSelector } from "react-redux";
+// icon
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { Link } from "react-router-dom";
 // css
 import styles from "./SelectUnit.module.css";
-// icon
-import EditIcon from "@mui/icons-material/Edit";
-
+// component
+import SingleUnit from "./Nested-Components/SingleUnit";
+import SingleLesson from "./Nested-Components/SingleLesson";
 /*****************************************start******** */
-const SelectUnit = ({ children }) => {
+const SelectUnit = () => {
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(setstepNumber(1));
+  }, [dispatch]);
   // global state
-  const { currentLesson, units, currentUnit } = useSelector(
-    (store) => store.unitsSlice
-  );
+  const { units, currentUnit } = useSelector((store) => store.unitsSlice);
   // local variables
   let lessons = units.filter((el) => el.unit === currentUnit.unit)[0].lessons;
 
@@ -34,7 +34,7 @@ const SelectUnit = ({ children }) => {
   };
 
   const addLessonHandler = () => {
-    setunits(
+    dispatch(setunits(
       units.map((unitObject) =>
         unitObject.unit === currentUnit.unit
           ? {
@@ -46,79 +46,7 @@ const SelectUnit = ({ children }) => {
             }
           : unitObject
       )
-    );
-  };
-
-  // components
-  const Unit = ({ unit }) => {
-    return (
-      <div
-        className={`${styles.unit} ${
-          +currentUnit.unit === +unit
-            ? "border-2 border-gray-500 bg-white dark:border-darkSText  dark:bg-darkHover "
-            : " bg-gray-100  dark:bg-darkCard  dark:hover:bg-darkHover hover:bg-white"
-        }`}
-        onClick={(e) => dispatch(setcurrentUnit({ ...currentUnit, unit }))}
-      >
-        <div className={`${styles.info}`}>
-          <span>unit {unit}</span>
-        </div>
-      </div>
-    );
-  };
-
-  const Lesson = ({ lessonObject }) => {
-    const [lessonTitle, setlessonTitle] = useState(lessonObject.title);
-    const [disabled, setdisabled] = useState(true);
-    const editIcon = () => {
-      setdisabled(false);
-    };
-    const changeTitle = () => {
-      const newUnits = units.map((unitObject) => {
-        if (unitObject.unit === currentUnit.unit) {
-          const newLessons = unitObject.lessons.map((lessonObject) =>
-            lessonObject.lesson === currentLesson.lesson
-              ? { lesson: lessonObject.lesson, title: lessonTitle }
-              : lessonObject
-          );
-          return { unit: unitObject.unit, lessons: newLessons };
-        } else {
-          return unitObject;
-        }
-      });
-      dispatch(setunits(newUnits));
-      setdisabled(true);
-    };
-    return (
-      <div
-        className={`${styles.lesson} ${
-          currentLesson.lesson === lessonObject.lesson
-            ? "border border-gray-500 bg-white dark:border-darkSText  dark:bg-darkHover "
-            : " bg-gray-100  dark:bg-darkCard  dark:hover:bg-darkHover hover:bg-white"
-        }  `}
-        onClick={(e) => dispatch(setcurrentLesson(lessonObject))}
-      >
-        <div className={`${styles.info}`}>
-          <span> lesson {lessonObject.lesson}</span>
-          <div className={`${styles.input}`}>
-            <input
-              type="text"
-              placeholder="Title"
-              value={lessonTitle}
-              onChange={(e) => setlessonTitle(e.target.value)}
-              disabled={disabled}
-              className="bg-gray-200 dark:bg-darkBody"
-            />
-            {+currentLesson.lesson === +lessonObject.lesson &&
-              (disabled ? (
-                <EditIcon onClick={editIcon} size="small" className="ml-2" />
-              ) : (
-                <span onClick={changeTitle}>save</span>
-              ))}
-          </div>
-        </div>
-      </div>
-    );
+    ));
   };
 
   return (
@@ -127,8 +55,8 @@ const SelectUnit = ({ children }) => {
         <div className={styles.units}>
           <label htmlFor="unit">units</label>
           <div className={`${styles.box} bg-gray-200 dark:bg-darkBody`}>
-            {units?.map((el) => (
-              <Unit unit={el.unit} key={el.unit} />
+            {units?.map((unitObject) => (
+              <SingleUnit unitObject={unitObject}  key={unitObject.unit} />
             ))}
           </div>
           <button
@@ -142,7 +70,10 @@ const SelectUnit = ({ children }) => {
           <label htmlFor="lesson">lessons</label>
           <div className={`${styles.box} bg-gray-200 dark:bg-darkBody`}>
             {lessons.map((lessonObject) => (
-              <Lesson lessonObject={lessonObject} key={lessonObject.lesson} />
+              <SingleLesson
+                lessonObject={lessonObject}
+                key={lessonObject.lesson}
+              />
             ))}
           </div>
           <button
@@ -153,7 +84,12 @@ const SelectUnit = ({ children }) => {
           </button>
         </div>
       </div>
-      {React.cloneElement(children)}
+      <div className="control">
+        <Link to="SubjectData">Next</Link>
+        <Link to={-1}>
+          <ArrowBackIcon /> Back
+        </Link>
+      </div>
     </div>
   );
 };

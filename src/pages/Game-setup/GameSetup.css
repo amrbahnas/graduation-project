@@ -29,21 +29,21 @@
 .gameSetup .wrapper .proccessLine .line span {
   @apply block h-full bg-blue-500 transition-all duration-700;
 }
-
+/* /////////////////////////////////////////////////////////////////////// */
 .gameSetup .wrapper .pages {
-  width: calc(300%);
+  width: calc(100%);
   @apply flex  transition-all duration-700 ;
 }
 
 .gameSetup .wrapper .control {
   @apply w-full flex-row-reverse px-4 md:px-8 flex justify-between mb-4;
 }
-.gameSetup .wrapper .control button:last-child {
-  @apply py-2 w-24 text-black bg-gray-300 rounded-md flex items-center justify-center gap-1;
+.gameSetup .wrapper .control a:last-child {
+  @apply  py-2 w-24 text-black bg-gray-300 rounded-md flex items-center justify-center gap-1;
 }
 
-.gameSetup .wrapper .control button:first-child {
-  @apply py-2 w-24 text-white bg-blue-500 rounded-md ;
+.gameSetup .wrapper .control a:first-child {
+  @apply py-2 w-24 text-white bg-blue-500 rounded-md flex items-center justify-center ;
 }
 
 .gameSetup .home {

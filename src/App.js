@@ -13,6 +13,9 @@ import StudentProfile from "./pages/StudentProfile/StudentProfile";
 import Subjects from "./pages/StudentProfile/LocalComponents/Subjects/Subjects";
 import Tasks from "./pages/StudentProfile/LocalComponents/Tasks/Tasks";
 import SingleTask from "./pages/StudentProfile/LocalComponents/SingleTask/SingleTask";
+import Subject from "./pages/Game-setup/Local-component/Subject/Subject";
+import SelectUnit from "./pages/Game-setup/Local-component/SelectUnit/SelectUnit";
+import SubjectData from "./pages/Game-setup/Local-component/SubjectData/SubjectData";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +33,20 @@ const router = createBrowserRouter([
       {
         path: "/gameSetup/:_id",
         element: <GameSetup />,
+        children: [
+          {
+            index: true,
+            element: <Subject />,
+          },
+          {
+            path: "/gameSetup/:_id/unit",
+            element: <SelectUnit />,
+          },
+          {
+            path: "/gameSetup/:_id/unit/SubjectData",
+            element: <SubjectData />,
+          },
+        ],
       },
       {
         path: "/studentProfile/:_id",

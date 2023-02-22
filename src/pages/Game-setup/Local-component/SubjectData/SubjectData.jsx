@@ -1,22 +1,49 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { v4 } from "uuid";
 import styles from "./SubjectData.module.css";
 // redux
-import { setsubjectData } from "../../../../store/slices/unitsSlice";
 import { useDispatch, useSelector } from "react-redux";
+import {
+  setsubjectData,
+  setstepNumber,
+} from "../../../../store/slices/unitsSlice";
+import {
+  addChildQuestions,
+  getChildQuestions,
+} from "../../../../store/slices/questionsDataSlice";
+// routes
+import { useNavigate, useParams, Link } from "react-router-dom";
+// components
+import SuccessCheck from "./../../../../components/SuccessCheck/SuccessCheck";
 //icons
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+
 /******************************start********************************** */
-const SubjectData = ({ children }) => {
+const SubjectData = () => {
   const dispatch = useDispatch();
+  const { _id } = useParams();
   // global variables
-  const { currentUnit, currentLesson } = useSelector(
+  const { children } = useSelector((store) => store.userSlice);
+  const child = children.filter((el) => el._id === _id)[0];
+  const { english, loading } = useSelector((store) => store.questionsDataSlice);
+  const { currentUnit, currentLesson, subjectData } = useSelector(
     (store) => store.unitsSlice
   );
-  const { english } = useSelector((store) => store.questionsDataSlice);
-  // component variables
+  // useEffect
+  useEffect(() => {
+    dispatch(setstepNumber(2));
+    const data = {
+      unit: currentUnit.unit,
+      stadge: child.studentstage,
+      lesson: currentLesson.lesson,
+    };
+    dispatch(getChildQuestions(data));
+  }, [currentUnit.unit, child.studentstage, currentLesson.lesson, dispatch]);
+
+  // local variables
   const oldWords = english.filter(
     (word) =>
       +word.Lesson === +currentLesson.lesson && +word.Unit === +currentUnit.unit
@@ -28,6 +55,7 @@ const SubjectData = ({ children }) => {
   const [wordImage, setwordImage] = useState(null);
   const [DefintioninEn, setDefintioninEn] = useState("");
   const [DefintioninAc, setDefintioninAc] = useState("");
+  const [dataIsSend, setdataIsSend] = useState(false);
   // take img from input file then show it
   const previewImg = (files) => {
     if (files.length > 0) {
@@ -115,6 +143,7 @@ const SubjectData = ({ children }) => {
     } else {
       imgUrl = wordData.previewImage;
     }
+
     return (
       <div
         className={`${styles.word} bg-slate-200  dark:bg-darkBody hover:bg-slate-300 dark:hover:bg-darkHover rounded-md`}
@@ -135,6 +164,23 @@ const SubjectData = ({ children }) => {
       </div>
     );
   };
+
+  const submitData = () => {
+    const questions = subjectData.map((subject) => ({
+      _id: subject.id,
+      image: subject.wordImage,
+      defintionen: subject.DefintioninEn,
+      defintionac: subject.DefintioninAc,
+      unit: subject.unit,
+      lesson: subject.lesson,
+      stadge: child.studentstage,
+    }));
+
+    questions.forEach((word) => {
+      dispatch(addChildQuestions(word)).then(() => setdataIsSend(true));
+    });
+  };
+
   /******************************** DOM *************************************************** */
   return (
     <div className={styles.SubjectData}>
@@ -143,19 +189,53 @@ const SubjectData = ({ children }) => {
           <div className={styles.unitLesson}>
             <span>unit: {currentUnit.unit}</span>
             <span>lesson: {currentLesson.lesson}</span>
-            <span>( {currentLesson.title} )</span>
+            {/* <span>( {currentLesson.title} )</span> */}
           </div>
           <div className={styles.addWord}>
             <div className={`${styles.image}  dark:border-darkSText`}>
+              {/* {
+                <>
+                  <img src={previewImage} alt="" />
+
+                  <label htmlFor="file">
+                    <span>
+                      {" "}
+                      <AddPhotoAlternateIcon color="primary" /> Upload Img
+                    </span>
+                  </label>
+                </>
+              } */}
+
               {previewImage && <img src={previewImage} alt="" />}
               {!previewImage && (
+                <label htmlFor="file">
+                  <span>
+                    <AddPhotoAlternateIcon color="primary" /> Upload Img
+                  </span>
+                </label>
+              )}
+              {/* {editWord.state && previewImage ? (
+                <>
+                  <img src={previewImage} alt="" />
+
+                  <label htmlFor="file">
+                    <span>
+                      {" "}
+                      <AddPhotoAlternateIcon color="primary" /> Upload Img
+                    </span>
+                  </label>
+                </>
+              ) : previewImage ? (
+                <img src={previewImage} alt="" />
+              ) : (
                 <label htmlFor="file">
                   <span>
                     {" "}
                     <AddPhotoAlternateIcon color="primary" /> Upload Img
                   </span>
                 </label>
-              )}
+              )} */}
+
               <input
                 type="file"
                 name=""
@@ -198,12 +278,20 @@ const SubjectData = ({ children }) => {
             className={`${styles.enteredData} dark:border-darkSText`}
             id="words"
           >
-            <div className={`${styles.oldData}`}>
-              {oldWords.map((word) => {
-                return (
-                  <Word wordData={word} key={word._id} image={word.Image} />
-                );
-              })}
+            <div className={`${styles.oldData} relative`}>
+              {loading ? (
+                <img
+                  src="/assets/svg/loading.svg"
+                  alt=""
+                  className={`${styles.loading}`}
+                />
+              ) : (
+                oldWords.map((word) => {
+                  return (
+                    <Word wordData={word} key={word} image={word.Image} />
+                  );
+                })
+              )}
             </div>
             {enteredWords.map((word) => {
               return <Word wordData={word} key={word._id} />;
@@ -211,7 +299,15 @@ const SubjectData = ({ children }) => {
           </div>
         </div>
       </div>
-      {React.cloneElement(children)}
+      <div className="control">
+        <a href="#done" onClick={submitData}>
+          Finsh
+        </a>
+        <Link to={-1}>
+          <ArrowBackIcon /> Back
+        </Link>
+      </div>
+      {dataIsSend && <SuccessCheck />}
     </div>
   );
 };

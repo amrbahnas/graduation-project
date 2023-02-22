@@ -1,9 +1,14 @@
-import styles from "./Subject.module.css";
-import React from "react";
-import {setsubject} from '../../../../store/slices/unitsSlice'
+import React, { useEffect } from "react";
+import { setsubject, setstepNumber } from "../../../../store/slices/unitsSlice";
 import { useDispatch } from "react-redux";
-const Subject = ({ children }) => {
+import { Link } from "react-router-dom";
+
+import styles from "./Subject.module.css";
+const Subject = () => {
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(setstepNumber(0));
+  }, [dispatch]);
   const selectedSubject = (e, subject) => {
     dispatch(setsubject(subject));
     document.querySelectorAll("#subjects div").forEach((subject) => {
@@ -11,6 +16,7 @@ const Subject = ({ children }) => {
     });
     e.target.style.border = "1px solid";
   };
+
   return (
     <div className={styles.subject}>
       <div className={styles.wrapper} id="subjects">
@@ -33,7 +39,9 @@ const Subject = ({ children }) => {
           Math
         </div>
       </div>
-      {React.cloneElement(children)}
+      <div className="control">
+        <Link to="unit">Next</Link>
+      </div>
     </div>
   );
 };

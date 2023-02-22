@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   addChildren,
   createChildAccount,
@@ -11,6 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./AddForm.css";
 const AddForm = ({ setshowForm }) => {
   const dispatch = useDispatch();
+  const { loading } = useSelector((store) => store.userSlice);
   const [name, setname] = useState("");
   const [age, setage] = useState("");
   const [stage, setstage] = useState("");
@@ -26,16 +27,9 @@ const AddForm = ({ setshowForm }) => {
       username,
       password,
     };
-    const localData = {
-      studentName: name,
-      studentAge: age,
-      studentstage: stage,
-      username,
-      password,
-    };
     dispatch(createChildAccount(data)).then((action) => {
       // const _id = action.payload.student_id;
-      dispatch(addChildren(action.payload));
+      dispatch(addChildren(action.payload.student));
       setshowForm(false);
     });
   };
@@ -120,7 +114,16 @@ const AddForm = ({ setshowForm }) => {
             />
           </div>
         </div>
-        <button>create</button>
+
+        {loading ? (
+          <img
+            src="/assets/svg/loading.svg"
+            alt=""
+            className="w-10 h-10 ml-10 "
+          />
+        ) : (
+          <button>create</button>
+        )}
       </form>
     </div>
   );
