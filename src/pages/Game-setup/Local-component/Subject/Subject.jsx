@@ -1,9 +1,11 @@
 import styles from "./Subject.module.css";
-import React from "react"
-
-const Subject = ({ setsubject,children }) => {
+import React from "react";
+import {setsubject} from '../../../../store/slices/unitsSlice'
+import { useDispatch } from "react-redux";
+const Subject = ({ children }) => {
+  const dispatch = useDispatch();
   const selectedSubject = (e, subject) => {
-    setsubject(subject);
+    dispatch(setsubject(subject));
     document.querySelectorAll("#subjects div").forEach((subject) => {
       subject.style.border = "none";
     });
@@ -30,10 +32,8 @@ const Subject = ({ setsubject,children }) => {
         >
           Math
         </div>
-        
       </div>
-        {React.cloneElement(children)}
-     
+      {React.cloneElement(children)}
     </div>
   );
 };

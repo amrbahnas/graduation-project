@@ -1,26 +1,36 @@
 import React, { useState } from "react";
+// redux
+import {
+  setcurrentUnit,
+  setunits,
+  setcurrentLesson,
+} from "../../../../store/slices/unitsSlice";
+import { useDispatch, useSelector } from "react-redux";
+// css
 import styles from "./SelectUnit.module.css";
 // icon
 import EditIcon from "@mui/icons-material/Edit";
-const SelectUnit = ({
-  setcurrentUnit,
-  currentUnit,
-  units,
-  setunits,
-  currentLesson,
-  setcurrentLesson,
-  children,
-}) => {
+
+/*****************************************start******** */
+const SelectUnit = ({ children }) => {
+  const dispatch = useDispatch();
+  // global state
+  const { currentLesson, units, currentUnit } = useSelector(
+    (store) => store.unitsSlice
+  );
+  // local variables
   let lessons = units.filter((el) => el.unit === currentUnit.unit)[0].lessons;
 
   const addUnitHandler = () => {
-    setunits([
-      ...units,
-      {
-        unit: units.length + 1,
-        lessons: [{ lesson: 1, title: "unit title" }],
-      },
-    ]);
+    dispatch(
+      setunits([
+        ...units,
+        {
+          unit: units.length + 1,
+          lessons: [{ lesson: 1, title: "unit title" }],
+        },
+      ])
+    );
   };
 
   const addLessonHandler = () => {
@@ -48,7 +58,7 @@ const SelectUnit = ({
             ? "border-2 border-gray-500 bg-white dark:border-darkSText  dark:bg-darkHover "
             : " bg-gray-100  dark:bg-darkCard  dark:hover:bg-darkHover hover:bg-white"
         }`}
-        onClick={(e) => setcurrentUnit({ ...currentUnit, unit })}
+        onClick={(e) => dispatch(setcurrentUnit({ ...currentUnit, unit }))}
       >
         <div className={`${styles.info}`}>
           <span>unit {unit}</span>
@@ -64,20 +74,19 @@ const SelectUnit = ({
       setdisabled(false);
     };
     const changeTitle = () => {
-      setunits((prev) =>
-        prev.map((unitObject) => {
-          if (unitObject.unit === currentUnit.unit) {
-            const newLessons = unitObject.lessons.map((lessonObject) =>
-              lessonObject.lesson === currentLesson.lesson
-                ? { lesson: lessonObject.lesson, title: lessonTitle }
-                : lessonObject
-            );
-            return { unit: unitObject.unit, lessons: newLessons };
-          } else {
-            return unitObject;
-          }
-        })
-      );
+      const newUnits = units.map((unitObject) => {
+        if (unitObject.unit === currentUnit.unit) {
+          const newLessons = unitObject.lessons.map((lessonObject) =>
+            lessonObject.lesson === currentLesson.lesson
+              ? { lesson: lessonObject.lesson, title: lessonTitle }
+              : lessonObject
+          );
+          return { unit: unitObject.unit, lessons: newLessons };
+        } else {
+          return unitObject;
+        }
+      });
+      dispatch(setunits(newUnits));
       setdisabled(true);
     };
     return (
@@ -87,7 +96,7 @@ const SelectUnit = ({
             ? "border border-gray-500 bg-white dark:border-darkSText  dark:bg-darkHover "
             : " bg-gray-100  dark:bg-darkCard  dark:hover:bg-darkHover hover:bg-white"
         }  `}
-        onClick={(e) => setcurrentLesson(lessonObject)}
+        onClick={(e) => dispatch(setcurrentLesson(lessonObject))}
       >
         <div className={`${styles.info}`}>
           <span> lesson {lessonObject.lesson}</span>

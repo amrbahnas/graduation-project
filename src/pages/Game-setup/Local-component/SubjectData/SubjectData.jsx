@@ -1,21 +1,25 @@
-import React,{ useState } from "react";
+import React, { useState } from "react";
 import { v4 } from "uuid";
 import styles from "./SubjectData.module.css";
+// redux
+import { setsubjectData } from "../../../../store/slices/unitsSlice";
+import { useDispatch, useSelector } from "react-redux";
 //icons
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
-// redux
-import { useSelector } from "react-redux";
-
 /******************************start********************************** */
-const SubjectData = ({ setsubjectData, currentUnit, currentLesson,children }) => {
+const SubjectData = ({ children }) => {
+  const dispatch = useDispatch();
   // global variables
-  console.log(currentLesson);
+  const { currentUnit, currentLesson } = useSelector(
+    (store) => store.unitsSlice
+  );
   const { english } = useSelector((store) => store.questionsDataSlice);
   // component variables
   const oldWords = english.filter(
-    (word) => +word.Lesson === +currentLesson.lesson && +word.Unit === +currentUnit.unit
+    (word) =>
+      +word.Lesson === +currentLesson.lesson && +word.Unit === +currentUnit.unit
   );
   // console.log(oldWords);
   const [editWord, seteditWord] = useState({ state: false, id: "" });
@@ -70,7 +74,7 @@ const SubjectData = ({ setsubjectData, currentUnit, currentLesson,children }) =>
         lesson: currentLesson.lesson,
       };
       setenteredWords([...enteredWords, data]);
-      setsubjectData([...enteredWords, data]);
+      dispatch(setsubjectData([...enteredWords, data]));
       cleanInputs();
     }
   };

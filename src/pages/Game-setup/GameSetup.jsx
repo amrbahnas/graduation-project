@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./GameSetup.css";
 // redux
 import { useDispatch, useSelector } from "react-redux";
+
+import { setdataSend } from "../../store/slices/unitsSlice";
 import {
   addChildQuestions,
   getChildQuestions,
@@ -26,46 +28,13 @@ import SuccessCheck from "./../../components/SuccessCheck/SuccessCheck";
 const GameSetup = () => {
   // variables
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
   const [photoIndex, SetPhotoIndex] = useState(0);
-  const [subject, setsubject] = useState("");
-  const [units, setunits] = useState([
-    {
-      unit: 1,
-      lessons: [
-        {
-          lesson: 1,
-          title: "animal",
-        },
-        {
-          lesson: 2,
-          title: "school",
-        },
-      ],
-    },
-  ]);
-  const [currentUnit, setcurrentUnit] = useState({
-    unit: 1,
-    lessons: [
-      {
-        lesson: 1,
-        title: "animal",
-      },
-      {
-        lesson: 2,
-        title: "school",
-      },
-    ],
-  });
-  const [currentLesson, setcurrentLesson] = useState({lesson:1,title: "animal"});
-  const [dataSend, setdataSend] = useState(false);
-
-  const [subjectData, setsubjectData] = useState([]);
   const { _id } = useParams();
 
   // get global state
   const { login, children } = useSelector((store) => store.userSlice);
+  const { subjectData, dataSend } = useSelector((store) => store.unitsSlice);
   const child = children.filter((el) => el._id === _id)[0];
   // user cant access this page if he has login
   // useEffect(() => {
@@ -171,24 +140,13 @@ const GameSetup = () => {
             className="pages"
             style={{ transform: `translateX(${-photoIndex * 33.3}%)` }}
           >
-            <Subject setsubject={setsubject}>
+            <Subject>
               <SliderControl />
             </Subject>
-            <SelectUnit
-              units={units}
-              setunits={setunits}
-              currentUnit={currentUnit}
-              setcurrentUnit={setcurrentUnit}
-              currentLesson={currentLesson}
-              setcurrentLesson={setcurrentLesson}
-            >
+            <SelectUnit>
               <SliderControl />
             </SelectUnit>
-            <SubjectData
-              setsubjectData={setsubjectData}
-              currentUnit={currentUnit}
-              currentLesson={currentLesson}
-            >
+            <SubjectData>
               <SliderControl />
             </SubjectData>
           </div>
