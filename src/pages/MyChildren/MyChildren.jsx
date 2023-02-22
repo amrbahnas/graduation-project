@@ -47,21 +47,17 @@ const Child = ({ child }) => {
   return (
     <dir className="child">
       <div className="img">
-        <span>{child.studentName.slice(0, 2)}</span>
+        <img src={"https://source.unsplash.com/random"} alt="" />
       </div>
       <div className="info">
         <h2 className="dark:text-darkPText">{child.studentName}</h2>
         <div className="options">
-            <Link to={"/studentProfile/" + child._id}>
-          <span>
-            Profile
-          </span>
-            </Link>
-            <Link to={"/gameSetup/" + child._id}>
-          <span>
-            Add Subject
-          </span>
-            </Link>
+          <Link to={"/studentProfile/" + child._id}>
+            <span>Profile</span>
+          </Link>
+          <Link to={"/gameSetup/" + child._id}>
+            <span>Add Subject</span>
+          </Link>
         </div>
       </div>
     </dir>

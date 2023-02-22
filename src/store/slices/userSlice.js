@@ -135,7 +135,7 @@ export const userSlice = createSlice({
 
     // login
     [loginAccount.pending]: (state) => {
-      state.loading = false;
+      state.loading = true;
       state.error = false;
     },
     [loginAccount.fulfilled]: (state, action) => {

@@ -10,7 +10,7 @@
   @apply flex-1;
 }
 .unitLesson {
-  @apply  flex  gap-5  items-center justify-start capitalize mb-8;
+  @apply  flex  gap-5  items-center justify-start capitalize mb-8 font-bold;
 }
 
 .addWord {
@@ -61,9 +61,15 @@
   min-width: 300px;
   @apply flex-1  flex flex-col  gap-2 overflow-y-scroll border-2 p-2 relative rounded-md;
 }
-/* .enteredData >span {
-  @apply absolute top-0 capitalize 
-} */
+.oldData {
+  @apply flex flex-col gap-2 relative
+}
+.oldData::after {
+  content: "";
+  background-color: rgba(255, 255, 255, 0.59);
+  @apply absolute w-full h-full cursor-not-allowed                                    
+}
+
 .enteredData .word {
   @apply w-full h-20 flex justify-between items-center border p-3  shadow-md;
 }

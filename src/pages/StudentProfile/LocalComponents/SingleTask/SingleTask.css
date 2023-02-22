@@ -1,0 +1,26 @@
+.profile-single-task {
+  @apply flex flex-col gap-3 p-2  md:p-10 mt-12;
+}
+
+.profile-single-task table.GeneratedTable {
+  width: 100%;
+  background-color: #ffffff;
+  border-collapse: collapse;
+  border-width: 2px;
+  border-color: #35363a;
+  border-style: solid;
+  color: #000000;
+}
+
+.profile-single-task table.GeneratedTable td,
+.profile-single-task table.GeneratedTable th {
+  border-width: 2px;
+  border-color: #35363a;
+  border-style: solid;
+  padding: 3px;
+  text-align: center;
+}
+
+.profile-single-task table.GeneratedTable thead {
+  background-color: #8a8a85;
+}

@@ -6,13 +6,16 @@ import {
   addChildQuestions,
   getChildQuestions,
 } from "../../store/slices/questionsDataSlice";
+// router
+import { Link, Outlet } from "react-router-dom";
 // icons
 import CheckIcon from "@mui/icons-material/Check";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import FastRewindIcon from "@mui/icons-material/FastRewind";
 // components
 import Subject from "./Local-component/Subject/Subject";
 import SubjectData from "./Local-component/SubjectData/SubjectData";
-import SelectGame from "./Local-component/SelectGame/SelectGame";
+import SelectUnit from "./Local-component/SelectUnit/SelectUnit";
 // animation
 import { motion } from "framer-motion";
 // react-router
@@ -28,12 +31,34 @@ const GameSetup = () => {
   const [photoIndex, SetPhotoIndex] = useState(0);
   const [subject, setsubject] = useState("");
   const [units, setunits] = useState([
-    { unit: 1, lessonNum: 1 },
-    { unit: 2, lessonNum: 3 },
-    { unit: 3, lessonNum: 2 },
+    {
+      unit: 1,
+      lessons: [
+        {
+          lesson: 1,
+          title: "animal",
+        },
+        {
+          lesson: 2,
+          title: "school",
+        },
+      ],
+    },
   ]);
-  const [currentUnit, setcurrentUnit] = useState(1);
-  const [currentLesson, setcurrentLesson] = useState(1);
+  const [currentUnit, setcurrentUnit] = useState({
+    unit: 1,
+    lessons: [
+      {
+        lesson: 1,
+        title: "animal",
+      },
+      {
+        lesson: 2,
+        title: "school",
+      },
+    ],
+  });
+  const [currentLesson, setcurrentLesson] = useState({lesson:1,title: "animal"});
   const [dataSend, setdataSend] = useState(false);
 
   const [subjectData, setsubjectData] = useState([]);
@@ -43,25 +68,25 @@ const GameSetup = () => {
   const { login, children } = useSelector((store) => store.userSlice);
   const child = children.filter((el) => el._id === _id)[0];
   // user cant access this page if he has login
-  useEffect(() => {
-    if (!login) {
-      navigate("/");
-    } else {
-      const data = {
-        unit: currentUnit,
-        stadge: child.studentstage,
-        lesson: currentLesson,
-      };
-      dispatch(getChildQuestions(data));
-    }
-  }, [
-    login,
-    navigate,
-    dispatch,
-    child.studentstage,
-    currentLesson,
-    currentUnit,
-  ]);
+  // useEffect(() => {
+  //   if (!login) {
+  //     navigate("/");
+  //   } else {
+  //     const data = {
+  //       unit: currentUnit.unit,
+  //       stadge: child.studentstage,
+  //       lesson: currentLesson.lesson,
+  //     };
+  //     dispatch(getChildQuestions(data));
+  //   }
+  // }, [
+  //   login,
+  //   navigate,
+  //   dispatch,
+  //   child.studentstage,
+  //   currentLesson.lesson,
+  //   currentUnit.unit,
+  // ]);
   // functions
   const prevPage = () => {
     SetPhotoIndex(photoIndex === 0 ? 0 : (prev) => prev - 1);
@@ -72,8 +97,8 @@ const GameSetup = () => {
       const questions = subjectData.map((subject) => ({
         _id: subject.id,
         image: subject.wordImage,
-        defintionen: subject.defintionen,
-        defintionac: subject.defintionac,
+        defintionen: subject.DefintioninEn,
+        defintionac: subject.DefintioninAc,
         unit: subject.unit,
         lesson: subject.lesson,
         stadge: child.studentstage,
@@ -149,7 +174,7 @@ const GameSetup = () => {
             <Subject setsubject={setsubject}>
               <SliderControl />
             </Subject>
-            <SelectGame
+            <SelectUnit
               units={units}
               setunits={setunits}
               currentUnit={currentUnit}
@@ -158,7 +183,7 @@ const GameSetup = () => {
               setcurrentLesson={setcurrentLesson}
             >
               <SliderControl />
-            </SelectGame>
+            </SelectUnit>
             <SubjectData
               setsubjectData={setsubjectData}
               currentUnit={currentUnit}
@@ -169,6 +194,9 @@ const GameSetup = () => {
           </div>
         </div>
       </div>
+      <Link className="home" to="/">
+        <FastRewindIcon />
+      </Link>
       {dataSend && <SuccessCheck />}
     </div>
   );

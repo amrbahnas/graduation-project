@@ -33,12 +33,11 @@ const AddForm = ({ setshowForm }) => {
       username,
       password,
     };
-    dispatch(createChildAccount(data))
-      .then((action) => {
-        const _id = action.payload.studentID._id;
-        dispatch(addChildren({ ...localData, _id }));
-        setshowForm(false);
-      })
+    dispatch(createChildAccount(data)).then((action) => {
+      // const _id = action.payload.student_id;
+      dispatch(addChildren(action.payload));
+      setshowForm(false);
+    });
   };
   // close layout when click outside
   const layout = useRef();
@@ -60,7 +59,9 @@ const AddForm = ({ setshowForm }) => {
       <form ref={layout} onSubmit={(e) => submitHandler(e)}>
         <div className="close">
           <span>create children</span>
-          <span onClick={(e) => setshowForm(false)}><CloseIcon size="small"/></span>
+          <span onClick={(e) => setshowForm(false)}>
+            <CloseIcon size="small" />
+          </span>
         </div>
         <label className="title"> general Information:</label>
         <div className="inputs">
@@ -121,7 +122,6 @@ const AddForm = ({ setshowForm }) => {
         </div>
         <button>create</button>
       </form>
-    
     </div>
   );
 };

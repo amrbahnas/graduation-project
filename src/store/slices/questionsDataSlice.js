@@ -36,12 +36,13 @@ export const getChildQuestions = createAsyncThunk(
   async (data, thunkAPI) => {
     const { rejectWithValue, getState } = thunkAPI;
     const { _id } = getState().userSlice;
-    console.log(data);
+    // console.log(data);
+    // console.log(_id);
     const url = `${process.env.REACT_APP_GET_QUESTION_API}/${_id}`;
     const headers = {
       "content-type": "application/json; charset=UTF-8",
     };
-    console.log(url);
+    // console.log(url);
     try {
       const res = await axios.post(url, data, { headers });
       return res.data;
@@ -84,10 +85,12 @@ export const questionsDataSlice = createSlice({
     [getChildQuestions.pending]: (state) => {
       state.loading = true;
       state.error = false;
+      state.english = [];
     },
     [getChildQuestions.fulfilled]: (state, action) => {
       state.loading = false;
       state.error = false;
+      console.log(action.payload);
       state.english = action.payload.question;
     },
     [getChildQuestions.rejected]: (state, action) => {

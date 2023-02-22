@@ -10,6 +10,9 @@ import SignUp from "./pages/Sign-up/SignUp";
 import MyChildren from "./pages/MyChildren/MyChildren.jsx";
 import GameSetup from "./pages/Game-setup/GameSetup";
 import StudentProfile from "./pages/StudentProfile/StudentProfile";
+import Subjects from "./pages/StudentProfile/LocalComponents/Subjects/Subjects";
+import Tasks from "./pages/StudentProfile/LocalComponents/Tasks/Tasks";
+import SingleTask from "./pages/StudentProfile/LocalComponents/SingleTask/SingleTask";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +34,20 @@ const router = createBrowserRouter([
       {
         path: "/studentProfile/:_id",
         element: <StudentProfile />,
+        children: [
+          {
+            index: true,
+            element: <Subjects />,
+          },
+          {
+            path: "/studentProfile/:_id/tasks/:subjectName",
+            element: <Tasks />,
+          },
+          {
+            path: "/studentProfile/:_id/tasks/:subjectName/:taskNumber",
+            element: <SingleTask />,
+          },
+        ],
       },
     ],
   },

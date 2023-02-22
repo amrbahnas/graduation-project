@@ -1,0 +1,21 @@
+.profile-subjects {
+  @apply block  md:grid grid-cols-2  gap-6 p-6;
+}
+.profile-subjects a span {
+  @apply h-56 flex mb-6 md:mb-0 items-center justify-center bg-gray-500 shadow-md hover:-translate-y-2 rounded-md duration-500 cursor-pointer hover:shadow-2xl;
+}
+.profile-subjects a .english {
+  background: url("../../../../../public/assets/images/english.jpg") no-repeat center
+    center;
+  background-size: cover;
+}
+.profile-subjects a .math {
+  background: url("../../../../../public/assets/images/maths.avif") no-repeat center
+    center;
+  background-size:cover;
+}
+.profile-subjects a .arabic {
+  background: url("../../../../../public/assets/images/arabic.jpg") no-repeat center
+    center;
+  background-size: cover;
+}

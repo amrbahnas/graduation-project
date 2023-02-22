@@ -11,17 +11,19 @@ import { useSelector } from "react-redux";
 /******************************start********************************** */
 const SubjectData = ({ setsubjectData, currentUnit, currentLesson,children }) => {
   // global variables
+  console.log(currentLesson);
   const { english } = useSelector((store) => store.questionsDataSlice);
   // component variables
   const oldWords = english.filter(
-    (word) => +word.Lesson === +currentLesson && +word.Unit === +currentUnit
+    (word) => +word.Lesson === +currentLesson.lesson && +word.Unit === +currentUnit.unit
   );
+  // console.log(oldWords);
   const [editWord, seteditWord] = useState({ state: false, id: "" });
   const [enteredWords, setenteredWords] = useState([]);
   const [previewImage, setpreviewImage] = useState(null);
   const [wordImage, setwordImage] = useState(null);
   const [DefintioninEn, setDefintioninEn] = useState("");
-  const [DefintionAc, setDefintionAc] = useState("");
+  const [DefintioninAc, setDefintioninAc] = useState("");
   // take img from input file then show it
   const previewImg = (files) => {
     if (files.length > 0) {
@@ -35,7 +37,7 @@ const SubjectData = ({ setsubjectData, currentUnit, currentLesson,children }) =>
   };
   // clean input for next proccess
   const cleanInputs = () => {
-    setDefintionAc("");
+    setDefintioninAc("");
     setDefintioninEn("");
     setwordImage(null);
     setpreviewImage("");
@@ -48,28 +50,28 @@ const SubjectData = ({ setsubjectData, currentUnit, currentLesson,children }) =>
         wordImage,
         previewImage,
         DefintioninEn,
-        DefintionAc,
-        unit: currentUnit,
-        lesson: currentLesson,
+        DefintioninAc,
+        unit: currentUnit.unit,
+        lesson: currentLesson.lesson,
       };
       setenteredWords(
         enteredWords.map((word) => (word.id === editWord.id ? newData : word))
       );
       seteditWord({ state: false, id: "" });
-      // cleanInputs();
+      cleanInputs();
     } else {
       const data = {
         id: v4(),
         wordImage,
         previewImage,
         DefintioninEn,
-        DefintionAc,
-        unit: currentUnit,
-        lesson: currentLesson,
+        DefintioninAc,
+        unit: currentUnit.unit,
+        lesson: currentLesson.lesson,
       };
       setenteredWords([...enteredWords, data]);
       setsubjectData([...enteredWords, data]);
-      // cleanInputs();
+      cleanInputs();
     }
   };
 
@@ -82,10 +84,10 @@ const SubjectData = ({ setsubjectData, currentUnit, currentLesson,children }) =>
     e.target.parentElement.parentElement.style.border = "1px solid black";
     // logic
     seteditWord({ state: true, id });
-    const { DefintioninEn, DefintionAc, wordImage } = enteredWords.find(
+    const { DefintioninEn, DefintioninAc, wordImage } = enteredWords.find(
       (w) => w.id === id
     );
-    setDefintionAc(DefintionAc);
+    setDefintioninAc(DefintioninAc);
     setDefintioninEn(DefintioninEn);
     setwordImage(wordImage);
     const fileReader = new FileReader();
@@ -105,7 +107,7 @@ const SubjectData = ({ setsubjectData, currentUnit, currentLesson,children }) =>
   const Word = ({ wordData, image }) => {
     let imgUrl = null;
     if (image) {
-      imgUrl = `http://localhost:3000/${image}`;
+      imgUrl = `https://gamebasedlearning-ot4m.onrender.com/${image}`;
     } else {
       imgUrl = wordData.previewImage;
     }
@@ -116,7 +118,7 @@ const SubjectData = ({ setsubjectData, currentUnit, currentLesson,children }) =>
         <div className={`${styles.info}`}>
           <img src={imgUrl} alt="" />
           <span>{wordData.DefintioninEn}</span>
-          <span>{wordData.DefintionAc}</span>
+          <span>{wordData.DefintioninAc}</span>
         </div>
         <div className={`${styles.controlBTN}`}>
           <span onClick={(e) => editWordHandler(wordData.id, e)}>
@@ -135,8 +137,9 @@ const SubjectData = ({ setsubjectData, currentUnit, currentLesson,children }) =>
       <div className={styles.wrapper}>
         <div className={styles.word}>
           <div className={styles.unitLesson}>
-            <span>unit: {currentUnit}</span>
-            <span>lesson: {currentLesson}</span>
+            <span>unit: {currentUnit.unit}</span>
+            <span>lesson: {currentLesson.lesson}</span>
+            <span>( {currentLesson.title} )</span>
           </div>
           <div className={styles.addWord}>
             <div className={`${styles.image}  dark:border-darkSText`}>
@@ -173,8 +176,8 @@ const SubjectData = ({ setsubjectData, currentUnit, currentLesson,children }) =>
                 <input
                   type="text"
                   id="meaning"
-                  value={DefintionAc}
-                  onChange={(e) => setDefintionAc(e.target.value)}
+                  value={DefintioninAc}
+                  onChange={(e) => setDefintioninAc(e.target.value)}
                   className="bg-gray-200 dark:bg-darkBody"
                 />
               </div>
@@ -191,11 +194,15 @@ const SubjectData = ({ setsubjectData, currentUnit, currentLesson,children }) =>
             className={`${styles.enteredData} dark:border-darkSText`}
             id="words"
           >
-            {oldWords.map((word) => {
-              return <Word wordData={word} key={word.id} image={word.Image} />;
-            })}
+            <div className={`${styles.oldData}`}>
+              {oldWords.map((word) => {
+                return (
+                  <Word wordData={word} key={word._id} image={word.Image} />
+                );
+              })}
+            </div>
             {enteredWords.map((word) => {
-              return <Word wordData={word} key={word.id} />;
+              return <Word wordData={word} key={word._id} />;
             })}
           </div>
         </div>

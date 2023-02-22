@@ -1,0 +1,12 @@
+.profile-tasks {
+  @apply flex flex-col gap-3 p-2  md:p-10 mt-12;
+}
+.profile-tasks .task a {
+  @apply h-20 w-full bg-gray-300 hover:bg-gray-400 dark:bg-darkBody dark:hover:bg-darkHover p-4 flex items-center justify-between capitalize cursor-pointer  rounded-md;
+}
+.profile-tasks .task a span {
+  @apply flex items-center gap-1;
+}
+.profile-tasks a[locked]  {
+  @apply opacity-40 cursor-not-allowed  hover:bg-gray-300 dark:hover:bg-darkBody;
+}

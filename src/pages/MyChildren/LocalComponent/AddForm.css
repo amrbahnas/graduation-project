@@ -21,7 +21,7 @@
     @apply  text-lg
 }
 .AddChildrenForm form .inputs {
-    @apply  flex  gap-4 
+    @apply  flex  gap-2 md:gap-4  flex-col md:flex-row
 }
 .AddChildrenForm form .inputs .input {
     @apply  flex flex-col  gap-2  flex-1
