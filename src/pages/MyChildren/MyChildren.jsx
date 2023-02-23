@@ -48,7 +48,9 @@ const Child = ({ child }) => {
     <dir className="child">
       <div className="img">
         <img
-          src={process.env.REACT_APP_SERVER_DOMAIL + "/" + child.studentPic}
+          src={
+            import.meta.env.VITE_REACT_SERVER_DOMAIL + "/" + child.studentPic
+          }
           alt=""
         />
       </div>

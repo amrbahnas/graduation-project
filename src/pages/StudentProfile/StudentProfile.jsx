@@ -1,15 +1,14 @@
 import React from "react";
-import { useParams, Outlet,Link } from "react-router-dom";
+import { useParams, Outlet, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-//icon 
+//icon
 import FastRewindIcon from "@mui/icons-material/FastRewind";
 //css
-import './StudentProfile.css'
+import "./StudentProfile.css";
 const StudentProfile = () => {
   const { _id } = useParams();
   const { children } = useSelector((store) => store.userSlice);
   const { studentName, studentstage, studentPic } = children.filter(
-    
     (child) => child._id === _id
   )[0];
   return (
@@ -19,7 +18,9 @@ const StudentProfile = () => {
           <div className="profile-info">
             <div className="image">
               <img
-                src={process.env.REACT_APP_SERVER_DOMAIL + "/" + studentPic}
+                src={
+                  import.meta.env.VITE_REACT_SERVER_DOMAIL + "/" + studentPic
+                }
                 alt=""
               />
             </div>

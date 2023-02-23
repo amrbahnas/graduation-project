@@ -1,5 +1,5 @@
 import "./App.css";
-import { store, persistor } from "./store/index";
+import { store, persistor } from "./store/index.jsx";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";

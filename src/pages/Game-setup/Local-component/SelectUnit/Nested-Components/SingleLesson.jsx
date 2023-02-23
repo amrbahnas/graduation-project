@@ -53,8 +53,8 @@ const SingleLesson = ({ lessonObject }) => {
           <input
             type="text"
             placeholder="Title"
-            value={lessonObject.title}
-            // onChange={(e) => setlessonTitle(e.target.value)}
+            value={lessonTitle}
+            onChange={(e) => setlessonTitle(e.target.value)}
             disabled={disabled}
             className="bg-gray-200 dark:bg-darkBody"
           />

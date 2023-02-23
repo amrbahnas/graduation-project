@@ -16,7 +16,7 @@ export const addChildQuestions = createAsyncThunk(
     formdata.append("defintionen", word.defintionen);
     formdata.append("image", word.image, word.image.name);
     try {
-      const url = `${process.env.REACT_APP_ADD_QUESTION_API}/${_id}`;
+      const url = `${process.env.REACT_ADD_QUESTION_API}/${_id}`;
       const headers = {
         method: "POST",
         body: formdata,
@@ -36,13 +36,10 @@ export const getChildQuestions = createAsyncThunk(
   async (data, thunkAPI) => {
     const { rejectWithValue, getState } = thunkAPI;
     const { _id } = getState().userSlice;
-    // console.log(data);
-    // console.log(_id);
-    const url = `${process.env.REACT_APP_GET_QUESTION_API}/${_id}`;
+    const url = `${import.meta.env.VITE_REACT_GET_QUESTION_API}/${_id}`;
     const headers = {
       "content-type": "application/json; charset=UTF-8",
     };
-    // console.log(url);
     try {
       const res = await axios.post(url, data, { headers });
       return res.data;

@@ -7,7 +7,7 @@ export const createParentAccount = createAsyncThunk(
   async (data, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-      const url = process.env.REACT_APP_CREATE_PARENT_ACCOUNT_API;
+      const url = import.meta.env.VITE_REACT_CREATE_PARENT_ACCOUNT_API;
       const headers = {
         "content-type": "application/json; charset=UTF-8",
       };
@@ -26,7 +26,9 @@ export const createChildAccount = createAsyncThunk(
     const { rejectWithValue, getState } = thunkAPI;
     const { _id } = getState().userSlice;
     try {
-      const url = `${process.env.REACT_APP_CREATE_CHILD_ACCOUNT_API}/${_id}`;
+      const url = `${
+        import.meta.env.VITE_REACT_CREATE_CHILD_ACCOUNT_API
+      }/${_id}`;
       const headers = {
         "content-type": "application/json; charset=UTF-8",
       };
@@ -43,8 +45,9 @@ export const loginAccount = createAsyncThunk(
   "user/loginAccount",
   async (data, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
+    console.log(import.meta.env.VITE_REACT_LOGIN_API);
     try {
-      const url = process.env.REACT_APP_LOGIN_API;
+      const url = import.meta.env.VITE_REACT_LOGIN_API;
       const headers = {
         "content-type": "application/json; charset=UTF-8",
       };
@@ -55,8 +58,6 @@ export const loginAccount = createAsyncThunk(
     }
   }
 );
-
-
 
 const initialState = {
   login: false,
@@ -157,7 +158,6 @@ export const userSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
-
   },
 });
 
