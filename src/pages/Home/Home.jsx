@@ -2,8 +2,10 @@ import React, { useEffect } from "react";
 import Header from "../../components/Header/Header";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import OurMission from "../../components/OurMission/OurMission";
+import Planning from "../../components/Planning/Planning";
+import SugestionCreateAccount from "../../components/SugestionCreateAccount/SugestionCreateAccount";
 const Home = () => {
-  console.log(import.meta.env.VITE_REACT_LOGIN_API);
   const navigate = useNavigate();
   const { login } = useSelector((store) => store.userSlice);
   //  // user cant access this page if he has login
@@ -15,6 +17,9 @@ const Home = () => {
   return (
     <div>
       <Header />
+      <OurMission />
+      <Planning />
+      <SugestionCreateAccount />
     </div>
   );
 };

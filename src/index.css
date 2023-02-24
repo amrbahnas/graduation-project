@@ -14,7 +14,7 @@ html {
 }
 
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Fira Sans', sans-serif;
   background-color: #f5f5f5;
     @apply dark:bg-darkBody dark:text-darkPText 
 }
@@ -55,7 +55,7 @@ body {
 
 @media (min-width: 1200px) {
   .theContainer {
-    width: 1170px;
+    width: 1470px;
   }
 }
 

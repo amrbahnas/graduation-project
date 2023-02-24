@@ -1,9 +1,12 @@
 .registration {
-  background-image: url("../../../public/assets/images/registration.jpg");
+  background-image: url("../../../public/assets/images/signup.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 .registration .registration-form {
-  @apply p-6 text-left bg-white dark:bg-darkCard rounded-md shadow-lg w-80 md:w-4/5  lg:w-2/4 ;
+  @apply p-6 text-left bg-white dark:bg-darkCard rounded-md shadow-lg w-80 md:w-4/5  lg:w-2/4;
 }

@@ -13,52 +13,55 @@ const Nav = () => {
   };
   return (
     <nav>
-      <div className="w-full theContainer ">
         <div className="wrapper">
-          <span className="logo">
-            <NavLink to="/">
-              <img src="/assets/brand/logo.svg" alt="" />
-            </NavLink>
-          </span>
-          <ul>
-            <li>
-              <NavLink to="/" end className="w-full">Home</NavLink>
-            </li>
-            <li>
-              <NavLink>Contact</NavLink>
-            </li>
-            <li>
-              <NavLink>About</NavLink>
-            </li>
-          </ul>
-
-          <ul>
-            {login ? (
-              <>
-                <li>
+          <div className="left">
+            <span className="logo">
+              <NavLink to="/">
+                <img src="/assets/brand/logo.svg" alt="" />
+              </NavLink>
+            </span>
+            <ul>
+              <li>
+                <NavLink to="/" end className="w-full">
+                  parent
+                </NavLink>
+              </li>
+              <li>
+                <NavLink>teatcher</NavLink>
+              </li>
+              <li>
+                <NavLink>game</NavLink>
+              </li>
+            </ul>
+          </div>
+          <div className="right">
+            <ul>
+              {login ? (
+                <>
+                  <li>
+                    <NightMode />
+                  </li>
+                  <li className="hidden md:inline-block">welome: {userName}</li>
+                  <li className="signout" onClick={signUp}>
+                    sign out
+                  </li>
+                </>
+              ) : (
+                <>
+                  {/* <li>
                   <NightMode />
-                </li>
-                <li className="hidden md:inline-block">welome: {userName}</li>
-                <li className="signout" onClick={signUp}>
-                  sign out
-                </li>
-              </>
-            ) : (
-              <>
-                <li>
-                  <NightMode />
-                </li>
-                <li>
-                  <Link to="/login">login</Link>
-                </li>
-                <li className="signUp">
-                  <Link to="/signup">sign up</Link>
-                </li>
-              </>
-            )}
-          </ul>
+                </li> */}
+                  <li>
+                    <Link to="/login">log in</Link>
+                  </li>
+                  <li className="signUp">
+                    <Link to="/signup">sign up</Link>
+                  </li>
+                </>
+              )}
+            </ul>
+          </div>
         </div>
-      </div>
     </nav>
   );
 };

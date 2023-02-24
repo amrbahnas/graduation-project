@@ -1,38 +1,39 @@
 nav {
-  @apply h-20  bg-white  dark:bg-darkBody dark:text-darkPText flex items-center fixed w-full top-0 shadow-md z-40;
+  @apply h-16 px-4 lg:px-32  bg-white  dark:bg-darkBody dark:text-darkPText flex items-center sticky  w-full top-0 shadow-md z-40;
 }
 nav .wrapper {
-  @apply w-full flex items-center justify-between;
+  @apply w-full flex items-center justify-between h-full;
 }
 
 nav ul {
-  @apply flex gap-6 items-center;
-}
-nav ul:first-of-type {
-  @apply hidden md:flex;
+  @apply flex gap-6 items-center h-full;
 }
 nav ul li {
-  @apply text-disabledTxt hover:text-black dark:hover:text-darkPText cursor-pointer;
+  @apply hover:border-b-4 border-primary h-full flex items-center  capitalize  font-semibold text-lg text-black;
 }
+
 nav ul li link {
   @apply w-full;
 }
 
-nav .logo img {
+nav .left {
+  @apply flex gap-4 items-center h-full;
+}
+
+nav .left .logo img {
   @apply w-48;
 }
 
-nav ul:nth-child(2) li {
-  @apply uppercase text-sm;
+nav .left ul {
+  @apply hidden md:flex;
+}
+nav .right {
+  @apply h-full;
 }
 
-nav ul .signUp {
-  @apply hover:no-underline;
+nav .right ul .signUp {
+  @apply bg-primary  hover:bg-primaryHover hover:border-none h-3/4 text-white   font-bold text-lg w-36 text-center rounded-md  cursor-pointer;
 }
-nav ul .signout {
-  @apply p-2 border rounded-md  hover:bg-gray-200 dark:hover:bg-darkHover;
-}
-
-nav ul .signUp a {
-  @apply bg-blue-500 hover:bg-blue-700 text-white py-2 w-32 text-center rounded-md  cursor-pointer block;
+nav .right ul .signUp a {
+  @apply text-center w-full
 }

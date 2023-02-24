@@ -40,7 +40,7 @@ const SignUp = () => {
     <div className="flex items-center justify-center min-h-screen registration">
       <div className="theContainer">
         <div className="flex items-center justify-center">
-          <div className=" registration-form dark:text-darkSText">
+          <div className=" registration-form dark:text-darkSText shadow-xl">
             <div className="flex justify-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

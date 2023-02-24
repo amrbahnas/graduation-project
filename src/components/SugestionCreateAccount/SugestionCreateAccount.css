@@ -1,0 +1,38 @@
+.sugestion-create-account {
+  height: 348px;
+  @apply bg-secondry;
+}
+
+.sugestion-create-account .wrapper {
+  padding: 60px 90px 0px;
+  @apply block lg:grid grid-cols-2 gap-2 h-full;
+}
+
+.sugestion-create-account .wrapper .left {
+  @apply col-span-1 relative;
+}
+.sugestion-create-account .wrapper img {
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  margin: 0;
+  max-width: none;
+  padding: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  object-fit: cover;
+}
+.sugestion-create-account .wrapper .right {
+  @apply col-span-1;
+}
+.sugestion-create-account .wrapper .right h2 {
+  font-size: 36px;
+  line-height: 46px;
+  letter-spacing: -0.5px;
+  @apply mb-8 text-white font-semibold;
+}
+.sugestion-create-account .wrapper .right a {
+  @apply w-80 no-underline text-lg  text-center p-4 bg-primary hover:bg-primaryHover  rounded-md text-white font-bold;
+}
