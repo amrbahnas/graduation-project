@@ -1,12 +1,123 @@
-.registration {
-  background-image: url("../../../public/assets/images/signup.jpg");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+.signup-page {
+  background-color: #245353;
+  min-height: 100vh;
 }
-.registration .registration-form {
-  @apply p-6 text-left bg-white dark:bg-darkCard rounded-md shadow-lg w-80 md:w-4/5  lg:w-2/4;
+.signup-page .login-nav {
+  background-color: white;
+  @apply px-4 flex justify-between items-center font-bold capitalize text-lg h-16;
+}
+.signup-page .login-nav div {
+  @apply flex  items-center;
+}
+.signup-page .login-nav .left img {
+  @apply w-24 h-24 mr-8;
+}
+.signup-page .login-nav .left .home {
+  @apply flex items-center gap-2 cursor-pointer;
+}
+.signup-page .login-nav .left .home span {
+  @apply hidden md:block;
+}
+.signup-page .login-nav .right {
+  @apply flex items-center gap-3 h-full;
+}
+.signup-page .login-nav .right span {
+  @apply hidden md:block;
+}
+.signup-page .login-nav .right a {
+  @apply bg-primary flex items-center justify-center hover:bg-primaryHover hover:border-none h-2/4 md:h-3/4  text-white   font-bold text-lg w-24 md:w-36 text-center rounded-md  cursor-pointer;
+}
+/******************************************************/
+.signup-page .login-form {
+  @apply max-w-md bg-white rounded-md p-8 flex flex-col gap-2 mx-auto mt-12 mb-12 md:mb-0;
+}
+.signup-page .login-form .back {
+  @apply flex items-center gap-2 justify-start capitalize cursor-pointer;
+}
+.signup-page .login-form h3 {
+  @apply capitalize font-bold text-2xl text-center w-full mb-2;
+}
+.signup-page .login-form .login-socail {
+  @apply flex flex-col gap-3;
+}
+.signup-page .login-form .login-socail div {
+  @apply flex items-center rounded-sm shadow-md p-2 py-3 cursor-pointer;
+}
+.signup-page .login-form .login-socail div svg {
+  @apply w-6 h-6 mr-1 text-white;
+}
+.signup-page .login-form .login-socail div span {
+  @apply flex-1 text-center text-white text-base font-semibold border-l;
+}
+.signup-page .login-form .login-socail .facebook {
+  background-color: #436cf2;
+}
+.signup-page .login-form .login-socail .google {
+  background-color: #4285f4;
+}
+.signup-page .login-form .login-socail .apple {
+  background-color: #2b2a29;
+}
+
+/********************************************/
+
+.signup-page .login-email {
+  @apply relative w-full text-center text-sm my-3;
+}
+.signup-page .login-email::after {
+  content: "";
+  position: absolute;
+  height: 1px;
+  background-color: #cccccc;
+  top: 50%;
+  left: 0;
+  width: 30%;
+}
+.signup-page .login-email::before {
+  content: "";
+  position: absolute;
+  height: 1px;
+  background-color: #cccccc;
+  top: 50%;
+  right: 0;
+  width: 30%;
+}
+
+.signup-page form {
+  @apply flex gap-4 flex-col;
+}
+.signup-page form .input-form {
+  @apply flex gap-1 flex-col;
+}
+.signup-page form .input-form input {
+  border: 1px solid #cccccc;
+  @apply py-2 px-3 rounded-sm  focus:border-black;
+}
+
+.signup-page form .checkbox {
+  @apply flex flex-col gap-2 w-full text-sm font-normal;
+}
+.signup-page form .checkbox .check {
+  @apply w-full flex items-center flex-wrap;
+}
+.signup-page form .checkbox .check input {
+  @apply rounded-sm mr-1 cursor-pointer;
+}
+
+.signup-page form .checkbox .check input[type="checkbox"]:checked {
+  @apply bg-primary;
+}
+.signup-page form .checkbox .check span,
+.signup-page form .checkbox .check label {
+  color: #707070;
+  @apply capitalize;
+}
+
+.signup-page form .checkbox .check a {
+  @apply text-primary underline capitalize inline-block mx-1 w-fit cursor-pointer hover:bg-primaryHover;
+}
+
+
+.signup-page form input[type="submit"] {
+  @apply w-full rounded-md py-3 font-bold text-lg capitalize bg-primary hover:bg-primaryHover text-white cursor-pointer;
 }

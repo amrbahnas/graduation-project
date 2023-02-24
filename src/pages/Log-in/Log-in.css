@@ -88,10 +88,10 @@
 }
 .login-page form .input-form input {
   border: 1px solid #cccccc;
-  @apply p-2 rounded-sm focus:outline-none;
+  @apply p-2 rounded-sm focus:border-black;
 }
 .login-page form a {
-  @apply underline text-primary capitalize;
+  @apply underline text-primary capitalize hover:bg-primaryHover;
 }
 .login-page form input[type="submit"] {
   @apply w-full rounded-md py-3 font-bold text-lg capitalize bg-primary hover:bg-primaryHover text-white cursor-pointer;

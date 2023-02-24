@@ -52,7 +52,7 @@ const Login = () => {
         </div>
         <div className="right">
           <span>Don't have an account?</span>
-          <Link>sign up</Link>
+          <Link to="/signup">sign up</Link>
         </div>
       </div>
       <div className="theContainer">
