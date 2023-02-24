@@ -7,7 +7,7 @@ const SugestionCreateAccount = () => {
       <div className="theContainer h-full">
         <div className="wrapper">
           <div className="left">
-            <img src="assets/images/home page/5.png" alt="" />
+            {/* <img src="assets/images/home page/5.png" alt="" /> */}
           </div>
           <div className="right">
             <h2>Ready to kickstart a learning adventure?</h2>

@@ -7,11 +7,11 @@
   @apply text-primary capitalize ;
 }
 .our-mission span:first-of-type {
-  @apply text-4xl block mb-4;
+  @apply  text-2xl md:text-4xl block mb-4;
 }
 .our-mission span:last-child {
-  @apply text-5xl;
+  @apply text-4xl md:text-5xl;
 }
 .our-mission h3 {
-  @apply text-secondry text-5xl  ;
+  @apply text-secondry text-4xl md:text-5xl  ;
 }

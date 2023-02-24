@@ -1,43 +1,36 @@
 header {
-  /* min-height: 500px; */
+  min-height: 500px;
+  @apply overflow-hidden
 }
 header .wrapper {
-  @apply block lg:grid grid-cols-2  gap-32  h-full overflow-hidden;
+  @apply block lg:grid grid-cols-2  gap-2 lg:gap-10  h-full ;
 }
-header .left {
-  @apply col-span-1 flex flex-col gap-4 items-start text-white  py-10 h-full;
+header .wrapper .left {
+  @apply col-span-1 flex flex-col gap-2 md:gap-4 items-start text-white  py-10 h-full;
 }
 header .left h1 {
-  @apply font-bold text-6xl capitalize;
+  min-height: 180px;
+  @apply font-bold  text-4xl   md:text-5xl lg:text-6xl capitalize;
 }
 header .left p {
-  @apply font-semibold text-lg capitalize;
+  @apply font-semibold text-lg text-start mb-6 lg:mb-0;
 }
 header .left .btns {
-  @apply flex flex-col gap-2;
+  @apply flex flex-col gap-2 w-full;
 }
 header .left a {
-  @apply w-80 no-underline text-lg  text-center p-3 bg-primary hover:bg-primaryHover  rounded-md text-white font-bold;
+  @apply block w-full lg:w-80  no-underline text-lg  text-center p-3 bg-primary hover:bg-primaryHover  rounded-md text-white font-bold;
 }
 header .left a:last-child {
   @apply text-black bg-white  capitalize;
 }
-header .right {
-  @apply col-span-1 relative h-full m-8 ;
-}
 
-header .right img {
-  bottom: 0;
-  height: 100%;
-  left: 0;
-  margin: 0;
-  max-width: none;
-  padding: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 100%;
-  object-fit: cover;
+header .wrapper .right {
+  min-height: 240px;
+  background: url("..//../../public/assets/images/home page/2.png") no-repeat
+    center bottom;
+  background-size: contain;
+  @apply col-span-1 md:mt-8
 }
 
 header h1 span {

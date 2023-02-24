@@ -1,34 +1,34 @@
 .planning {
   background-color: #f7e9db;
-  @apply  py-10
+  @apply py-10;
 }
 .planning .top {
-  @apply text-center lg:px-32 mb-10 ;
+  @apply text-center lg:px-32 mb-10;
 }
 .planning h2 {
-  @apply text-4xl font-bold capitalize mb-4 w-full;
+  @apply  text-3xl md:text-4xl font-bold capitalize mb-4 w-full;
 }
 .planning p {
-  @apply text-2xl font-serif w-full ;
+  @apply text-xl md:text-2xl font-serif w-full;
 }
 .planning .bottom {
   @apply grid grid-cols-2 gap-14;
 }
 
 .planning .bottom .box {
-  @apply col-span-2 lg:col-span-1 flex flex-col gap-10  ;
+  @apply col-span-2 lg:col-span-1 flex flex-col justify-between;
 }
 .planning .bottom .box img {
-  @apply w-full object-cover;
+  @apply w-full object-cover mb-6;
 }
 
 .planning .bottom .box strong {
-  @apply font-bold text-2xl;
+  @apply font-bold text-2xl mb-6;
 }
 
 .planning .bottom .box p {
-  @apply text-lg;
+  @apply text-lg mb-6;
 }
 .planning .bottom .box a {
-  @apply text-white bg-primary capitalize rounded-md hover:bg-primaryHover py-3 px-4 flex  w-80 font-semibold ;
+  @apply text-white bg-primary capitalize rounded-md text-center hover:bg-primaryHover py-3 px-4  w-full  lg:w-80 font-semibold text-lg;
 }

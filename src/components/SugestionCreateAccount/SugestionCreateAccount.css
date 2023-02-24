@@ -1,16 +1,20 @@
 .sugestion-create-account {
-  height: 348px;
-  @apply bg-secondry;
+  min-height: 348px;
+  @apply bg-secondry mb-52;
 }
 
 .sugestion-create-account .wrapper {
-  padding: 60px 90px 0px;
-  @apply block lg:grid grid-cols-2 gap-2 h-full;
+  min-height: 348px;
+  @apply flex flex-col-reverse lg:flex-row gap-2 h-full lg:pt-16 lg:px-24 w-full;
 }
 
 .sugestion-create-account .wrapper .left {
-  @apply col-span-1 relative;
-}
+  min-height:148px;
+  background: url("..//../../public/assets/images/home page/5.png") no-repeat
+    center bottom;
+  background-size: contain;
+  @apply flex-1 relative;
+} 
 .sugestion-create-account .wrapper img {
   bottom: 0;
   height: 100%;
@@ -25,14 +29,13 @@
   object-fit: cover;
 }
 .sugestion-create-account .wrapper .right {
-  @apply col-span-1;
+  @apply flex-1 p-4 mt-4 lg:mt-0;
 }
 .sugestion-create-account .wrapper .right h2 {
-  font-size: 36px;
   line-height: 46px;
   letter-spacing: -0.5px;
-  @apply mb-8 text-white font-semibold;
+  @apply mb-8 text-white font-semibold text-center lg:text-start text-2xl lg:text-4xl; 
 }
 .sugestion-create-account .wrapper .right a {
-  @apply w-80 no-underline text-lg  text-center p-4 bg-primary hover:bg-primaryHover  rounded-md text-white font-bold;
+  @apply block w-full lg:w-80  no-underline text-lg   text-center p-2 lg:p-4 bg-primary hover:bg-primaryHover  rounded-md text-white font-bold;
 }

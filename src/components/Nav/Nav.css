@@ -1,5 +1,5 @@
 nav {
-  @apply h-16 px-4 lg:px-32  bg-white  dark:bg-darkBody dark:text-darkPText flex items-center sticky  w-full top-0 shadow-md z-40;
+  @apply h-16 px-2 lg:px-20  bg-white  dark:bg-darkBody dark:text-darkPText flex items-center sticky  w-full top-0 shadow-md z-40;
 }
 nav .wrapper {
   @apply w-full flex items-center justify-between h-full;
@@ -19,9 +19,11 @@ nav ul li link {
 nav .left {
   @apply flex gap-4 items-center h-full;
 }
-
 nav .left .logo img {
-  @apply w-48;
+  @apply mr-10
+}
+nav .left .logo img {
+  @apply w-32;
 }
 
 nav .left ul {
