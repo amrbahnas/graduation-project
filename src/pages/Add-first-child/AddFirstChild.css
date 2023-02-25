@@ -1,0 +1,9 @@
+.parent-account-setup .wrapper {
+  @apply block md:grid grid-cols-2 gap-2  mx-auto mt-12 max-w-3xl;
+}
+.parent-account-setup .wrapper .image {
+  @apply col-span-1 flex items-start justify-center mb-10;
+}
+.parent-account-setup .wrapper .image img {
+  @apply w-72;
+}

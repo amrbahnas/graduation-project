@@ -5,10 +5,15 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#ff5c0b",
-        primaryHover: "#e64f00",
+        orange: "#ff5c0b",
+        orangeHover: "#e64f00",
+        yellow: "#ffc900",
+        yellowHover: "#ffdf7b",
         secondry: "#6f1f3a",
         third: "#245353",
+        thirdHover: "#1c3d3d",
+        backGround: "#fefdfb",
+        textColor: "#4d4c4b",
         btn: "#1d4ed8",
         disabled: "#e5e7eb",
         disabledTxt: "#757575",

@@ -34,18 +34,20 @@ const Login = () => {
       mail: email,
       password,
     };
+
     dispatch(loginAccount(data)).then((res) => {
       if (login) {
         navigate("/mychildren");
       }
     });
   };
+
   return (
     <div className="login-page">
       <div className="login-nav">
         <div className="left">
           <img src="assets/brand/logo.svg" alt="" />
-          <div className="home" onClick={e=>navigate("/")} >
+          <div className="home" onClick={(e) => navigate("/")}>
             <HomeIcon />
             <span>Home</span>
           </div>

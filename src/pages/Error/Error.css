@@ -2,13 +2,6 @@
   background-color: #fefdfb;
   height: 100vh;
 }
-
-.error-page .error-nav {
-  @apply bg-white shadow-md h-20 flex justify-center items-center;
-}
-.error-page .error-nav img {
-  @apply w-32 cursor-pointer;
-}
 .error-page .wrapper {
   @apply max-w-md flex flex-col gap-4 mx-auto mt-10 ;
 }
@@ -19,8 +12,7 @@
   @apply w-full h-full object-contain;
 }
 .error-page h1 {
-  color: #245353;
-  @apply text-center font-bold text-3xl;
+  @apply text-center font-bold text-3xl text-third;
 }
 .error-page span {
   color: #939290;
@@ -33,10 +25,5 @@
   @apply underline w-fit inline-block ml-1 cursor-pointer ;
 }
 .error-page button {
-  background-color: #245353;
-  @apply w-full py-3 text-white rounded-sm capitalize text-sm;
-}
-
-.error-page button:hover {
-  background-color: #1c3d3d;
+  @apply w-full py-3 text-white rounded-sm capitalize text-sm bg-third hover:bg-thirdHover;
 }

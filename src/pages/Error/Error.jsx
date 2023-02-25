@@ -1,17 +1,12 @@
 import React from "react";
 import "./Error.css";
 import { useNavigate } from "react-router-dom";
+import SimpleNav from './../../components/SimpleNav/SimpleNav';
 const Error = () => {
   const navigate = useNavigate();
   return (
     <div className="error-page">
-      <div className="error-nav">
-        <img
-          src="assets/brand/logo.svg"
-          alt=""
-          onClick={(e) => navigate("/",{replace:true})}
-        />
-      </div>
+      <SimpleNav/>
       <div className="theContainer">
         <div className="wrapper">
           <div className="image">

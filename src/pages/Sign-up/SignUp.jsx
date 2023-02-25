@@ -22,7 +22,7 @@ const SignUp = () => {
   //  // user cant access this page if he has login
   useEffect(() => {
     if (login) {
-      navigate("/");
+      navigate("/mychildren");
     }
   }, [login, navigate]);
   const submitHandler = (e) => {
@@ -35,10 +35,7 @@ const SignUp = () => {
       phone: "08979656",
     };
     dispatch(createParentAccount(data)).then((action) => {
-      console.log();
-      if (action.payload.massage.includes("successfully")) {
-        navigate("/login");
-      }
+      navigate("/addfirstChild");
     });
   };
   return (
@@ -78,7 +75,7 @@ const SignUp = () => {
             <div className="input-form">
               <label htmlFor="">Full name</label>
               <input
-                type="email"
+                type="text"
                 value={userName}
                 onChange={(e) => setuserName(e.target.value)}
               />

@@ -200,7 +200,7 @@ const SubjectData = () => {
                   <label htmlFor="file">
                     <span>
                       {" "}
-                      <AddPhotoAlternateIcon color="primary" /> Upload Img
+                      <AddPhotoAlternateIcon color="orange" /> Upload Img
                     </span>
                   </label>
                 </>
@@ -210,7 +210,7 @@ const SubjectData = () => {
               {!previewImage && (
                 <label htmlFor="file">
                   <span>
-                    <AddPhotoAlternateIcon color="primary" /> Upload Img
+                    <AddPhotoAlternateIcon color="orange" /> Upload Img
                   </span>
                 </label>
               )}
@@ -221,7 +221,7 @@ const SubjectData = () => {
                   <label htmlFor="file">
                     <span>
                       {" "}
-                      <AddPhotoAlternateIcon color="primary" /> Upload Img
+                      <AddPhotoAlternateIcon color="orange" /> Upload Img
                     </span>
                   </label>
                 </>
@@ -231,7 +231,7 @@ const SubjectData = () => {
                 <label htmlFor="file">
                   <span>
                     {" "}
-                    <AddPhotoAlternateIcon color="primary" /> Upload Img
+                    <AddPhotoAlternateIcon color="orange" /> Upload Img
                   </span>
                 </label>
               )} */}
@@ -287,9 +287,7 @@ const SubjectData = () => {
                 />
               ) : (
                 oldWords.map((word) => {
-                  return (
-                    <Word wordData={word} key={word} image={word.Image} />
-                  );
+                  return <Word wordData={word} key={word} image={word.Image} />;
                 })
               )}
             </div>

@@ -9,14 +9,15 @@ import LogIn from "./pages/Log-in/LogIn";
 import SignUp from "./pages/Sign-up/SignUp";
 import MyChildren from "./pages/MyChildren/MyChildren.jsx";
 import GameSetup from "./pages/Game-setup/GameSetup";
-import StudentProfile from "./pages/StudentProfile/StudentProfile";
-import Subjects from "./pages/StudentProfile/LocalComponents/Subjects/Subjects";
-import Tasks from "./pages/StudentProfile/LocalComponents/Tasks/Tasks";
-import SingleTask from "./pages/StudentProfile/LocalComponents/SingleTask/SingleTask";
+import StudentProfile from "./pages/Student-profile/StudentProfile";
+import Subjects from "./pages/Student-profile/LocalComponents/Subjects/Subjects";
+import Tasks from "./pages/Student-profile/LocalComponents/Tasks/Tasks";
+import SingleTask from "./pages/Student-profile/LocalComponents/SingleTask/SingleTask";
 import Subject from "./pages/Game-setup/Local-component/Subject/Subject";
 import SelectUnit from "./pages/Game-setup/Local-component/SelectUnit/SelectUnit";
 import SubjectData from "./pages/Game-setup/Local-component/SubjectData/SubjectData";
 import Error from "./pages/Error/Error";
+import AddFirstChild from "./pages/Add-first-child/AddFirstChild";
 
 const router = createBrowserRouter([
   {
@@ -77,6 +78,10 @@ const router = createBrowserRouter([
   {
     path: "/signup",
     element: <SignUp />,
+  },
+  {
+    path: "/addfirstchild",
+    element: <AddFirstChild />,
   },
 ]);
 

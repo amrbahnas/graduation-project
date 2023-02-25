@@ -62,10 +62,9 @@ export const loginAccount = createAsyncThunk(
 const initialState = {
   login: false,
   _id: "",
-  userName: "",
-  email: "",
-  photoURL: "",
-  userImage: "",
+  parentName: "",
+  parentMail: "",
+  parentPic: "",
   children: [],
   childrenQuestions: [],
   loading: false,
@@ -79,17 +78,14 @@ export const userSlice = createSlice({
     setLoginState: (state, action) => {
       state.login = action.payload;
     },
-    setTheUserName: (state, action) => {
-      state.userName = action.payload;
+    setParentName: (state, action) => {
+      state.parentName = action.payload;
     },
-    setTheEmail: (state, action) => {
-      state.email = action.payload;
+    setParentMail: (state, action) => {
+      state.parentMail = action.payload;
     },
-    setPhotoURL: (state, action) => {
-      state.photoURL = action.payload;
-    },
-    setUserImage: (state, action) => {
-      state.userImage = action.payload;
+    setParentPic: (state, action) => {
+      state.parentPic = action.payload;
     },
     resetUserChildren: (state) => {
       state.children = [];
@@ -111,6 +107,16 @@ export const userSlice = createSlice({
       state.loading = false;
       state.error = false;
       console.log(action.payload);
+      if (action.payload.massage.includes("successfully")) {
+        const { _id, parentName, parentAge, parentMail, parentPic } =
+          action.payload.parent;
+        state._id = _id;
+        state.parentName = parentName;
+        state.parentMail = parentMail;
+        state.parentPic = parentPic;
+        state.login = true;
+        /**************************** */
+      }
     },
     [createParentAccount.rejected]: (state, action) => {
       state.loading = false;
@@ -142,13 +148,14 @@ export const userSlice = createSlice({
     [loginAccount.fulfilled]: (state, action) => {
       state.loading = false;
       state.error = false;
-      console.log("sad", action.payload);
       if (action.payload.massage === "correct password") {
         // having a children
-        const { _id, parentName, parentAge, parentPhoneNumber } =
+        const { _id, parentName, parentAge, parentMail, parentPic } =
           action.payload.parent;
         state._id = _id;
-        state.userName = parentName;
+        state.parentName = parentName;
+        state.parentMail = parentMail;
+        state.parentPic = parentPic;
         state.login = true;
         /**************************** */
         state.children = action.payload.children;
@@ -163,10 +170,9 @@ export const userSlice = createSlice({
 
 export const {
   setLoginState,
-  setTheUserName,
-  setTheEmail,
-  setPhotoURL,
-  setUserImage,
+  setParentName,
+  setParentMail,
+  setParentPic,
   resetUserChildren,
   addChildren,
 } = userSlice.actions;

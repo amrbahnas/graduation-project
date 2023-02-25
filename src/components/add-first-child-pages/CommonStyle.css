@@ -1,0 +1,198 @@
+/* // common css */
+.btns-add-first-child {
+  @apply mt-3;
+}
+.btns-add-first-child button {
+  @apply w-full bg-third hover:bg-thirdHover text-white py-2 rounded-sm flex justify-center mb-4;
+}
+
+.btns-add-first-child button:nth-of-type(2) {
+  background-color: #fbfbfb;
+  @apply text-black shadow-md border-2 mb-0;
+}
+.btns-add-first-child button:nth-of-type(2):hover {
+  background-color: #f3f2f0;
+  @apply text-textColor;
+}
+
+.error {
+  @apply text-red-600;
+}
+/**********************************************************/
+/* comp 1 */
+.account-state {
+  @apply flex flex-col gap-6;
+}
+.account-state h1 {
+  @apply font-bold text-lg text-textColor;
+}
+.account-state button {
+  @apply w-full bg-third hover:bg-thirdHover text-white py-2 rounded-sm flex justify-center;
+}
+.account-state button:nth-of-type(2) {
+  background-color: #fbfbfb;
+  @apply text-black shadow-md;
+}
+.account-state button:nth-of-type(2):hover {
+  background-color: #f3f2f0;
+  @apply text-textColor;
+}
+
+/***************************************************/
+/* comp 2 */
+
+.child-name {
+  @apply flex flex-col gap-6;
+}
+.child-name .process {
+  background-color: #ebeae8;
+  border: 2px solid #bfbfbf;
+  @apply w-full h-4 rounded-sm;
+}
+.child-name .process span {
+  background-color: #cae090;
+  border: 1px solid #6b9f27;
+  @apply w-1/4 block h-3 rounded-sm;
+}
+
+.child-name > span {
+  @apply text-3xl font-semibold text-textColor;
+}
+.child-name form {
+  @apply flex flex-col gap-4 text-textColor;
+}
+.child-name form .input {
+  @apply flex flex-col gap-1 text-textColor;
+}
+.child-name form .input label {
+  @apply text-base;
+}
+.child-name form .input input {
+  background-color: #ffffff;
+  border: 2px solid #bfbfbf;
+  @apply px-3 py-2 rounded-md  shadow-inner;
+}
+
+.child-name form div:last-child {
+  @apply w-full text-textColor mt-3;
+}
+.child-name form div:last-child a {
+  @apply underline;
+}
+
+/*******************************************************/
+/* comp 3 */
+
+.child-grade {
+  @apply flex flex-col gap-6;
+}
+.child-grade .process {
+  background-color: #ebeae8;
+  border: 2px solid #bfbfbf;
+  @apply w-full h-4 rounded-sm;
+}
+.child-grade .process span {
+  background-color: #cae090;
+  border: 1px solid #6b9f27;
+  @apply w-2/5 block h-3 rounded-sm;
+}
+
+.child-grade span.title {
+  @apply text-3xl font-semibold text-textColor;
+}
+.child-grade form {
+  @apply flex flex-col gap-3 text-textColor text-sm;
+}
+.child-grade form .label {
+  @apply text-lg;
+}
+
+.child-grade form .footer {
+  @apply w-full text-textColor mt-3;
+}
+.child-grade form .footer a {
+  @apply underline;
+}
+
+/*****************************************************/
+/* comp 4 */
+
+.child-account {
+  @apply flex flex-col gap-6;
+}
+.child-account .process {
+  background-color: #ebeae8;
+  border: 2px solid #bfbfbf;
+  @apply w-full h-4 rounded-sm;
+}
+.child-account .process span {
+  background-color: #cae090;
+  border: 1px solid #6b9f27;
+  @apply w-3/5 block h-3 rounded-sm;
+}
+
+.child-account span.title {
+  @apply text-3xl font-semibold text-textColor;
+}
+
+.child-account .info strong {
+  @apply block;
+}
+
+/****************************************************/
+/* comp 5 */
+
+.account-notes {
+  @apply flex flex-col gap-6;
+}
+.account-notes .process {
+  background-color: #ebeae8;
+  border: 2px solid #bfbfbf;
+  @apply w-full h-4 rounded-sm;
+}
+.account-notes .process span {
+  background-color: #cae090;
+  border: 1px solid #6b9f27;
+  @apply w-4/5 block h-3 rounded-sm;
+}
+
+.account-notes span.title {
+  @apply text-3xl font-semibold text-textColor;
+}
+
+.account-notes .notes ul {
+  @apply flex flex-col gap-6;
+}
+.account-notes .notes ul li {
+  @apply flex items-start gap-2;
+}
+.account-notes .notes ul li svg {
+  color: gold;
+}
+
+/***********************************************/
+/* comp 6 */
+
+.finish {
+  @apply flex flex-col gap-6;
+}
+.finish .process {
+  background-color: #ebeae8;
+  border: 2px solid #bfbfbf;
+  @apply w-full h-4 rounded-sm;
+}
+.finish .process span {
+  background-color: #cae090;
+  border: 1px solid #6b9f27;
+  @apply w-full block h-3 rounded-sm;
+}
+
+.finish span.title {
+  @apply text-3xl font-semibold text-textColor;
+}
+.finish .body .box {
+  @apply flex items-center justify-start gap-8 mb-8;
+}
+.finish .body .box:last-child img {
+  @apply mx-3;
+}

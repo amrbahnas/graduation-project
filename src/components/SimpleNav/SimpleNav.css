@@ -1,0 +1,6 @@
+.simple-nav {
+  @apply bg-white shadow-md h-20 flex justify-center items-center;
+}
+.simple-nav img {
+  @apply w-32 cursor-pointer;
+}

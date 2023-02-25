@@ -1,6 +1,6 @@
 .login-page {
   background-color: #f7e9db;
-  min-height: 100vh
+  min-height: 100vh;
 }
 .login-page .login-nav {
   background-color: white;
@@ -16,16 +16,16 @@
   @apply flex items-center gap-2 cursor-pointer;
 }
 .login-page .login-nav .left .home span {
-   @apply hidden md:block
+  @apply hidden md:block;
 }
 .login-page .login-nav .right {
   @apply flex items-center gap-3 h-full;
 }
 .login-page .login-nav .right span {
-  @apply hidden md:block
+  @apply hidden md:block;
 }
 .login-page .login-nav .right a {
-  @apply bg-primary flex items-center justify-center hover:bg-primaryHover hover:border-none h-2/4 md:h-3/4  text-white   font-bold text-lg w-24 md:w-36 text-center rounded-md  cursor-pointer;
+  @apply bg-orange flex items-center justify-center hover:bg-orangeHover hover:border-none h-2/4 md:h-3/4  text-white   font-bold text-lg w-24 md:w-36 text-center rounded-md  cursor-pointer;
 }
 /******************************************************/
 .login-page .login-form {
@@ -91,8 +91,8 @@
   @apply p-2 rounded-sm focus:border-black;
 }
 .login-page form a {
-  @apply underline text-primary capitalize hover:bg-primaryHover;
+  @apply underline text-orange capitalize hover:text-orangeHover;
 }
 .login-page form input[type="submit"] {
-  @apply w-full rounded-md py-3 font-bold text-lg capitalize bg-primary hover:bg-primaryHover text-white cursor-pointer;
+  @apply w-full rounded-md py-3 font-bold text-lg capitalize bg-orange hover:bg-orangeHover text-white cursor-pointer;
 }
