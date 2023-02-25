@@ -16,11 +16,13 @@ import SingleTask from "./pages/StudentProfile/LocalComponents/SingleTask/Single
 import Subject from "./pages/Game-setup/Local-component/Subject/Subject";
 import SelectUnit from "./pages/Game-setup/Local-component/SelectUnit/SelectUnit";
 import SubjectData from "./pages/Game-setup/Local-component/SubjectData/SubjectData";
+import Error from "./pages/Error/Error";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
+    errorElement: <Error />,
     children: [
       {
         index: true,

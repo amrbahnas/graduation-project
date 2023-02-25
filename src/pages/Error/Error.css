@@ -1,0 +1,42 @@
+.error-page {
+  background-color: #fefdfb;
+  height: 100vh;
+}
+
+.error-page .error-nav {
+  @apply bg-white shadow-md h-20 flex justify-center items-center;
+}
+.error-page .error-nav img {
+  @apply w-32 cursor-pointer;
+}
+.error-page .wrapper {
+  @apply max-w-md flex flex-col gap-4 mx-auto mt-10 ;
+}
+.error-page .images {
+  height: 60%;
+}
+.error-page img {
+  @apply w-full h-full object-contain;
+}
+.error-page h1 {
+  color: #245353;
+  @apply text-center font-bold text-3xl;
+}
+.error-page span {
+  color: #939290;
+  @apply block w-full text-center;
+}
+.error-page span.still {
+  @apply text-start text-sm;
+}
+.error-page span.still span {
+  @apply underline w-fit inline-block ml-1 cursor-pointer ;
+}
+.error-page button {
+  background-color: #245353;
+  @apply w-full py-3 text-white rounded-sm capitalize text-sm;
+}
+
+.error-page button:hover {
+  background-color: #1c3d3d;
+}

@@ -11,7 +11,7 @@ const SugestionCreateAccount = () => {
           </div>
           <div className="right">
             <h2>Ready to kickstart a learning adventure?</h2>
-            <Link>Create your free account today</Link>
+            <Link to="/signup">Create your free account today</Link>
           </div>
         </div>
       </div>
