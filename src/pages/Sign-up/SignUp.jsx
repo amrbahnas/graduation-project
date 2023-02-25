@@ -75,6 +75,7 @@ const SignUp = () => {
             <div className="input-form">
               <label htmlFor="">Full name</label>
               <input
+                required
                 type="text"
                 value={userName}
                 onChange={(e) => setuserName(e.target.value)}
@@ -83,6 +84,7 @@ const SignUp = () => {
             <div className="input-form">
               <label htmlFor="">Email</label>
               <input
+                required
                 type="email"
                 value={email}
                 onChange={(e) => setemail(e.target.value)}
@@ -91,6 +93,7 @@ const SignUp = () => {
             <div className="input-form">
               <label htmlFor="">Password</label>
               <input
+                required
                 type="password"
                 value={password}
                 onChange={(e) => setpassword(e.target.value)}
@@ -121,6 +124,7 @@ const SignUp = () => {
               type="submit"
               value={loading ? "loading" : "create account"}
               name="commit"
+              disabled={loading}
             />
           </form>
         </div>

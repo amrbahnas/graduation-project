@@ -7,12 +7,7 @@
 }
 
 .btns-add-first-child button:nth-of-type(2) {
-  background-color: #fbfbfb;
-  @apply text-black shadow-md border-2 mb-0;
-}
-.btns-add-first-child button:nth-of-type(2):hover {
-  background-color: #f3f2f0;
-  @apply text-textColor;
+  @apply text-black shadow-md border-2 hover:text-textColor  bg-backBtnColor hover:bg-backBtnColorHoner mb-0;
 }
 
 .error {
@@ -24,18 +19,7 @@
   @apply flex flex-col gap-6;
 }
 .account-state h1 {
-  @apply font-bold text-lg text-textColor;
-}
-.account-state button {
-  @apply w-full bg-third hover:bg-thirdHover text-white py-2 rounded-sm flex justify-center;
-}
-.account-state button:nth-of-type(2) {
-  background-color: #fbfbfb;
-  @apply text-black shadow-md;
-}
-.account-state button:nth-of-type(2):hover {
-  background-color: #f3f2f0;
-  @apply text-textColor;
+  @apply font-bold text-lg text-textColor dark:text-darkPText;
 }
 
 /***************************************************/
@@ -47,22 +31,22 @@
 .child-name .process {
   background-color: #ebeae8;
   border: 2px solid #bfbfbf;
-  @apply w-full h-4 rounded-sm;
+  @apply w-full h-4 rounded-sm dark:bg-transparent;
 }
 .child-name .process span {
   background-color: #cae090;
   border: 1px solid #6b9f27;
-  @apply w-1/4 block h-3 rounded-sm;
+  @apply w-1/4 block h-3 rounded-sm dark:bg-orange dark:border-orange;
 }
 
 .child-name > span {
-  @apply text-3xl font-semibold text-textColor;
+  @apply text-3xl font-semibold text-textColor dark:text-darkPText;
 }
 .child-name form {
-  @apply flex flex-col gap-4 text-textColor;
+  @apply flex flex-col gap-4 text-textColor dark:text-darkPText;
 }
 .child-name form .input {
-  @apply flex flex-col gap-1 text-textColor;
+  @apply flex flex-col gap-1 text-textColor dark:text-darkPText;
 }
 .child-name form .input label {
   @apply text-base;
@@ -70,11 +54,11 @@
 .child-name form .input input {
   background-color: #ffffff;
   border: 2px solid #bfbfbf;
-  @apply px-3 py-2 rounded-md  shadow-inner;
+  @apply px-3 py-2 rounded-md  shadow-inner dark:bg-transparent;
 }
 
 .child-name form div:last-child {
-  @apply w-full text-textColor mt-3;
+  @apply w-full text-textColor dark:text-darkPText mt-3;
 }
 .child-name form div:last-child a {
   @apply underline;
@@ -89,26 +73,26 @@
 .child-grade .process {
   background-color: #ebeae8;
   border: 2px solid #bfbfbf;
-  @apply w-full h-4 rounded-sm;
+  @apply w-full h-4 rounded-sm dark:bg-transparent;
 }
 .child-grade .process span {
   background-color: #cae090;
   border: 1px solid #6b9f27;
-  @apply w-2/5 block h-3 rounded-sm;
+  @apply w-2/5 block h-3 rounded-sm dark:bg-orange dark:border-orange;
 }
 
 .child-grade span.title {
-  @apply text-3xl font-semibold text-textColor;
+  @apply text-3xl font-semibold text-textColor dark:text-darkPText;
 }
 .child-grade form {
-  @apply flex flex-col gap-3 text-textColor text-sm;
+  @apply flex flex-col gap-3 text-textColor dark:text-darkSText text-sm;
 }
 .child-grade form .label {
   @apply text-lg;
 }
 
 .child-grade form .footer {
-  @apply w-full text-textColor mt-3;
+  @apply w-full text-textColor dark:text-darkSText mt-3;
 }
 .child-grade form .footer a {
   @apply underline;
@@ -118,25 +102,25 @@
 /* comp 4 */
 
 .child-account {
-  @apply flex flex-col gap-6;
+  @apply flex flex-col gap-6 dark:text-darkSText;
 }
 .child-account .process {
   background-color: #ebeae8;
   border: 2px solid #bfbfbf;
-  @apply w-full h-4 rounded-sm;
+  @apply w-full h-4 rounded-sm dark:bg-transparent;
 }
 .child-account .process span {
   background-color: #cae090;
   border: 1px solid #6b9f27;
-  @apply w-3/5 block h-3 rounded-sm;
+  @apply w-3/5 block h-3 rounded-sm dark:bg-orange dark:border-orange;
 }
 
 .child-account span.title {
-  @apply text-3xl font-semibold text-textColor;
+  @apply text-3xl font-semibold text-textColor dark:text-darkPText;
 }
 
 .child-account .info strong {
-  @apply block;
+  @apply block dark:text-darkPText;
 }
 
 /****************************************************/
@@ -148,16 +132,16 @@
 .account-notes .process {
   background-color: #ebeae8;
   border: 2px solid #bfbfbf;
-  @apply w-full h-4 rounded-sm;
+  @apply w-full h-4 rounded-sm dark:bg-transparent;
 }
 .account-notes .process span {
   background-color: #cae090;
   border: 1px solid #6b9f27;
-  @apply w-4/5 block h-3 rounded-sm;
+  @apply w-4/5 block h-3 rounded-sm dark:bg-orange dark:border-orange;
 }
 
 .account-notes span.title {
-  @apply text-3xl font-semibold text-textColor;
+  @apply text-3xl font-semibold text-textColor dark:text-darkPText;
 }
 
 .account-notes .notes ul {
@@ -179,16 +163,16 @@
 .finish .process {
   background-color: #ebeae8;
   border: 2px solid #bfbfbf;
-  @apply w-full h-4 rounded-sm;
+  @apply w-full h-4 rounded-sm dark:bg-transparent;
 }
 .finish .process span {
   background-color: #cae090;
   border: 1px solid #6b9f27;
-  @apply w-full block h-3 rounded-sm;
+  @apply w-full block h-3 rounded-sm dark:bg-orange dark:border-orange;
 }
 
 .finish span.title {
-  @apply text-3xl font-semibold text-textColor;
+  @apply text-3xl font-semibold text-textColor dark:text-darkPText;
 }
 .finish .body .box {
   @apply flex items-center justify-start gap-8 mb-8;

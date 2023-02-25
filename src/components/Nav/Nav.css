@@ -1,5 +1,5 @@
 nav {
-  @apply h-16 px-2 lg:px-20  bg-white  dark:bg-darkBody dark:text-darkPText flex items-center sticky  w-full top-0 shadow-md z-40;
+  @apply h-16 px-2 lg:px-20  bg-white  dark:bg-darkBody text-black dark:text-darkPText flex items-center sticky  w-full top-0 shadow-md z-40;
 }
 nav .wrapper {
   @apply w-full flex items-center justify-between h-full;
@@ -9,11 +9,14 @@ nav ul {
   @apply flex gap-6 items-center h-full;
 }
 nav ul li {
-  @apply hover:border-b-4 border-orange h-full flex items-center  capitalize  font-semibold text-lg text-black;
+  @apply hover:border-b-4 border-orange h-full flex items-center  capitalize  font-semibold text-lg;
+}
+nav .right ul li:not(li.login) {
+  @apply hover:border-none;
 }
 
-nav ul li link {
-  @apply w-full;
+nav ul li a {
+  @apply w-full h-full flex items-center justify-center;
 }
 
 nav .left {
@@ -33,8 +36,9 @@ nav .right {
   @apply h-full;
 }
 
-nav .right ul .signUp {
-  @apply bg-orange  hover:bg-orangeHover hover:border-none h-3/4 text-white   font-bold text-lg w-36 text-center rounded-md  cursor-pointer;
+nav .right ul .signUp,
+nav .right ul .signout {
+  @apply bg-orange  hover:bg-orangeHover hover:border-none h-3/4 text-white   font-bold text-lg w-36 text-center rounded-md  cursor-pointer flex items-center justify-center;
 }
 nav .right ul .signUp a {
   @apply text-center w-full;

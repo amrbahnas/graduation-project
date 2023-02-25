@@ -16,12 +16,14 @@ const AccountState = () => {
             Math and English.
           </span>
         </h1>
-        <button>
-          <span>My child already has an account</span>
-        </button>
-        <button onClick={(e) => dispatch(setpage(2))}>
-          <span>My child needs a new account</span>
-        </button>
+        <div className="btns-add-first-child">
+          <button>
+            <span>My child already has an account</span>
+          </button>
+          <button onClick={(e) => dispatch(setpage(2))}>
+            <span>My child needs a new account</span>
+          </button>
+        </div>
       </div>
     </>
   );

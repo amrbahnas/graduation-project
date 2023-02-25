@@ -9,7 +9,7 @@ const Planning = () => {
             <h2>Tools for classrooms and kitchen tables</h2>
             <p>
               Whether you’re lesson planning at school or tackling questions at
-              home, Prodigy’s evidence-based tools help you make learning fun
+              home, Our’s evidence-based tools help you make learning fun
               and effective for kids.
             </p>
           </div>

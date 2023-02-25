@@ -1,10 +1,9 @@
 .signup-page {
   min-height: calc(100vh + 100px);
-  @apply bg-third
+  @apply bg-third dark:bg-darkBody
 }
 .signup-page .login-nav {
-  background-color: white;
-  @apply px-4 flex justify-between items-center font-bold capitalize text-lg h-16;
+  @apply px-4 flex justify-between items-center bg-white  dark:bg-darkNav text-black dark:text-darkPText font-bold capitalize text-lg h-16;
 }
 .signup-page .login-nav div {
   @apply flex  items-center;
@@ -29,7 +28,7 @@
 }
 /******************************************************/
 .signup-page .login-form {
-  @apply max-w-md bg-white rounded-md p-8 flex flex-col gap-2 mx-auto my-12 ;
+  @apply max-w-md bg-white dark:bg-darkCard rounded-md p-8 flex flex-col gap-2 mx-auto my-12 ;
 }
 .signup-page .login-form .back {
   @apply flex items-center gap-2 justify-start capitalize cursor-pointer;
@@ -91,7 +90,7 @@
 }
 .signup-page form .input-form input {
   border: 1px solid #cccccc;
-  @apply py-2 px-3 rounded-sm  focus:border-black;
+  @apply py-2 px-3 rounded-sm  focus:border-black dark:bg-transparent;
 }
 
 .signup-page form .checkbox {
@@ -101,7 +100,7 @@
   @apply w-full flex items-center flex-wrap;
 }
 .signup-page form .checkbox .check input {
-  @apply rounded-sm mr-1 cursor-pointer;
+  @apply rounded-sm mr-1 cursor-pointer dark:bg-transparent;
 }
 
 .signup-page form .checkbox .check input[type="checkbox"]:checked {
@@ -119,4 +118,7 @@
 
 .signup-page form input[type="submit"] {
   @apply w-full rounded-md py-3 font-bold text-lg capitalize bg-orange hover:bg-orangeHover text-white cursor-pointer;
+}
+.signup-page form input[type="submit"]:disabled {
+  @apply bg-gray-400 dark:bg-gray-500;
 }

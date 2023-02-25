@@ -84,6 +84,7 @@ const ChildGrade = () => {
             <button
               type="submit"
               class="sc-fzpkJw dkdYyO ButtonExtended-iglfeL jTskCK"
+              disabled={loading}
             >
               {loading ? "loading" : "Add grade"}
             </button>

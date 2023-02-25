@@ -21,14 +21,14 @@ const Header = () => {
   //           <div className="left">
   //             <h1>Make learning math and English fun for kids</h1>
   //             <p>
-  //               With Prodigy, kids practice standards-aligned skills in math and
+  //               With Our, kids practice standards-aligned skills in math and
   //               English as they play our fun, adaptive learning games. All with
   //               teacher and parent tools to support their learning in class and
   //               at home.
   //             </p>
   //             <div className="btns">
   //               <Link to="/signup">Create your free account today</Link>
-  //               <Link to="">Buy Prodigy Math membership</Link>
+  //               <Link to="">Buy Our Math membership</Link>
   //             </div>
   //           </div>
   //           <div className="right">
@@ -52,14 +52,14 @@ const Header = () => {
           >
             <h1>Make learning {text}</h1>
             <p>
-              With Prodigy, kids practice standards-aligned skills in math and
+              With Us, kids practice standards-aligned skills in math and
               English as they play our fun, adaptive learning games. All with
               teacher and parent tools to support their learning in class and at
               home.
             </p>
             <div className="btns">
               <Link to="/signup">Create your free account today</Link>
-              <Link to="">Buy Prodigy Math membership</Link>
+              <Link to="">Buy Our  Math membership</Link>
             </div>
           </motion.div>
           <motion.div

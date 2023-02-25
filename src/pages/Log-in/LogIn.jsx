@@ -79,6 +79,7 @@ const Login = () => {
             <div className="input-form">
               <label htmlFor="">Email</label>
               <input
+              required
                 type="email"
                 value={email}
                 onChange={(e) => setemail(e.target.value)}
@@ -87,6 +88,7 @@ const Login = () => {
             <div className="input-form">
               <label htmlFor="">Password</label>
               <input
+              required
                 type="password"
                 value={password}
                 onChange={(e) => setpassword(e.target.value)}
@@ -97,6 +99,7 @@ const Login = () => {
               type="submit"
               value={loading ? "loading" : "log in "}
               name="commit"
+              disabled={loading}
             />
           </form>
         </div>

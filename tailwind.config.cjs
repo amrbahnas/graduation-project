@@ -14,6 +14,8 @@ module.exports = {
         thirdHover: "#1c3d3d",
         backGround: "#fefdfb",
         textColor: "#4d4c4b",
+        backBtnColor: "#fbfbfb",
+        backBtnColorHoner: "#f3f2f0",
         btn: "#1d4ed8",
         disabled: "#e5e7eb",
         disabledTxt: "#757575",

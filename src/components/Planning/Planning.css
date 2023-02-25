@@ -1,6 +1,6 @@
 .planning {
   background-color: #f7e9db;
-  @apply py-10;
+  @apply py-10  dark:text-darkSText dark:bg-darkCard ;
 }
 .planning .top {
   @apply text-center lg:px-32 mb-10;
