@@ -1,15 +1,15 @@
 .planning {
   background-color: #f7e9db;
-  @apply py-10  dark:text-darkSText dark:bg-darkCard ;
+  @apply py-10  dark:text-darkSText dark:bg-transparent ;
 }
 .planning .top {
   @apply text-center lg:px-32 mb-10;
 }
 .planning h2 {
-  @apply text-3xl md:text-4xl font-bold capitalize mb-4 w-full;
+  @apply text-3xl md:text-4xl font-bold capitalize mb-4 w-full dark:text-darkPText;
 }
 .planning p {
-  @apply text-xl md:text-2xl font-serif w-full;
+  @apply text-xl md:text-2xl font-serif w-full ;
 }
 .planning .bottom {
   @apply grid grid-cols-2 gap-14;
@@ -23,7 +23,7 @@
 }
 
 .planning .bottom .box strong {
-  @apply font-bold text-2xl mb-6;
+  @apply font-bold text-2xl mb-6 dark:text-darkPText;
 }
 
 .planning .bottom .box p {

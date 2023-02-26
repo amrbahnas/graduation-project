@@ -1,0 +1,123 @@
+.dashboard-nav {
+  @apply h-16 px-2 lg:px-20  bg-white  dark:bg-darkNav text-black dark:text-darkPText flex items-center sticky  w-full top-0 shadow-md z-40;
+}
+.dashboard-nav .wrapper {
+  @apply w-full flex items-center justify-between h-full;
+}
+
+.dashboard-nav ul {
+  @apply flex gap-5 items-center h-full;
+}
+.dashboard-nav ul li {
+  @apply hover:border-b-4 border-orange h-full flex items-center text-sm font-medium  capitalize cursor-pointer;
+}
+
+.dashboard-nav ul li a {
+  @apply w-full h-full flex items-center justify-center;
+}
+
+.dashboard-nav .right ul li svg {
+  color: #6d6c6a;
+  @apply w-5 h-5;
+}
+
+.dashboard-nav .left {
+  @apply flex gap-4 items-center h-full;
+}
+.dashboard-nav .left .logo {
+  @apply mr-6  md:mr-10;
+}
+.dashboard-nav .left .logo img {
+  @apply w-32;
+}
+
+.dashboard-nav .left ul {
+  @apply hidden md:flex;
+}
+
+/* children*/
+
+.dashboard-nav .left ul li.children  {
+  @apply hover:border-none;
+}
+.dashboard-nav .left ul li.children span {
+  @apply flex items-center gap-2 h-full;
+}
+.dashboard-nav .left ul li.children .list {
+  @apply relative;
+}
+.dashboard-nav .left ul li.children .list .menu {
+  top: 150%;
+  @apply absolute  bg-white w-44 -right-4  hidden flex-col gap-1 border rounded-sm shadow-sm;
+}
+.dashboard-nav .left  ul li.children .list .menu.display {
+  @apply flex;
+}
+.dashboard-nav .left ul li.children .list .menu::after {
+  content: "";
+  display: block;
+  position: absolute;
+  right: 20px;
+  width: 16px;
+  height: 16px;
+  transform: rotate(45deg) translateY(-40%) translateX(-40%);
+  border-top: 1px solid rgb(235, 234, 232);
+  border-left: 1px solid rgb(235, 234, 232);
+  border-top-left-radius: 3px;
+  background: rgb(255, 255, 255);
+}
+
+.dashboard-nav .left ul li.children .menu a {
+  @apply flex items-center gap-3 justify-start px-4  py-2 hover:bg-slate-100 z-10;
+}
+.dashboard-nav .left ul li.children .menu a:not(a:last-child) {
+  @apply border-b;
+}
+
+
+.dashboard-nav .right {
+  @apply h-full;
+}
+
+.dashboard-nav .right ul li {
+  @apply hover:border-none;
+}
+
+
+
+/* parent */
+
+.dashboard-nav .right ul li.parent span {
+  @apply flex items-center gap-2 h-full;
+}
+.dashboard-nav .right ul li.parent .list {
+  @apply relative;
+}
+.dashboard-nav .right ul li.parent .list .menu {
+  top: 150%;
+  @apply absolute  bg-white w-44 -right-4  hidden flex-col gap-1 border rounded-sm shadow-sm;
+}
+
+.dashboard-nav .right  ul li.parent .list .menu.display {
+  @apply flex;
+}
+
+.dashboard-nav .right ul li.parent .list .menu::after {
+  content: "";
+  display: block;
+  position: absolute;
+  right: 20px;
+  width: 16px;
+  height: 16px;
+  transform: rotate(45deg) translateY(-40%) translateX(-40%);
+  border-top: 1px solid rgb(235, 234, 232);
+  border-left: 1px solid rgb(235, 234, 232);
+  border-top-left-radius: 3px;
+  background: rgb(255, 255, 255);
+}
+.dashboard-nav .right ul li.parent .menu a {
+  color: #6d6c6a;
+  @apply flex items-center gap-3 justify-start px-4  py-2 hover:bg-slate-100 z-10;
+}
+
+/* *********** */

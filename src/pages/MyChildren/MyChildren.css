@@ -1,13 +1,16 @@
 .MyChildren {
-  @apply mt-24;
+  @apply bg-backGround dark:bg-darkBody;
 }
 
-.MyChildren .wrapper {
-  min-height: calc(100vh - 80px);
-  @apply bg-white my-4 rounded-md dark:bg-darkCard dark:text-darkSText;
+.MyChildren .wrapper .heading {
+  @apply  flex justify-between items-center mt-10 mb-4;
 }
-.MyChildren .wrapper > span {
-  @apply text-3xl font-bold block mb-10 p-4 md:p-8;
+.MyChildren .wrapper .heading span:first-child {
+  color: rgb(77, 76, 75);
+  @apply text-2xl font-bold;
+}
+.MyChildren .wrapper .heading span:last-child {
+  @apply bg-third hover:bg-thirdHover  dark:bg-thirdHover dark:hover:bg-third rounded-md text-white px-3 py-2 cursor-pointer;
 }
 .MyChildren .wrapper .add {
   background-color: rgba(135, 207, 235, 0.419);
@@ -17,35 +20,9 @@
   @apply text-lg font-bold bg-blue-500  text-white w-32 h-32 rounded-full flex items-center justify-center cursor-pointer  hover:scale-105;
 }
 .MyChildren .wrapper .userChildren {
-  @apply w-full  p-4 md:p-8  block md:grid grid-cols-2  gap-5 overflow-hidden;
+  @apply w-full  block lg:grid grid-cols-2  gap-4  mx-1;
 }
 
 .MyChildren .wrapper .userChildren > span {
   @apply underline col-span-1 flex items-center justify-center cursor-pointer  text-center p-4 text-gray-600 hover:text-gray-800 dark:text-darkSText dark:hover:text-darkPText;
-}
-.MyChildren .wrapper .userChildren .child {
-  @apply border  col-span-1  flex flex-wrap gap-2 items-center p-4 bg-slate-200 rounded-md dark:bg-darkBody dark:border-none shadow-xl;
-}
-/* .MyChildren .wrapper .userChildren .child:hover .info .options {
-  opacity: 1;
-} */
-.MyChildren .wrapper .userChildren .child .img {
-  @apply w-24 h-24 mx-auto  flex items-center justify-center rounded-full lg:mr-4 bg-green-500 overflow-hidden;
-}
-
-.MyChildren .wrapper .userChildren .child .img img {
-  @apply w-full h-full object-cover;
-}
-
-.MyChildren .wrapper .userChildren .child .info {
-  @apply flex-1 flex flex-col  gap-2;
-}
-.MyChildren .wrapper .userChildren .child .info h2 {
-  @apply font-bold underline capitalize text-lg mb-2 text-center lg:text-left;
-}
-.MyChildren .wrapper .userChildren .child .info .options {
-  @apply flex gap-2 justify-center lg:justify-start items-center  sm:ml-0 ;
-}
-.MyChildren .wrapper .userChildren .child .info .options a {
-  @apply block p-2 w-28 cursor-pointer border border-black text-center hover:bg-white dark:hover:bg-darkHover dark:bg-darkCard capitalize rounded-md;
 }

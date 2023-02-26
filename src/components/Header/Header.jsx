@@ -5,7 +5,7 @@ import { useTypewriter, Cursor } from "react-simple-typewriter";
 import { motion } from "framer-motion";
 const Header = () => {
   const [text] = useTypewriter({
-    words: ["math and English fun for kids"],
+    words: [" a learning adventure with Us"],
     loop: true,
     typeSpeed: 170,
     deleteSpeed: 100,
@@ -48,24 +48,33 @@ const Header = () => {
             className="left h-full"
             initial={{ x: -999, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            transition={{ ease: "easeOut", duration: 2 ,type:"spring",stifness:150}}
+            transition={{
+              ease: "easeOut",
+              duration: 2,
+              type: "spring",
+              stifness: 150,
+            }}
           >
-            <h1>Make learning {text}</h1>
+            <h1>Kickstart {text}</h1>
             <p>
-              With Us, kids practice standards-aligned skills in math and
-              English as they play our fun, adaptive learning games. All with
-              teacher and parent tools to support their learning in class and at
-              home.
+              Spark imagination and power up a world full of adventure in both
+              Math and English with game-based learning. Unlock
+              curriculum-aligned skill practice that keeps kids engaged!
             </p>
             <div className="btns">
               <Link to="/signup">Create your free account today</Link>
-              <Link to="">Buy Our  Math membership</Link>
+              <Link to="">Buy Our Math membership</Link>
             </div>
           </motion.div>
           <motion.div
             initial={{ x: 999, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            transition={{ ease: "easeOut", duration: 2 ,type:"spring",stifness:150}}
+            transition={{
+              ease: "easeOut",
+              duration: 2,
+              type: "spring",
+              stifness: 150,
+            }}
             className="right h-full"
           ></motion.div>
         </div>

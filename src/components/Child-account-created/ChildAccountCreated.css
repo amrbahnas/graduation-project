@@ -1,0 +1,33 @@
+.child-account-created .wrapper {
+  @apply flex flex-col  my-12 max-w-sm mx-auto;
+}
+.child-account-created .wrapper .image {
+  @apply h-28  mx-auto;
+}
+
+.child-account-created .wrapper .image img {
+  @apply w-full h-full object-cover;
+}
+.child-account-created .wrapper .heading span {
+  @apply block w-full text-center;
+}
+
+.child-account-created .wrapper .heading span:first-child {
+  @apply text-3xl font-bold  mb-3;
+}
+.child-account-created .wrapper form {
+  @apply flex flex-col  w-full my-8;
+}
+.child-account-created .wrapper form .input {
+  @apply flex flex-col gap-1 mb-3;
+}
+.child-account-created .wrapper form .input label {
+  @apply w-full text-center;
+}
+.child-account-created .wrapper form .input input {
+  @apply w-full py-2 px-3 border border-gray-500 bg-white dark:bg-transparent rounded-sm text-center;
+}
+
+.child-account-created .wrapper form button {
+  @apply w-full bg-third hover:bg-thirdHover text-white py-2 rounded-sm flex justify-center mt-5;
+}

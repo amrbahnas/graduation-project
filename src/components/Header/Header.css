@@ -9,11 +9,10 @@ header .wrapper .left {
   @apply col-span-1 flex flex-col gap-2 md:gap-4 items-start text-white  py-10 h-full;
 }
 header .left h1 {
-  min-height: 180px;
-  @apply font-bold  text-4xl   md:text-5xl lg:text-6xl capitalize;
+  @apply font-bold  text-4xl md:text-5xl   lg:text-5xl  h-28  lg:h-40;
 }
 header .left p {
-  @apply font-semibold text-lg text-start mb-6 lg:mb-0;
+  @apply font-semibold text-lg text-start mb-6 lg:mb-2;
 }
 header .left .btns {
   @apply flex flex-col gap-2 w-full;

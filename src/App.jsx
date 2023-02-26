@@ -18,59 +18,60 @@ import SelectUnit from "./pages/Game-setup/Local-component/SelectUnit/SelectUnit
 import SubjectData from "./pages/Game-setup/Local-component/SubjectData/SubjectData";
 import Error from "./pages/Error/Error";
 import AddFirstChild from "./pages/Add-first-child/AddFirstChild";
+import ParentDashboard from "./pages/Parent-Dashboard/ParentDashboard";
+import AddChild from "./pages/Add-child/AddChild";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Main />,
+    element: <Home />,
     errorElement: <Error />,
+  },
+  {
+    path: "/mychildren",
+    element: <MyChildren />,
+  },
+  {
+    path: "/gameSetup/:_id",
+    element: <GameSetup />,
     children: [
       {
         index: true,
-        element: <Home />,
+        element: <Subject />,
       },
       {
-        path: "/mychildren",
-        element: <MyChildren />,
+        path: "/gameSetup/:_id/unit",
+        element: <SelectUnit />,
       },
       {
-        path: "/gameSetup/:_id",
-        element: <GameSetup />,
-        children: [
-          {
-            index: true,
-            element: <Subject />,
-          },
-          {
-            path: "/gameSetup/:_id/unit",
-            element: <SelectUnit />,
-          },
-          {
-            path: "/gameSetup/:_id/unit/SubjectData",
-            element: <SubjectData />,
-          },
-        ],
-      },
-      {
-        path: "/studentProfile/:_id",
-        element: <StudentProfile />,
-        children: [
-          {
-            index: true,
-            element: <Subjects />,
-          },
-          {
-            path: "/studentProfile/:_id/tasks/:subjectName",
-            element: <Tasks />,
-          },
-          {
-            path: "/studentProfile/:_id/tasks/:subjectName/:taskNumber",
-            element: <SingleTask />,
-          },
-        ],
+        path: "/gameSetup/:_id/unit/SubjectData",
+        element: <SubjectData />,
       },
     ],
   },
+  {
+    path: "/mychildren",
+    element: <MyChildren />,
+  },
+  {
+    path: "/studentProfile/:_id",
+    element: <StudentProfile />,
+    children: [
+      {
+        index: true,
+        element: <Subjects />,
+      },
+      {
+        path: "/studentProfile/:_id/tasks/:subjectName",
+        element: <Tasks />,
+      },
+      {
+        path: "/studentProfile/:_id/tasks/:subjectName/:taskNumber",
+        element: <SingleTask />,
+      },
+    ],
+  },
+
   {
     path: "/login",
     element: <LogIn />,
@@ -82,6 +83,14 @@ const router = createBrowserRouter([
   {
     path: "/addfirstchild",
     element: <AddFirstChild />,
+  },
+  {
+    path: "/dashboard",
+    element: <ParentDashboard />,
+  },
+  {
+    path: "/AddChild",
+    element: <AddChild />,
   },
 ]);
 

@@ -6,7 +6,7 @@ nav .wrapper {
 }
 
 nav ul {
-  @apply flex gap-6 items-center h-full;
+  @apply flex gap-5 items-center h-full;
 }
 nav ul li {
   @apply hover:border-b-4 border-orange h-full flex items-center  capitalize  font-semibold text-lg;
@@ -22,12 +22,13 @@ nav ul li a {
 nav .left {
   @apply flex gap-4 items-center h-full;
 }
-nav .left .logo img {
-  @apply mr-10;
+nav .left .logo  {
+  @apply  mr-6  md:mr-10;
 }
 nav .left .logo img {
   @apply w-32;
 }
+
 
 nav .left ul {
   @apply hidden md:flex;
@@ -35,10 +36,12 @@ nav .left ul {
 nav .right {
   @apply h-full;
 }
-
+nav .right li.login {
+@apply  w-14
+}
 nav .right ul .signUp,
 nav .right ul .signout {
-  @apply bg-orange  hover:bg-orangeHover hover:border-none h-3/4 text-white   font-bold text-lg w-36 text-center rounded-md  cursor-pointer flex items-center justify-center;
+  @apply bg-orange  hover:bg-orangeHover hover:border-none h-2/4 md:h-3/4 text-white   font-bold  text-base md:text-lg w-24 md:w-36 text-center rounded-md  cursor-pointer flex items-center justify-center;
 }
 nav .right ul .signUp a {
   @apply text-center w-full;

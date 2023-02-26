@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import OurMission from "../../components/OurMission/OurMission";
 import Planning from "../../components/Planning/Planning";
 import SugestionCreateAccount from "../../components/SugestionCreateAccount/SugestionCreateAccount";
+import Nav from "../../components/Nav/Nav";
+import Footer from "../../components/Footer/Footer";
 const Home = () => {
   const navigate = useNavigate();
   const { login } = useSelector((store) => store.userSlice);
@@ -16,10 +18,12 @@ const Home = () => {
   }, [login, navigate]);
   return (
     <div>
+      <Nav />
       <Header />
       <OurMission />
       <Planning />
       <SugestionCreateAccount />
+      <Footer />
     </div>
   );
 };

@@ -116,6 +116,8 @@ export const userSlice = createSlice({
         state.parentPic = parentPic;
         state.login = true;
         /**************************** */
+        state.children = [];
+
       }
     },
     [createParentAccount.rejected]: (state, action) => {

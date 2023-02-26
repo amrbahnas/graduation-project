@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "./MyChildren.css";
 import AddForm from "./LocalComponent/AddForm";
+import DashboardNav from "../../components/DashboardNav/DashboardNav";
+import ChildCard from "../../components/Child-card/ChildCard";
 
 const MyChildren = () => {
   const navigate = useNavigate();
@@ -16,56 +18,23 @@ const MyChildren = () => {
   }, [login, navigate]);
   return (
     <div className="MyChildren">
+      <DashboardNav position={"mychildren"} />
       <div className="theContainer">
         <div className="wrapper">
-          {children.length > 0 ? (
-            <>
-              <span>My children</span>
-              <div className="userChildren">
-                {children.map((child) => (
-                  <Child child={child} key={child._id} />
-                ))}
-                <span onClick={(e) => setshowForm(true)}>Add more One</span>
-              </div>
-            </>
-          ) : (
-            <>
-              <span>Add children</span>
-              <div className="add">
-                <span onClick={(e) => setshowForm(true)}>Add child</span>
-              </div>
-            </>
-          )}
+          <div className="heading">
+            <span>My children</span>
+            <span onClick={e=>navigate("/addchild")}>Add child</span>
+          </div>
+          <div className="userChildren">
+            {children.map((child) => (
+              <ChildCard child={child} key={child._id} />
+            ))}
+            <span onClick={(e) => setshowForm(true)}>Add more One</span>
+          </div>
         </div>
       </div>
       {showForm && <AddForm setshowForm={setshowForm} />}
     </div>
-  );
-};
-
-const Child = ({ child }) => {
-  return (
-    <dir className="child">
-      <div className="img">
-        <img
-          src={
-            import.meta.env.VITE_REACT_SERVER_DOMAIL + "/" + child.studentPic
-          }
-          alt=""
-        />
-      </div>
-      <div className="info">
-        <h2 className="dark:text-darkPText">{child.studentName}</h2>
-        <div className="options">
-          <Link to={"/studentProfile/" + child._id}>
-            <span>Profile</span>
-          </Link>
-          <Link to={"/gameSetup/" + child._id}>
-            <span>Add Subject</span>
-          </Link>
-        </div>
-      </div>
-    </dir>
   );
 };
 
