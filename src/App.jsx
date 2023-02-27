@@ -18,7 +18,7 @@ import SelectUnit from "./pages/Game-setup/Local-component/SelectUnit/SelectUnit
 import SubjectData from "./pages/Game-setup/Local-component/SubjectData/SubjectData";
 import Error from "./pages/Error/Error";
 import AddFirstChild from "./pages/Add-first-child/AddFirstChild";
-import ParentDashboard from "./pages/Parent-Dashboard/ParentDashboard";
+import ChildDashboard from "./pages/child-Dashboard/ChildDashboard";
 import AddChild from "./pages/Add-child/AddChild";
 
 const router = createBrowserRouter([
@@ -85,8 +85,8 @@ const router = createBrowserRouter([
     element: <AddFirstChild />,
   },
   {
-    path: "/dashboard",
-    element: <ParentDashboard />,
+    path: "/dashboard/:id",
+    element: <ChildDashboard />,
   },
   {
     path: "/AddChild",

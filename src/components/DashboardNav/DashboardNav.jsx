@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { NavLink, Link } from "react-router-dom";
+import {  Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setLoginState } from "../..//store/slices/userSlice";
 // icon
@@ -53,11 +53,11 @@ const DashboardNav = ({ position }) => {
       <div className="wrapper">
         <div className="left">
           <span className="logo">
-            <NavLink to="/">
+            <Link to="/">
               <img src="/assets/brand/logo.svg" alt="" />
-            </NavLink>
+            </Link>
           </span>
-          <ul className={position === "mychildren" && "opacity-0"}>
+          <ul className={position === "mychildren" ? "opacity-0" : ""}>
             <li className="children">
               <span onClick={toggleChildrenMenu}>
                 {children[0].studentName}
@@ -76,13 +76,13 @@ const DashboardNav = ({ position }) => {
               </div>
             </li>
             <li>
-              <NavLink>Math</NavLink>
+              <Link>Math</Link>
             </li>
             <li>
-              <NavLink>English</NavLink>
+              <Link>English</Link>
             </li>
             <li>
-              <NavLink>Arabic</NavLink>
+              <Link>Arabic</Link>
             </li>
           </ul>
         </div>

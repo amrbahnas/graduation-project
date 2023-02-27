@@ -27,11 +27,11 @@ const ChildCard = ({ child }) => {
           <span>- -</span>
         </div>
         <div className="options">
-          <Link to={"/studentProfile/" + child._id}>
-            <span>English Dashboard</span>
+          <Link to={"/dashboard/" + child._id}>
+            <span>Dashboard</span>
           </Link>
           <Link to={"/gameSetup/" + child._id}>
-            <span>Math Dashboard</span>
+            <span>Add Subject Data</span>
           </Link>
         </div>
       </div>

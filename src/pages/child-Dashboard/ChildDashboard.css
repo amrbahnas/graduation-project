@@ -1,0 +1,75 @@
+.parent-dashboard .dashboard-wrapper {
+  color: rgb(77, 76, 75);
+  @apply my-4 min-h-screen;
+  @apply block md:grid grid-cols-5 gap-4 bg-transparent;
+}
+.parent-dashboard .dashboard-wrapper .nav {
+  @apply col-span-1 hidden md:block;
+}
+.parent-dashboard .dashboard-wrapper .nav ul {
+  @apply flex flex-col gap-2;
+}
+.parent-dashboard .dashboard-wrapper .nav ul li {
+  @apply flex gap-4 p-2;
+}
+
+.parent-dashboard .dashboard-wrapper .dashboard {
+  @apply col-span-4 mt-8 md:mt-0;
+}
+.parent-dashboard .dashboard-wrapper .dashboard .title {
+  @apply font-bold text-2xl mb-4;
+}
+
+.parent-dashboard .dashboard-wrapper .dashboard .boxs {
+  @apply block md:grid gap-4 grid-cols-5 grid-rows-5;
+}
+.parent-dashboard .dashboard-wrapper .dashboard .boxs > div {
+  border: 1px solid rgb(235, 234, 232);
+  box-shadow: rgb(43 42 41 / 30%) 0px 1px 4px;
+  background-color: white;
+  @apply rounded-md mb-4 md:mb-0;
+}
+.parent-dashboard .dashboard-wrapper .dashboard .activity {
+  grid-area: 1 / 1 / 6 / 4;
+}
+.parent-dashboard .dashboard-wrapper .dashboard .activity h3 {
+  @apply p-4 border-b;
+}
+.parent-dashboard .dashboard-wrapper .dashboard .activity .body {
+  padding: 56px 32px;
+
+  @apply flex flex-col justify-center items-center gap-4 text-center;
+}
+.parent-dashboard .dashboard-wrapper .dashboard .activity .body img {
+  @apply h-1/2;
+}
+.parent-dashboard
+  .dashboard-wrapper
+  .dashboard
+  .activity
+  .body
+  span.description {
+  @apply text-xs;
+}
+.parent-dashboard .dashboard-wrapper .dashboard .activity .body button {
+  border: 1px solid rgb(191, 191, 191);
+  @apply w-52 px-4 py-2 rounded-sm bg-backBtnColor hover:bg-backBtnColorHoner cursor-pointer;
+}
+
+.parent-dashboard .dashboard-wrapper .dashboard .grade {
+  grid-area: 1 / 4 / 3 / 6;
+  @apply p-4;
+}
+.parent-dashboard .dashboard-wrapper .dashboard .grade h3 {
+  @apply mb-4 text-lg;
+}
+.parent-dashboard .dashboard-wrapper .dashboard .grade p {
+  @apply text-sm;
+}
+.parent-dashboard .dashboard-wrapper .dashboard .boxs .q-answers {
+  grid-area: 3 / 4 / 6 / 6;
+}
+
+.parent-dashboard .dashboard-wrapper .dashboard .q-answers {
+  @apply flex justify-center items-center p-4 h-24;
+}
