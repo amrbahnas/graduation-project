@@ -9,7 +9,7 @@ const childAccountCreated = () => {
   );
   const onSubmit = (e) => {
     e.preventDefault();
-    navigate("/mychildren", { replace: true });
+    navigate("/parent/my-children", { replace: true });
   };
   return (
     <div className="child-account-created">

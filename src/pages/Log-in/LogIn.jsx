@@ -22,7 +22,7 @@ const Login = () => {
   //  // user cant access this page if he has login
   useEffect(() => {
     if (login) {
-      navigate("/mychildren");
+      navigate("/parent/my-children");
     }
   }, [login, navigate]);
 
@@ -37,7 +37,7 @@ const Login = () => {
 
     dispatch(loginAccount(data)).then((res) => {
       if (login) {
-        navigate("/mychildren");
+        navigate("/parent/my-children");
       }
     });
   };
@@ -79,7 +79,7 @@ const Login = () => {
             <div className="input-form">
               <label htmlFor="">Email</label>
               <input
-              required
+                required
                 type="email"
                 value={email}
                 onChange={(e) => setemail(e.target.value)}
@@ -88,7 +88,7 @@ const Login = () => {
             <div className="input-form">
               <label htmlFor="">Password</label>
               <input
-              required
+                required
                 type="password"
                 value={password}
                 onChange={(e) => setpassword(e.target.value)}

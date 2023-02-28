@@ -14,7 +14,6 @@ const ChildCard = ({ child }) => {
           alt=""
         /> */}
         <Avatar name={child.studentName} size="100" round={true} />
-        
       </div>
       <div className="info">
         <div className="name">
@@ -30,7 +29,7 @@ const ChildCard = ({ child }) => {
           <span>- -</span>
         </div>
         <div className="options">
-          <Link to={"/dashboard/" + child._id}>
+          <Link to={`/parent/my-children/${child._id}/english/dashboard`}>
             <span>Dashboard</span>
           </Link>
           <Link to={"/gameSetup/" + child._id}>

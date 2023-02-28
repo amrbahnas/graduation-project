@@ -15,7 +15,7 @@ import "./DashboardNav.css";
 const DashboardNav = ({ position }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { id } = useParams();
+  const { id, subject } = useParams();
   const { login, parentName, children } = useSelector(
     (store) => store.userSlice
   );
@@ -57,7 +57,7 @@ const DashboardNav = ({ position }) => {
     dispatch(setLoginState(false));
   };
   const childrenswitch = (id) => {
-    navigate(`/dashboard/${id}`);
+    navigate(`/parent/my-children/${id}/english/dashboard`);
     childrenList.current.classList.toggle("display");
   };
   return (
@@ -99,14 +99,26 @@ const DashboardNav = ({ position }) => {
                 </div>
               </div>
             </li>
-            <li>
-              <Link>Math</Link>
+            <li
+              className={subject === "math" ? "border-b-4 border-orange" : ""}
+            >
+              <Link to={`/parent/my-children/${id}/math/dashboard`}>Math</Link>
             </li>
-            <li>
-              <Link>English</Link>
+            <li
+              className={
+                subject === "english" ? "border-b-4 border-orange" : ""
+              }
+            >
+              <Link to={`/parent/my-children/${id}/english/dashboard`}>
+                English
+              </Link>
             </li>
-            <li>
-              <Link>Arabic</Link>
+            <li
+              className={subject === "arabic" ? "border-b-4 border-orange" : ""}
+            >
+              <Link to={`/parent/my-children/${id}/arabic/dashboard`}>
+                Arabic
+              </Link>
             </li>
           </ul>
         </div>
@@ -126,7 +138,7 @@ const DashboardNav = ({ position }) => {
                     <SettingsOutlinedIcon />
                     <span>Account Setting</span>
                   </Link>
-                  <Link to="/mychildren">
+                  <Link to="/parent/my-children">
                     <AccessibilityNewIcon />
                     <span>My Children</span>
                   </Link>

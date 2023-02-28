@@ -28,7 +28,7 @@ const router = createBrowserRouter([
     errorElement: <Error />,
   },
   {
-    path: "/mychildren",
+    path: "/parent/my-children",
     element: <MyChildren />,
   },
   {
@@ -48,10 +48,6 @@ const router = createBrowserRouter([
         element: <SubjectData />,
       },
     ],
-  },
-  {
-    path: "/mychildren",
-    element: <MyChildren />,
   },
   {
     path: "/studentProfile/:_id",
@@ -85,7 +81,7 @@ const router = createBrowserRouter([
     element: <AddFirstChild />,
   },
   {
-    path: "/dashboard/:id",
+    path: "/parent/my-children/:id/:subject/dashboard",
     element: <ChildDashboard />,
   },
   {

@@ -13,7 +13,7 @@ const Home = () => {
   //  // user cant access this page if he has login
   useEffect(() => {
     if (login) {
-      navigate("/mychildren");
+      navigate("/parent/my-children");
     }
   }, [login, navigate]);
   return (
