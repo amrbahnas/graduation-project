@@ -14,7 +14,7 @@ import Subjects from "./pages/Student-profile/LocalComponents/Subjects/Subjects"
 import Tasks from "./pages/Student-profile/LocalComponents/Tasks/Tasks";
 import SingleTask from "./pages/Student-profile/LocalComponents/SingleTask/SingleTask";
 import Subject from "./pages/Game-setup/Local-component/Subject/Subject";
-import SelectUnit from "./pages/Game-setup/Local-component/SelectUnit/SelectUnit";
+import TaskType from "./pages/Game-setup/Local-component/TaskType/TaskType";
 import SubjectData from "./pages/Game-setup/Local-component/SubjectData/SubjectData";
 import Error from "./pages/Error/Error";
 import AddFirstChild from "./pages/Add-first-child/AddFirstChild";
@@ -41,7 +41,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/gameSetup/:_id/unit",
-        element: <SelectUnit />,
+        element: <TaskType />,
       },
       {
         path: "/gameSetup/:_id/unit/SubjectData",

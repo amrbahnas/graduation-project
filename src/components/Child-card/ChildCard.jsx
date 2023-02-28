@@ -34,7 +34,7 @@ const ChildCard = ({ child }) => {
             <span>Dashboard</span>
           </Link>
           <Link to={"/gameSetup/" + child._id}>
-            <span>Add Subject Data</span>
+            <span>Add New Task</span>
           </Link>
         </div>
       </div>

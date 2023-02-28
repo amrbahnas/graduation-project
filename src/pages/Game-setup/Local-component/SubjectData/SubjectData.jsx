@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   setsubjectData,
   setstepNumber,
-} from "../../../../store/slices/unitsSlice";
+} from "../../../../store/slices/taskSlice";
 import {
   addChildQuestions,
   getChildQuestions,
@@ -39,25 +39,23 @@ const SubjectData = () => {
   const { english, loading, dataIsSend, errorHappen } = useSelector(
     (store) => store.questionsDataSlice
   );
-  const { currentUnit, currentLesson, subjectData } = useSelector(
-    (store) => store.unitsSlice
-  );
+  const { subjectData } = useSelector((store) => store.taskSlice);
   // useEffect
   useEffect(() => {
     dispatch(setstepNumber(2));
-    const data = {
-      unit: currentUnit.unit,
-      stadge: child.studentstage,
-      lesson: currentLesson.lesson,
-    };
-    dispatch(getChildQuestions(data));
-  }, [currentUnit.unit, child.studentstage, currentLesson.lesson, dispatch]);
+    // const data = {
+    //   unit: currentUnit.unit,
+    //   stadge: child.studentstage,
+    //   lesson: currentLesson.lesson,
+    // };
+    // dispatch(getChildQuestions(data));
+  }, [dispatch]);
 
-  // local variables
-  const oldWords = english.filter(
-    (word) =>
-      +word.Lesson === +currentLesson.lesson && +word.Unit === +currentUnit.unit
-  );
+  // // local variables
+  // const oldWords = english.filter(
+  //   (word) =>
+  //     +word.Lesson === +currentLesson.lesson && +word.Unit === +currentUnit.unit
+  // );
   // console.log(oldWords);
   const [editWord, seteditWord] = useState({ state: false, _id: "" });
   const [enteredWords, setenteredWords] = useState([]);
@@ -150,8 +148,6 @@ const SubjectData = () => {
       image: subject.wordImage,
       defintionen: subject.DefintioninEn,
       defintionac: subject.DefintioninAc,
-      unit: subject.unit,
-      lesson: subject.lesson,
       stadge: child.studentstage,
     }));
 
@@ -165,11 +161,11 @@ const SubjectData = () => {
     <div className={styles.SubjectData}>
       <div className={styles.wrapper}>
         <div className={styles.word}>
-          <div className={styles.unitLesson}>
+          {/* <div className={styles.unitLesson}>
             <span>unit: {currentUnit.unit}</span>
             <span>lesson: {currentLesson.lesson}</span>
-            {/* <span>( {currentLesson.title} )</span> */}
-          </div>
+            <span>( {currentLesson.title} )</span>
+          </div> */}
           <div className={styles.addWord}>
             <div className={`${styles.image}  dark:border-darkSText`}>
               {/* {
@@ -252,12 +248,12 @@ const SubjectData = () => {
         </div>
 
         <div className={`${styles.data}`}>
-          <span>{enteredWords.length + oldWords.length} words</span>
+          <span>{enteredWords.length } words</span>
           <div
             className={`${styles.enteredData} dark:border-darkSText`}
             id="words"
           >
-            <div className={`${styles.oldData} relative`}>
+            {/* <div className={`${styles.oldData} relative`}>
               {loading ? (
                 <img
                   src="/assets/svg/loading.svg"
@@ -277,7 +273,7 @@ const SubjectData = () => {
                   );
                 })
               )}
-            </div>
+            </div> */}
             {enteredWords.map((word) => {
               return (
                 <SingleEnglishWord

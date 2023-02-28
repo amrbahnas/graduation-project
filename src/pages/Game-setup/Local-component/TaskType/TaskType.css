@@ -1,0 +1,10 @@
+.task-type {
+    @apply w-full
+}
+.task-type .task-type-wrapper {
+    @apply flex flex-col h-80 gap-4 justify-start items-center px-4 mb-6
+    
+}
+.task-type .task-type-wrapper div {
+    @apply bg-gray-200 dark:bg-darkBody hover:bg-gray-300 dark:hover:bg-darkHover w-80 p-10
+}

@@ -19,7 +19,7 @@ const GameSetup = () => {
 
   // get global state
   const { login } = useSelector((store) => store.userSlice);
-  const { stepNumber } = useSelector((store) => store.unitsSlice);
+  const { stepNumber } = useSelector((store) => store.taskSlice);
   // user cant access this page if he has login
   useEffect(() => {
     if (!login) {
@@ -30,28 +30,26 @@ const GameSetup = () => {
   // component
   const StepBox = ({ index, title }) => {
     return (
-      
-        <div className="step">
-          {stepNumber === index ? (
-            <>
-              <span className="bg-blue-500">{index + 2}</span>
-              <span className="text-gray-600 dark:text-darkPText">{title}</span>
-            </>
-          ) : stepNumber > index ? (
-            <>
-              <span className="bg-blue-500">
-                <CheckIcon />
-              </span>
-              <span className="text-gray-600 dark:text-darkPText">{title}</span>
-            </>
-          ) : (
-            <>
-              <span className="bg-disabled dark:bg-darkBody">{index + 2}</span>
-              <span className="text-disabled dark:text-darkSText">{title}</span>
-            </>
-          )}
-        </div>
-      
+      <div className="step">
+        {stepNumber === index ? (
+          <>
+            <span className="bg-blue-500">{index + 2}</span>
+            <span className="text-gray-600 dark:text-darkPText">{title}</span>
+          </>
+        ) : stepNumber > index ? (
+          <>
+            <span className="bg-blue-500">
+              <CheckIcon />
+            </span>
+            <span className="text-gray-600 dark:text-darkPText">{title}</span>
+          </>
+        ) : (
+          <>
+            <span className="bg-disabled dark:bg-darkBody">{index + 2}</span>
+            <span className="text-disabled dark:text-darkSText">{title}</span>
+          </>
+        )}
+      </div>
     );
   };
 

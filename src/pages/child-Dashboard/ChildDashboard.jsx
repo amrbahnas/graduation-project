@@ -82,7 +82,7 @@ const ChildDashboard = () => {
                       return (
                         <SingleEnglishWord
                           wordData={word}
-                          key={word}
+                          key={word._id}
                           image={word.Image}
                         />
                       );

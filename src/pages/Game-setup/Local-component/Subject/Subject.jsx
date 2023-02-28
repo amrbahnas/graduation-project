@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { setsubject, setstepNumber } from "../../../../store/slices/unitsSlice";
+import { setsubject, setstepNumber } from "../../../../store/slices/taskSlice";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
