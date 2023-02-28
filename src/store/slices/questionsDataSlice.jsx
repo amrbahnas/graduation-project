@@ -6,8 +6,9 @@ export const addChildQuestions = createAsyncThunk(
   "quetions/addChildQuestions",
   async (word, thunkAPI) => {
     const { rejectWithValue, getState } = thunkAPI;
-    console.log(word);
+    // console.log(word);
     const { _id } = getState().userSlice;
+
     const formdata = new FormData();
     formdata.append("stadge", word.stadge);
     formdata.append("unit", word.unit);
@@ -16,7 +17,7 @@ export const addChildQuestions = createAsyncThunk(
     formdata.append("defintionen", word.defintionen);
     formdata.append("image", word.image, word.image.name);
     try {
-      const url = `${process.env.REACT_ADD_QUESTION_API}/${_id}`;
+      const url = `https://gamebasedlearning-ot4m.onrender.com/FSE/FSEinsertQuestion/${_id}`;
       const headers = {
         method: "POST",
         body: formdata,
@@ -36,7 +37,7 @@ export const getChildQuestions = createAsyncThunk(
   async (data, thunkAPI) => {
     const { rejectWithValue, getState } = thunkAPI;
     const { _id } = getState().userSlice;
-    const url = `${import.meta.env.VITE_REACT_GET_QUESTION_API}/${_id}`;
+    const url = `https://gamebasedlearning-ot4m.onrender.com/FSE/FSEtakeQuestion/${_id}`;
     const headers = {
       "content-type": "application/json; charset=UTF-8",
     };
@@ -51,6 +52,9 @@ export const getChildQuestions = createAsyncThunk(
 
 const initialState = {
   english: [],
+  loading: false,
+  errorHappen: false,
+  dataIsSend: false,
 };
 
 export const questionsDataSlice = createSlice({
@@ -60,43 +64,53 @@ export const questionsDataSlice = createSlice({
     setEnglish: (state, action) => {
       state.login = action.payload;
     },
+    setdataIsSend: (state, action) => {
+      state.dataIsSend = action.payload;
+    },
+    seterrorHappen: (state, action) => {
+      state.errorHappen = action.payload;
+    },
   },
   extraReducers: {
     // addQuestion
     [addChildQuestions.pending]: (state) => {
       state.loading = true;
-      state.error = false;
+      state.errorHappen = false;
+      state.dataIsSend = false;
     },
     [addChildQuestions.fulfilled]: (state, action) => {
       state.loading = false;
-      state.error = false;
-      console.log(action.payload);
+      state.errorHappen = false;
+      state.dataIsSend = true;
+      console.log(action.payload);  
     },
     [addChildQuestions.rejected]: (state, action) => {
       state.loading = false;
-      state.error = action.payload;
-      console.log("sad", action.payload);
+      state.dataIsSend = false;
+      state.errorHappen = true;
+      console.log("addChildQuestions rejected", action.payload);
     },
 
     // // get Question
     [getChildQuestions.pending]: (state) => {
       state.loading = true;
-      state.error = false;
+      state.errorHappen = false;
       state.english = [];
     },
     [getChildQuestions.fulfilled]: (state, action) => {
       state.loading = false;
-      state.error = false;
+      state.errorHappen = false;
       console.log(action.payload);
       state.english = action.payload.question;
     },
     [getChildQuestions.rejected]: (state, action) => {
       state.loading = false;
-      state.error = action.payload;
+      state.errorHappen = true;
       console.log("sad", action.payload);
     },
   },
 });
 
-export const { setEnglish } = questionsDataSlice.actions;
+export const { setEnglish, setdataIsSend, seterrorHappen } =
+  questionsDataSlice.actions;
 export default questionsDataSlice.reducer;

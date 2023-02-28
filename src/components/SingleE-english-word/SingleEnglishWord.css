@@ -1,0 +1,22 @@
+
+ .single-word {
+  @apply w-full h-20 flex justify-between items-center border p-3  shadow-md  bg-slate-200  dark:bg-darkBody hover:bg-slate-300 dark:hover:bg-darkHover rounded-md;
+}
+ .single-word .info {
+  @apply flex gap-2 items-center;
+}
+ .single-word .info img {
+  @apply w-12 h-12;
+}
+ .single-word .controlBTN {
+  @apply flex gap-2 rounded-md;
+}
+ .single-word .controlBTN span {
+  @apply cursor-pointer inline-block ml-2 hover:scale-105;
+}
+ .single-word .controlBTN span:first-child {
+  @apply hover:text-green-600;
+}
+ .single-word .controlBTN span:last-child {
+  @apply hover:text-red-600;
+}

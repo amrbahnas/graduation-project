@@ -11,7 +11,7 @@ const SimpleNav = () => {
         back
       </div>
       <img
-        src="assets/brand/logo.svg"
+        src="/assets/brand/logo.svg"
         alt=""
         onClick={(e) => navigate("/", { replace: true })}
       />

@@ -1,18 +1,26 @@
 import React, { useState, useEffect } from "react";
 import "./SuccessCheck.css";
 import { useNavigate } from "react-router-dom";
-
+import { setdataIsSend } from "../../store/slices/questionsDataSlice";
+import { useDispatch } from "react-redux";
 import { motion } from "framer-motion";
 const SuccessCheck = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [timerGoHome, setTimerGoHome] = useState(15);
+  // const [timerGoHome, setTimerGoHome] = useState(15);
   useEffect(() => {
-    if (timerGoHome > 0) {
-      setTimeout(() => setTimerGoHome(timerGoHome - 1), 1000);
-    } else {
-      navigate("/");
-    }
+    // if (timerGoHome > 0) {
+    //   setTimeout(() => setTimerGoHome(timerGoHome - 1), 1000);
+    // } else {
+    //   dispatch(setdataIsSend(false));
+    dispatch(setdataIsSend(false));
+    //   navigate("/");
+    // }
   }, [timerGoHome, navigate]);
+  const navigateHandler = () => {
+    dispatch(setdataIsSend(false));
+    // navigate("/mychildren");
+  };
   return (
     <div className="successWrapper">
       <motion.div
@@ -36,11 +44,11 @@ const SuccessCheck = () => {
         </motion.span>
         <motion.button
           whileTap={{ scale: 0.9 }}
-          onClick={(e) => navigate("/")}
+          onClick={navigateHandler}
           className="py-3 font-bold text-black capitalize rounded-md w-80 bg-gray-300"
         >
-          <span>Another Student</span>
-          <span className="inline-block ml-2">{timerGoHome}</span>
+          <span>Ok</span>
+          {/* <span className="inline-block ml-2">{timerGoHome}</span> */}
         </motion.button>
       </motion.div>
     </div>

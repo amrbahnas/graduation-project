@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import {  Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setLoginState } from "../..//store/slices/userSlice";
 // icon
@@ -14,9 +14,17 @@ import NightMode from "./../NightMode/NightMode";
 import "./DashboardNav.css";
 const DashboardNav = ({ position }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { id } = useParams();
   const { login, parentName, children } = useSelector(
     (store) => store.userSlice
   );
+  const [currentChild, setcurrentChild] = useState({});
+  useEffect(() => {
+    if (id) {
+      setcurrentChild(children.filter((child) => child._id === id)[0]);
+    }
+  }, [id]);
   const parentList = useRef();
   const childrenList = useRef();
 
@@ -37,7 +45,7 @@ const DashboardNav = ({ position }) => {
       document.removeEventListener("mousedown", handler);
     };
   });
-  console.log(children);
+  // console.log(children);
   const toggleParentMenu = () => {
     parentList.current.classList.toggle("display");
   };
@@ -48,30 +56,46 @@ const DashboardNav = ({ position }) => {
   const signUp = () => {
     dispatch(setLoginState(false));
   };
+  const childrenswitch = (id) => {
+    navigate(`/dashboard/${id}`);
+    childrenList.current.classList.toggle("display");
+  };
   return (
     <div className="dashboard-nav">
-      <div className="wrapper">
+      <div className="nav-wrapper">
         <div className="left">
           <span className="logo">
             <Link to="/">
               <img src="/assets/brand/logo.svg" alt="" />
             </Link>
           </span>
-          <ul className={position === "mychildren" ? "opacity-0" : ""}>
+          <ul
+            className={
+              position === "mychildren" || position === "gameSetup"
+                ? "opacity-0"
+                : ""
+            }
+          >
             <li className="children">
               <span onClick={toggleChildrenMenu}>
-                {children[0].studentName}
+                {currentChild?.studentName}
               </span>
               <div className="list">
-                <ArrowDropDownIcon />
+                <ArrowDropDownIcon onClick={toggleChildrenMenu} />
                 <div className="menu" ref={childrenList}>
-                  {children.map((child) => (
-                    <Link key={child._id}>{child.studentName}</Link>
-                  ))}
-                  <Link to="/addchild">
+                  {id &&
+                    children?.map((child) => (
+                      <span
+                        key={child._id}
+                        onClick={(e) => childrenswitch(child._id)}
+                      >
+                        {child.studentName}
+                      </span>
+                    ))}
+                  <span onClick={(e) => navigate("/addchild")}>
                     <AddCircleOutlineOutlinedIcon />
                     <span>Add child</span>
-                  </Link>
+                  </span>
                 </div>
               </div>
             </li>
@@ -96,15 +120,15 @@ const DashboardNav = ({ position }) => {
                 <PersonOutlineIcon /> {parentName}
               </span>
               <div className="list">
-                <ArrowDropDownIcon />
+                <ArrowDropDownIcon onClick={toggleParentMenu} />
                 <div className="menu" ref={parentList}>
                   <Link>
                     <SettingsOutlinedIcon />
                     <span>Account Setting</span>
                   </Link>
-                  <Link>
+                  <Link to="/mychildren">
                     <AccessibilityNewIcon />
-                    <span>Manage Child</span>
+                    <span>My Children</span>
                   </Link>
                   <Link>
                     <InfoOutlinedIcon />

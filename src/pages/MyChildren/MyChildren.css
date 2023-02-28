@@ -1,5 +1,5 @@
 .MyChildren {
-  @apply bg-backGround dark:bg-darkBody;
+  @apply bg-backGround dark:bg-darkBody min-h-screen;
 }
 
 .MyChildren .wrapper .heading {

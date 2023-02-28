@@ -14,7 +14,7 @@ const SingleLesson = ({ lessonObject }) => {
   const { currentLesson, units, currentUnit } = useSelector(
     (store) => store.unitsSlice
   );
-  console.log(lessonObject)
+  // console.log(lessonObject)
   const [lessonTitle, setlessonTitle] = useState(lessonObject.title);
   const [disabled, setdisabled] = useState(true);
   const editIcon = () => {

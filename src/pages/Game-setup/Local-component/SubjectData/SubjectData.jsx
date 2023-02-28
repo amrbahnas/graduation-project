@@ -10,25 +10,35 @@ import {
 import {
   addChildQuestions,
   getChildQuestions,
+  seterrorHappen,
 } from "../../../../store/slices/questionsDataSlice";
 // routes
 import { useNavigate, useParams, Link } from "react-router-dom";
 // components
+import SingleEnglishWord from "../../../../components/SingleE-english-word/SingleEnglishWord";
 import SuccessCheck from "./../../../../components/SuccessCheck/SuccessCheck";
+// mui
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
 //icons
-import EditIcon from "@mui/icons-material/Edit";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+// import EditIcon from "@mui/icons-material/Edit";
+// import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 /******************************start********************************** */
 const SubjectData = () => {
   const dispatch = useDispatch();
+  const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
   const { _id } = useParams();
   // global variables
   const { children } = useSelector((store) => store.userSlice);
   const child = children.filter((el) => el._id === _id)[0];
-  const { english, loading } = useSelector((store) => store.questionsDataSlice);
+  const { english, loading, dataIsSend, errorHappen } = useSelector(
+    (store) => store.questionsDataSlice
+  );
   const { currentUnit, currentLesson, subjectData } = useSelector(
     (store) => store.unitsSlice
   );
@@ -49,13 +59,12 @@ const SubjectData = () => {
       +word.Lesson === +currentLesson.lesson && +word.Unit === +currentUnit.unit
   );
   // console.log(oldWords);
-  const [editWord, seteditWord] = useState({ state: false, id: "" });
+  const [editWord, seteditWord] = useState({ state: false, _id: "" });
   const [enteredWords, setenteredWords] = useState([]);
   const [previewImage, setpreviewImage] = useState(null);
   const [wordImage, setwordImage] = useState(null);
   const [DefintioninEn, setDefintioninEn] = useState("");
   const [DefintioninAc, setDefintioninAc] = useState("");
-  const [dataIsSend, setdataIsSend] = useState(false);
   // take img from input file then show it
   const previewImg = (files) => {
     if (files.length > 0) {
@@ -78,7 +87,7 @@ const SubjectData = () => {
   const addOrUpdateWord = () => {
     if (editWord.state) {
       const newData = {
-        id: v4(),
+        _id: v4(),
         wordImage,
         previewImage,
         DefintioninEn,
@@ -87,13 +96,13 @@ const SubjectData = () => {
         lesson: currentLesson.lesson,
       };
       setenteredWords(
-        enteredWords.map((word) => (word.id === editWord.id ? newData : word))
+        enteredWords.map((word) => (word._id === editWord._id ? newData : word))
       );
-      seteditWord({ state: false, id: "" });
+      seteditWord({ state: false, _id: "" });
       cleanInputs();
     } else {
       const data = {
-        id: v4(),
+        _id: v4(),
         wordImage,
         previewImage,
         DefintioninEn,
@@ -108,16 +117,16 @@ const SubjectData = () => {
   };
 
   // edit word
-  const editWordHandler = (id, e) => {
+  const editWordHandler = (_id, e) => {
     // style
     document.querySelectorAll("#words div").forEach((word) => {
       word.style.border = "none";
     });
     e.target.parentElement.parentElement.style.border = "1px solid black";
     // logic
-    seteditWord({ state: true, id });
+    seteditWord({ state: true, _id });
     const { DefintioninEn, DefintioninAc, wordImage } = enteredWords.find(
-      (w) => w.id === id
+      (w) => w._id === _id
     );
     setDefintioninAc(DefintioninAc);
     setDefintioninEn(DefintioninEn);
@@ -130,39 +139,9 @@ const SubjectData = () => {
     // end func
   };
   // delete word
-  const deleteWord = (id) => {
-    setenteredWords(enteredWords.filter((word) => word.id !== id));
-    setsubjectData(enteredWords.filter((word) => word.id !== id));
-  };
-
-  // small component representing single word
-  const Word = ({ wordData, image }) => {
-    let imgUrl = null;
-    if (image) {
-      imgUrl = `https://gamebasedlearning-ot4m.onrender.com/${image}`;
-    } else {
-      imgUrl = wordData.previewImage;
-    }
-
-    return (
-      <div
-        className={`${styles.word} bg-slate-200  dark:bg-darkBody hover:bg-slate-300 dark:hover:bg-darkHover rounded-md`}
-      >
-        <div className={`${styles.info}`}>
-          <img src={imgUrl} alt="" />
-          <span>{wordData.DefintioninEn}</span>
-          <span>{wordData.DefintioninAc}</span>
-        </div>
-        <div className={`${styles.controlBTN}`}>
-          <span onClick={(e) => editWordHandler(wordData.id, e)}>
-            <EditIcon />
-          </span>
-          <span onClick={(e) => deleteWord(wordData.id)}>
-            <DeleteForeverIcon />
-          </span>
-        </div>
-      </div>
-    );
+  const deleteWord = (_id) => {
+    setenteredWords(enteredWords.filter((word) => word._id !== _id));
+    setsubjectData(enteredWords.filter((word) => word._id !== _id));
   };
 
   const submitData = () => {
@@ -177,7 +156,7 @@ const SubjectData = () => {
     }));
 
     questions.forEach((word) => {
-      dispatch(addChildQuestions(word)).then(() => setdataIsSend(true));
+      dispatch(addChildQuestions(word));
     });
   };
 
@@ -287,12 +266,27 @@ const SubjectData = () => {
                 />
               ) : (
                 oldWords.map((word) => {
-                  return <Word wordData={word} key={word} image={word.Image} />;
+                  return (
+                    <SingleEnglishWord
+                      wordData={word}
+                      key={word._id}
+                      image={word.Image}
+                      deleteWord={deleteWord}
+                      editWordHandler={editWordHandler}
+                    />
+                  );
                 })
               )}
             </div>
             {enteredWords.map((word) => {
-              return <Word wordData={word} key={word._id} />;
+              return (
+                <SingleEnglishWord
+                  wordData={word}
+                  key={word._id}
+                  deleteWord={deleteWord}
+                  editWordHandler={editWordHandler}
+                />
+              );
             })}
           </div>
         </div>
@@ -306,6 +300,14 @@ const SubjectData = () => {
         </Link>
       </div>
       {dataIsSend && <SuccessCheck />}
+
+      <Snackbar
+        open={errorHappen}
+        autoHideDuration={6000}
+        onClose={(e) => dispatch(seterrorHappen(false))}
+      >
+        <Alert severity="error">error try again</Alert>
+      </Snackbar>
     </div>
   );
 };

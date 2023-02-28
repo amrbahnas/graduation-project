@@ -10,7 +10,7 @@ const Error = () => {
       <div className="theContainer">
         <div className="wrapper">
           <div className="image">
-            <img src="assets/images/errorpage.svg" alt="" />
+            <img src="/assets/images/errorpage.svg" alt="" />
           </div>
           <h1>Oops!</h1>
           <span>We're sorry but something went wrong.</span>

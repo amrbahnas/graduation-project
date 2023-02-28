@@ -1,6 +1,6 @@
 .gameSetup .wrapper {
   min-height: calc(100vh - 80px);
-  @apply bg-white dark:bg-darkCard my-4 rounded-md overflow-hidden  w-full   mt-24;
+  @apply bg-white dark:bg-darkCard my-4 rounded-md overflow-hidden  w-full ;
 }
 
 .gameSetup .wrapper .proccessLine {
