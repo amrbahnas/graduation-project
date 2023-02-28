@@ -19,7 +19,7 @@ const SuccessCheck = () => {
   }, [timerGoHome, navigate]);
   const navigateHandler = () => {
     dispatch(setdataIsSend(false));
-    // navigate("/mychildren");
+    // navigate("/parent/my-children");
   };
   return (
     <div className="successWrapper">

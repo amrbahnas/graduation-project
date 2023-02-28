@@ -9,7 +9,7 @@
   @apply flex gap-5 items-center h-full;
 }
 .dashboard-nav ul li {
-  @apply hover:border-b-4 border-orange h-full flex items-center text-sm font-medium  capitalize cursor-pointer;
+  @apply  h-full flex items-center text-sm font-medium  capitalize cursor-pointer;
 }
 
 .dashboard-nav ul li a {
