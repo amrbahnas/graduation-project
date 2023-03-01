@@ -65,6 +65,7 @@ const SubjectData = () => {
   const [wordImage, setwordImage] = useState(null);
   const [DefintioninEn, setDefintioninEn] = useState("");
   const [DefintioninAc, setDefintioninAc] = useState("");
+  const [sentence, setsentence] = useState("");
   // take img from input file then show it
   const previewImg = (files) => {
     if (files.length > 0) {
@@ -80,6 +81,7 @@ const SubjectData = () => {
   const cleanInputs = () => {
     setDefintioninAc("");
     setDefintioninEn("");
+    setsentence("");
     setwordImage(null);
     setpreviewImage("");
   };
@@ -91,6 +93,7 @@ const SubjectData = () => {
         wordImage,
         previewImage,
         DefintioninEn,
+       sentence,
         DefintioninAc,
         unit: currentUnit.unit,
         lesson: currentLesson.lesson,
@@ -107,6 +110,7 @@ const SubjectData = () => {
         previewImage,
         DefintioninEn,
         DefintioninAc,
+        sentence,
         unit: currentUnit.unit,
         lesson: currentLesson.lesson,
       };
@@ -125,11 +129,12 @@ const SubjectData = () => {
     e.target.parentElement.parentElement.style.border = "1px solid black";
     // logic
     seteditWord({ state: true, _id });
-    const { DefintioninEn, DefintioninAc, wordImage } = enteredWords.find(
+    const { DefintioninEn, DefintioninAc,sentence, wordImage } = enteredWords.find(
       (w) => w._id === _id
     );
     setDefintioninAc(DefintioninAc);
     setDefintioninEn(DefintioninEn);
+    setsentence(sentence);
     setwordImage(wordImage);
     const fileReader = new FileReader();
     fileReader.onload = (event) => {
@@ -150,6 +155,7 @@ const SubjectData = () => {
       image: subject.wordImage,
       defintionen: subject.DefintioninEn,
       defintionac: subject.DefintioninAc,
+      sentence: subject.sentence,
       unit: subject.unit,
       lesson: subject.lesson,
       stadge: child.studentstage,
@@ -235,12 +241,22 @@ const SubjectData = () => {
                 />
               </div>
               <div className={`${styles.input}`}>
-                <label htmlFor="meaning">meaning</label>
+                <label htmlFor="meaning">المعني</label>
                 <input
                   type="text"
                   id="meaning"
                   value={DefintioninAc}
                   onChange={(e) => setDefintioninAc(e.target.value)}
+                  className="bg-gray-200 dark:bg-darkBody"
+                />
+              </div>
+              <div className={`${styles.input}`}>
+                <label htmlFor="sentence">sentence</label>
+                <input
+                  type="text"
+                  id="sentence"
+                  value={sentence}
+                  onChange={(e) => setsentence(e.target.value)}
                   className="bg-gray-200 dark:bg-darkBody"
                 />
               </div>

@@ -20,6 +20,7 @@ const SingleEnglishWord = ({
         <img src={imgUrl} alt="" />
         <span>{wordData.DefintioninEn}</span>
         <span>{wordData.DefintioninAc}</span>
+        <span>{wordData.sentence?.slice(0,10)+".."}</span>
       </div>
       <div className="controlBTN">
         <span onClick={(e) => editWordHandler(wordData._id, e)}>

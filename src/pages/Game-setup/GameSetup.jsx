@@ -34,12 +34,12 @@ const GameSetup = () => {
         <div className="step">
           {stepNumber === index ? (
             <>
-              <span className="bg-blue-500">{index + 2}</span>
+              <span className="bg-orange">{index + 2}</span>
               <span className="text-gray-600 dark:text-darkPText">{title}</span>
             </>
           ) : stepNumber > index ? (
             <>
-              <span className="bg-blue-500">
+              <span className="bg-orange">
                 <CheckIcon />
               </span>
               <span className="text-gray-600 dark:text-darkPText">{title}</span>
@@ -78,9 +78,7 @@ const GameSetup = () => {
           </div>
         </div>
       </div>
-      <Link className="home" to="/">
-        <FastRewindIcon />
-      </Link>
+      
     </div>
   );
 };

@@ -5,17 +5,24 @@ import LightbulbIcon from "@mui/icons-material/Lightbulb";
 import { Link, useParams } from "react-router-dom";
 /// redux
 import { useSelector, useDispatch } from "react-redux";
-import { getChildQuestions } from "../../store/slices/questionsDataSlice";
+import {
+  getChildQuestions,
+  getQuestionsFeedback,
+} from "../../store/slices/questionsDataSlice";
 // component
 import SingleEnglishWord from "../../components/SingleE-english-word/SingleEnglishWord";
 
 import "./ChildDashboard.css";
+import SubjectData from "../../components/SubjectData/SubjectData";
+import TaskCard from "../../components/Task-card/TaskCard";
 const ChildDashboard = () => {
   const dispatch = useDispatch();
-  const { id } = useParams();
-  const { english, loading } = useSelector((store) => store.questionsDataSlice);
+  const { _id } = useParams();
+  const { english, loading, feedBack } = useSelector(
+    (store) => store.questionsDataSlice
+  );
   const { children } = useSelector((store) => store.userSlice);
-  const { studentName } = children.filter((child) => child._id === id)[0];
+  const { studentName } = children.filter((child) => child._id === _id)[0];
   useEffect(() => {
     const data = {
       unit: 1,
@@ -23,7 +30,8 @@ const ChildDashboard = () => {
       lesson: 1,
     };
     dispatch(getChildQuestions(data));
-  }, [dispatch, id]);
+    dispatch(getQuestionsFeedback(_id));
+  }, [dispatch, _id]);
 
   return (
     <div className="parent-dashboard">
@@ -52,25 +60,36 @@ const ChildDashboard = () => {
                 <h3>
                   <span>Recent activity</span>
                 </h3>
-                <div className="body">
-                  <img src="/assets/images/noActivity.svg" alt="" />
-                  <span>{studentName} hasn’t Tasks yet</span>
-                  <span className="description">
-                    Once {studentName} starts to play Prodigy, you will be able
-                    to see what they have worked on here.
-                  </span>
-                  <button>
-                    <span>Add Tasks</span>
-                  </button>
-                </div>
+                {feedBack.length > 0 ? (
+                  <div className="tasks">
+                    <TaskCard number={"1"}  />
+                  </div>
+                ) : (
+                  <div className="no-tasks">
+                    <img src="/assets/images/noActivity.svg" alt="" />
+                    <span>{studentName} hasn’t Tasks yet</span>
+                    <span className="description">
+                      Once {studentName} starts to play Prodigy, you will be
+                      able to see what they have worked on here.
+                    </span>
+                    <button>
+                      <span>Add Tasks</span>
+                    </button>
+                  </div>
+                )}
               </div>
-              <div className="subject-data">
-                <span className="view-all">view All</span>
+              <div className="grade">
+                {/* <span className="view-all">view All</span> */}
                 <h3>
-                  <span>Subject data</span>
-                  <span>{english.length} found</span>
+                  <span>Grade level</span>
+                  {/* <span>{english.length} found</span> */}
                 </h3>
-                {loading ? (
+
+                <p>
+                  ahmed is performing at <strong> Grade 1 </strong>
+                  level currently.
+                </p>
+                {/* {loading ? (
                   <img
                     src="/assets/svg/loading.svg"
                     alt=""
@@ -82,7 +101,7 @@ const ChildDashboard = () => {
                       return (
                         <SingleEnglishWord
                           wordData={word}
-                          key={word}
+                          key={word._id}
                           image={word.Image}
                         />
                       );
@@ -91,9 +110,9 @@ const ChildDashboard = () => {
                 ) : (
                   <div className="no-data">
                     <span>Not data yet! </span>
-                    <Link to={`/gameSetup/${id}/unit`}>Add data</Link>
+                    <Link to={`/gameSetup/${_id}/unit`}>Add data</Link>
                   </div>
-                )}
+                )} */}
               </div>
               <div className="feadback">
                 <h3>
@@ -105,6 +124,7 @@ const ChildDashboard = () => {
           </div>
         </div>
       </div>
+      {/* <SubjectData/> */}
     </div>
   );
 };

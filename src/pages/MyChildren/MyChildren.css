@@ -7,7 +7,7 @@
 }
 .MyChildren .wrapper .heading span:first-child {
   color: rgb(77, 76, 75);
-  @apply text-2xl font-bold;
+  @apply text-2xl font-bold dark:text-darkPText;
 }
 .MyChildren .wrapper .heading span:last-child {
   @apply bg-third hover:bg-thirdHover  dark:bg-thirdHover dark:hover:bg-third rounded-md text-white px-3 py-2 cursor-pointer;
@@ -20,9 +20,9 @@
   @apply text-lg font-bold bg-blue-500  text-white w-32 h-32 rounded-full flex items-center justify-center cursor-pointer  hover:scale-105;
 }
 .MyChildren .wrapper .userChildren {
-  @apply w-full  block lg:grid grid-cols-2  gap-4  mx-1;
+  @apply w-full  block lg:grid grid-cols-2  gap-4  mx-1 ;
 }
 
 .MyChildren .wrapper .userChildren > span {
-  @apply underline col-span-1 flex items-center justify-center cursor-pointer  text-center p-4 text-gray-600 hover:text-gray-800 dark:text-darkSText dark:hover:text-darkPText;
+  @apply underline col-span-1 flex items-center justify-center cursor-pointer  text-center p-4 text-gray-600  hover:text-gray-800 dark:text-darkSText dark:hover:text-darkPText;
 }

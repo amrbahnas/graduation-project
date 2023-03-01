@@ -1,4 +1,3 @@
-import "./App.css";
 import { store, persistor } from "./store/index.jsx";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
@@ -82,7 +81,7 @@ const router = createBrowserRouter([
     element: <AddFirstChild />,
   },
   {
-    path: "/parent/my-children/:id/:subject/dashboard",
+    path: "/parent/my-children/:_id/:subject/dashboard",
     element: <ChildDashboard />,
   },
   {

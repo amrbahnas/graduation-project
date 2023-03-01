@@ -8,7 +8,7 @@
 } */
 .child .img {
   background-color: #eefafd;
-  @apply w-full flex items-center justify-center rounded-sm  py-2 overflow-hidden;
+  @apply w-full flex items-center justify-center rounded-sm  py-2 overflow-hidden dark:bg-darkHover;
 }
 
 .child .img img {
@@ -26,7 +26,7 @@
 }
 .child .info .name h2 {
   color: rgb(77, 76, 75);
-  @apply font-bold  capitalize text-xl mb-2 text-center lg:text-left;
+  @apply font-bold  capitalize text-xl mb-2 text-center lg:text-left dark:text-darkPText;
 }
 .child .info .name a {
   justify-self: end;
@@ -37,7 +37,7 @@
 }
 .child .info .last-play span {
   color: rgb(109, 108, 106);
-  @apply block w-full text-center;
+  @apply block w-full text-center dark:text-darkPText;
 }
 .child .info .options {
   @apply w-full flex gap-2 justify-center lg:justify-start items-center  sm:ml-0;
@@ -45,7 +45,7 @@
 .child .info .options a {
   color: rgb(36, 83, 83);
   border: 1px solid rgb(188, 207, 207);
-  @apply block p-1 flex-1 cursor-pointer text-center bg-transparent   capitalize rounded-md;
+  @apply block p-1 flex-1 cursor-pointer text-center bg-transparent   capitalize rounded-md dark:text-darkPText dark:hover:bg-darkHover;
 }
 
 .child .info .options a:hover {

@@ -15,16 +15,16 @@ import "./DashboardNav.css";
 const DashboardNav = ({ position }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { id, subject } = useParams();
+  const { _id, subject } = useParams();
   const { login, parentName, children } = useSelector(
     (store) => store.userSlice
   );
   const [currentChild, setcurrentChild] = useState({});
   useEffect(() => {
-    if (id) {
-      setcurrentChild(children.filter((child) => child._id === id)[0]);
+    if (_id) {
+      setcurrentChild(children.filter((child) => child._id === _id)[0]);
     }
-  }, [id]);
+  }, [_id]);
   const parentList = useRef();
   const childrenList = useRef();
 
@@ -56,8 +56,8 @@ const DashboardNav = ({ position }) => {
   const signUp = () => {
     dispatch(setLoginState(false));
   };
-  const childrenswitch = (id) => {
-    navigate(`/parent/my-children/${id}/english/dashboard`);
+  const childrenswitch = (_id) => {
+    navigate(`/parent/my-children/${_id}/english/dashboard`);
     childrenList.current.classList.toggle("display");
   };
   return (
@@ -83,7 +83,7 @@ const DashboardNav = ({ position }) => {
               <div className="list">
                 <ArrowDropDownIcon onClick={toggleChildrenMenu} />
                 <div className="menu" ref={childrenList}>
-                  {id &&
+                  {_id &&
                     children?.map((child) => (
                       <span
                         key={child._id}
@@ -102,21 +102,21 @@ const DashboardNav = ({ position }) => {
             <li
               className={subject === "math" ? "border-b-4 border-orange" : ""}
             >
-              <Link to={`/parent/my-children/${id}/math/dashboard`}>Math</Link>
+              <Link to={`/parent/my-children/${_id}/math/dashboard`}>Math</Link>
             </li>
             <li
               className={
                 subject === "english" ? "border-b-4 border-orange" : ""
               }
             >
-              <Link to={`/parent/my-children/${id}/english/dashboard`}>
+              <Link to={`/parent/my-children/${_id}/english/dashboard`}>
                 English
               </Link>
             </li>
             <li
               className={subject === "arabic" ? "border-b-4 border-orange" : ""}
             >
-              <Link to={`/parent/my-children/${id}/arabic/dashboard`}>
+              <Link to={`/parent/my-children/${_id}/arabic/dashboard`}>
                 Arabic
               </Link>
             </li>

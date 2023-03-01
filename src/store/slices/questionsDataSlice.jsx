@@ -8,13 +8,13 @@ export const addChildQuestions = createAsyncThunk(
     const { rejectWithValue, getState } = thunkAPI;
     // console.log(word);
     const { _id } = getState().userSlice;
-
     const formdata = new FormData();
     formdata.append("stadge", word.stadge);
     formdata.append("unit", word.unit);
     formdata.append("lesson", word.lesson);
     formdata.append("defintionac", word.defintionac);
     formdata.append("defintionen", word.defintionen);
+    formdata.append("sentence", word.sentence);
     formdata.append("image", word.image, word.image.name);
     try {
       const url = `https://gamebasedlearning-ot4m.onrender.com/FSE/FSEinsertQuestion/${_id}`;
@@ -49,9 +49,27 @@ export const getChildQuestions = createAsyncThunk(
     }
   }
 );
+// Get Questions-feedback
+export const getQuestionsFeedback = createAsyncThunk(
+  "quetions/getQuestionsFeedback",
+  async (_id, thunkAPI) => {
+    const { rejectWithValue, getState } = thunkAPI;
+    const url = `https://gamebasedlearning-ot4m.onrender.com/FSE/feedback/${_id}`;
+    // const headers = {
+    //   "content-type": "application/json; charset=UTF-8",
+    // };
+    try {
+      const res = await axios.get(url);
+      return res.data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
 
 const initialState = {
   english: [],
+  feedBack: [],
   loading: false,
   errorHappen: false,
   dataIsSend: false,
@@ -82,7 +100,7 @@ export const questionsDataSlice = createSlice({
       state.loading = false;
       state.errorHappen = false;
       state.dataIsSend = true;
-      console.log(action.payload);  
+      console.log(action.payload);
     },
     [addChildQuestions.rejected]: (state, action) => {
       state.loading = false;
@@ -100,10 +118,27 @@ export const questionsDataSlice = createSlice({
     [getChildQuestions.fulfilled]: (state, action) => {
       state.loading = false;
       state.errorHappen = false;
-      console.log(action.payload);
+      // console.log(action.payload);
       state.english = action.payload.question;
     },
     [getChildQuestions.rejected]: (state, action) => {
+      state.loading = false;
+      state.errorHappen = true;
+      console.log("sad", action.payload);
+    },
+    // //  getQuestionsFeedback
+    [getQuestionsFeedback.pending]: (state) => {
+      state.loading = true;
+      state.errorHappen = false;
+      state.feedBack = [];
+    },
+    [getQuestionsFeedback.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.errorHappen = false;
+      console.log("feedback",action.payload);
+      state.feedBack = action.payload;
+    },
+    [getQuestionsFeedback.rejected]: (state, action) => {
       state.loading = false;
       state.errorHappen = true;
       console.log("sad", action.payload);
