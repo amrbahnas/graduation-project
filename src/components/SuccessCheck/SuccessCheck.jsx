@@ -16,7 +16,7 @@ const SuccessCheck = () => {
     dispatch(setdataIsSend(false));
     //   navigate("/");
     // }
-  }, [timerGoHome, navigate]);
+  }, [ navigate]);
   const navigateHandler = () => {
     dispatch(setdataIsSend(false));
     // navigate("/parent/my-children");
