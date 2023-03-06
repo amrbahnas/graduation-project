@@ -10,7 +10,7 @@ const Finish = () => {
 
   const onfinish = (e) => {
     e.preventDefault();
-    navigate("/", { replace: true });
+    navigate("/parent/my-children", { replace: true });
     dispatch(setpage(1));
   };
   return (

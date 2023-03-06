@@ -53,13 +53,14 @@ const CreateChildForm = ({ setsuccess }) => {
               type="text"
               name=""
               id=""
+              required
               value={name}
               onChange={(e) => setname(e.target.value)}
             />
           </div>
           <div className="input">
             <label htmlFor="">Last name initial</label>
-            <input type="text" name="" id="" />
+            <input type="text" name="" id="" required />
           </div>
           <div className="input select">
             <FormControl fullWidth>
@@ -69,6 +70,7 @@ const CreateChildForm = ({ setsuccess }) => {
                 id="demo-simple-select"
                 value={childGrade}
                 label="Age"
+                required
                 onChange={(e) => {
                   setchildGrade(e.target.value);
                 }}
