@@ -1,19 +1,18 @@
 .error-construction .error-construction-wrapper {
-  @apply max-w-xl mx-auto my-12 flex flex-col justify-between items-center gap-8;
+  @apply max-w-xl mx-auto my-12 flex flex-col justify-between items-center gap-8 p-4;
 }
 
 .error-construction .error-construction-wrapper span {
-  @apply font-bold;
+  @apply font-bold text-center;
 }
 
 .error-construction .error-construction-wrapper p {
-  @apply w-full text-center text-sm;
+  @apply w-full text-center text-sm sm:px-4 md:px-6 ;
 }
 
 .error-construction .error-construction-wrapper a {
   border-radius: 3px;
   font-size: 14px;
-  line-height: 20px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -21,10 +20,11 @@
   max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
+  line-height: 20px;
   white-space: nowrap;
   overflow-wrap: normal;
-  cursor: pointer;
   user-select: none;
+  cursor: pointer;
   padding: 7px 16px;
   background: rgb(36, 83, 83);
   border: 1px solid rgb(36, 83, 83);

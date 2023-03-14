@@ -31,7 +31,7 @@ const NightMode = () => {
     }
   }, []);
   return (
-    <label className="switch">
+    <label className="switch opacity-0">
       <input
         type="checkbox"
         onChange={(e) => switchOnChange(e)}

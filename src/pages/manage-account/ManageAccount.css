@@ -1,9 +1,14 @@
 .manage-account .heading {
-  @apply flex justify-between items-center mt-12 mb-6 px-40;
+  @apply flex justify-between items-center mt-12 mb-6 ;
 }
 .manage-account .heading span {
   color: rgb(77, 76, 75);
   @apply text-2xl font-bold dark:text-darkPText;
+    overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow-wrap: normal;
+  user-select: none;
 }
 .manage-account .heading button {
   border-radius: 3px;
@@ -61,8 +66,8 @@
   font-size: 16px;
   @apply w-2/3 mr-3;
 }
-.manage-account .body form .input div .select {
-  @apply w-2/3 mr-3;
+.manage-account .body form .input div .select-grade {
+  @apply w-2/3 mr-3 mt-2;
 }
 
 .manage-account .body form .input div button {

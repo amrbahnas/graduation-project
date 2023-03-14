@@ -5,13 +5,16 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import SelectGrade from './../../components/Select-grade/SelectGrade';
 const ManageAccount = () => {
   return (
     <div className="manage-account">
       <DashboardNav position={"manageaccount"} />
+      <div className="theContainer">
+
       <div className="heading">
         <span>Manage Child</span>
-        <button>remove Account</button>
+        <button>Remove Account</button>
       </div>
       <div className="body">
         <h3>Account Information</h3>
@@ -50,28 +53,15 @@ const ManageAccount = () => {
             </div>
           </div>
           <div className="input">
-            <span>Child's Grade</span>
             <div>
-              <FormControl className="select">
-                <InputLabel id="demo-simple-select-label">Grade</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  label="Age"
-                >
-                  <MenuItem value={1}>Grade one</MenuItem>
-                  <MenuItem value={2}>Grade two</MenuItem>
-                  <MenuItem value={3}>Grade three</MenuItem>
-                  <MenuItem value={4}>Grade four</MenuItem>
-                  <MenuItem value={5}>Grade five</MenuItem>
-                </Select>
-              </FormControl>
-              <button>
+             <SelectGrade/>
+              <button className="mt-2">
                 <span>save</span>
               </button>
             </div>
           </div>
         </form>
+      </div>
       </div>
     </div>
   );

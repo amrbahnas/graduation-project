@@ -4,9 +4,9 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import'./SelectGrade.css'
-const SelectGrade = ({ childGrade,setchildGrade }) => {
+const SelectGrade = ({ childGrade, setchildGrade}) => {
   return (
-    <FormControl fullWidth>
+    <FormControl fullWidth className="select-grade">
       <InputLabel id="demo-simple-select-label">Grade</InputLabel>
       <Select
         labelId="demo-simple-select-label"

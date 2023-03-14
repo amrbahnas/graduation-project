@@ -81,6 +81,11 @@ body {
   }
 }
 
-.site-shadow {
-  box-shadow: rgb(43 42 41 / 30%) 0px 1px 4px;
-}
+  /* overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 20px;
+  white-space: nowrap;
+  overflow-wrap: normal;
+  user-select: none; */
+
+
