@@ -8,11 +8,8 @@ import {
 } from "../../store/slices/addFirstChildSlice";
 import { addChildren, createChildAccount } from "../../store/slices/userSlice";
 import "./CommonStyle.css";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 import { v4 } from "uuid";
+import SelectGrade from "../Select-grade/SelectGrade";
 
 const ChildGrade = () => {
   const dispatch = useDispatch();
@@ -57,24 +54,7 @@ const ChildGrade = () => {
         <span className="title">What grade is {name} in?</span>
         <form onSubmit={onSubmit}>
           <span className="label">Select your child's current grade</span>
-          <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Grade</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={childGrade}
-              label="Age"
-              onChange={(e) => {
-                setchildGrade(e.target.value);
-              }}
-            >
-              <MenuItem value={1}>Grade one</MenuItem>
-              <MenuItem value={2}>Grade two</MenuItem>
-              <MenuItem value={3}>Grade three</MenuItem>
-              <MenuItem value={4}>Grade four</MenuItem>
-              <MenuItem value={5}>Grade five</MenuItem>
-            </Select>
-          </FormControl>
+          <SelectGrade setchildGrade={setchildGrade} childGrade={childGrade} />
           <span>
             You can always override the grade later if {name} needs a different
             level of Math challenges.

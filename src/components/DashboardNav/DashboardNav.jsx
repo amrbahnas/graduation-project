@@ -15,7 +15,7 @@ import "./DashboardNav.css";
 const DashboardNav = ({ position }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { _id, subject } = useParams();
+  const { _id, currentPage } = useParams();
   const { login, parentName, children } = useSelector(
     (store) => store.userSlice
   );
@@ -57,7 +57,9 @@ const DashboardNav = ({ position }) => {
     dispatch(setLoginState(false));
   };
   const childrenswitch = (_id) => {
-    navigate(`/parent/my-children/${_id}/english/dashboard`);
+    if (position === "dashboard")
+      navigate(`/parent/my-children/${_id}/alltasks/dashboard`);
+    else navigate(`/parent/my-children/${_id}/manage-account`);
     childrenList.current.classList.toggle("display");
   };
   return (
@@ -71,7 +73,7 @@ const DashboardNav = ({ position }) => {
           </span>
           <ul
             className={
-              position === "mychildren" || position === "gameSetup"
+              position === "mychildren" || position === "AddSubjectData"
                 ? "opacity-0"
                 : ""
             }
@@ -99,27 +101,54 @@ const DashboardNav = ({ position }) => {
                 </div>
               </div>
             </li>
-            <li
-              className={subject === "math" ? "border-b-4 border-orange" : ""}
-            >
-              <Link to={`/parent/my-children/${_id}/math/dashboard`}>Math</Link>
-            </li>
-            <li
-              className={
-                subject === "english" ? "border-b-4 border-orange" : ""
-              }
-            >
-              <Link to={`/parent/my-children/${_id}/english/dashboard`}>
-                English
-              </Link>
-            </li>
-            <li
-              className={subject === "arabic" ? "border-b-4 border-orange" : ""}
-            >
-              <Link to={`/parent/my-children/${_id}/arabic/dashboard`}>
-                Arabic
-              </Link>
-            </li>
+            {position !== "manageaccount" && (
+              <>
+                <li
+                  className={
+                    currentPage === "alltasks"
+                      ? "border-b-4 border-orange all-tasks"
+                      : "all-tasks"
+                  }
+                >
+                  <Link to={`/parent/my-children/${_id}/alltasks/dashboard`}>
+                    All Tasks
+                  </Link>
+                </li>
+                <li
+                  className={
+                    currentPage === "math"
+                      ? "border-b-4 border-orange text-gray-700"
+                      : "text-gray-500"
+                  }
+                >
+                  <Link to={`/parent/my-children/${_id}/math/dashboard`}>
+                    Math
+                  </Link>
+                </li>
+                <li
+                  className={
+                    currentPage === "english"
+                      ? "border-b-4 border-orange text-gray-700"
+                      : "text-gray-500"
+                  }
+                >
+                  <Link to={`/parent/my-children/${_id}/english/dashboard`}>
+                    English
+                  </Link>
+                </li>
+                <li
+                  className={
+                    currentPage === "arabic"
+                      ? "border-b-4 border-orange text-gray-700"
+                      : "text-gray-500"
+                  }
+                >
+                  <Link to={`/parent/my-children/${_id}/arabic/dashboard`}>
+                    Arabic
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
         </div>
         <div className="right">

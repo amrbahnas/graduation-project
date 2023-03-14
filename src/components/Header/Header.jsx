@@ -5,7 +5,7 @@ import { useTypewriter, Cursor } from "react-simple-typewriter";
 import { motion } from "framer-motion";
 const Header = () => {
   const [text] = useTypewriter({
-    words: [" a learning adventure with Us"],
+    words: [" and English fun for kids"],
     loop: true,
     typeSpeed: 170,
     deleteSpeed: 100,
@@ -55,11 +55,12 @@ const Header = () => {
               stifness: 150,
             }}
           >
-            <h1>Kickstart {text}</h1>
+            <h1>Make Math {text}</h1>
             <p>
-              Spark imagination and power up a world full of adventure in both
-              Math and English with game-based learning. Unlock
-              curriculum-aligned skill practice that keeps kids engaged!
+              With US, kids practice standards-aligned skills in math and
+              English as they play our fun, adaptive learning games. All with
+              teacher and parent tools to support their learning in class and at
+              home.
             </p>
             <div className="btns">
               <Link to="/signup">Create your free account today</Link>

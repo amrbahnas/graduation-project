@@ -1,0 +1,24 @@
+.login-nav {
+  @apply px-4 flex justify-between items-center bg-white  dark:bg-darkNav text-black dark:text-darkPText font-bold capitalize text-lg h-16;
+}
+.login-nav div {
+  @apply flex  items-center;
+}
+.login-nav .left img {
+  @apply w-24 h-24 mr-8;
+}
+.login-nav .left .home {
+  @apply flex items-center gap-2 cursor-pointer;
+}
+.login-nav .left .home span {
+  @apply hidden md:block;
+}
+.login-nav .right {
+  @apply flex items-center gap-3 h-full;
+}
+.login-nav .right span {
+  @apply hidden md:block;
+}
+.login-nav .right a {
+  @apply bg-orange flex items-center justify-center hover:bg-orangeHover hover:border-none h-2/4 md:h-3/4  text-white   font-bold text-lg w-24 md:w-36 text-center rounded-md  cursor-pointer;
+}

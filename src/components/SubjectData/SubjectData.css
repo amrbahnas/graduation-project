@@ -1,8 +1,0 @@
-.subject-data {
-  background-color: rgba(0, 0, 0, 0.57);
-  @apply fixed top-0 bottom-0 left-0 right-0 z-50;
-}
-
-.data-wrapper {
-  @apply max-w-lg mx-auto my-12 bg-white h-80;
-}

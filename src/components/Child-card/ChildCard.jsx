@@ -17,23 +17,18 @@ const ChildCard = ({ child }) => {
       </div>
       <div className="info">
         <div className="name">
-          <div></div>
           <h2 className="dark:text-darkPText">{child.studentName}</h2>
-          <Link>
-            manage
-            <ArrowForwardIosOutlinedIcon />
-          </Link>
         </div>
         <div className="last-play">
           <span>Last played</span>
           <span>- -</span>
         </div>
         <div className="options">
-          <Link to={`/parent/my-children/${child._id}/english/dashboard`}>
+          <Link to={`/parent/my-children/${child._id}/alltasks/dashboard`}>
             <span>Dashboard</span>
           </Link>
-          <Link to={"/gameSetup/" + child._id}>
-            <span>Add Subject Data</span>
+          <Link to={`/parent/my-children/${child._id}/manage-account`}>
+            <span>Manage</span>
           </Link>
         </div>
       </div>

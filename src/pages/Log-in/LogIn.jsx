@@ -10,6 +10,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import GoogleIcon from "@mui/icons-material/Google";
 import AppleIcon from "@mui/icons-material/Apple";
 import HomeIcon from "@mui/icons-material/Home";
+import LoginSignupNav from "../../components/login-signup-nav/LoginSignupNav";
 const Login = () => {
   // initialize
   const navigate = useNavigate();
@@ -44,19 +45,7 @@ const Login = () => {
 
   return (
     <div className="login-page">
-      <div className="login-nav">
-        <div className="left">
-          <img src="assets/brand/logo.svg" alt="" />
-          <div className="home" onClick={(e) => navigate("/")}>
-            <HomeIcon />
-            <span>Home</span>
-          </div>
-        </div>
-        <div className="right">
-          <span>Don't have an account?</span>
-          <Link to="/signup">sign up</Link>
-        </div>
-      </div>
+      <LoginSignupNav pageName={"login"} />
       <div className="theContainer">
         <div className="login-form">
           <h3>Log in</h3>
@@ -94,7 +83,7 @@ const Login = () => {
                 onChange={(e) => setpassword(e.target.value)}
               />
             </div>
-            <a href="#e">forget your password?</a>
+            <Link to="/forget-password">forget your password?</Link>
             <input
               type="submit"
               value={loading ? "loading" : "log in "}

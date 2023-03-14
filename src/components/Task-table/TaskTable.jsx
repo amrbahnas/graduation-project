@@ -12,7 +12,8 @@ const TaskTable = () => {
 
   
   const rows = [
-    { id: 1, word: "Snow", game1: "Jon", game2: "Jon", game3: "Jon" },
+    { id: 1, word: "fish", game1: "2", game2: "3", game3: "0" },
+    { id: 2, word: "apple", game1: "2", game2: "3", game3: "0" },
   ];
 
   return (

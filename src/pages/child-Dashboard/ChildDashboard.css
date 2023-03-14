@@ -1,7 +1,7 @@
 .parent-dashboard .dashboard-wrapper {
   color: rgb(77, 76, 75);
   min-height: calc(100vh -80px);
-  @apply block lg:grid grid-cols-5   gap-8 bg-transparent my-4 dark:text-darkPText;
+  @apply block lg:grid grid-cols-5   gap-8 bg-transparent my-8 dark:text-darkPText;
 }
 .parent-dashboard .dashboard-wrapper .nav {
   @apply col-span-1 hidden md:block h-full;
@@ -36,13 +36,20 @@
 }
 .parent-dashboard .dashboard-wrapper .dashboard .activity {
  grid-area: 1 / 1 / 6 / 4;
- overflow: hidden
+ overflow: hidden;
+ @apply relative
 }
 .parent-dashboard .dashboard-wrapper .dashboard .activity h3 {
   @apply p-4 border-b text-lg;
 }
 .parent-dashboard .dashboard-wrapper .dashboard .activity .tasks {
-  @apply p-2;
+  @apply p-2 ;
+}
+.parent-dashboard .dashboard-wrapper .dashboard .activity .tasks .btns {
+  @apply absolute bottom-4 right-4 ;
+}
+.parent-dashboard .dashboard-wrapper .dashboard .activity .tasks button {
+  @apply border bg-backBtnColor p-2 rounded-sm hover:bg-backBtnColorHoner shadow-sm ml-3 ;
 }
 .parent-dashboard .dashboard-wrapper .dashboard .activity .no-tasks {
   padding: 56px 32px;

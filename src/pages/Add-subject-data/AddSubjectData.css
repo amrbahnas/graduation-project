@@ -1,0 +1,25 @@
+.addSubjectData .wrapper {
+  min-height: calc(100vh - 80px);
+  @apply bg-white dark:bg-darkCard my-4 rounded-md overflow-hidden  w-full;
+}
+
+.addSubjectData .wrapper .stepper {
+  @apply py-8
+}
+
+/* /////////////////////////////////////////////////////////////////////// */
+.addSubjectData .wrapper .pages {
+  width: calc(100%);
+  @apply flex  transition-all duration-700;
+}
+
+.addSubjectData .wrapper .control {
+  @apply w-full flex-row-reverse px-4 md:px-8 flex justify-between mb-4;
+}
+.addSubjectData .wrapper .control a:last-child {
+  @apply py-2 w-24 text-black bg-gray-300 rounded-md flex items-center justify-center gap-1;
+}
+
+.addSubjectData .wrapper .control a:first-child {
+  @apply py-2 w-24 text-white bg-orange rounded-md flex items-center justify-center;
+}

@@ -21,7 +21,15 @@ const MyChildren = () => {
         <div className="wrapper">
           <div className="heading">
             <span>My children</span>
-            <span onClick={(e) => navigate("/addchild")}>Add child</span>
+            <div className="btns">
+              <span onClick={(e) => navigate("/parent/asigntask")}>
+                Asign Task
+              </span>
+              <span onClick={(e) => navigate("/addchild")}>Add child</span>
+              <span onClick={(e) => navigate("/error-construction")}>
+                Add Subject
+              </span>
+            </div>
           </div>
           <div className="userChildren">
             {children.map((child) => (

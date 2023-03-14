@@ -6,9 +6,9 @@ import { createParentAccount } from "../..//store/slices/userSlice";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import GoogleIcon from "@mui/icons-material/Google";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import HomeIcon from "@mui/icons-material/Home";
 // css
 import "./SignUp.css";
+import LoginSignupNav from "../../components/login-signup-nav/LoginSignupNav";
 const SignUp = () => {
   // initialize
   const navigate = useNavigate();
@@ -40,19 +40,7 @@ const SignUp = () => {
   };
   return (
     <div className="signup-page">
-      <div className="login-nav">
-        <div className="left">
-          <img src="assets/brand/logo.svg" alt="" />
-          <div className="home" onClick={(e) => navigate("/")}>
-            <HomeIcon />
-            <span>Home</span>
-          </div>
-        </div>
-        <div className="right">
-          <span>Already have an account?</span>
-          <Link to="/login">Log in</Link>
-        </div>
-      </div>
+      <LoginSignupNav pageName={"signup"} />
       <div className="theContainer">
         <div className="login-form">
           <div className="back" onClick={(e) => navigate(-1)}>

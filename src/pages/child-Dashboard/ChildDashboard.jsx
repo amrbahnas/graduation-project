@@ -10,10 +10,9 @@ import {
   getQuestionsFeedback,
 } from "../../store/slices/questionsDataSlice";
 // component
-import SingleEnglishWord from "../../components/SingleE-english-word/SingleEnglishWord";
 
 import "./ChildDashboard.css";
-import SubjectData from "../../components/SubjectData/SubjectData";
+
 import TaskCard from "../../components/Task-card/TaskCard";
 const ChildDashboard = () => {
   const dispatch = useDispatch();
@@ -35,7 +34,7 @@ const ChildDashboard = () => {
 
   return (
     <div className="parent-dashboard">
-      <DashboardNav />
+      <DashboardNav position={"dashboard"} />
       <div className="theContainer">
         <div className="dashboard-wrapper">
           <div className="nav">
@@ -60,9 +59,17 @@ const ChildDashboard = () => {
                 <h3>
                   <span>Recent activity</span>
                 </h3>
-                {feedBack.length > 0 ? (
+                {feedBack.length === 0 ? (
                   <div className="tasks">
-                    <TaskCard number={"1"}  />
+                    <TaskCard number={"1"} />
+                    <div className="btns">
+                      <button>
+                        <span>Reordring Tasks</span>
+                      </button>
+                      <button>
+                        <Link to="/parent/asigntask">Add Task</Link>
+                      </button>
+                    </div>
                   </div>
                 ) : (
                   <div className="no-tasks">
@@ -87,7 +94,14 @@ const ChildDashboard = () => {
 
                 <p>
                   ahmed is performing at <strong> Grade 1 </strong>
-                  level currently.
+                  level currently{" "}
+                  <Link
+                    to={`/parent/my-children/${_id}/manage-account`}
+                    className="underline cursor-pointer"
+                  >
+                    Manage Account
+                  </Link>
+                  .
                 </p>
                 {/* {loading ? (
                   <img
@@ -110,7 +124,7 @@ const ChildDashboard = () => {
                 ) : (
                   <div className="no-data">
                     <span>Not data yet! </span>
-                    <Link to={`/gameSetup/${_id}/unit`}>Add data</Link>
+                    <Link to={`/AddSubjectData/${_id}/unit`}>Add data</Link>
                   </div>
                 )} */}
               </div>

@@ -4,6 +4,9 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
+      boxShadow: {
+        card: "rgb(43 42 41 / 30%) 0px 1px 4px",
+      },
       colors: {
         orange: "#ff5c0b",
         orangeHover: "#e64f00",
