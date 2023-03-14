@@ -1,6 +1,8 @@
 .parent-nav-menu {
-  @apply flex items-center gap-2 h-full cursor-pointer select-none ;
+  @apply flex items-center gap-2 h-full cursor-pointer ;
+  
 }
+
 
 .parent-nav-menu > span {
   @apply flex items-center gap-2 h-full;
@@ -10,7 +12,7 @@
 }
 .parent-nav-menu .list .menu {
   top: 150%;
-  @apply absolute  bg-white w-48 -right-4  hidden flex-col gap-1 border rounded-sm shadow-sm;
+  @apply absolute  bg-white w-48 -right-4  hidden flex-col gap-1 border rounded-sm shadow-sm ;
 }
 
 .parent-nav-menu .list .menu.display {
