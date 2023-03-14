@@ -1,5 +1,5 @@
 .dashboard-nav {
-  @apply h-16 px-2 lg:px-20 shadow-card  bg-white  dark:bg-darkNav text-black dark:text-darkPText flex items-center sticky  w-full top-0 z-40;
+  @apply h-16 px-2 lg:px-20 shadow-card  bg-white  dark:bg-darkNav text-black dark:text-darkPText flex items-center sticky  w-full top-0 z-40 select-none;
 }
 .dashboard-nav .nav-wrapper {
   @apply w-full flex items-center justify-between h-full;
@@ -31,30 +31,26 @@
   @apply w-32;
 }
 
-.dashboard-nav .left ul {
-  @apply hidden md:flex;
-}
-
 /* children*/
 
-.dashboard-nav .left ul li.children {
-  @apply hover:border-none mr-6;
+.dashboard-nav .left .children {
+  @apply hover:border-none mr-6 flex  gap-1;
 }
 
-.dashboard-nav .left ul li.children span {
+.dashboard-nav .left .children > span {
   @apply flex items-center gap-2 h-full;
 }
-.dashboard-nav .left ul li.children .list {
+.dashboard-nav .left .children .list {
   @apply relative;
 }
-.dashboard-nav .left ul li.children .list .menu {
+.dashboard-nav .left .children .list .menu {
   top: 150%;
   @apply absolute  bg-white w-44 -right-4  hidden flex-col gap-1 border rounded-sm shadow-sm;
 }
-.dashboard-nav .left ul li.children .list .menu.display {
+.dashboard-nav .left .children .list .menu.display {
   @apply flex;
 }
-.dashboard-nav .left ul li.children .list .menu::after {
+.dashboard-nav .left .children .list .menu::after {
   content: "";
   display: block;
   position: absolute;
@@ -68,54 +64,21 @@
   background: rgb(255, 255, 255);
 }
 
-.dashboard-nav .left ul li.children .menu span {
+.dashboard-nav .left .children .menu span {
   @apply flex items-center gap-3 justify-start px-4  py-2 hover:bg-slate-100 z-10;
 }
-.dashboard-nav .left ul li.children .menu span:not(span:last-child) {
+.dashboard-nav .left .children .menu span:not(span:last-child) {
   @apply border-b;
 }
 
+
+/* ***** */
+.dashboard-nav .left ul.all-tasks {
+  @apply hidden md:flex;
+}
+
 .dashboard-nav .right {
-  @apply h-full;
-}
-
-.dashboard-nav .right ul li {
-  @apply hover:border-none;
-}
-
-/* parent */
-
-.dashboard-nav .right ul li.parent span {
-  @apply flex items-center gap-2 h-full;
-}
-.dashboard-nav .right ul li.parent .list {
-  @apply relative;
-}
-.dashboard-nav .right ul li.parent .list .menu {
-  top: 150%;
-  @apply absolute  bg-white w-44 -right-4  hidden flex-col gap-1 border rounded-sm shadow-sm;
-}
-
-.dashboard-nav .right ul li.parent .list .menu.display {
-  @apply flex;
-}
-
-.dashboard-nav .right ul li.parent .list .menu::after {
-  content: "";
-  display: block;
-  position: absolute;
-  right: 20px;
-  width: 16px;
-  height: 16px;
-  transform: rotate(45deg) translateY(-40%) translateX(-40%);
-  border-top: 1px solid rgb(235, 234, 232);
-  border-left: 1px solid rgb(235, 234, 232);
-  border-top-left-radius: 3px;
-  background: rgb(255, 255, 255);
-}
-.dashboard-nav .right ul li.parent .menu a {
-  color: #6d6c6a;
-  @apply flex items-center gap-3 justify-start px-4  py-2 hover:bg-slate-100 z-10;
+  @apply flex items-center gap-4;
 }
 
 /* *********** */
