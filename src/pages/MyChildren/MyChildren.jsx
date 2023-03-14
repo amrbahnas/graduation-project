@@ -22,12 +22,12 @@ const MyChildren = () => {
           <div className="heading">
             <span>My children</span>
             <div className="btns">
-              <span onClick={(e) => navigate("/parent/asigntask")}>
-                Asign Task
-              </span>
               <span onClick={(e) => navigate("/addchild")}>Add child</span>
               <span onClick={(e) => navigate("/error-construction")}>
                 Add Subject
+              </span>
+              <span onClick={(e) => navigate("/parent/asigntask")}>
+                Asign Task
               </span>
             </div>
           </div>

@@ -14,6 +14,10 @@
   top: 150%;
   @apply absolute  bg-white w-48 -right-4  hidden flex-col gap-1 border rounded-sm shadow-sm ;
 }
+.parent-nav-menu .list .menu svg {
+  color: #6d6c6a;
+  @apply w-5 h-5;
+}
 
 .parent-nav-menu .list .menu.display {
   @apply flex;

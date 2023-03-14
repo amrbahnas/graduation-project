@@ -41,7 +41,7 @@ const Header = () => {
   // };
 
   return (
-    <header className="bg-third">
+    <header className="bg-secondry">
       <div className="theContainer h-full">
         <div className="wrapper h-full">
           <motion.div

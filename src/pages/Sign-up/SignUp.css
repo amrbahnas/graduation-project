@@ -36,27 +36,14 @@
 
 /********************************************/
 
-.signup-page .login-email {
-  @apply relative w-full text-center text-sm my-3;
+
+ .signup-page .signup-email {
+  @apply flex justify-between items-center gap-2 my-3
 }
-.signup-page .login-email::after {
-  content: "";
-  position: absolute;
-  height: 1px;
-  background-color: #cccccc;
-  top: 50%;
-  left: 0;
-  width: 30%;
+ .signup-page .signup-email span {
+  @apply bg-[#cccccc] flex-1 h-[1px]
 }
-.signup-page .login-email::before {
-  content: "";
-  position: absolute;
-  height: 1px;
-  background-color: #cccccc;
-  top: 50%;
-  right: 0;
-  width: 30%;
-}
+
 
 .signup-page form {
   @apply flex gap-4 flex-col;

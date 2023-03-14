@@ -5,7 +5,7 @@
 }
 
 .login-page .login-form {
-  @apply max-w-md bg-white dark:bg-darkCard rounded-md p-8 flex flex-col gap-2 mx-auto my-12;
+  @apply max-w-md bg-white dark:bg-darkCard rounded-md p-6 md:p-8 flex flex-col gap-2 mx-auto my-12;
 }
 .login-page .login-form h3 {
   @apply capitalize font-bold text-2xl text-center w-full mb-2;
@@ -34,27 +34,16 @@
 
 /********************************************/
 
-.login-page .login-email {
-  @apply relative w-full text-center text-sm my-3;
+
+
+ .login-page .login-email {
+  @apply flex justify-between items-center gap-2 my-3
 }
-.login-page .login-email::after {
-  content: "";
-  position: absolute;
-  height: 1px;
-  background-color: #cccccc;
-  top: 50%;
-  left: 0;
-  width: 33%;
+ .login-page .login-email span {
+  @apply bg-[#cccccc] flex-1 h-[1px]
 }
-.login-page .login-email::before {
-  content: "";
-  position: absolute;
-  height: 1px;
-  background-color: #cccccc;
-  top: 50%;
-  right: 0;
-  width: 33%;
-}
+
+
 
 .login-page form {
   @apply flex gap-4 flex-col;

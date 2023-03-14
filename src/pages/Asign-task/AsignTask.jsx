@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import SimpleNav from "./../../components/SimpleNav/SimpleNav";
 import SelectChild from "../../components/add-task-pages/SelectChild";
 import "./AsignTask.css";
@@ -6,6 +7,7 @@ import InputStepper from "../../components/InputStepper/InputStepper";
 import SelectSubject from "./../../components/Select-subject/SelectSubject";
 import DataSource from "../../components/add-task-pages/DataSource";
 const AsignTask = () => {
+  const navigate = useNavigate();
   const steps = ["select child", "Subject", "source data", "Select data"];
   const [activeStep, setactiveStep] = useState(0);
   const [switchResult, setSwitchResult] = useState(null);
@@ -22,7 +24,12 @@ const AsignTask = () => {
             <DataSource dataSource={dataSource} setdataSource={setdataSource} />
           );
         case 3:
-          return "";
+          return (
+            <p className="h-40 pt-5 uppercase  w-full text-center ">
+              {" "}
+              no data found!
+            </p>
+          );
         case 4:
           return "";
         default:
@@ -31,6 +38,11 @@ const AsignTask = () => {
     };
     setSwitchResult(switchCase);
   }, [activeStep]);
+
+  const nextHandler = () => {
+    if (activeStep === 3) navigate("/parent/my-children");
+    setactiveStep(activeStep < 3 ? activeStep + 1 : activeStep);
+  };
   return (
     <div className="asign-task">
       <SimpleNav />
@@ -41,7 +53,7 @@ const AsignTask = () => {
           <div className="btns">
             {activeStep > 0 && (
               <button
-              className="previous"
+                className="previous"
                 onClick={() =>
                   setactiveStep(activeStep !== 0 ? activeStep - 1 : activeStep)
                 }
@@ -49,12 +61,8 @@ const AsignTask = () => {
                 <span>Previous</span>
               </button>
             )}
-            <button
-              onClick={() =>
-                setactiveStep(activeStep < 3 ? activeStep + 1 : activeStep)
-              }
-            >
-              <span>Next</span>
+            <button onClick={nextHandler}>
+              <span>{activeStep === 3 ? "Submit" : "Next"}</span>
             </button>
           </div>
         </div>

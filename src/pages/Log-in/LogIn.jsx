@@ -63,7 +63,11 @@ const Login = () => {
               <span>Continue with Apple</span>
             </div>
           </div>
-          <div className="login-email">Or log in with Email:</div>
+          <div className="login-email">
+            <span></span>
+            Or log in with Email
+            <span></span>
+          </div>
           <form onSubmit={formHandler}>
             <div className="input-form">
               <label htmlFor="">Email</label>

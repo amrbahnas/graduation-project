@@ -10,8 +10,8 @@ const AllTasksNav = () => {
       <li
         className={
           currentPage === "alltasks"
-            ? "border-b-4 border-orange all-tasks"
-            : "all-tasks"
+            ? "border-b-4 border-orange"
+            : ""
         }
       >
         <Link to={`/parent/my-children/${_id}/alltasks/dashboard`}>

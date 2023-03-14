@@ -1,3 +1,11 @@
 .all-tasks-nav {
-  @apply hidden  md:flex;
+  @apply hidden  md:flex  gap-5 items-center h-full;
+}
+
+.all-tasks-nav li {
+  @apply h-full flex items-center text-sm font-medium  capitalize cursor-pointer;
+}
+
+.all-tasks-nav  li a {
+  @apply w-full h-full flex items-center justify-center;
 }

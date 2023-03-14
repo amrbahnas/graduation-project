@@ -1,5 +1,6 @@
+
 .asign-task .asign-task-wrapper{
-@apply max-w-2xl mt-10 mx-auto  bg-white shadow-card pt-6
+@apply max-w-2xl my-10 mx-3 md:mx-auto  bg-white shadow-card pt-6 
 }
 .asign-task .asign-task-wrapper .page{
 @apply   w-full px-6 pb-6

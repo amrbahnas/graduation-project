@@ -58,7 +58,11 @@ const SignUp = () => {
               <span>Continue with Google</span>
             </div>
           </div>
-          <div className="login-email">Or Sign up with Email:</div>
+          <div className="signup-email">
+            <span></span>
+            Or Sign up with Email
+            <span></span>
+          </div>
           <form onSubmit={submitHandler}>
             <div className="input-form">
               <label htmlFor="">Full name</label>

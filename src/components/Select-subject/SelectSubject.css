@@ -7,7 +7,7 @@
 }
 
 .select-subject .wrapper div{ 
-    @apply  text-lg font-bold  duration-200 rounded-md  py-2  h-36 md:h-40 w-full md:w-52 cursor-pointer 
+    @apply  text-lg font-bold  duration-200 rounded-md  py-2 h-40 w-full md:w-52 cursor-pointer 
 }
 
 .select-subject .wrapper .english {
