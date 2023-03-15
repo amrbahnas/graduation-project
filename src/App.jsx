@@ -3,26 +3,24 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from "./pages/Home/Home";
-import LogIn from "./pages/Log-in/LogIn";
-import SignUp from "./pages/Sign-up/SignUp";
-import MyChildren from "./pages/MyChildren/MyChildren.jsx";
-import AddSubjectData from "./pages/Add-subject-data/AddSubjectData";
-import StudentProfile from "./pages/Student-profile/StudentProfile";
-import Subjects from "./pages/Student-profile/LocalComponents/Subjects/Subjects";
-import Tasks from "./pages/Student-profile/LocalComponents/Tasks/Tasks";
-import SingleTask from "./pages/Student-profile/LocalComponents/SingleTask/SingleTask";
+import {
+  Home,
+  LogIn,
+  SignUp,
+  MyChildren,
+  AddSubjectData,
+  SelectUnit,
+  Error,
+  AddFirstChild,
+  ChildDashboard,
+  AddChild,
+  ManageAccount,
+  AsignTask,
+  ForgotPassword,
+  ErrorConstruction,
+} from "./pages/index";
 import SelectSubject from "./components/Select-subject/SelectSubject.jsx";
-import SelectUnit from "./pages/Add-subject-data/Local-component/SelectUnit/SelectUnit";
 import SubjectData from "./components/SubjectData/SubjectData.jsx";
-import Error from "./pages/Error/Error";
-import AddFirstChild from "./pages/Add-first-child/AddFirstChild";
-import ChildDashboard from "./pages/child-Dashboard/ChildDashboard";
-import AddChild from "./pages/Add-child/AddChild";
-import ManageAccount from "./pages/manage-account/ManageAccount";
-import AsignTask from "./pages/Asign-task/AsignTask";
-import ForgotPassword from "./pages/forgot_password/ForgotPassword.jsx";
-import ErrorConstruction from "./pages/Error-construction/ErrorConstruction.jsx";
 import ProcessLoading from "./components/Process-loading/ProcessLoading";
 import LoginReq from "../Protected-Routes/LoginReq.jsx";
 import LoginNotReq from "../Protected-Routes/LoginNotReq.jsx";

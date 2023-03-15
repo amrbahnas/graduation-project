@@ -3,10 +3,10 @@ import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 
 const LoginNotReq = ({ children }) => {
-  
   const { login, children: parentChildren } = useSelector(
     (store) => store.userSlice
   );
+  console.log("no");
   return login ? (
     parentChildren.length === 0 ? (
       <Navigate to="/parent/add-first-child" />

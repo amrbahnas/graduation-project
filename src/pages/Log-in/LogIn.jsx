@@ -20,7 +20,7 @@ const LogIn = () => {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   //   // get login state
-  const { login, loading, children } = useSelector((store) => store.userSlice);
+  const { loading } = useSelector((store) => store.userSlice);
 
   // on click login
   const formHandler = (e) => {

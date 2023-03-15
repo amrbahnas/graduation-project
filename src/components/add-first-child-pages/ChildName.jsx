@@ -19,7 +19,7 @@ const ChildName = () => {
   return (
     <>
       <div className="image">
-        <img src="assets/images/blankChild.svg" alt="" />
+        <img src="/assets/images/blankChild.svg" alt="" />
       </div>
       <div className="child-name">
         <div className="process">

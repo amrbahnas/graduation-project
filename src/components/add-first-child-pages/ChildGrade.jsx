@@ -45,7 +45,7 @@ const ChildGrade = () => {
   return (
     <>
       <div className="image">
-        <img src="assets/images/childrengrade.svg" alt="" />
+        <img src="/assets/images/childrengrade.svg" alt="" />
       </div>
       <div className="child-grade">
         <div className="process">
@@ -63,7 +63,7 @@ const ChildGrade = () => {
           <div className="btns-add-first-child">
             <button
               type="submit"
-              class="sc-fzpkJw dkdYyO ButtonExtended-iglfeL jTskCK"
+              className="sc-fzpkJw dkdYyO ButtonExtended-iglfeL jTskCK"
               disabled={loading}
             >
               {loading ? "loading" : "Add grade"}

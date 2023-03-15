@@ -5,6 +5,8 @@ const ProtectedRoutes = ({ children }) => {
   const { login, children: parentChildren } = useSelector(
     (store) => store.userSlice
   );
+  console.log("yes");
+
   return login ? (
     parentChildren.length === 0 && children.type.name !== "AddFirstChild" ? (
       <Navigate to="/parent/add-first-child" />

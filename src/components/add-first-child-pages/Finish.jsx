@@ -16,7 +16,7 @@ const Finish = () => {
   return (
     <>
       <div className="image">
-        <img src="assets/images/Rocketship.svg" alt="" />
+        <img src="/assets/images/Rocketship.svg" alt="" />
       </div>
       <div className="finish">
         <div className="process">

@@ -119,11 +119,11 @@ export const userSlice = createSlice({
       if (action.payload.massage.includes("successfully")) {
         const { _id, parentName, parentAge, parentMail, parentPic } =
           action.payload.parent;
+          state.login = true;
         state._id = _id;
         state.parentName = parentName;
         state.parentMail = parentMail;
         state.parentPic = parentPic;
-        state.login = true;
         /**************************** */
         state.children = [];
       }

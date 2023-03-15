@@ -14,7 +14,7 @@ const ChildAccount = () => {
   return (
     <>
       <div className="image">
-        <img src="assets/images/childaccount.svg" alt="" />
+        <img src="/assets/images/childaccount.svg" alt="" />
       </div>
       <div className="child-account">
         <div className="process">

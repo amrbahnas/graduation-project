@@ -14,7 +14,7 @@ const Notes = () => {
   return (
     <>
       <div className="image">
-        <img src="assets/images/Rocketship.svg" alt="" />
+        <img src="/assets/images/Rocketship.svg" alt="" />
       </div>
       <div className="account-notes">
         <div className="process">
