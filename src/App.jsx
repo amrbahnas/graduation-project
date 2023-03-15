@@ -4,7 +4,6 @@ import { PersistGate } from "redux-persist/integration/react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home/Home";
-import Main from "./Main/Main";
 import LogIn from "./pages/Log-in/LogIn";
 import SignUp from "./pages/Sign-up/SignUp";
 import MyChildren from "./pages/MyChildren/MyChildren.jsx";
@@ -24,6 +23,7 @@ import ManageAccount from "./pages/manage-account/ManageAccount";
 import AsignTask from "./pages/Asign-task/AsignTask";
 import ForgotPassword from "./pages/forgot_password/ForgotPassword.jsx";
 import ErrorConstruction from "./pages/Error-construction/ErrorConstruction.jsx";
+import ProcessLoading from "./components/Process-loading/ProcessLoading";
 
 const theme = createTheme({
   status: {
@@ -102,7 +102,7 @@ const router = createBrowserRouter([
     element: <ForgotPassword />,
   },
   {
-    path: "/addfirstchild",
+    path: "/parent/add-first-Child",
     element: <AddFirstChild />,
   },
   {
@@ -124,6 +124,10 @@ const router = createBrowserRouter([
   {
     path: "/error-construction",
     element: <ErrorConstruction />,
+  },
+  {
+    path: "/loading",
+    element: <ProcessLoading />,
   },
 ]);
 

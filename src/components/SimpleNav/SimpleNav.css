@@ -1,10 +1,10 @@
 .simple-nav {
-  @apply bg-white  dark:bg-darkBody text-black dark:text-darkPText shadow-card h-20 flex justify-between px-4 items-center;
+  @apply bg-white  dark:bg-darkBody text-black dark:text-darkPText shadow-card h-20 flex justify-between px-8 items-center;
 }
 .simple-nav img {
-  @apply w-32 cursor-pointer;
+  @apply w-32 cursor-pointer hidden md:block ;
 }
-.simple-nav  div {
+.simple-nav  .btn {
   color: #245353;
-  @apply w-24 cursor-pointer;
+  @apply  capitalize cursor-pointer flex items-center gap-2  font-semibold;
 }

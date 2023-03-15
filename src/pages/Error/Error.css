@@ -1,29 +1,29 @@
-.error-page {
+.error-page  {
   background-color: #fefdfb;
   height: 100vh;
 }
-.error-page .wrapper {
-  @apply max-w-md flex flex-col gap-4 mx-auto mt-10 ;
+.error-page  .error-page-wrapper {
+  @apply max-w-md flex flex-col items-center gap-4 mx-auto mt-10 ;
 }
-.error-page .images {
-  height: 60%;
+.error-page  .error-page-wrapper .image {
+  @apply flex justify-center w-80
 }
-.error-page img {
+.error-page  .error-page-wrapper .image img {
   @apply w-full h-full object-contain;
 }
-.error-page h1 {
+.error-page  .error-page-wrapper h1 {
   @apply text-center font-bold text-3xl text-third;
 }
-.error-page span {
+.error-page  .error-page-wrapper span {
   color: #939290;
   @apply block w-full text-center;
 }
-.error-page span.still {
+.error-page  .error-page-wrapper span.still {
   @apply text-start text-sm;
 }
-.error-page span.still span {
+.error-page  .error-page-wrapper span.still span {
   @apply underline w-fit inline-block ml-1 cursor-pointer ;
 }
-.error-page button {
+.error-page  .error-page-wrapper button {
   @apply w-full py-3 text-white rounded-sm capitalize text-sm bg-third hover:bg-thirdHover;
 }

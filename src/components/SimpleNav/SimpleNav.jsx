@@ -1,21 +1,43 @@
-import React from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { resetAll } from "../../store/slices/userSlice";
+import { useDispatch, useSelector } from "react-redux";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import LogoutIcon from "@mui/icons-material/Logout";
 import "./SimpleNav.css";
-const SimpleNav = () => {
+const SimpleNav = ({ pageName }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { login } = useSelector((store) => store.userSlice);
+  useEffect(() => {
+    if (!login) {
+      navigate("/");
+    }
+  }, [login]);
+
+  const signUp = () => {
+    dispatch(resetAll());
+  };
   return (
     <div className="simple-nav">
-      <div className="back" onClick={(e) => navigate(-1)}>
-        <ArrowBackIosIcon />
-        back
-      </div>
+      {pageName === "addfirstchild" ? (
+        <div className="btn" onClick={signUp}>
+          <LogoutIcon />
+          <span>Logout</span>
+        </div>
+      ) : (
+        <div className="btn" onClick={(e) => navigate(-1)}>
+          <ArrowBackIosIcon />
+          <span>back</span>
+        </div>
+      )}
+
       <img
         src="/assets/brand/logo.svg"
         alt=""
         onClick={(e) => navigate("/", { replace: true })}
       />
-      <div></div>
+      <div className="hidden md:block"></div>
     </div>
   );
 };

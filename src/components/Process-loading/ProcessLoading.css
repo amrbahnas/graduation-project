@@ -1,0 +1,10 @@
+.process-loading {
+  @apply fixed top-0 bottom-0 left-0 right-0 z-50 bg-[#fefdfb] flex justify-center items-center;
+}
+
+.process-loading .process-loading-wrapper {
+  @apply flex flex-col gap-3 -mt-20 items-center;
+}
+.process-loading .process-loading-wrapper span:first-child {
+  @apply font-semibold text-lg ;
+}

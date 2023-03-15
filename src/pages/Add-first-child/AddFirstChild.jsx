@@ -33,7 +33,7 @@ const AddFirstChild = () => {
   }, [page]);
   return (
     <div className="parent-account-setup">
-      <SimpleNav />
+      <SimpleNav pageName={"addfirstchild"} />
       <div className="theContainer">
         <div className="wrapper">{switchResult}</div>
       </div>

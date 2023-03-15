@@ -10,7 +10,11 @@ const MyChildren = () => {
   const { children, login } = useSelector((store) => store.userSlice);
   //user cant access this page if he has login
   useEffect(() => {
-    if (!login) {
+    if (login && children.length > 0) {
+      navigate("/parent/my-children");
+    } else if (login) {
+      navigate("/parent/add-first-child");
+    } else {
       navigate("/");
     }
   }, [login, navigate]);

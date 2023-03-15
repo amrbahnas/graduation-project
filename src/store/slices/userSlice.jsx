@@ -96,6 +96,15 @@ export const userSlice = createSlice({
     setChildrenQuestions: (state, action) => {
       state.children = action.payload;
     },
+    resetAll: (state) => {
+      state._id = "";
+      state.parentName = "";
+      state.parentMail = "";
+      state.parentPic = "";
+      state.children = [];
+      state.childrenQuestions = [];
+      state.login = false;
+    },
   },
   extraReducers: {
     // create parent account
@@ -117,7 +126,6 @@ export const userSlice = createSlice({
         state.login = true;
         /**************************** */
         state.children = [];
-
       }
     },
     [createParentAccount.rejected]: (state, action) => {
@@ -177,5 +185,6 @@ export const {
   setParentPic,
   resetUserChildren,
   addChildren,
+  resetAll,
 } = userSlice.actions;
 export default userSlice.reducer;

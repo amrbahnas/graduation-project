@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { setLoginState } from "../..//store/slices/userSlice";
+import { resetAll } from "../../store/slices/userSlice";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import AccessibilityNewIcon from "@mui/icons-material/AccessibilityNew";
@@ -28,7 +28,7 @@ const ParentNavMenu = () => {
   };
 
   const signUp = () => {
-    dispatch(setLoginState(false));
+    dispatch(resetAll());
   };
 
   useEffect(() => {

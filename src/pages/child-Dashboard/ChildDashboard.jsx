@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import DashboardNav from "../../components/DashboardNav/DashboardNav";
 import SpeedIcon from "@mui/icons-material/Speed";
 import LightbulbIcon from "@mui/icons-material/Lightbulb";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 /// redux
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -10,18 +10,22 @@ import {
   getQuestionsFeedback,
 } from "../../store/slices/questionsDataSlice";
 // component
-
-import "./ChildDashboard.css";
-
 import TaskCard from "../../components/Task-card/TaskCard";
+import "./ChildDashboard.css";
 const ChildDashboard = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { _id } = useParams();
-  const { english, loading, feedBack } = useSelector(
-    (store) => store.questionsDataSlice
+  const { children = [], login = false } = useSelector(
+    (store) => store.userSlice
   );
-  const { children } = useSelector((store) => store.userSlice);
-  const { studentName } = children.filter((child) => child._id === _id)[0];
+  const { english, loading, feedBack } = useSelector(
+    (store) => store?.questionsDataSlice
+  );
+
+  const { studentName = "" } = children?.filter(
+    (child) => child?._id === _id
+  )[0];
   useEffect(() => {
     const data = {
       unit: 1,

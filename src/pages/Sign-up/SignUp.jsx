@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { createParentAccount } from "../..//store/slices/userSlice";
+// mui
+import LinearProgress from "@mui/material/LinearProgress";
+
 //icon
 import FacebookIcon from "@mui/icons-material/Facebook";
 import GoogleIcon from "@mui/icons-material/Google";
@@ -35,12 +38,13 @@ const SignUp = () => {
       phone: "08979656",
     };
     dispatch(createParentAccount(data)).then((action) => {
-      navigate("/addfirstChild");
+      navigate("/parent/add-first-Child");
     });
   };
   return (
     <div className="signup-page">
       <LoginSignupNav pageName={"signup"} />
+      {loading && <LinearProgress />}
       <div className="theContainer">
         <div className="login-form">
           <div className="back" onClick={(e) => navigate(-1)}>

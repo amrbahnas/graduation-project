@@ -9,11 +9,13 @@ import Nav from "../../components/Nav/Nav";
 import Footer from "../../components/Footer/Footer";
 const Home = () => {
   const navigate = useNavigate();
-  const { login } = useSelector((store) => store.userSlice);
+  const { login, children } = useSelector((store) => store.userSlice);
   //  // user cant access this page if he has login
   useEffect(() => {
-    if (login) {
+    if (login && children.length > 0) {
       navigate("/parent/my-children");
+    } else if (login) {
+      navigate("/parent/add-first-child");
     }
   }, [login, navigate]);
   return (
