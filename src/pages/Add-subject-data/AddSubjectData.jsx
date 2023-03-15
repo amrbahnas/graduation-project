@@ -19,12 +19,6 @@ const AddSubjectData = () => {
   // get global state
   const { login } = useSelector((store) => store.userSlice);
   const [activeStep, setactiveStep] = useState(2);
-  // user cant access this page if he has login
-  useEffect(() => {
-    if (!login) {
-      navigate("/");
-    }
-  }, [login, navigate, dispatch]);
 
   return (
     /********************************** DOM ************************************************* */

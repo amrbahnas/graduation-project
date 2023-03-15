@@ -24,6 +24,8 @@ import AsignTask from "./pages/Asign-task/AsignTask";
 import ForgotPassword from "./pages/forgot_password/ForgotPassword.jsx";
 import ErrorConstruction from "./pages/Error-construction/ErrorConstruction.jsx";
 import ProcessLoading from "./components/Process-loading/ProcessLoading";
+import LoginReq from "../Protected-Routes/LoginReq.jsx";
+import LoginNotReq from "../Protected-Routes/LoginNotReq.jsx";
 
 const theme = createTheme({
   status: {
@@ -44,16 +46,28 @@ const theme = createTheme({
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: (
+      <LoginNotReq>
+        <Home />
+      </LoginNotReq>
+    ),
     errorElement: <Error />,
   },
   {
     path: "/parent/my-children",
-    element: <MyChildren />,
+    element: (
+      <LoginReq>
+        <MyChildren />
+      </LoginReq>
+    ),
   },
   {
     path: "/AddSubjectData/:_id",
-    element: <AddSubjectData />,
+    element: (
+      <LoginReq>
+        <AddSubjectData />
+      </LoginReq>
+    ),
     children: [
       {
         index: true,
@@ -71,63 +85,84 @@ const router = createBrowserRouter([
   },
 
   {
-    path: "/studentProfile/:_id",
-    element: <StudentProfile />,
-    children: [
-      {
-        index: true,
-        element: <Subjects />,
-      },
-      {
-        path: "/studentProfile/:_id/tasks/:subjectName",
-        element: <Tasks />,
-      },
-      {
-        path: "/studentProfile/:_id/tasks/:subjectName/:taskNumber",
-        element: <SingleTask />,
-      },
-    ],
-  },
-
-  {
     path: "/login",
-    element: <LogIn />,
+    element: (
+      <LoginNotReq>
+        <LogIn />,
+      </LoginNotReq>
+    ),
   },
   {
     path: "/signup",
-    element: <SignUp />,
+    element: (
+      <LoginNotReq>
+        <SignUp />,
+      </LoginNotReq>
+    ),
   },
   {
     path: "/forget-password",
-    element: <ForgotPassword />,
+    element: (
+      <LoginNotReq>
+        <ForgotPassword />,
+      </LoginNotReq>
+    ),
   },
   {
-    path: "/parent/add-first-Child",
-    element: <AddFirstChild />,
+    path: "/parent/add-first-child",
+    element: (
+      <LoginReq>
+        <AddFirstChild />
+      </LoginReq>
+    ),
   },
   {
     path: "/parent/my-children/:_id/manage-account",
-    element: <ManageAccount />,
+    element: (
+      <LoginReq>
+        <ManageAccount />
+      </LoginReq>
+    ),
   },
   {
     path: "/parent/my-children/:_id/:currentPage/dashboard",
-    element: <ChildDashboard />,
+    element: (
+      <LoginReq>
+        <ChildDashboard />
+      </LoginReq>
+    ),
   },
   {
     path: "/AddChild",
-    element: <AddChild />,
+    element: (
+      <LoginReq>
+        <AddChild />
+      </LoginReq>
+    ),
   },
   {
     path: "/parent/asigntask",
-    element: <AsignTask />,
+    element: (
+      <LoginReq>
+        <AsignTask />
+      </LoginReq>
+    ),
   },
   {
     path: "/error-construction",
-    element: <ErrorConstruction />,
+    element: (
+      <LoginReq>
+        <ErrorConstruction />
+      </LoginReq>
+    ),
   },
   {
     path: "/loading",
-    element: <ProcessLoading />,
+    element: (
+      <LoginReq>
+        <ProcessLoading />,
+      </LoginReq>
+    ),
   },
 ]);
 

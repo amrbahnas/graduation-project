@@ -38,7 +38,7 @@ const SignUp = () => {
       phone: "08979656",
     };
     dispatch(createParentAccount(data)).then((action) => {
-      navigate("/parent/add-first-Child");
+      navigate("/parent/add-first-child");
     });
   };
   return (

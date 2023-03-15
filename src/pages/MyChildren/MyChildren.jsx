@@ -7,17 +7,8 @@ import ChildCard from "../../components/Child-card/ChildCard";
 
 const MyChildren = () => {
   const navigate = useNavigate();
-  const { children, login } = useSelector((store) => store.userSlice);
-  //user cant access this page if he has login
-  useEffect(() => {
-    if (login && children.length > 0) {
-      navigate("/parent/my-children");
-    } else if (login) {
-      navigate("/parent/add-first-child");
-    } else {
-      navigate("/");
-    }
-  }, [login, navigate]);
+  const { children } = useSelector((store) => store.userSlice);
+
   return (
     <div className="MyChildren">
       <DashboardNav position={"mychildren"} />

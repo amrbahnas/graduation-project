@@ -7,7 +7,7 @@ const AccountState = () => {
   return (
     <>
       <div className="image">
-        <img src="assets/images/blankChild.svg" alt="" />
+        <img src="/assets/images/blankChild.svg" alt="" />
       </div>
       <div className="account-state">
         <h1>

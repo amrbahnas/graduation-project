@@ -12,7 +12,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import GoogleIcon from "@mui/icons-material/Google";
 import AppleIcon from "@mui/icons-material/Apple";
 import LoginSignupNav from "../../components/login-signup-nav/LoginSignupNav";
-const Login = () => {
+const LogIn = () => {
   // initialize
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -21,14 +21,6 @@ const Login = () => {
   const [password, setpassword] = useState("");
   //   // get login state
   const { login, loading, children } = useSelector((store) => store.userSlice);
-  //  // user cant access this page if he has login
-  useEffect(() => {
-    if (login && children.length > 0) {
-      navigate("/parent/my-children");
-    } else if (login) {
-      navigate("/parent/add-first-child");
-    }
-  }, [login, navigate]);
 
   // on click login
   const formHandler = (e) => {
@@ -38,7 +30,13 @@ const Login = () => {
       mail: email,
       password,
     };
-    dispatch(loginAccount(data));
+    dispatch(loginAccount(data)).then((action) => {
+      if (action.payload.children.length === 0) {
+        navigate("/parent/add-first-child");
+      } else {
+        navigate("/parent/my-children");
+      }
+    });
   };
 
   return (
@@ -100,4 +98,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LogIn;
