@@ -14,22 +14,22 @@ const NightMode = () => {
   };
 
   const [isChecked, setIsChecked] = useState(true);
-  useEffect(() => {
-    // On page load or when changing themes, best to add inline in `head` to avoid FOUC
-    if (
-      localStorage.theme === "dark" ||
-      (!("theme" in localStorage) &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
-    ) {
-      document.documentElement.classList.add("dark");
-      localStorage.theme = "dark";
-      setIsChecked(false);
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.theme = "light";
-      setIsChecked(true);
-    }
-  }, []);
+  // useEffect(() => {
+  //   // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+  //   if (
+  //     localStorage.theme === "dark" ||
+  //     (!("theme" in localStorage) &&
+  //       window.matchMedia("(prefers-color-scheme: dark)").matches)
+  //   ) {
+  //     document.documentElement.classList.add("dark");
+  //     localStorage.theme = "dark";
+  //     setIsChecked(false);
+  //   } else {
+  //     document.documentElement.classList.remove("dark");
+  //     localStorage.theme = "light";
+  //     setIsChecked(true);
+  //   }
+  // }, []);
   return (
     <label className="switch opacity-0">
       <input

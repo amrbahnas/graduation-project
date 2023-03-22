@@ -1,5 +1,5 @@
 .login-nav {
-  @apply px-4 flex justify-between items-center bg-white  dark:bg-darkNav text-black dark:text-darkPText font-bold capitalize text-lg h-16;
+  @apply px-2 lg:px-20 flex justify-between items-center bg-white  dark:bg-darkNav text-black dark:text-darkPText font-bold capitalize text-lg h-16;
 }
 .login-nav div {
   @apply flex  items-center;

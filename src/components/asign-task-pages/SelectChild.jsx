@@ -9,10 +9,12 @@ const SelectChild = () => {
   console.log(children);
   const [checked, setChecked] = useState([]);
   const [previewChildren, setpreviewChildren] = useState([]);
-  const [childGrade, setchildGrade] = useState("1");
+  const [childGrade, setchildGrade] = useState(1);
   useEffect(() => {
     // setpreviewChildren(children.filter((child) => child?.grade === childGrade));
-    setpreviewChildren(children);
+    setpreviewChildren(
+      children.filter((child) => child.studentstage === childGrade)
+    );
   }, [childGrade]);
 
   return (

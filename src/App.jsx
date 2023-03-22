@@ -66,20 +66,6 @@ const router = createBrowserRouter([
         <AddSubjectData />
       </LoginReq>
     ),
-    children: [
-      {
-        index: true,
-        element: <SelectSubject />,
-      },
-      {
-        path: "/AddSubjectData/:_id/unit",
-        element: <SelectUnit />,
-      },
-      {
-        path: "/AddSubjectData/:_id/unit/SubjectData",
-        element: <SubjectData />,
-      },
-    ],
   },
 
   {

@@ -1,25 +1,16 @@
-.addSubjectData .wrapper {
-  min-height: calc(100vh - 80px);
-  @apply bg-white dark:bg-darkCard my-4 rounded-md overflow-hidden  w-full;
+.add-data .add-data-wrapper {
+  @apply max-w-3xl my-10 mx-3 md:mx-auto  bg-white shadow-card pt-6;
+}
+.add-data .add-data-wrapper .page {
+  @apply w-full px-6 pb-6;
 }
 
-.addSubjectData .wrapper .stepper {
-  @apply py-8
+.add-data .add-data-wrapper .page .btns {
+  @apply flex justify-between;
 }
-
-/* /////////////////////////////////////////////////////////////////////// */
-.addSubjectData .wrapper .pages {
-  width: calc(100%);
-  @apply flex  transition-all duration-700;
+.add-data .add-data-wrapper .page .btns button {
+  @apply w-24 border py-2 font-semibold rounded-md shadow-sm bg-yellow text-black hover:bg-yellowHover;
 }
-
-.addSubjectData .wrapper .control {
-  @apply w-full flex-row-reverse px-4 md:px-8 flex justify-between mb-4;
-}
-.addSubjectData .wrapper .control a:last-child {
-  @apply py-2 w-24 text-black bg-gray-300 rounded-md flex items-center justify-center gap-1;
-}
-
-.addSubjectData .wrapper .control a:first-child {
-  @apply py-2 w-24 text-white bg-orange rounded-md flex items-center justify-center;
+.add-data .add-data-wrapper .page .btns button.previous {
+  @apply bg-backBtnColor hover:bg-backBtnColorHoner;
 }

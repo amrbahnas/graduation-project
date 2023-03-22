@@ -30,7 +30,7 @@ const SimpleNav = ({ pageName }) => {
         alt=""
         onClick={(e) => navigate("/", { replace: true })}
       />
-      <div className="hidden md:block"></div>
+      <div className="hidden md:block w-10"></div>
     </div>
   );
 };

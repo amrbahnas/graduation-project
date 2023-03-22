@@ -1,0 +1,19 @@
+.select-data-folder {
+  /* @apply w-1/3  */
+  @apply w-full my-12;
+}
+
+.select-data-folder .folders {
+  @apply h-80 w-full p-2 overflow-y-scroll rounded-md shadow-inner border-2;
+}
+
+.select-data-folder button {
+  @apply p-2 capitalize mx-auto border block mt-2  rounded-md border-gray-400 dark:hover:bg-darkHover dark:border-white hover:bg-green-300;
+}
+
+.select-data-folder .folder {
+  @apply h-20 cursor-pointer mb-4 p-4 flex items-center justify-start rounded-md bg-gray-100;
+}
+.select-data-folder .folder .info {
+  @apply w-full flex items-center justify-start gap-4;
+}

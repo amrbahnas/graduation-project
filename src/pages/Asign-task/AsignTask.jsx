@@ -1,14 +1,21 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import SimpleNav from "./../../components/SimpleNav/SimpleNav";
-import SelectChild from "../../components/add-task-pages/SelectChild";
+import SelectChild from "../../components/asign-task-pages/SelectChild";
 import "./AsignTask.css";
 import InputStepper from "../../components/InputStepper/InputStepper";
 import SelectSubject from "./../../components/Select-subject/SelectSubject";
-import DataSource from "../../components/add-task-pages/DataSource";
+import DataSource from "../../components/asign-task-pages/DataSource";
+import SelectGame from "./../../components/asign-task-pages/SelectGame";
 const AsignTask = () => {
   const navigate = useNavigate();
-  const steps = ["select child", "Subject", "source data", "Select data"];
+  const steps = [
+    "select child",
+    "Subject",
+    "Game",
+    "source data",
+    "Select data",
+  ];
   const [activeStep, setactiveStep] = useState(0);
   const [switchResult, setSwitchResult] = useState(null);
   const [dataSource, setdataSource] = useState("previous");
@@ -20,17 +27,19 @@ const AsignTask = () => {
         case 1:
           return <SelectSubject />;
         case 2:
+          return <SelectGame />;
+        case 3:
           return (
             <DataSource dataSource={dataSource} setdataSource={setdataSource} />
           );
-        case 3:
+        case 4:
           return (
-            <p className="h-40 pt-5 uppercase  w-full text-center ">
+            <p className="w-full h-40 pt-5 text-center uppercase ">
               {" "}
               no data found!
             </p>
           );
-        case 4:
+        case 5:
           return "";
         default:
           return "";
@@ -40,8 +49,8 @@ const AsignTask = () => {
   }, [activeStep]);
 
   const nextHandler = () => {
-    if (activeStep === 3) navigate("/parent/my-children");
-    setactiveStep(activeStep < 3 ? activeStep + 1 : activeStep);
+    if (activeStep === 4) navigate("/parent/my-children");
+    setactiveStep(activeStep < 4 ? activeStep + 1 : activeStep);
   };
   return (
     <div className="asign-task">
@@ -62,7 +71,7 @@ const AsignTask = () => {
               </button>
             )}
             <button onClick={nextHandler}>
-              <span>{activeStep === 3 ? "Submit" : "Next"}</span>
+              <span>{activeStep === 4 ? "Submit" : "Next"}</span>
             </button>
           </div>
         </div>

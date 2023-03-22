@@ -7,7 +7,7 @@ import ChildCard from "../../components/Child-card/ChildCard";
 
 const MyChildren = () => {
   const navigate = useNavigate();
-  const { children } = useSelector((store) => store.userSlice);
+  const { _id, children } = useSelector((store) => store.userSlice);
 
   return (
     <div className="MyChildren">
@@ -18,7 +18,7 @@ const MyChildren = () => {
             <span>My children</span>
             <div className="btns">
               <span onClick={(e) => navigate("/addchild")}>Add child</span>
-              <span onClick={(e) => navigate("/error-construction")}>
+              <span onClick={(e) => navigate("/AddSubjectData/" + _id)}>
                 Add Subject
               </span>
               <span onClick={(e) => navigate("/parent/asigntask")}>

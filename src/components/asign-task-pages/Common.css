@@ -1,0 +1,13 @@
+.select-game {
+  @apply w-full p-4 block  md:grid grid-cols-3 gap-5 my-4;
+}
+
+.select-game .cart {
+  @apply col-span-1 shadow-card rounded-md mb-5 md:mb-0 overflow-hidden  cursor-pointer duration-100 ease-linear;
+}
+.select-game .cart img {
+  @apply w-full h-auto object-cover;
+}
+.select-game .cart span.title {
+  @apply font-bold capitalize block p-2;
+}

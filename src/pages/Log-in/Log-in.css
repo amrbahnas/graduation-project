@@ -14,10 +14,10 @@
   @apply flex flex-col gap-3;
 }
 .login-page .login-form .login-socail div {
-  @apply flex items-center rounded-sm shadow-md p-2 py-3 cursor-pointer;
+  @apply flex items-center rounded-sm shadow-md p-2 py-3 cursor-pointer ;
 }
 .login-page .login-form .login-socail div svg {
-  @apply w-6 h-6 mr-1 text-white;
+  @apply w-6 h-6 mr-1 text-white ;
 }
 .login-page .login-form .login-socail div span {
   @apply flex-1 text-center text-white text-base font-semibold border-l;

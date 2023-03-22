@@ -1,17 +1,16 @@
+.asign-task .asign-task-wrapper {
+  @apply max-w-3xl my-10 mx-3 md:mx-auto  bg-white shadow-card pt-6;
+}
+.asign-task .asign-task-wrapper .page {
+  @apply w-full px-6 pb-6;
+}
 
-.asign-task .asign-task-wrapper{
-@apply max-w-2xl my-10 mx-3 md:mx-auto  bg-white shadow-card pt-6 
+.asign-task .asign-task-wrapper .page .btns {
+  @apply flex justify-between;
 }
-.asign-task .asign-task-wrapper .page{
-@apply   w-full px-6 pb-6
+.asign-task .asign-task-wrapper .page .btns button {
+  @apply w-24 border py-2 font-semibold rounded-md shadow-sm bg-yellow text-black hover:bg-yellowHover;
 }
-
-.asign-task .asign-task-wrapper .page .btns{
-    @apply flex justify-between 
-}
-.asign-task .asign-task-wrapper .page .btns button{
-    @apply  w-24 border py-2 font-semibold rounded-md shadow-sm bg-yellow text-black hover:bg-yellowHover
-}
-.asign-task .asign-task-wrapper .page .btns button.previous{
-    @apply bg-backBtnColor hover:bg-backBtnColorHoner 
+.asign-task .asign-task-wrapper .page .btns button.previous {
+  @apply bg-backBtnColor hover:bg-backBtnColorHoner;
 }
