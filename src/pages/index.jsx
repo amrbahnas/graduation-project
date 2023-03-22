@@ -3,7 +3,6 @@ export { default as LogIn } from "./Log-in/LogIn";
 export { default as SignUp } from "./Sign-up/SignUp";
 export { default as MyChildren } from "./MyChildren/MyChildren.jsx";
 export { default as AddSubjectData } from "./Add-subject-data/AddSubjectData";
-export { default as SelectUnit } from "./Add-subject-data/Local-component/SelectUnit/SelectUnit";
 export { default as Error } from "./Error/Error";
 export { default as AddFirstChild } from "./Add-first-child/AddFirstChild";
 export { default as ChildDashboard } from "./child-Dashboard/ChildDashboard";

@@ -9,7 +9,6 @@ import {
   SignUp,
   MyChildren,
   AddSubjectData,
-  SelectUnit,
   Error,
   AddFirstChild,
   ChildDashboard,
@@ -19,8 +18,6 @@ import {
   ForgotPassword,
   ErrorConstruction,
 } from "./pages/index";
-import SelectSubject from "./components/Select-subject/SelectSubject.jsx";
-import SubjectData from "./components/SubjectData/SubjectData.jsx";
 import ProcessLoading from "./components/Process-loading/ProcessLoading";
 import LoginReq from "../Protected-Routes/LoginReq.jsx";
 import LoginNotReq from "../Protected-Routes/LoginNotReq.jsx";
