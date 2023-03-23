@@ -3,7 +3,7 @@
 }
 
 .MyChildren .wrapper .heading {
-  @apply  flex justify-between items-center flex-col md:flex-row my-10 gap-10;
+  @apply flex justify-between items-center flex-col md:flex-row my-10 gap-10;
 }
 .MyChildren .wrapper .heading > span {
   color: rgb(77, 76, 75);
@@ -14,14 +14,17 @@
   @apply bg-transparent hover:bg-backBtnColorHoner border shadow-sm rounded-md text-black dark:text-white dark:hover:bg-darkHover px-3 py-2 ml-3 cursor-pointer;
 }
 .MyChildren .wrapper .heading .btns span:last-child {
-  @apply bg-third hover:bg-thirdHover  dark:bg-thirdHover dark:hover:bg-third  text-white border-none ;
+  @apply bg-third hover:bg-thirdHover  dark:bg-thirdHover dark:hover:bg-third  text-white border-none;
 }
 
-
 .MyChildren .wrapper .userChildren {
-  @apply w-full  block lg:grid grid-cols-2  gap-4  mx-1 mb-10 ;
+  @apply w-full block lg:grid grid-cols-2  gap-4   mb-10;
 }
 
 .MyChildren .wrapper .userChildren > span {
   @apply underline col-span-1 flex items-center justify-center cursor-pointer  text-center p-4 text-gray-600  hover:text-gray-800 dark:text-darkSText dark:hover:text-darkPText;
+}
+
+.MyChildren span {
+  user-select: none;
 }

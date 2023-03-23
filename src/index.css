@@ -82,6 +82,10 @@ body {
   }
 }
 
+button {
+  @apply select-none;
+}
+
 /* overflow: hidden;
   text-overflow: ellipsis;
   line-height: 20px;

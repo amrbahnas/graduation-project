@@ -18,7 +18,10 @@ const ChildrenList = ({ children, setChecked, checked }) => {
   };
 
   return (
-    <List className="border-2 shadow-inner" sx={{height:"18rem",my:4,overflow:"auto"}}>
+    <List
+      className="border-2 shadow-inner"
+      sx={{ height: "15rem", my: 3, overflow: "auto" }}
+    >
       {children?.map((child) => {
         const labelId = `checkbox-list-label-${child._id}`;
         return (
@@ -43,7 +46,7 @@ const ChildrenList = ({ children, setChecked, checked }) => {
         );
       })}
       {children.length === 0 && (
-        <span className="block w-fit mx-auto mt-16">No children found !</span>
+        <span className="block mx-auto mt-16 w-fit">No children found !</span>
       )}
     </List>
   );

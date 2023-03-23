@@ -10,7 +10,7 @@ import SelectFolder from "./../../components/Select-data-folder/SelectFolder";
 const AddSubjectData = () => {
   // variables
   const navigate = useNavigate();
-  const [activeStep, setactiveStep] = useState(1);
+  const [activeStep, setactiveStep] = useState(0);
   const [switchResult, setSwitchResult] = useState(null);
   const steps = ["Subject", "Folder", "Data"];
 

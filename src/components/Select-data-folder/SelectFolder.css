@@ -4,7 +4,7 @@
 }
 
 .select-data-folder .folders {
-  @apply h-80 w-full p-2 overflow-y-scroll rounded-md shadow-inner border-2;
+  @apply h-60 w-full p-2 overflow-y-scroll rounded-md shadow-inner border-2;
 }
 
 .select-data-folder button {

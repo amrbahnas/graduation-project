@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { createParentAccount } from "../..//store/slices/userSlice";
 // mui
 import LinearProgress from "@mui/material/LinearProgress";
-
+import InfoIcon from "@mui/icons-material/Info";
+// formik
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import { SignupSchema } from "../../utils/formSchema";
 //icon
 import FacebookIcon from "@mui/icons-material/Facebook";
 import GoogleIcon from "@mui/icons-material/Google";
@@ -17,21 +20,18 @@ const SignUp = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   //   //  check validation states
-  const [userName, setuserName] = useState("");
-  const [email, setemail] = useState("");
-  const [password, setpassword] = useState("");
+  const initialValues = {
+    name: "",
+    email: "",
+    password: "",
+  };
   //   // get login state
-  const { login, loading, error } = useSelector((store) => store.userSlice);
+  const { loading, error } = useSelector((store) => store.userSlice);
   //  // user cant access this page if he has login
-  useEffect(() => {
-    if (login) {
-      navigate("/parent/my-children");
-    }
-  }, [login, navigate]);
-  const submitHandler = (e) => {
-    e.preventDefault();
+
+  const submitHandler = ({ name, email, password }) => {
     const data = {
-      name: userName,
+      name: name,
       mail: email,
       password,
       age: 20,
@@ -67,62 +67,95 @@ const SignUp = () => {
             Or Sign up with Email
             <span></span>
           </div>
-          <form onSubmit={submitHandler}>
-            <div className="input-form">
-              <label htmlFor="">Full name</label>
-              <input
-                required
-                type="text"
-                value={userName}
-                onChange={(e) => setuserName(e.target.value)}
-              />
-            </div>
-            <div className="input-form">
-              <label htmlFor="">Email</label>
-              <input
-                required
-                type="email"
-                value={email}
-                onChange={(e) => setemail(e.target.value)}
-              />
-            </div>
-            <div className="input-form">
-              <label htmlFor="">Password</label>
-              <input
-                required
-                type="password"
-                value={password}
-                onChange={(e) => setpassword(e.target.value)}
-                placeholder="4+ characters"
-              />
-            </div>
-            <div className="checkbox">
-              <div className="check">
-                <input type="checkbox" name="agree" value="agree" />
-                <span>By registering, you agree to the</span>
-                <a>terms of use</a>
-                <span>and</span>
-                <a>privacy policy</a>
-              </div>
-              <div className="check">
+
+          <Formik
+            initialValues={initialValues}
+            validationSchema={SignupSchema}
+            onSubmit={(values, actions) => {
+              submitHandler(values);
+              actions.setSubmitting(false);
+            }}
+          >
+            {({ isSubmitting, errors, touched }) => (
+              <Form>
+                <div className="input-form">
+                  <label htmlFor="name">Full name</label>
+                  <Field
+                    type="text"
+                    name="name"
+                    placeholder="at least 3 characters"
+                    className={errors.name && touched.name ? "bg-red-100" : ""}
+                  />
+                  {errors.name && touched.name && (
+                    <div className="flex items-center gap-1 round-sm ">
+                      <InfoIcon fontSize="small" color="error" />
+                      <ErrorMessage component="span" name="name" />
+                    </div>
+                  )}
+                </div>
+                <div className="input-form">
+                  <label htmlFor="">Email</label>
+                  <Field
+                    type="email"
+                    name="email"
+                    placeholder="example@gmail.com"
+                    className={
+                      errors.email && touched.email ? "bg-red-100" : ""
+                    }
+                  />
+                  {errors.email && touched.email && (
+                    <div className="flex items-center gap-1 round-sm">
+                      <InfoIcon fontSize="small" color="error" />
+                      <ErrorMessage component="span" name="email" />
+                    </div>
+                  )}
+                </div>
+                <div className="input-form">
+                  <label htmlFor="password">Password</label>
+                  <Field
+                    type="password"
+                    name="password"
+                    placeholder="at least 6 characters"
+                    className={
+                      errors.password && touched.password ? "bg-red-100" : ""
+                    }
+                  />
+                  {errors.password && touched.password && (
+                    <div className="flex items-center gap-1 round-sm">
+                      <InfoIcon fontSize="small" color="error" />
+                      <ErrorMessage component="span" name="password" />
+                    </div>
+                  )}
+                </div>
+                <div className="checkbox">
+                  <div className="check">
+                    <input type="checkbox" name="agree" value="agree" />
+                    <span>By registering, you agree to the</span>
+                    <a>terms of use</a>
+                    <span>and</span>
+                    <a>privacy policy</a>
+                  </div>
+                  <div className="check">
+                    <input
+                      type="checkbox"
+                      name="Receive"
+                      value="Receive"
+                      id="Receive"
+                    />
+                    <label htmlFor="Receive">
+                      Receive emails about Our news and promotions
+                    </label>
+                  </div>
+                </div>
                 <input
-                  type="checkbox"
-                  name="Receive"
-                  value="Receive"
-                  id="Receive"
+                  type="submit"
+                  value={loading ? "loading" : "create account"}
+                  name="commit"
+                  disabled={isSubmitting}
                 />
-                <label htmlFor="Receive">
-                  Receive emails about Prodigy news and promotions
-                </label>
-              </div>
-            </div>
-            <input
-              type="submit"
-              value={loading ? "loading" : "create account"}
-              name="commit"
-              disabled={loading}
-            />
-          </form>
+              </Form>
+            )}
+          </Formik>
         </div>
       </div>
     </div>
