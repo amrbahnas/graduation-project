@@ -1,9 +1,8 @@
 import React from "react";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setpage } from "../../store/slices/addFirstChildSlice";
 import "./CommonStyle.css";
-import StarIcon from "@mui/icons-material/Star";
-
+import { StarIcon } from "../../utils/icons";
 const Notes = () => {
   const dispatch = useDispatch();
   const { name } = useSelector((store) => store.addFirstChildSlice);

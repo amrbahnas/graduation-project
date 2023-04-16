@@ -1,10 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
+// icons
+import {
+  ArrowDropDownIcon,
+  AddCircleOutlineOutlinedIcon,
+} from "../../utils/icons";
+
 import "./ChildrenNavMenu.css";
-const ChildrenNavMenu = ({position}) => {
+const ChildrenNavMenu = ({ position }) => {
   const childrenList = useRef();
   const dispatch = useDispatch();
   const navigate = useNavigate();

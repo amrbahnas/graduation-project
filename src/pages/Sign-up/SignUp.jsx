@@ -4,14 +4,17 @@ import { useSelector, useDispatch } from "react-redux";
 import { createParentAccount } from "../..//store/slices/userSlice";
 // mui
 import LinearProgress from "@mui/material/LinearProgress";
-import InfoIcon from "@mui/icons-material/Info";
 // formik
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { SignupSchema } from "../../utils/formSchema";
 //icon
-import FacebookIcon from "@mui/icons-material/Facebook";
-import GoogleIcon from "@mui/icons-material/Google";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import {
+  FacebookIcon,
+  GoogleIcon,
+  ArrowBackIcon,
+  InfoIcon,
+} from "../../utils/icons";
+
 // css
 import "./SignUp.css";
 import LoginSignupNav from "../../components/login-signup-nav/LoginSignupNav";

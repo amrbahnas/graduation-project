@@ -7,10 +7,9 @@ import { loginAccount } from "../..//store/slices/userSlice";
 import "./Log-in.css";
 // mui
 import LinearProgress from "@mui/material/LinearProgress";
-//icon
-import FacebookIcon from "@mui/icons-material/Facebook";
-import GoogleIcon from "@mui/icons-material/Google";
-import AppleIcon from "@mui/icons-material/Apple";
+//icons
+import { FacebookIcon, GoogleIcon, AppleIcon } from "../../utils/icons";
+// components
 import LoginSignupNav from "../../components/login-signup-nav/LoginSignupNav";
 const LogIn = () => {
   // initialize

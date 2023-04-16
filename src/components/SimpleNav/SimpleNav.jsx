@@ -1,8 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { resetAll } from "../../store/slices/userSlice";
 import { useDispatch } from "react-redux";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import LogoutIcon from "@mui/icons-material/Logout";
+import { ArrowBackIosIcon, LogoutIcon } from "../../utils/icons";
 import "./SimpleNav.css";
 const SimpleNav = ({ pageName }) => {
   const navigate = useNavigate();

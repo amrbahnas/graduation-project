@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import DashboardNav from "../../components/DashboardNav/DashboardNav";
-import SpeedIcon from "@mui/icons-material/Speed";
-import LightbulbIcon from "@mui/icons-material/Lightbulb";
+import { SpeedIcon, LightbulbIcon } from "../../utils/icons";
 import { Link, useParams, useNavigate } from "react-router-dom";
 /// redux
 import { useSelector, useDispatch } from "react-redux";

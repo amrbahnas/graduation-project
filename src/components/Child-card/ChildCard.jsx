@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
 import Avatar from "react-avatar";
 import "./ChildCard.css";
 const ChildCard = ({ child }) => {

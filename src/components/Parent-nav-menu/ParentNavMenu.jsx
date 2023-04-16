@@ -1,12 +1,14 @@
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { resetAll } from "../../store/slices/userSlice";
-import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
-import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
-import AccessibilityNewIcon from "@mui/icons-material/AccessibilityNew";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import {
+  PersonOutlineIcon,
+  SettingsOutlinedIcon,
+  AccessibilityNewIcon,
+  InfoOutlinedIcon,
+  LogoutOutlinedIcon,
+  ArrowDropDownIcon,
+} from "../../utils/icons";
 
 import { useSelector, useDispatch } from "react-redux";
 

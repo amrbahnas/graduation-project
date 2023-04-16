@@ -1,7 +1,7 @@
 import React from "react";
 import "./ForgotPassword.css";
 import { Link } from "react-router-dom";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { ArrowBackIcon } from "../../utils/icons";
 import LoginSignupNav from "./../../components/login-signup-nav/LoginSignupNav";
 const ForgotPassword = () => {
   return (
