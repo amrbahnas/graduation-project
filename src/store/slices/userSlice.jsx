@@ -64,7 +64,6 @@ const initialState = {
   _id: "",
   parentName: "",
   parentMail: "",
-  parentPic: "",
   children: [],
   childrenQuestions: [],
   loading: false,
@@ -117,13 +116,12 @@ export const userSlice = createSlice({
       state.error = false;
       console.log(action.payload);
       if (action.payload.massage.includes("successfully")) {
-        const { _id, parentName, parentAge, parentMail, parentPic } =
+        const { _id, parentName, parentAge, parentMail } =
           action.payload.parent;
-          state.login = true;
+        state.login = true;
         state._id = _id;
         state.parentName = parentName;
         state.parentMail = parentMail;
-        state.parentPic = parentPic;
         /**************************** */
         state.children = [];
       }
@@ -142,7 +140,7 @@ export const userSlice = createSlice({
     [createChildAccount.fulfilled]: (state, action) => {
       state.loading = false;
       state.error = false;
-      console.log(action.payload);
+      console.log("acc created", action.payload);
     },
     [createChildAccount.rejected]: (state, action) => {
       state.loading = false;
@@ -160,12 +158,10 @@ export const userSlice = createSlice({
       state.error = false;
       if (action.payload.massage === "correct password") {
         // having a children
-        const { _id, parentName, parentAge, parentMail, parentPic } =
-          action.payload.parent;
+        const { _id, parentName, parentMail } = action.payload.parent;
         state._id = _id;
         state.parentName = parentName;
         state.parentMail = parentMail;
-        state.parentPic = parentPic;
         state.login = true;
         /**************************** */
         state.children = action.payload.children;

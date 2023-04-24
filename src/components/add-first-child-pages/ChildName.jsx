@@ -1,16 +1,13 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { setpage, setname } from "../../store/slices/addFirstChildSlice";
 import "./CommonStyle.css";
-const ChildName = () => {
-  const dispatch = useDispatch();
+const ChildName = ({ setpage, setname }) => {
   const [childName, setchildName] = useState("");
   const [errorMessage, seterrorMessage] = useState(false);
   const onSubmit = (e) => {
     e.preventDefault();
     if (childName) {
-      dispatch(setpage(3));
-      dispatch(setname(childName));
+      setpage(3);
+      setname(childName);
       seterrorMessage(false);
     } else {
       seterrorMessage(true);

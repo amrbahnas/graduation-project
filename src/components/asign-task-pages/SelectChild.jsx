@@ -13,7 +13,7 @@ const SelectChild = () => {
   useEffect(() => {
     // setpreviewChildren(children.filter((child) => child?.grade === childGrade));
     setpreviewChildren(
-      children.filter((child) => child.studentstage === childGrade)
+      children.filter((child) => child.studentGrade === childGrade)
     );
   }, [childGrade]);
 

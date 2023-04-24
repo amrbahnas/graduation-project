@@ -1,9 +1,6 @@
 import React from "react";
 import "./CommonStyle.css";
-import { useDispatch } from "react-redux";
-import {setpage} from '../../store/slices/addFirstChildSlice'
-const AccountState = () => {
-  const dispatch = useDispatch()
+const AccountState = ({ setpage }) => {
   return (
     <>
       <div className="image">
@@ -20,7 +17,7 @@ const AccountState = () => {
           <button>
             <span>My child already has an account</span>
           </button>
-          <button onClick={(e) => dispatch(setpage(2))}>
+          <button onClick={(e) => setpage(2)}>
             <span>My child needs a new account</span>
           </button>
         </div>

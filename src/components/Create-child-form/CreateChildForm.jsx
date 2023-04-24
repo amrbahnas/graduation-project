@@ -1,18 +1,14 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addChildren, createChildAccount } from "../../store/slices/userSlice";
-import {
-  setpage,
-  setuserName,
-  setpassword,
-} from "../../store/slices/addFirstChildSlice";
+
 import { v4 } from "uuid";
 import "./CreateChildForm.css";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-const CreateChildForm = ({ setsuccess }) => {
+const CreateChildForm = ({ setuserName, setpassword, setsuccess }) => {
   const dispatch = useDispatch();
   const { loading } = useSelector((store) => store.userSlice);
   const [name, setname] = useState("");
@@ -31,8 +27,8 @@ const CreateChildForm = ({ setsuccess }) => {
     };
     dispatch(createChildAccount(data)).then((action) => {
       dispatch(addChildren(action.payload.student));
-      dispatch(setuserName(username));
-      dispatch(setpassword(password));
+      setuserName(username);
+      setpassword(password);
       setsuccess(true);
     });
   };

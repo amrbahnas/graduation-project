@@ -1,14 +1,9 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setpage } from "../../store/slices/addFirstChildSlice";
 import "./CommonStyle.css";
 import { StarIcon } from "../../utils/icons";
-const Notes = () => {
-  const dispatch = useDispatch();
-  const { name } = useSelector((store) => store.addFirstChildSlice);
-
+const Notes = ({ setpage, name }) => {
   const onclickHandler = (e) => {
-    dispatch(setpage(6));
+    setpage(6);
   };
   return (
     <>

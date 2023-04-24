@@ -4,9 +4,13 @@ import "./SelectFolder.css";
 // component
 
 /*****************************************start******** */
-const SelectFolder = () => {
+const SelectFolder = ({ setfolderNumber }) => {
   const [userFolders, setuserFolders] = useState(1);
   const [selectedFolder, setselectedFolder] = useState(1);
+  const setselectedFolderHandler = (num) => {
+    setselectedFolder(num);
+    setfolderNumber(num);
+  };
   const addNewFolder = () => {
     setuserFolders(userFolders + 1);
   };
@@ -17,7 +21,7 @@ const SelectFolder = () => {
         className={`folder ${
           +num === +selectedFolder ? "border-2 border-gray-500" : ""
         }`}
-        onClick={() => setselectedFolder(num)}
+        onClick={() => setselectedFolderHandler(num)}
       >
         <div className="info">
           <span>Folder {num}</span>

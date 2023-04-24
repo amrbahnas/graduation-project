@@ -6,12 +6,6 @@ const ChildCard = ({ child }) => {
   return (
     <dir className="child">
       <div className="img">
-        {/* <img
-          src={
-            import.meta.env.VITE_REACT_SERVER_DOMAIL + "/" + child.studentPic
-          }
-          alt=""
-        /> */}
         <Avatar name={child.studentName} size="100" round={true} />
       </div>
       <div className="info">

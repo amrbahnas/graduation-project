@@ -9,15 +9,15 @@ export const addChildQuestions = createAsyncThunk(
     // console.log(word);
     const { _id } = getState().userSlice;
     const formdata = new FormData();
-    formdata.append("stadge", word.stadge);
-    formdata.append("unit", word.unit);
-    formdata.append("lesson", word.lesson);
-    formdata.append("defintionac", word.defintionac);
-    formdata.append("defintionen", word.defintionen);
-    formdata.append("sentence", word.sentence);
+    formdata.append("grade", word.stadge);
+    formdata.append("subject", word.subjectName);
+    formdata.append("number", word.number);
+    formdata.append("wordar", word.defintionac);
+    formdata.append("worden", word.defintionen);
     formdata.append("image", word.image, word.image.name);
+    formdata.append("sentence", word.sentence);
     try {
-      const url = `https://gamebasedlearning-ot4m.onrender.com/FSE/FSEinsertQuestion/${_id}`;
+      const url = `${import.meta.env.VITE_REACT_ADD_QUESTION_API}/${_id}`;
       const headers = {
         method: "POST",
         body: formdata,
@@ -37,7 +37,7 @@ export const getChildQuestions = createAsyncThunk(
   async (data, thunkAPI) => {
     const { rejectWithValue, getState } = thunkAPI;
     const { _id } = getState().userSlice;
-    const url = `https://gamebasedlearning-ot4m.onrender.com/FSE/FSEtakeQuestion/${_id}`;
+    const url = `${import.meta.env.VITE_REACT_GET_QUESTION_API}/${_id}`;
     const headers = {
       "content-type": "application/json; charset=UTF-8",
     };
@@ -68,8 +68,6 @@ export const getQuestionsFeedback = createAsyncThunk(
 );
 
 const initialState = {
-  english: [],
-  feedBack: [],
   loading: false,
   errorHappen: false,
   dataIsSend: false,
@@ -79,9 +77,6 @@ export const questionsDataSlice = createSlice({
   name: "quetions",
   initialState,
   reducers: {
-    setEnglish: (state, action) => {
-      state.login = action.payload;
-    },
     setdataIsSend: (state, action) => {
       state.dataIsSend = action.payload;
     },
@@ -135,7 +130,7 @@ export const questionsDataSlice = createSlice({
     [getQuestionsFeedback.fulfilled]: (state, action) => {
       state.loading = false;
       state.errorHappen = false;
-      console.log("feedback",action.payload);
+      console.log("feedback", action.payload);
       state.feedBack = action.payload;
     },
     [getQuestionsFeedback.rejected]: (state, action) => {
@@ -146,6 +141,5 @@ export const questionsDataSlice = createSlice({
   },
 });
 
-export const { setEnglish, setdataIsSend, seterrorHappen } =
-  questionsDataSlice.actions;
+export const { setdataIsSend, seterrorHappen } = questionsDataSlice.actions;
 export default questionsDataSlice.reducer;

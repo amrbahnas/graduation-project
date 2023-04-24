@@ -1,19 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  setpage,
-  setgrade,
-  setuserName,
-  setpassword,
-} from "../../store/slices/addFirstChildSlice";
 import { addChildren, createChildAccount } from "../../store/slices/userSlice";
 import "./CommonStyle.css";
 import { v4 } from "uuid";
 import SelectGrade from "../Select-grade/SelectGrade";
 
-const ChildGrade = () => {
+const ChildGrade = ({ setpage, name, setuserName, setpassword }) => {
   const dispatch = useDispatch();
-  const { name } = useSelector((store) => store.addFirstChildSlice);
   const { loading } = useSelector((store) => store.userSlice);
   const [childGrade, setchildGrade] = useState("");
   const [errorMessage, seterrorMessage] = useState(false);
@@ -21,7 +14,6 @@ const ChildGrade = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     if (childGrade) {
-      dispatch(setgrade(childGrade));
       const username = name + v4().slice(0, 4);
       const password = v4().slice(0, 6);
       const data = {
@@ -33,9 +25,9 @@ const ChildGrade = () => {
       };
       dispatch(createChildAccount(data)).then((action) => {
         dispatch(addChildren(action.payload.student));
-        dispatch(setuserName(username));
-        dispatch(setpassword(password));
-        dispatch(setpage(4));
+        setuserName(username);
+        setpassword(password);
+        setpage(4);
         seterrorMessage(false);
       });
     } else {

@@ -114,7 +114,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/AddChild",
+    path: "/parent/AddChild",
     element: (
       <LoginReq>
         <AddChild />

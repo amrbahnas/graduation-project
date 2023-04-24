@@ -1,17 +1,13 @@
 import React from "react";
-import { useDispatch,useSelector } from "react-redux";
-import { setpage } from "../../store/slices/addFirstChildSlice";
 import { useNavigate } from "react-router-dom";
 import "./CommonStyle.css";
-const Finish = () => {
-  const dispatch = useDispatch();
+const Finish = ({ setpage, name }) => {
   const navigate = useNavigate();
-  const { name } = useSelector((store) => store.addFirstChildSlice);
 
   const onfinish = (e) => {
     e.preventDefault();
     navigate("/parent/my-children", { replace: true });
-    dispatch(setpage(1));
+    setpage(1);
   };
   return (
     <>

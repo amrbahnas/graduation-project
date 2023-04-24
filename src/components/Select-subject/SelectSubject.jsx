@@ -1,16 +1,9 @@
-import React, { useEffect } from "react";
-import { setsubject, setstepNumber } from "../../store/slices/unitsSlice";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import React from "react";
 import { motion } from "framer-motion";
 import "./SelectSubject.css";
-const SelectSubject = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(setstepNumber(0));
-  }, [dispatch]);
+const SelectSubject = ({ setSubjectName }) => {
   const selectedSubject = (e, subject) => {
-    dispatch(setsubject(subject));
+    setSubjectName(subject);
     document.querySelectorAll("#subjects div").forEach((subject) => {
       subject.style.outline = "none";
     });

@@ -17,7 +17,9 @@ const MyChildren = () => {
           <div className="heading">
             <span>My children</span>
             <div className="btns">
-              <span onClick={(e) => navigate("/addchild")}>Add child</span>
+              <span onClick={(e) => navigate("/parent/addchild")}>
+                Add child
+              </span>
               <span onClick={(e) => navigate("/AddSubjectData/" + _id)}>
                 Add Subject
               </span>

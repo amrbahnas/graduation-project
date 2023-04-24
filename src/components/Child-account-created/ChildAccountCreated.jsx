@@ -1,12 +1,9 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import "./ChildAccountCreated.css";
-const childAccountCreated = () => {
+const childAccountCreated = ({ userName, password }) => {
   const navigate = useNavigate();
-  const { userName, password } = useSelector(
-    (store) => store.addFirstChildSlice
-  );
+
   const onSubmit = (e) => {
     e.preventDefault();
     navigate("/parent/my-children", { replace: true });

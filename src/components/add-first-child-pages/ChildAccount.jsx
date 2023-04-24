@@ -1,15 +1,8 @@
 import React from "react";
 import "./CommonStyle.css";
-import { useDispatch, useSelector } from "react-redux";
-import { setpage } from "../../store/slices/addFirstChildSlice";
-const ChildAccount = () => {
-  const dispatch = useDispatch();
-  const { name, userName, password } = useSelector(
-    (store) => store.addFirstChildSlice
-  );
-
+const ChildAccount = ({ setpage, name, userName, password }) => {
   const onclickHandler = () => {
-    dispatch(setpage(5));
+    setpage(5);
   };
   return (
     <>

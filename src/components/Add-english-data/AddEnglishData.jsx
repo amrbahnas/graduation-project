@@ -1,63 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { v4 } from "uuid";
-import styles from "./SubjectData.module.css";
-// redux
-import { useDispatch, useSelector } from "react-redux";
-import {
-  setsubjectData,
-  setstepNumber,
-} from "../../store/slices/unitsSlice";
-import {
-  addChildQuestions,
-  getChildQuestions,
-  seterrorHappen,
-} from "../../store/slices/questionsDataSlice";
-// routes
-import { useNavigate, useParams, Link } from "react-router-dom";
+import styles from "./AddEnglishData.module.css";
 // components
 import SingleEnglishWord from "../Single-english-word/SingleEnglishWord";
-import SuccessCheck from "../SuccessCheck/SuccessCheck";
-// mui
-import Snackbar from "@mui/material/Snackbar";
-import MuiAlert from "@mui/material/Alert";
 //icons
-// import EditIcon from "@mui/icons-material/Edit";
-// import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 /******************************start********************************** */
-const SubjectData = () => {
-  const dispatch = useDispatch();
-  const Alert = React.forwardRef(function Alert(props, ref) {
-    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-  });
-  const { _id } = useParams();
+const AddEnglishData = ({ setSubjectData }) => {
   // global variables
-  const { children } = useSelector((store) => store.userSlice);
-  const child = children.filter((el) => el._id === _id)[0];
-  const { english, loading, dataIsSend, errorHappen } = useSelector(
-    (store) => store.questionsDataSlice
-  );
-  const { currentUnit, currentLesson, subjectData } = useSelector(
-    (store) => store.unitsSlice
-  );
-  // useEffect
-  useEffect(() => {
-    dispatch(setstepNumber(2));
-    const data = {
-      unit: currentUnit.unit,
-      stadge: child.studentstage,
-      lesson: currentLesson.lesson,
-    };
-    dispatch(getChildQuestions(data));
-  }, [currentUnit.unit, child.studentstage, currentLesson.lesson, dispatch]);
 
-  // local variables
-  const oldWords = english.filter(
-    (word) =>
-      +word.Lesson === +currentLesson.lesson && +word.Unit === +currentUnit.unit
-  );
+  // useEffect
+  // useEffect(() => {
+  //   dispatch(setstepNumber(2));
+  //   const data = {
+  //     grade: child.studentgrade,
+  //     subject: "en",
+  //   };
+  //   dispatch(getChildQuestions(data));
+  // }, [currentUnit.unit, child.studentstage, currentLesson.lesson, dispatch]);
+
   // console.log(oldWords);
   const [editWord, seteditWord] = useState({ state: false, _id: "" });
   const [enteredWords, setenteredWords] = useState([]);
@@ -93,12 +55,13 @@ const SubjectData = () => {
         wordImage,
         previewImage,
         DefintioninEn,
-       sentence,
+        sentence,
         DefintioninAc,
-        unit: currentUnit.unit,
-        lesson: currentLesson.lesson,
       };
       setenteredWords(
+        enteredWords.map((word) => (word._id === editWord._id ? newData : word))
+      );
+      setSubjectData(
         enteredWords.map((word) => (word._id === editWord._id ? newData : word))
       );
       seteditWord({ state: false, _id: "" });
@@ -111,11 +74,9 @@ const SubjectData = () => {
         DefintioninEn,
         DefintioninAc,
         sentence,
-        unit: currentUnit.unit,
-        lesson: currentLesson.lesson,
       };
       setenteredWords([...enteredWords, data]);
-      dispatch(setsubjectData([...enteredWords, data]));
+      setSubjectData([...enteredWords, data]);
       cleanInputs();
     }
   };
@@ -129,9 +90,8 @@ const SubjectData = () => {
     e.target.parentElement.parentElement.style.border = "1px solid black";
     // logic
     seteditWord({ state: true, _id });
-    const { DefintioninEn, DefintioninAc,sentence, wordImage } = enteredWords.find(
-      (w) => w._id === _id
-    );
+    const { DefintioninEn, DefintioninAc, sentence, wordImage } =
+      enteredWords.find((w) => w._id === _id);
     setDefintioninAc(DefintioninAc);
     setDefintioninEn(DefintioninEn);
     setsentence(sentence);
@@ -146,24 +106,7 @@ const SubjectData = () => {
   // delete word
   const deleteWord = (_id) => {
     setenteredWords(enteredWords.filter((word) => word._id !== _id));
-    setsubjectData(enteredWords.filter((word) => word._id !== _id));
-  };
-
-  const submitData = () => {
-    const questions = subjectData.map((subject) => ({
-      _id: subject.id,
-      image: subject.wordImage,
-      defintionen: subject.DefintioninEn,
-      defintionac: subject.DefintioninAc,
-      sentence: subject.sentence,
-      unit: subject.unit,
-      lesson: subject.lesson,
-      stadge: child.studentstage,
-    }));
-
-    questions.forEach((word) => {
-      dispatch(addChildQuestions(word));
-    });
+    setSubjectData(enteredWords.filter((word) => word._id !== _id));
   };
 
   /******************************** DOM *************************************************** */
@@ -171,11 +114,9 @@ const SubjectData = () => {
     <div className={styles.SubjectData}>
       <div className={styles.wrapper}>
         <div className={styles.word}>
-          <div className={styles.unitLesson}>
-            <span>unit: {currentUnit.unit}</span>
-            <span>lesson: {currentLesson.lesson}</span>
-            {/* <span>( {currentLesson.title} )</span> */}
-          </div>
+          {/* <div className={styles.gradeNum}>
+            <span>grade:1</span>
+          </div> */}
           <div className={styles.addWord}>
             <div className={`${styles.image}  dark:border-darkSText`}>
               {/* {
@@ -190,7 +131,6 @@ const SubjectData = () => {
                   </label>
                 </>
               } */}
-
               {previewImage && <img src={previewImage} alt="" />}
               {!previewImage && (
                 <label htmlFor="file">
@@ -268,64 +208,32 @@ const SubjectData = () => {
         </div>
 
         <div className={`${styles.data}`}>
-          <span>{enteredWords.length + oldWords.length} words</span>
+          <span>{enteredWords.length} words</span>
           <div
             className={`${styles.enteredData} dark:border-darkSText`}
             id="words"
           >
-            <div className={`${styles.oldData} relative`}>
-              {loading ? (
-                <img
-                  src="/assets/svg/loading.svg"
-                  alt=""
-                  className={`${styles.loading}`}
-                />
-              ) : (
-                oldWords.map((word) => {
-                  return (
-                    <SingleEnglishWord
-                      wordData={word}
-                      key={word._id}
-                      image={word.Image}
-                      deleteWord={deleteWord}
-                      editWordHandler={editWordHandler}
-                    />
-                  );
-                })
-              )}
-            </div>
-            {enteredWords.map((word) => {
-              return (
-                <SingleEnglishWord
-                  wordData={word}
-                  key={word._id}
-                  deleteWord={deleteWord}
-                  editWordHandler={editWordHandler}
-                />
-              );
-            })}
+            {enteredWords.length == 0 ? (
+              <p className=" capitalize text-center mt-4">
+                entered data will be here
+              </p>
+            ) : (
+              enteredWords.map((word) => {
+                return (
+                  <SingleEnglishWord
+                    wordData={word}
+                    key={word._id}
+                    deleteWord={deleteWord}
+                    editWordHandler={editWordHandler}
+                  />
+                );
+              })
+            )}
           </div>
         </div>
       </div>
-      <div className="control">
-        <a href="#done" onClick={submitData}>
-          Finsh
-        </a>
-        <Link to={-1}>
-          <ArrowBackIcon /> Back
-        </Link>
-      </div>
-      {dataIsSend && <SuccessCheck />}
-
-      <Snackbar
-        open={errorHappen}
-        autoHideDuration={6000}
-        onClose={(e) => dispatch(seterrorHappen(false))}
-      >
-        <Alert severity="error">error try again</Alert>
-      </Snackbar>
     </div>
   );
 };
 
-export default SubjectData;
+export default AddEnglishData;
