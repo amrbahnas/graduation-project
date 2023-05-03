@@ -27,8 +27,8 @@ const ChildGrade = ({ setpage, name, setuserName, setpassword }) => {
         dispatch(addChildren(action.payload.student));
         setuserName(username);
         setpassword(password);
-        setpage(4);
         seterrorMessage(false);
+        setpage(4);
       });
     } else {
       seterrorMessage(true);

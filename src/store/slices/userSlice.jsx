@@ -114,8 +114,7 @@ export const userSlice = createSlice({
     [createParentAccount.fulfilled]: (state, action) => {
       state.loading = false;
       state.error = false;
-      console.log(action.payload);
-      if (action.payload.massage.includes("successfully")) {
+      if (action.payload.parent.status.includes("successfully")) {
         const { _id, parentName, parentAge, parentMail } =
           action.payload.parent;
         state.login = true;
@@ -156,8 +155,7 @@ export const userSlice = createSlice({
     [loginAccount.fulfilled]: (state, action) => {
       state.loading = false;
       state.error = false;
-      if (action.payload.massage === "correct password") {
-        // having a children
+      if (action.payload.parent) {
         const { _id, parentName, parentMail } = action.payload.parent;
         state._id = _id;
         state.parentName = parentName;

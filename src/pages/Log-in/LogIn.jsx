@@ -32,12 +32,13 @@ const LogIn = () => {
     dispatch(loginAccount(data))
       .unwrap()
       .then((action) => {
-        if (action.payload.children.length === 0) {
+        if (action.children.length === 0) {
           navigate("/parent/add-first-child");
         } else {
           navigate("/parent/my-children");
         }
-      });
+      })
+      .catch((err) => console.log(err));
   };
 
   return (

@@ -79,7 +79,7 @@ const AsignTask = () => {
         selectetedDataObj[key] = selectetedData[i];
       }
       const data = {
-        taskno: 1,
+        taskno: 2,
         gamename: games,
         // subjectName,
         // selectedGrade,

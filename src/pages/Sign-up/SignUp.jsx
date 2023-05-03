@@ -37,12 +37,15 @@ const SignUp = () => {
       name: name,
       mail: email,
       password,
-      age: 20,
-      phone: "08979656",
+      age: "20",
+      phone: "08921579656",
     };
-    dispatch(createParentAccount(data)).then((action) => {
-      navigate("/parent/add-first-child");
-    });
+    dispatch(createParentAccount(data))
+      .unwrap()
+      .then((action) => {
+        navigate("/parent/add-first-child");
+      })
+      .catch((err) => console.log(err));
   };
   return (
     <div className="signup-page">
