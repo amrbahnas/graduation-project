@@ -62,7 +62,7 @@ const ChildDashboard = () => {
                 <h3>
                   <span>Recent activity</span>
                 </h3>
-                {feedBack.length === 0 ? (
+                {feedBack?.length === 0 ? (
                   <div className="tasks">
                     <TaskCard number={"1"} />
                     <div className="btns">

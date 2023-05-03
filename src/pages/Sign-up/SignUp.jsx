@@ -118,7 +118,7 @@ const SignUp = () => {
                   <Field
                     type="password"
                     name="password"
-                    placeholder="at least 6 characters"
+                    placeholder="at least 8 characters"
                     className={
                       errors.password && touched.password ? "bg-red-100" : ""
                     }

@@ -3,10 +3,9 @@ import * as React from "react";
 import "./Common.css";
 import { useSelector } from "react-redux";
 import SelectGrade from "../Select-grade/SelectGrade";
-import ChildrenList from "../Children-list/ChildrenList";
-const SelectChild = () => {
+import DataSelectList from "../Data-select-list/DataSelectList";
+const SelectChild = ({ setselectedGrade, setselectedChildrens }) => {
   const { children } = useSelector((store) => store.userSlice);
-  console.log(children);
   const [checked, setChecked] = useState([]);
   const [previewChildren, setpreviewChildren] = useState([]);
   const [childGrade, setchildGrade] = useState(1);
@@ -15,15 +14,21 @@ const SelectChild = () => {
     setpreviewChildren(
       children.filter((child) => child.studentGrade === childGrade)
     );
+    setselectedGrade(childGrade);
   }, [childGrade]);
 
   return (
     <div className="select-children">
-      <SelectGrade childGrade={childGrade} setchildGrade={setchildGrade} />
-      <ChildrenList
-        children={previewChildren}
+      <SelectGrade
+        childGrade={childGrade}
+        setchildGrade={setchildGrade}
+        setgrade={() => {}}
+      />
+      <DataSelectList
+        data={previewChildren}
         checked={checked}
         setChecked={setChecked}
+        setmainSelection={setselectedChildrens}
       />
     </div>
   );

@@ -3,8 +3,12 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import'./SelectGrade.css'
-const SelectGrade = ({ childGrade, setchildGrade}) => {
+import "./SelectGrade.css";
+const SelectGrade = ({ childGrade, setchildGrade, setgrade }) => {
+  const changeHandler = (e) => {
+    setchildGrade(e.target.value);
+    setgrade(e.target.value);
+  };
   return (
     <FormControl fullWidth className="select-grade">
       <InputLabel id="demo-simple-select-label">Grade</InputLabel>
@@ -14,7 +18,7 @@ const SelectGrade = ({ childGrade, setchildGrade}) => {
         value={childGrade}
         label="Age"
         onChange={(e) => {
-          setchildGrade(e.target.value);
+          changeHandler(e);
         }}
         color="primary"
       >

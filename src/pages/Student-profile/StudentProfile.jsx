@@ -8,7 +8,7 @@ import "./StudentProfile.css";
 const StudentProfile = () => {
   const { _id } = useParams();
   const { children } = useSelector((store) => store.userSlice);
-  const { studentName, studentstage, studentPic } = children.filter(
+  const { studentName, studentGrade, studentPic } = children.filter(
     (child) => child._id === _id
   )[0];
   return (
@@ -26,8 +26,8 @@ const StudentProfile = () => {
             </div>
             <div className="personal-info">
               <span className="name">{studentName}</span>
-              <span className="stadge">stadge: {studentstage}</span>
-              <span className="age">Age: {+studentstage + 7}</span>
+              <span className="stadge">stadge: {studentGrade}</span>
+              <span className="age">Age: {+studentGrade + 7}</span>
             </div>
           </div>
           <div className="tasks-section">

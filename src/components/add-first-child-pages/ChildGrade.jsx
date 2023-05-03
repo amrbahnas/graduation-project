@@ -18,10 +18,10 @@ const ChildGrade = ({ setpage, name, setuserName, setpassword }) => {
       const password = v4().slice(0, 6);
       const data = {
         name,
-        age: "9",
-        stage: childGrade,
+        grade: childGrade,
         username,
         password,
+        age: 10,
       };
       dispatch(createChildAccount(data)).then((action) => {
         dispatch(addChildren(action.payload.student));

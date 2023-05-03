@@ -1,7 +1,9 @@
-import React from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import "./SelectSubject.css";
-const SelectSubject = ({ setSubjectName }) => {
+import SelectGrade from "../Select-grade/SelectGrade";
+const SelectSubject = ({ setgrade, setSubjectName, selectGrade }) => {
+  const [childGrade, setchildGrade] = useState(1);
   const selectedSubject = (e, subject) => {
     setSubjectName(subject);
     document.querySelectorAll("#subjects div").forEach((subject) => {
@@ -24,6 +26,14 @@ const SelectSubject = ({ setSubjectName }) => {
   };
   return (
     <div className="select-subject">
+      {selectGrade && (
+        <SelectGrade
+          childGrade={childGrade}
+          setchildGrade={setchildGrade}
+          setgrade={setgrade}
+        />
+      )}
+
       <div className="wrapper" id="subjects">
         <Subject title={"arabic"} img={"arabic.jpg"} />
         <Subject title={"english"} img={"english.jpg"} />

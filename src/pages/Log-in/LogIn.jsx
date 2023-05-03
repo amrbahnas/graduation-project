@@ -19,7 +19,7 @@ const LogIn = () => {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   //   // get login state
-  const { loading } = useSelector((store) => store.userSlice);
+  const { loading, error } = useSelector((store) => store.userSlice);
 
   // on click login
   const formHandler = (e) => {
@@ -29,13 +29,15 @@ const LogIn = () => {
       mail: email,
       password,
     };
-    dispatch(loginAccount(data)).then((action) => {
-      if (action.payload.children.length === 0) {
-        navigate("/parent/add-first-child");
-      } else {
-        navigate("/parent/my-children");
-      }
-    });
+    dispatch(loginAccount(data))
+      .unwrap()
+      .then((action) => {
+        if (action.payload.children.length === 0) {
+          navigate("/parent/add-first-child");
+        } else {
+          navigate("/parent/my-children");
+        }
+      });
   };
 
   return (
@@ -74,6 +76,11 @@ const LogIn = () => {
                 onChange={(e) => setemail(e.target.value)}
               />
             </div>
+            {error && (
+              <span className=" text-red-500 capitalize">
+                check the email or password
+              </span>
+            )}
             <div className="input-form">
               <label htmlFor="">Password</label>
               <input

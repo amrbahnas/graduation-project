@@ -1,34 +1,51 @@
-import React from "react";
+import { useState } from "react";
 import "./Common.css";
-import { motion } from "framer-motion";
-const SelectGame = () => {
-  const Cart = ({ game }) => {
+const SelectGame = ({ setgames }) => {
+  const [selectedGames, setselectedGames] = useState([]);
+  const addGameToSelected = (id) => {
+    setselectedGames((prevIds) =>
+      prevIds.includes(id)
+        ? prevIds.filter((prevId) => prevId !== id)
+        : [...prevIds, id]
+    );
+    setgames((prevIds) =>
+      prevIds.includes(id)
+        ? prevIds.filter((prevId) => prevId !== id)
+        : [...prevIds, id]
+    );
+  };
+  console.log(selectedGames);
+
+  const Cart = ({ game, id }) => {
+    const [isSelected, setIsSelected] = useState(false);
+
+    const handleClick = () => {
+      setIsSelected(!isSelected);
+      addGameToSelected(id);
+    };
+
     return (
-      <motion.div
+      <div
         className="cart"
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        onClick={selectGame}
+        onClick={handleClick}
+        style={{
+          outline: selectedGames.includes(id) ? "4px solid #ff5c0b" : "none",
+        }}
       >
         <img src={`../../../public/assets/images/games/${game}.jpeg`} alt="" />
         <span className="title">{game}</span>
-      </motion.div>
+      </div>
     );
   };
-  const selectGame = (e, subject) => {
-    document.querySelectorAll("#game  div").forEach((subject) => {
-      subject.style.outline = "none";
-    });
-    e.target.parentElement.style.outline = "4px solid #ff5c0b";
-  };
+
   return (
     <div className="select-game" id="game">
-      <Cart game={"game1"} />
-      <Cart game={"game2"} />
-      <Cart game={"game3"} />
-      <Cart game={"game4"} />
-      <Cart game={"game5"} />
-      <Cart game={"game6"} />
+      <Cart game={"game1"} id={"0"} key={"1"} />
+      <Cart game={"game2"} id={"2"} key={"2"} />
+      <Cart game={"game3"} id={"4"} key={"4"} />
+      <Cart game={"game4"} id={"5"} key={"3"} />
+      <Cart game={"game5"} id={"6"} key={"5"} />
+      <Cart game={"game6"} id={"1"} key={"6"} />
     </div>
   );
 };

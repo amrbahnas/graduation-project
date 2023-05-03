@@ -45,7 +45,7 @@ const ChildName = ({ setpage, setname }) => {
           </div>
           <div>
             <span>Your information is safe. Read our </span>
-            <a href="#f" target="_new" class="sc-fzoYkl fPtstd">
+            <a href="#f" target="_new">
               <span>Privacy Policy.</span>
             </a>
           </div>

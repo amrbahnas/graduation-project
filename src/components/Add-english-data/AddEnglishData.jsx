@@ -8,25 +8,13 @@ import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 
 /******************************start********************************** */
 const AddEnglishData = ({ setSubjectData }) => {
-  // global variables
-
-  // useEffect
-  // useEffect(() => {
-  //   dispatch(setstepNumber(2));
-  //   const data = {
-  //     grade: child.studentgrade,
-  //     subject: "en",
-  //   };
-  //   dispatch(getChildQuestions(data));
-  // }, [currentUnit.unit, child.studentstage, currentLesson.lesson, dispatch]);
-
   // console.log(oldWords);
   const [editWord, seteditWord] = useState({ state: false, _id: "" });
   const [enteredWords, setenteredWords] = useState([]);
   const [previewImage, setpreviewImage] = useState(null);
   const [wordImage, setwordImage] = useState(null);
-  const [DefintioninEn, setDefintioninEn] = useState("");
-  const [DefintioninAc, setDefintioninAc] = useState("");
+  const [definitionInEn, setdefinitionInEn] = useState("");
+  const [definitionInAc, setdefinitionInAc] = useState("");
   const [sentence, setsentence] = useState("");
   // take img from input file then show it
   const previewImg = (files) => {
@@ -41,8 +29,8 @@ const AddEnglishData = ({ setSubjectData }) => {
   };
   // clean input for next proccess
   const cleanInputs = () => {
-    setDefintioninAc("");
-    setDefintioninEn("");
+    setdefinitionInAc("");
+    setdefinitionInEn("");
     setsentence("");
     setwordImage(null);
     setpreviewImage("");
@@ -54,9 +42,9 @@ const AddEnglishData = ({ setSubjectData }) => {
         _id: v4(),
         wordImage,
         previewImage,
-        DefintioninEn,
+        definitionInEn,
         sentence,
-        DefintioninAc,
+        definitionInAc,
       };
       setenteredWords(
         enteredWords.map((word) => (word._id === editWord._id ? newData : word))
@@ -71,8 +59,8 @@ const AddEnglishData = ({ setSubjectData }) => {
         _id: v4(),
         wordImage,
         previewImage,
-        DefintioninEn,
-        DefintioninAc,
+        definitionInEn,
+        definitionInAc,
         sentence,
       };
       setenteredWords([...enteredWords, data]);
@@ -90,10 +78,10 @@ const AddEnglishData = ({ setSubjectData }) => {
     e.target.parentElement.parentElement.style.border = "1px solid black";
     // logic
     seteditWord({ state: true, _id });
-    const { DefintioninEn, DefintioninAc, sentence, wordImage } =
+    const { definitionInEn, definitionInAc, sentence, wordImage } =
       enteredWords.find((w) => w._id === _id);
-    setDefintioninAc(DefintioninAc);
-    setDefintioninEn(DefintioninEn);
+    setdefinitionInAc(definitionInAc);
+    setdefinitionInEn(definitionInEn);
     setsentence(sentence);
     setwordImage(wordImage);
     const fileReader = new FileReader();
@@ -175,8 +163,8 @@ const AddEnglishData = ({ setSubjectData }) => {
                   type="text"
                   name=""
                   id="word"
-                  value={DefintioninEn}
-                  onChange={(e) => setDefintioninEn(e.target.value)}
+                  value={definitionInEn}
+                  onChange={(e) => setdefinitionInEn(e.target.value)}
                   className="bg-gray-200 dark:bg-darkBody"
                 />
               </div>
@@ -185,8 +173,8 @@ const AddEnglishData = ({ setSubjectData }) => {
                 <input
                   type="text"
                   id="meaning"
-                  value={DefintioninAc}
-                  onChange={(e) => setDefintioninAc(e.target.value)}
+                  value={definitionInAc}
+                  onChange={(e) => setdefinitionInAc(e.target.value)}
                   className="bg-gray-200 dark:bg-darkBody"
                 />
               </div>

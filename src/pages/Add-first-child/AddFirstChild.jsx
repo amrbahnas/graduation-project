@@ -18,7 +18,7 @@ const AddFirstChild = () => {
     const switchCase = (() => {
       switch (page) {
         case 1:
-          return <AccountState setPage={setpage} />;
+          return <AccountState setpage={setpage} />;
         case 2:
           return <ChildName setpage={setpage} setname={setname} />;
         case 3:
