@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import "./Common.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getChildQuestions } from "../../store/slices/questionsDataSlice";
 import DataSelectList from "../Data-select-list/DataSelectList";
 import toast from "react-hot-toast";
+import Loading from "../Full-loading/FullLoading";
 const DataPreview = ({
   subjectName,
   selectedGrade,
@@ -11,9 +12,9 @@ const DataPreview = ({
   setEnableBTN,
 }) => {
   const dispatch = useDispatch();
-  const { loading } = useSelector((store) => store.questionsDataSlice);
   const [subjecyData, setsubjectData] = useState([]);
   const [checked, setChecked] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (checked.length === 6) {
@@ -24,6 +25,7 @@ const DataPreview = ({
   }, [checked]);
 
   useEffect(() => {
+    setLoading(true);
     const data = {
       grade: selectedGrade,
       subject: subjectName,
@@ -31,9 +33,11 @@ const DataPreview = ({
     dispatch(getChildQuestions(data))
       .unwrap()
       .then((action) => {
+        setLoading(false);
         setsubjectData(action);
       })
       .catch((error) => {
+        setLoading(false);
         toast.error("something went wrong");
       });
   }, [dispatch]);
@@ -55,6 +59,7 @@ const DataPreview = ({
           setmainSelection={setSelectedData}
         />
       )}
+      {loading && <Loading />}
     </div>
   );
 };

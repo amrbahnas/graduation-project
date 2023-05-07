@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 // react router
-import { useNavigate, Link, useLocation } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { loginAccount, setLoading } from "../../store/slices/userSlice";
 // css
@@ -16,24 +16,19 @@ const LogIn = () => {
   // initialize
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const isMountedRef = useRef(true);
-  useEffect(() => {
-    return () => {
-      isMountedRef.current = false;
-      setLoading(false);
-    };
-  }, []);
 
   //   //  check validation states
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
+  const [loading, setLoading] = useState(false);
   //   // get login state
-  const { loading, error } = useSelector((store) => store.userSlice);
+  const { error } = useSelector((store) => store.userSlice);
 
   // on click login
   const formHandler = (e) => {
     e.preventDefault();
     //start login function
+    setLoading(true);
     const data = {
       mail: email,
       password,
@@ -41,6 +36,7 @@ const LogIn = () => {
     dispatch(loginAccount(data))
       .unwrap()
       .then((action) => {
+        setLoading(false);
         toast.success("welcome back");
         if (action.children.length === 0) {
           navigate("/parent/add-first-child");
@@ -48,7 +44,10 @@ const LogIn = () => {
           navigate("/parent/my-children");
         }
       })
-      .catch((err) => toast.error("check the email or password"));
+      .catch((err) => {
+        setLoading(false);
+        toast.error("check the email or password");
+      });
   };
 
   return (

@@ -23,23 +23,14 @@ const SignUp = () => {
   // initialize
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // cancel loading when component unmount (user navigate to another page)
-  const isMountedRef = useRef(true);
-  useEffect(() => {
-    return () => {
-      isMountedRef.current = false;
-      setLoading(false);
-    };
-  }, []);
-  //   //  check validation states
+  const [loading, setLoading] = useState(false);
+
+  //  check validation states
   const initialValues = {
     name: "",
     email: "",
     password: "",
   };
-  //   // get login state
-  const { loading, error } = useSelector((store) => store.userSlice);
-  //  // user cant access this page if he has login
 
   const submitHandler = ({ name, email, password }) => {
     const data = {
@@ -52,10 +43,14 @@ const SignUp = () => {
     dispatch(createParentAccount(data))
       .unwrap()
       .then((action) => {
+        setLoading(false);
         toast.success("signup successfully ");
         navigate("/parent/add-first-child");
       })
-      .catch((err) => toast.error("something went wrong"));
+      .catch((err) => {
+        setLoading(false);
+        toast.error("something went wrong");
+      });
   };
   return (
     <div className="signup-page">

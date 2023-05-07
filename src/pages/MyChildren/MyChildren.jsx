@@ -20,7 +20,7 @@ const MyChildren = () => {
               <span onClick={(e) => navigate("/parent/addchild")}>
                 Add child
               </span>
-              <span onClick={(e) => navigate("/AddSubjectData/" + _id)}>
+              <span onClick={(e) => navigate("/parent/AddSubjectData/" + _id)}>
                 Add Subject
               </span>
               <span onClick={(e) => navigate("/parent/asigntask")}>

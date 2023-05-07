@@ -22,7 +22,7 @@ const DataSelectList = ({ data, setChecked, checked, setmainSelection }) => {
   return (
     <List
       className="border-2 shadow-inner"
-      sx={{ minHeight: "15rem", maxHeight: "21rem", my: 3, overflow: "auto" }}
+      sx={{ minHeight: "12rem", maxHeight: "18rem", my: 3, overflow: "auto" }}
     >
       {data?.length === 0 && (
         <span className="block mx-auto mt-16 w-fit">No items found !</span>

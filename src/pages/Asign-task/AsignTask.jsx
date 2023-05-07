@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import SimpleNav from "./../../components/SimpleNav/SimpleNav";
 import SelectChild from "../../components/asign-task-pages/SelectChild";
 import "./AsignTask.css";
@@ -10,23 +10,13 @@ import SelectGame from "./../../components/asign-task-pages/SelectGame";
 import DataPreview from "./../../components/asign-task-pages/DataPreview";
 import { useDispatch, useSelector } from "react-redux";
 import { asignTask, setLoading } from "../../store/slices/questionsDataSlice";
-import Loading from "./../../components/Full-loading/FullLoading";
 import toast from "react-hot-toast";
+import Loading from "../../components/Full-loading/FullLoading";
 const AsignTask = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { errorHappen, loading } = useSelector(
-    (store) => store.questionsDataSlice
-  );
-
+  const { _id } = useSelector((store) => store.userSlice);
   // cancel loading when component unmount (user navigate to another page)
-  const isMountedRef = useRef(true);
-  useEffect(() => {
-    return () => {
-      isMountedRef.current = false;
-      setLoading(false);
-    };
-  }, []);
 
   const steps = [
     "select child",
@@ -36,7 +26,6 @@ const AsignTask = () => {
     "Select data",
   ];
   const [activeStep, setactiveStep] = useState(0);
-  const [switchResult, setSwitchResult] = useState(null);
   const [dataSource, setdataSource] = useState("previous");
   const [subjectName, setSubjectName] = useState("english");
   const [selectedGrade, setselectedGrade] = useState(1);
@@ -44,50 +33,13 @@ const AsignTask = () => {
   const [selectedChildrens, setselectedChildrens] = useState([]);
   const [selectetedData, setSelectedData] = useState([]);
   const [enableBTN, setEnableBTN] = useState(false);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
-    const switchCase = () => {
-      switch (activeStep) {
-        case 0:
-          return (
-            <SelectChild
-              setselectedGrade={setselectedGrade}
-              setselectedChildrens={setselectedChildrens}
-              setEnableBTN={setEnableBTN}
-            />
-          );
-        case 1:
-          return (
-            <SelectSubject
-              setSubjectName={setSubjectName}
-              selectGrade={false}
-            />
-          );
-        case 2:
-          return <SelectGame setgames={setgames} setEnableBTN={setEnableBTN} />;
-        case 3:
-          return (
-            <DataSource dataSource={dataSource} setdataSource={setdataSource} />
-          );
-        case 4:
-          return (
-            <DataPreview
-              selectedGrade={selectedGrade}
-              subjectName={subjectName}
-              setSelectedData={setSelectedData}
-              setEnableBTN={setEnableBTN}
-            />
-          );
-        case 5:
-          return "";
-        default:
-          return "";
-      }
-    };
-    setSwitchResult(switchCase);
+    activeStep === 4 && setEnableBTN(false);
   }, [activeStep]);
-
   const nextHandler = () => {
     if (activeStep === 4) {
+      setLoading(true);
       const selectetedDataObj = {};
       for (let i = 0; i < selectetedData.length; i++) {
         const key = `id${i + 1}`;
@@ -105,33 +57,66 @@ const AsignTask = () => {
         dispatch(asignTask({ data, _id: childId }))
           .unwrap()
           .then(() => {
+            setLoading(false);
             toast.success("Task Asigned Successfully!");
           })
           .catch((err) => {
+            setLoading(false);
             toast.error("Something went wrong!");
           });
       });
       // navigate("/parent/my-children");
+    } else if (activeStep === 3 && dataSource === "new") {
+      navigate("/parent/AddSubjectData/" + _id);
     } else {
       setactiveStep(activeStep < 4 ? activeStep + 1 : activeStep);
     }
   };
-
+  const prevHandler = () => {
+    setEnableBTN(true);
+    setactiveStep(activeStep !== 0 ? activeStep - 1 : activeStep);
+  };
   return (
     <div className="asign-task">
       <SimpleNav />
       <div className="asign-task-wrapper">
         <InputStepper steps={steps} activeStep={activeStep} />
         <div className="page">
-          {switchResult}
+          <div className={activeStep === 0 ? ` block ` : ` hidden`}>
+            <SelectChild
+              setselectedGrade={setselectedGrade}
+              setselectedChildrens={setselectedChildrens}
+              setEnableBTN={setEnableBTN}
+            />
+          </div>
+          <div className={activeStep === 1 ? ` block ` : ` hidden`}>
+            <SelectSubject
+              setSubjectName={setSubjectName}
+              selectGrade={false}
+            />
+          </div>
+          <div className={activeStep === 2 ? ` block ` : ` hidden`}>
+            <SelectGame
+              setgames={setgames}
+              setEnableBTN={setEnableBTN}
+              subjectName={subjectName}
+            />
+          </div>
+          <div className={activeStep === 3 ? ` block ` : ` hidden`}>
+            <DataSource dataSource={dataSource} setdataSource={setdataSource} />
+          </div>
+          <div className={activeStep === 4 ? ` block ` : ` hidden`}>
+            <DataPreview
+              selectedGrade={selectedGrade}
+              subjectName={subjectName}
+              setSelectedData={setSelectedData}
+              setEnableBTN={setEnableBTN}
+            />
+          </div>
+
           <div className="btns">
             {activeStep > 0 && (
-              <button
-                className="previous"
-                onClick={() =>
-                  setactiveStep(activeStep !== 0 ? activeStep - 1 : activeStep)
-                }
-              >
+              <button className="previous" onClick={prevHandler}>
                 <span>Previous</span>
               </button>
             )}

@@ -1,26 +1,23 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
 import "./SelectSubject.css";
 import SelectGrade from "../Select-grade/SelectGrade";
 const SelectSubject = ({ setChildGrade, setSubjectName, selectGrade }) => {
-  const selectedSubject = (e, subject) => {
-    setSubjectName(subject);
-    document.querySelectorAll("#subjects div").forEach((subject) => {
-      subject.style.outline = "none";
-    });
-    e.target.parentElement.style.outline = "5px solid #ff5c0b";
+  const [subject, setSubject] = useState("english");
+  const selectedSubject = (title) => {
+    setSubjectName(title);
+    setSubject(title);
   };
 
   const Subject = ({ title, img }) => {
     return (
-      <motion.div
-        onClick={(e) => selectedSubject(e, title)}
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        className={title}
+      <div
+        onClick={() => selectedSubject(title)}
+        className={
+          subject === title ? " outline-4 outline-[#ff5c0b] outline" : ""
+        }
       >
         <img src={`/assets/images/${img}`} alt="" />
-      </motion.div>
+      </div>
     );
   };
   return (

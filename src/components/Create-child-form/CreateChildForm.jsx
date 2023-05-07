@@ -12,12 +12,13 @@ import toast from "react-hot-toast";
 import Loading from "./../Full-loading/FullLoading";
 const CreateChildForm = ({ setuserName, setpassword, setsuccess }) => {
   const dispatch = useDispatch();
-  const { loading } = useSelector((store) => store.userSlice);
   const [name, setname] = useState("");
   const [childGrade, setchildGrade] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const onsubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
     const username = name + v4().slice(0, 4);
     const password = v4().slice(0, 6);
     const data = {
@@ -30,6 +31,7 @@ const CreateChildForm = ({ setuserName, setpassword, setsuccess }) => {
     dispatch(createChildAccount(data))
       .unwrap()
       .then((action) => {
+        setLoading(false);
         toast.success("Account created successfully");
         dispatch(addChildren(action.student));
         setuserName(username);
@@ -37,6 +39,7 @@ const CreateChildForm = ({ setuserName, setpassword, setsuccess }) => {
         setsuccess(true);
       })
       .catch((err) => {
+        setLoading(false);
         toast.error("Something went wrong");
       });
   };

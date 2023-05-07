@@ -58,7 +58,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/AddSubjectData/:_id",
+    path: "/parent/AddSubjectData/:_id",
     element: (
       <LoginReq>
         <AddSubjectData />

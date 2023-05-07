@@ -9,13 +9,15 @@ import Loading from "./../Full-loading/FullLoading";
 
 const ChildGrade = ({ setpage, name, setuserName, setpassword }) => {
   const dispatch = useDispatch();
-  const { loading } = useSelector((store) => store.userSlice);
   const [childGrade, setChildGrade] = useState("");
   const [errorMessage, seterrorMessage] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const onSubmit = (e) => {
     e.preventDefault();
+
     if (childGrade) {
+      setLoading(true);
       const username = name + v4().slice(0, 4);
       const password = v4().slice(0, 6);
       const data = {
@@ -28,6 +30,7 @@ const ChildGrade = ({ setpage, name, setuserName, setpassword }) => {
       dispatch(createChildAccount(data))
         .unwrap()
         .then((action) => {
+          setLoading(false);
           dispatch(addChildren(action.student));
           setuserName(username);
           setpassword(password);
@@ -35,6 +38,7 @@ const ChildGrade = ({ setpage, name, setuserName, setpassword }) => {
           setpage(4);
         })
         .catch((err) => {
+          setLoading(false);
           toast.error("Something went wrong");
         });
     } else {
