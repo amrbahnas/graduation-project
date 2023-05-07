@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 // react router
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { loginAccount } from "../..//store/slices/userSlice";
+import { loginAccount, setLoading } from "../../store/slices/userSlice";
 // css
 import "./Log-in.css";
 // mui
@@ -11,10 +11,19 @@ import LinearProgress from "@mui/material/LinearProgress";
 import { FacebookIcon, GoogleIcon, AppleIcon } from "../../utils/icons";
 // components
 import LoginSignupNav from "../../components/login-signup-nav/LoginSignupNav";
+import toast from "react-hot-toast";
 const LogIn = () => {
   // initialize
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const isMountedRef = useRef(true);
+  useEffect(() => {
+    return () => {
+      isMountedRef.current = false;
+      setLoading(false);
+    };
+  }, []);
+
   //   //  check validation states
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
@@ -32,13 +41,14 @@ const LogIn = () => {
     dispatch(loginAccount(data))
       .unwrap()
       .then((action) => {
+        toast.success("welcome back");
         if (action.children.length === 0) {
           navigate("/parent/add-first-child");
         } else {
           navigate("/parent/my-children");
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => toast.error("check the email or password"));
   };
 
   return (

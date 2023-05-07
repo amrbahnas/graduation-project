@@ -8,6 +8,8 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import toast from "react-hot-toast";
+import Loading from "./../Full-loading/FullLoading";
 const CreateChildForm = ({ setuserName, setpassword, setsuccess }) => {
   const dispatch = useDispatch();
   const { loading } = useSelector((store) => store.userSlice);
@@ -25,18 +27,24 @@ const CreateChildForm = ({ setuserName, setpassword, setsuccess }) => {
       password,
       age: 10,
     };
-    dispatch(createChildAccount(data)).then((action) => {
-      dispatch(addChildren(action.payload.student));
-      setuserName(username);
-      setpassword(password);
-      setsuccess(true);
-    });
+    dispatch(createChildAccount(data))
+      .unwrap()
+      .then((action) => {
+        toast.success("Account created successfully");
+        dispatch(addChildren(action.student));
+        setuserName(username);
+        setpassword(password);
+        setsuccess(true);
+      })
+      .catch((err) => {
+        toast.error("Something went wrong");
+      });
   };
   return (
     <div className="create-child-form">
       <div className="wrapper">
         <div className="image">
-          <img src="assets/images/blankChild.svg" alt="" />
+          <img src="/assets/images/blankChild.svg" alt="" />
         </div>
         <div className="heading">
           <span>Create your child an account</span>
@@ -84,6 +92,7 @@ const CreateChildForm = ({ setuserName, setpassword, setsuccess }) => {
           </button>
         </form>
       </div>
+      {loading && <Loading />}
     </div>
   );
 };

@@ -6,10 +6,9 @@ export const addChildQuestions = createAsyncThunk(
   "quetions/addChildQuestions",
   async (word, thunkAPI) => {
     const { rejectWithValue, getState } = thunkAPI;
-    // console.log(word);
+
     const { _id } = getState().userSlice;
     const formdata = new FormData();
-    console.log(word);
     formdata.append("grade", word.stadge);
     formdata.append("subject", word.subjectName);
     formdata.append("number", word.number);
@@ -96,6 +95,9 @@ export const questionsDataSlice = createSlice({
   name: "quetions",
   initialState,
   reducers: {
+    setLoading: (state, action) => {
+      state.loading = action.payload;
+    },
     setdataIsSend: (state, action) => {
       state.dataIsSend = action.payload;
     },
@@ -114,13 +116,11 @@ export const questionsDataSlice = createSlice({
       state.loading = false;
       state.errorHappen = false;
       state.dataIsSend = true;
-      console.log(action.payload);
     },
     [addChildQuestions.rejected]: (state, action) => {
       state.loading = false;
       state.dataIsSend = false;
       state.errorHappen = true;
-      console.log("addChildQuestions rejected", action.payload);
     },
 
     // // get Question
@@ -132,13 +132,11 @@ export const questionsDataSlice = createSlice({
     [getChildQuestions.fulfilled]: (state, action) => {
       state.loading = false;
       state.errorHappen = false;
-      // console.log(action.payload);
       state.english = action.payload.question;
     },
     [getChildQuestions.rejected]: (state, action) => {
       state.loading = false;
       state.errorHappen = true;
-      console.log("sad", action.payload);
     },
     // //  asignTask
     [asignTask.pending]: (state) => {
@@ -149,12 +147,10 @@ export const questionsDataSlice = createSlice({
     [asignTask.fulfilled]: (state, action) => {
       state.loading = false;
       state.errorHappen = false;
-      console.log("feedback", action.payload);
     },
     [asignTask.rejected]: (state, action) => {
       state.loading = false;
       state.errorHappen = true;
-      console.log("sad", action.payload);
     },
     // //  getQuestionsFeedback
     [getQuestionsFeedback.pending]: (state) => {
@@ -165,16 +161,15 @@ export const questionsDataSlice = createSlice({
     [getQuestionsFeedback.fulfilled]: (state, action) => {
       state.loading = false;
       state.errorHappen = false;
-      console.log("feedback", action.payload);
       state.feedBack = action.payload;
     },
     [getQuestionsFeedback.rejected]: (state, action) => {
       state.loading = false;
       state.errorHappen = true;
-      console.log("sad", action.payload);
     },
   },
 });
 
-export const { setdataIsSend, seterrorHappen } = questionsDataSlice.actions;
+export const { setdataIsSend, seterrorHappen, setLoading } =
+  questionsDataSlice.actions;
 export default questionsDataSlice.reducer;

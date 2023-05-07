@@ -74,6 +74,9 @@ export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
+    setLoading: (state, action) => {
+      state.loading = action.payload;
+    },
     setLoginState: (state, action) => {
       state.login = action.payload;
     },
@@ -173,6 +176,7 @@ export const userSlice = createSlice({
 });
 
 export const {
+  setLoading,
   setLoginState,
   setParentName,
   setParentMail,

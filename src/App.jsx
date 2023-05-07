@@ -1,5 +1,6 @@
 import { store, persistor } from "./store/index.jsx";
 import { Provider } from "react-redux";
+import { Toaster } from "react-hot-toast";
 import { PersistGate } from "redux-persist/integration/react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -69,7 +70,7 @@ const router = createBrowserRouter([
     path: "/login",
     element: (
       <LoginNotReq>
-        <LogIn />,
+        <LogIn />
       </LoginNotReq>
     ),
   },
@@ -77,7 +78,7 @@ const router = createBrowserRouter([
     path: "/signup",
     element: (
       <LoginNotReq>
-        <SignUp />,
+        <SignUp />
       </LoginNotReq>
     ),
   },
@@ -85,7 +86,7 @@ const router = createBrowserRouter([
     path: "/forget-password",
     element: (
       <LoginNotReq>
-        <ForgotPassword />,
+        <ForgotPassword />
       </LoginNotReq>
     ),
   },
@@ -141,7 +142,7 @@ const router = createBrowserRouter([
     path: "/loading",
     element: (
       <LoginReq>
-        <ProcessLoading />,
+        <ProcessLoading />
       </LoginReq>
     ),
   },
@@ -153,6 +154,7 @@ function App() {
       <PersistGate loading={null} persistor={persistor}>
         <ThemeProvider theme={theme}>
           <RouterProvider router={router} />
+          <Toaster />
         </ThemeProvider>
       </PersistGate>
     </Provider>

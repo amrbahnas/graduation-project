@@ -19,7 +19,7 @@ const childAccountCreated = ({ userName, password }) => {
           </span>
         </div>
         <div className="image">
-          <img src="assets/images/happyStarExtra.png" alt="" />
+          <img src="/assets/images/happyStarExtra.png" alt="" />
         </div>
         <form action="" onSubmit={onSubmit}>
           <div className="input">

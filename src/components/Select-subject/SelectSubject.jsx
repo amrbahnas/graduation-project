@@ -2,8 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import "./SelectSubject.css";
 import SelectGrade from "../Select-grade/SelectGrade";
-const SelectSubject = ({ setgrade, setSubjectName, selectGrade }) => {
-  const [childGrade, setchildGrade] = useState(1);
+const SelectSubject = ({ setChildGrade, setSubjectName, selectGrade }) => {
   const selectedSubject = (e, subject) => {
     setSubjectName(subject);
     document.querySelectorAll("#subjects div").forEach((subject) => {
@@ -20,19 +19,13 @@ const SelectSubject = ({ setgrade, setSubjectName, selectGrade }) => {
         animate={{ scale: 1 }}
         className={title}
       >
-        <img src={`../../../public/assets/images/${img}`} alt="" />
+        <img src={`/assets/images/${img}`} alt="" />
       </motion.div>
     );
   };
   return (
     <div className="select-subject">
-      {selectGrade && (
-        <SelectGrade
-          childGrade={childGrade}
-          setchildGrade={setchildGrade}
-          setgrade={setgrade}
-        />
-      )}
+      {selectGrade && <SelectGrade setChildGrade={setChildGrade} />}
 
       <div className="wrapper" id="subjects">
         <Subject title={"arabic"} img={"arabic.jpg"} />

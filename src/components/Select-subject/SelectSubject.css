@@ -2,7 +2,7 @@
   @apply w-full;
 }
 .select-subject .wrapper {
-  @apply block  md:grid grid-cols-3  w-full  gap-4  p-4 my-10;
+  @apply block  sm:grid grid-cols-3  w-full  gap-4  p-4 my-10;
 }
 
 .select-subject .wrapper div {

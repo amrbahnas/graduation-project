@@ -8,7 +8,6 @@ import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 
 /******************************start********************************** */
 const AddEnglishData = ({ setSubjectData }) => {
-  // console.log(oldWords);
   const [editWord, seteditWord] = useState({ state: false, _id: "" });
   const [enteredWords, setenteredWords] = useState([]);
   const [previewImage, setpreviewImage] = useState(null);

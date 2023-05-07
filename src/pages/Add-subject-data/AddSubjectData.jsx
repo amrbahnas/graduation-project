@@ -6,23 +6,19 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addChildQuestions } from "../../store/slices/questionsDataSlice";
 import { seterrorHappen } from "../../store/slices/questionsDataSlice";
-// mui
-import Snackbar from "@mui/material/Snackbar";
-import MuiAlert from "@mui/material/Alert";
 // component
 import InputStepper from "../../components/InputStepper/InputStepper";
 import SimpleNav from "./../../components/SimpleNav/SimpleNav";
 import SelectSubject from "./../../components/Select-subject/SelectSubject";
-import SelectFolder from "./../../components/Select-data-folder/SelectFolder";
 import AddEnglishData from "./../../components/Add-english-data/AddEnglishData";
 import SuccessCheck from "./../../components/SuccessCheck/SuccessCheck";
+import Loading from "../../components/Full-loading/FullLoading";
+import { toast } from "react-hot-toast";
 const AddSubjectData = () => {
   // variables
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const Alert = React.forwardRef(function Alert(props, ref) {
-    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-  });
+
   const { loading, dataIsSend, errorHappen } = useSelector(
     (store) => store.questionsDataSlice
   );
@@ -32,13 +28,13 @@ const AddSubjectData = () => {
   const [subjectName, setSubjectName] = useState("");
   const [subjectData, setSubjectData] = useState([]);
   // const [folderNumber, setfolderNumber] = useState(1);
-  const [grade, setgrade] = useState(1);
+  const [childGrade, setChildGrade] = useState(1);
   const nextHandler = () => {
     if (activeStep === 1) {
       const questions = subjectData.map((subject) => ({
         _id: subject._id,
         subjectName,
-        stadge: grade,
+        stadge: childGrade,
         number: "1",
         image: subject.wordImage,
         definitionInEn: subject.definitionInEn,
@@ -46,9 +42,16 @@ const AddSubjectData = () => {
         sentence: subject.sentence,
       }));
       questions.forEach((word) => {
-        dispatch(addChildQuestions(word));
+        dispatch(addChildQuestions(word))
+          .unwrap()
+          .then(() => {
+            toast.success("data added successfully");
+          })
+          .catch((err) => {
+            toast.error("something went wrong");
+          });
       });
-      navigate("/parent/my-children");
+      // navigate("/parent/my-children");
     } else {
       setactiveStep(activeStep < 1 ? activeStep + 1 : activeStep);
     }
@@ -60,7 +63,7 @@ const AddSubjectData = () => {
         case 0:
           return (
             <SelectSubject
-              setgrade={setgrade}
+              setChildGrade={setChildGrade}
               setSubjectName={setSubjectName}
               selectGrade={true}
             />
@@ -97,15 +100,8 @@ const AddSubjectData = () => {
           </div>
         </div>
       </div>
-      {dataIsSend && <SuccessCheck />}
 
-      <Snackbar
-        open={errorHappen}
-        autoHideDuration={6000}
-        onClose={(e) => dispatch(seterrorHappen(false))}
-      >
-        <Alert severity="error">error try again</Alert>
-      </Snackbar>
+      {loading && <Loading />}
     </div>
   );
 };

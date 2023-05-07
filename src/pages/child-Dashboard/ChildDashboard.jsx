@@ -83,7 +83,7 @@ const ChildDashboard = () => {
                       able to see what they have worked on here.
                     </span>
                     <button>
-                      <span>Add Tasks</span>
+                      <Link to="/parent/asigntask">Add Task</Link>
                     </button>
                   </div>
                 )}

@@ -1,7 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Common.css";
-const SelectGame = ({ setgames }) => {
+const SelectGame = ({ setgames, setEnableBTN }) => {
   const [selectedGames, setselectedGames] = useState([]);
+
+  useEffect(() => {
+    if (selectedGames.length > 0) {
+      setEnableBTN(true);
+    } else {
+      setEnableBTN(false);
+    }
+  }, [selectedGames]);
+
   const addGameToSelected = (id) => {
     setselectedGames((prevIds) =>
       prevIds.includes(id)
@@ -14,7 +23,6 @@ const SelectGame = ({ setgames }) => {
         : [...prevIds, id]
     );
   };
-  console.log(selectedGames);
 
   const Cart = ({ game, id }) => {
     const [isSelected, setIsSelected] = useState(false);
@@ -32,7 +40,7 @@ const SelectGame = ({ setgames }) => {
           outline: selectedGames.includes(id) ? "4px solid #ff5c0b" : "none",
         }}
       >
-        <img src={`../../../public/assets/images/games/${game}.jpeg`} alt="" />
+        <img src={`/assets/images/games/${game}.jpeg`} alt="" />
         <span className="title">{game}</span>
       </div>
     );

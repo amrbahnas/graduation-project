@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import SimpleNav from "./../../components/SimpleNav/SimpleNav";
 import SelectChild from "../../components/asign-task-pages/SelectChild";
 import "./AsignTask.css";
@@ -9,11 +9,25 @@ import DataSource from "../../components/asign-task-pages/DataSource";
 import SelectGame from "./../../components/asign-task-pages/SelectGame";
 import DataPreview from "./../../components/asign-task-pages/DataPreview";
 import { useDispatch, useSelector } from "react-redux";
-import { asignTask } from "../../store/slices/questionsDataSlice";
+import { asignTask, setLoading } from "../../store/slices/questionsDataSlice";
+import Loading from "./../../components/Full-loading/FullLoading";
+import toast from "react-hot-toast";
 const AsignTask = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { errorHappen } = useSelector((store) => store.questionsDataSlice);
+  const { errorHappen, loading } = useSelector(
+    (store) => store.questionsDataSlice
+  );
+
+  // cancel loading when component unmount (user navigate to another page)
+  const isMountedRef = useRef(true);
+  useEffect(() => {
+    return () => {
+      isMountedRef.current = false;
+      setLoading(false);
+    };
+  }, []);
+
   const steps = [
     "select child",
     "Subject",
@@ -29,15 +43,16 @@ const AsignTask = () => {
   const [games, setgames] = useState([]);
   const [selectedChildrens, setselectedChildrens] = useState([]);
   const [selectetedData, setSelectedData] = useState([]);
+  const [enableBTN, setEnableBTN] = useState(false);
   useEffect(() => {
     const switchCase = () => {
       switch (activeStep) {
         case 0:
           return (
             <SelectChild
-              selectedGrade={selectedGrade}
               setselectedGrade={setselectedGrade}
               setselectedChildrens={setselectedChildrens}
+              setEnableBTN={setEnableBTN}
             />
           );
         case 1:
@@ -48,7 +63,7 @@ const AsignTask = () => {
             />
           );
         case 2:
-          return <SelectGame setgames={setgames} />;
+          return <SelectGame setgames={setgames} setEnableBTN={setEnableBTN} />;
         case 3:
           return (
             <DataSource dataSource={dataSource} setdataSource={setdataSource} />
@@ -59,6 +74,7 @@ const AsignTask = () => {
               selectedGrade={selectedGrade}
               subjectName={subjectName}
               setSelectedData={setSelectedData}
+              setEnableBTN={setEnableBTN}
             />
           );
         case 5:
@@ -72,28 +88,35 @@ const AsignTask = () => {
 
   const nextHandler = () => {
     if (activeStep === 4) {
-      console.log("done");
       const selectetedDataObj = {};
       for (let i = 0; i < selectetedData.length; i++) {
         const key = `id${i + 1}`;
         selectetedDataObj[key] = selectetedData[i];
       }
       const data = {
-        taskno: 2,
+        taskno: 3,
         gamename: games,
-        // subjectName,
+        subject: subjectName,
         // selectedGrade,
         ...selectetedDataObj,
       };
 
       selectedChildrens.forEach((childId) => {
-        dispatch(asignTask({ data, _id: childId }));
+        dispatch(asignTask({ data, _id: childId }))
+          .unwrap()
+          .then(() => {
+            toast.success("Task Asigned Successfully!");
+          })
+          .catch((err) => {
+            toast.error("Something went wrong!");
+          });
       });
       // navigate("/parent/my-children");
     } else {
       setactiveStep(activeStep < 4 ? activeStep + 1 : activeStep);
     }
   };
+
   return (
     <div className="asign-task">
       <SimpleNav />
@@ -112,12 +135,17 @@ const AsignTask = () => {
                 <span>Previous</span>
               </button>
             )}
-            <button onClick={nextHandler}>
+            <button
+              onClick={nextHandler}
+              disabled={!enableBTN}
+              className=" disabled:opacity-50 disabled:cursor-not-allowed "
+            >
               <span>{activeStep === 4 ? "Submit" : "Next"}</span>
             </button>
           </div>
         </div>
       </div>
+      {loading && <Loading />}
     </div>
   );
 };

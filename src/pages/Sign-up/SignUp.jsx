@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { createParentAccount } from "../..//store/slices/userSlice";
+import { createParentAccount, setLoading } from "../../store/slices/userSlice";
 // mui
 import LinearProgress from "@mui/material/LinearProgress";
 // formik
@@ -18,10 +18,19 @@ import {
 // css
 import "./SignUp.css";
 import LoginSignupNav from "../../components/login-signup-nav/LoginSignupNav";
+import toast from "react-hot-toast";
 const SignUp = () => {
   // initialize
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  // cancel loading when component unmount (user navigate to another page)
+  const isMountedRef = useRef(true);
+  useEffect(() => {
+    return () => {
+      isMountedRef.current = false;
+      setLoading(false);
+    };
+  }, []);
   //   //  check validation states
   const initialValues = {
     name: "",
@@ -43,9 +52,10 @@ const SignUp = () => {
     dispatch(createParentAccount(data))
       .unwrap()
       .then((action) => {
+        toast.success("signup successfully ");
         navigate("/parent/add-first-child");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => toast.error("something went wrong"));
   };
   return (
     <div className="signup-page">
@@ -157,7 +167,7 @@ const SignUp = () => {
                   type="submit"
                   value={loading ? "loading" : "create account"}
                   name="commit"
-                  disabled={isSubmitting}
+                  disabled={loading}
                 />
               </Form>
             )}

@@ -58,7 +58,7 @@ const ChildrenNavMenu = ({ position }) => {
                 {child.studentName}
               </span>
             ))}
-          <span onClick={(e) => navigate("/addchild")}>
+          <span onClick={(e) => navigate("/parent/addchild")}>
             <AddCircleOutlineOutlinedIcon />
             <span>Add child</span>
           </span>

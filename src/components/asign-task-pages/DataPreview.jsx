@@ -3,12 +3,26 @@ import "./Common.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getChildQuestions } from "../../store/slices/questionsDataSlice";
 import DataSelectList from "../Data-select-list/DataSelectList";
-const DataPreview = ({ subjectName, selectedGrade, setSelectedData }) => {
+import toast from "react-hot-toast";
+const DataPreview = ({
+  subjectName,
+  selectedGrade,
+  setSelectedData,
+  setEnableBTN,
+}) => {
   const dispatch = useDispatch();
   const { loading } = useSelector((store) => store.questionsDataSlice);
   const [subjecyData, setsubjectData] = useState([]);
   const [checked, setChecked] = useState([]);
-  console.log(subjecyData);
+
+  useEffect(() => {
+    if (checked.length === 6) {
+      setEnableBTN(true);
+    } else {
+      setEnableBTN(false);
+    }
+  }, [checked]);
+
   useEffect(() => {
     const data = {
       grade: selectedGrade,
@@ -20,18 +34,20 @@ const DataPreview = ({ subjectName, selectedGrade, setSelectedData }) => {
         setsubjectData(action);
       })
       .catch((error) => {
-        console.log(error);
+        toast.error("something went wrong");
       });
   }, [dispatch]);
   return (
     <div style={{ minHeight: "200px" }}>
       {loading ? (
-        <img
+        <span></span>
+      ) : (
+        /* <img
           src="/assets/svg/loading.svg"
           className=" w-5 h-5 mx-auto mt-32"
           alt=""
-        />
-      ) : (
+        /> */
+
         <DataSelectList
           data={subjecyData}
           checked={checked}

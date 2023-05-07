@@ -4,11 +4,13 @@ import { addChildren, createChildAccount } from "../../store/slices/userSlice";
 import "./CommonStyle.css";
 import { v4 } from "uuid";
 import SelectGrade from "../Select-grade/SelectGrade";
+import toast from "react-hot-toast";
+import Loading from "./../Full-loading/FullLoading";
 
 const ChildGrade = ({ setpage, name, setuserName, setpassword }) => {
   const dispatch = useDispatch();
   const { loading } = useSelector((store) => store.userSlice);
-  const [childGrade, setchildGrade] = useState("");
+  const [childGrade, setChildGrade] = useState("");
   const [errorMessage, seterrorMessage] = useState(false);
 
   const onSubmit = (e) => {
@@ -23,13 +25,18 @@ const ChildGrade = ({ setpage, name, setuserName, setpassword }) => {
         password,
         age: 10,
       };
-      dispatch(createChildAccount(data)).then((action) => {
-        dispatch(addChildren(action.payload.student));
-        setuserName(username);
-        setpassword(password);
-        seterrorMessage(false);
-        setpage(4);
-      });
+      dispatch(createChildAccount(data))
+        .unwrap()
+        .then((action) => {
+          dispatch(addChildren(action.student));
+          setuserName(username);
+          setpassword(password);
+          seterrorMessage(false);
+          setpage(4);
+        })
+        .catch((err) => {
+          toast.error("Something went wrong");
+        });
     } else {
       seterrorMessage(true);
     }
@@ -46,7 +53,7 @@ const ChildGrade = ({ setpage, name, setuserName, setpassword }) => {
         <span className="title">What grade is {name} in?</span>
         <form onSubmit={onSubmit}>
           <span className="label">Select your child's current grade</span>
-          <SelectGrade setchildGrade={setchildGrade} childGrade={childGrade} />
+          <SelectGrade setChildGrade={setChildGrade} childGrade={childGrade} />
           <span>
             You can always override the grade later if {name} needs a different
             level of Math challenges.
@@ -71,6 +78,7 @@ const ChildGrade = ({ setpage, name, setuserName, setpassword }) => {
             </a>
           </div>
         </form>
+        {loading && <Loading />}
       </div>
     </>
   );

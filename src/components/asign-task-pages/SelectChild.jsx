@@ -4,26 +4,37 @@ import "./Common.css";
 import { useSelector } from "react-redux";
 import SelectGrade from "../Select-grade/SelectGrade";
 import DataSelectList from "../Data-select-list/DataSelectList";
-const SelectChild = ({ setselectedGrade, setselectedChildrens }) => {
+const SelectChild = ({
+  setselectedGrade,
+  setselectedChildrens,
+  setEnableBTN,
+}) => {
   const { children } = useSelector((store) => store.userSlice);
   const [checked, setChecked] = useState([]);
   const [previewChildren, setpreviewChildren] = useState([]);
-  const [childGrade, setchildGrade] = useState(1);
+
   useEffect(() => {
-    // setpreviewChildren(children.filter((child) => child?.grade === childGrade));
+    if (checked.length > 0) {
+      setEnableBTN(true);
+    } else {
+      setEnableBTN(false);
+    }
+  }, [checked]);
+
+  useEffect(() => {
+    setChecked([]);
+  }, [previewChildren]);
+
+  const setChildGradeHandler = (value) => {
+    setselectedGrade(value);
     setpreviewChildren(
-      children.filter((child) => child.studentGrade === childGrade)
+      children.filter((child) => child.studentGrade === value)
     );
-    setselectedGrade(childGrade);
-  }, [childGrade]);
+  };
 
   return (
     <div className="select-children">
-      <SelectGrade
-        childGrade={childGrade}
-        setchildGrade={setchildGrade}
-        setgrade={() => {}}
-      />
+      <SelectGrade setChildGrade={(value) => setChildGradeHandler(value)} />
       <DataSelectList
         data={previewChildren}
         checked={checked}
