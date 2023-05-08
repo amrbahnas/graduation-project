@@ -6,15 +6,7 @@ const ProtectedRoutes = ({ children }) => {
     (store) => store.userSlice
   );
 
-  return login ? (
-    parentChildren.length === 0 && children.type.name !== "AddFirstChild" ? (
-      <Navigate to="/parent/add-first-child" />
-    ) : (
-      children
-    )
-  ) : (
-    <Navigate to={"/login"} />
-  );
+  return login ? children : <Navigate to={"/login"} />;
 };
 
 export default ProtectedRoutes;
