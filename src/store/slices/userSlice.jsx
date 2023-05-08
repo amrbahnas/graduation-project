@@ -117,6 +117,7 @@ export const userSlice = createSlice({
     [createParentAccount.fulfilled]: (state, action) => {
       state.loading = false;
       state.error = false;
+
       if (action.payload.parent.status.includes("successfully")) {
         const { _id, parentName, parentAge, parentMail } =
           action.payload.parent;
@@ -156,6 +157,7 @@ export const userSlice = createSlice({
       state.error = false;
     },
     [loginAccount.fulfilled]: (state, action) => {
+      console.log("slice");
       state.loading = false;
       state.error = false;
       if (action.payload.parent) {

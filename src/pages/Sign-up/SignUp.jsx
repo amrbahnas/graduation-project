@@ -45,9 +45,12 @@ const SignUp = () => {
     dispatch(createParentAccount(data))
       .unwrap()
       .then((action) => {
-        setLoading(false);
-        toast.success("signup successfully ");
-        navigate("/parent/add-first-child");
+        console.log(action);
+        if (action?.parent?.status.includes("successfully")) {
+          setLoading(false);
+          toast.success("signup successfully ");
+          navigate("/parent/add-first-child");
+        }
       })
       .catch((err) => {
         setLoading(false);

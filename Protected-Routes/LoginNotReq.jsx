@@ -7,8 +7,6 @@ const LoginNotReq = ({ children }) => {
     (store) => store.userSlice
   );
 
-  return children;
-
   return login ? (
     parentChildren.length === 0 ? (
       <Navigate to="/parent/add-first-child" />
