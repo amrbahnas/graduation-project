@@ -120,12 +120,12 @@ export const userSlice = createSlice({
       if (action.payload.parent.status.includes("successfully")) {
         const { _id, parentName, parentAge, parentMail } =
           action.payload.parent;
-        state.login = true;
         state._id = _id;
         state.parentName = parentName;
         state.parentMail = parentMail;
         /**************************** */
         state.children = [];
+        state.login = true;
       }
     },
     [createParentAccount.rejected]: (state, action) => {
