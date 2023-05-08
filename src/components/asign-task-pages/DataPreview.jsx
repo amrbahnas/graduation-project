@@ -10,6 +10,7 @@ const DataPreview = ({
   selectedGrade,
   setSelectedData,
   setEnableBTN,
+  activeStep,
 }) => {
   const dispatch = useDispatch();
   const [subjecyData, setsubjectData] = useState([]);
@@ -25,6 +26,7 @@ const DataPreview = ({
   }, [checked]);
 
   useEffect(() => {
+    if (activeStep !== 4) return;
     setLoading(true);
     const data = {
       grade: selectedGrade,
@@ -38,9 +40,8 @@ const DataPreview = ({
       })
       .catch((error) => {
         setLoading(false);
-        toast.error("something went wrong");
       });
-  }, [dispatch]);
+  }, [dispatch, activeStep]);
   return (
     <div style={{ minHeight: "200px" }}>
       {loading ? (

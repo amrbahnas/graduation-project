@@ -24,6 +24,7 @@ const SignUp = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   //  check validation states
   const initialValues = {
@@ -33,6 +34,7 @@ const SignUp = () => {
   };
 
   const submitHandler = ({ name, email, password }) => {
+    setLoading(true);
     const data = {
       name: name,
       mail: email,
@@ -49,7 +51,8 @@ const SignUp = () => {
       })
       .catch((err) => {
         setLoading(false);
-        toast.error("something went wrong");
+        setError(err.response.data.parent.status);
+        toast.error(err.response.data.parent.status);
       });
   };
   return (
@@ -120,6 +123,7 @@ const SignUp = () => {
                       <ErrorMessage component="span" name="email" />
                     </div>
                   )}
+                  {error && <span className=" text-red-500 ">{error}</span>}
                 </div>
                 <div className="input-form">
                   <label htmlFor="password">Password</label>

@@ -25,7 +25,7 @@ const AddSubjectData = () => {
   const [activeStep, setactiveStep] = useState(0);
   const [switchResult, setSwitchResult] = useState(null);
   const steps = ["Subject", "Data"];
-  const [subjectName, setSubjectName] = useState("");
+  const [subjectName, setSubjectName] = useState("english");
   const [subjectData, setSubjectData] = useState([]);
   // const [folderNumber, setfolderNumber] = useState(1);
   const [childGrade, setChildGrade] = useState(1);
@@ -44,7 +44,7 @@ const AddSubjectData = () => {
       questions.forEach((word) => {
         dispatch(addChildQuestions(word))
           .unwrap()
-          .then(() => {
+          .then((res) => {
             toast.success("data added successfully");
           })
           .catch((err) => {

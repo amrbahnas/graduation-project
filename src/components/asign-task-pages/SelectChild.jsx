@@ -25,6 +25,10 @@ const SelectChild = ({
     setChecked([]);
   }, [previewChildren]);
 
+  useEffect(() => {
+    setpreviewChildren(children.filter((child) => child.studentGrade === 1));
+  }, []);
+
   const setChildGradeHandler = (value) => {
     setselectedGrade(value);
     setpreviewChildren(

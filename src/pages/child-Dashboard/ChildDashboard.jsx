@@ -70,7 +70,9 @@ const ChildDashboard = () => {
                         <span>Reordring Tasks</span>
                       </button>
                       <button>
-                        <Link to="/parent/asigntask">Add Task</Link>
+                        <Link to="/parent/asigntask" className=" w-full h-full">
+                          Add Task
+                        </Link>
                       </button>
                     </div>
                   </div>

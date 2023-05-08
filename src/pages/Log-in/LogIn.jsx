@@ -21,8 +21,7 @@ const LogIn = () => {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const [loading, setLoading] = useState(false);
-  //   // get login state
-  const { error } = useSelector((store) => store.userSlice);
+  const [error, setError] = useState(false);
 
   // on click login
   const formHandler = (e) => {
@@ -46,6 +45,7 @@ const LogIn = () => {
       })
       .catch((err) => {
         setLoading(false);
+        setError(true);
         toast.error("check the email or password");
       });
   };

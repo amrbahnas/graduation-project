@@ -111,6 +111,7 @@ const AsignTask = () => {
               subjectName={subjectName}
               setSelectedData={setSelectedData}
               setEnableBTN={setEnableBTN}
+              activeStep={activeStep}
             />
           </div>
 

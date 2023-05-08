@@ -39,7 +39,7 @@ const ChildGrade = ({ setpage, name, setuserName, setpassword }) => {
         })
         .catch((err) => {
           setLoading(false);
-          toast.error("Something went wrong");
+          toast.error("Something went wrong!");
         });
     } else {
       seterrorMessage(true);
