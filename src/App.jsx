@@ -1,4 +1,4 @@
-import { store, persistor } from "./store/index.jsx";
+import { store, persistor } from "./store/index";
 import { Provider } from "react-redux";
 import { Toaster } from "react-hot-toast";
 import { PersistGate } from "redux-persist/integration/react";

@@ -95,6 +95,9 @@ export const userSlice = createSlice({
     addChildren: (state, action) => {
       state.children.push(action.payload);
     },
+    setChildren: (state, action) => {
+      state.children = action.payload;
+    },
     setChildrenQuestions: (state, action) => {
       state.children = action.payload;
     },
@@ -108,72 +111,71 @@ export const userSlice = createSlice({
       state.login = false;
     },
   },
-  extraReducers: {
-    // create parent account
-    [createParentAccount.pending]: (state) => {
-      state.loading = true;
-      state.error = false;
-    },
-    [createParentAccount.fulfilled]: (state, action) => {
-      state.loading = false;
-      state.error = false;
+  extraReducers: (builder) => {
+    builder
+      // create parent account
+      .addCase(createParentAccount.pending, (state) => {
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(createParentAccount.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = false;
 
-      if (action.payload.parent.status.includes("successfully")) {
-        const { _id, parentName, parentAge, parentMail } =
-          action.payload.parent;
-        state._id = _id;
-        state.parentName = parentName;
-        state.parentMail = parentMail;
-        /**************************** */
-        state.children = [];
-        state.login = true;
-      }
-    },
-    [createParentAccount.rejected]: (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-      console.log("sad", action.payload);
-    },
-
-    // create child account
-    [createChildAccount.pending]: (state) => {
-      state.loading = true;
-      state.error = false;
-    },
-    [createChildAccount.fulfilled]: (state, action) => {
-      state.loading = false;
-      state.error = false;
-      console.log("acc created", action.payload);
-    },
-    [createChildAccount.rejected]: (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-      console.log("sad", action.payload);
-    },
-
-    // login
-    [loginAccount.pending]: (state) => {
-      state.loading = true;
-      state.error = false;
-    },
-    [loginAccount.fulfilled]: (state, action) => {
-      console.log("slice");
-      state.loading = false;
-      state.error = false;
-      if (action.payload.parent) {
-        const { _id, parentName, parentMail } = action.payload.parent;
-        state._id = _id;
-        state.parentName = parentName;
-        state.parentMail = parentMail;
-        state.login = true;
-        /**************************** */
-        state.children = action.payload.children;
-      }
-    },
-    [loginAccount.rejected]: (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-    },
+        if (action.payload.parent.status.includes("successfully")) {
+          const { _id, parentName, parentAge, parentMail } =
+            action.payload.parent;
+          state._id = _id;
+          state.parentName = parentName;
+          state.parentMail = parentMail;
+          /**************************** */
+          state.children = [];
+          state.login = true;
+        }
+      })
+      .addCase(createParentAccount.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+        console.log("sad", action.payload);
+      })
+      // create child account
+      .addCase(createChildAccount.pending, (state) => {
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(createChildAccount.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = false;
+        console.log("acc created amr", action.payload);
+      })
+      .addCase(createChildAccount.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+        console.log("sad", action.payload);
+      })
+      // login
+      .addCase(loginAccount.pending, (state) => {
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(loginAccount.fulfilled, (state, action) => {
+        console.log(action.payload.children);
+        state.loading = false;
+        state.error = false;
+        if (action.payload.parent) {
+          const { _id, parentName, parentMail } = action.payload.parent;
+          state._id = _id;
+          state.parentName = parentName;
+          state.parentMail = parentMail;
+          state.login = true;
+          /**************************** */
+          state.children = action.payload.children;
+        }
+      })
+      .addCase(loginAccount.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
   },
 });
 
@@ -185,6 +187,7 @@ export const {
   setParentPic,
   resetUserChildren,
   addChildren,
+  setChildren,
   resetAll,
 } = userSlice.actions;
 export default userSlice.reducer;

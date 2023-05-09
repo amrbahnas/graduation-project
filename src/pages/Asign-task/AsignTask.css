@@ -2,7 +2,7 @@
   @apply max-w-3xl my-10 mx-3 md:mx-auto  bg-white shadow-card pt-6;
 }
 .asign-task .asign-task-wrapper .page {
-  @apply w-full px-6 pb-6;
+  @apply w-full px-2 md:px-4 lg:px-6 pb-6;
 }
 
 .asign-task .asign-task-wrapper .page .btns {

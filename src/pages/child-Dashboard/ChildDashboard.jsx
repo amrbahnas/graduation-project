@@ -1,40 +1,25 @@
 import React, { useEffect } from "react";
+import useTask from "../../hooks/useTask";
 import DashboardNav from "../../components/DashboardNav/DashboardNav";
 import { SpeedIcon, LightbulbIcon } from "../../utils/icons";
 import { Link, useParams, useNavigate } from "react-router-dom";
 /// redux
-import { useSelector, useDispatch } from "react-redux";
-import {
-  getChildQuestions,
-  getQuestionsFeedback,
-} from "../../store/slices/questionsDataSlice";
+import { useSelector } from "react-redux";
 // component
 import TaskCard from "../../components/Task-card/TaskCard";
 import "./ChildDashboard.css";
 const ChildDashboard = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
   const { _id } = useParams();
-  const { children = [], login = false } = useSelector(
+  const { children = [], studentGrade } = useSelector(
     (store) => store.userSlice
-  );
-  const { english, loading, feedBack } = useSelector(
-    (store) => store?.questionsDataSlice
   );
 
   const { studentName = "" } = children?.filter(
     (child) => child?._id === _id
   )[0];
-  useEffect(() => {
-    const data = {
-      unit: 1,
-      stadge: 1,
-      lesson: 1,
-    };
-    dispatch(getChildQuestions(data));
-    dispatch(getQuestionsFeedback(_id));
-  }, [dispatch, _id]);
 
+  const { data, loading, error } = useTask(_id);
+  console.log(data);
   return (
     <div className="parent-dashboard">
       <DashboardNav position={"dashboard"} />
@@ -62,7 +47,7 @@ const ChildDashboard = () => {
                 <h3>
                   <span>Recent activity</span>
                 </h3>
-                {feedBack?.length === 0 ? (
+                {data?.length === 0 && (
                   <div className="tasks">
                     <TaskCard number={"1"} />
                     <div className="btns">
@@ -76,29 +61,29 @@ const ChildDashboard = () => {
                       </button>
                     </div>
                   </div>
-                ) : (
+                )}
+                {
                   <div className="no-tasks">
                     <img src="/assets/images/noActivity.svg" alt="" />
                     <span>{studentName} hasn’t Tasks yet</span>
                     <span className="description">
-                      Once {studentName} starts to play Prodigy, you will be
-                      able to see what they have worked on here.
+                      Once {studentName} starts to play, you will be able to see
+                      what they have worked on here.
                     </span>
                     <button>
                       <Link to="/parent/asigntask">Add Task</Link>
                     </button>
                   </div>
-                )}
+                }
               </div>
               <div className="grade">
-                {/* <span className="view-all">view All</span> */}
                 <h3>
                   <span>Grade level</span>
-                  {/* <span>{english.length} found</span> */}
                 </h3>
 
                 <p>
-                  ahmed is performing at <strong> Grade 1 </strong>
+                  {studentName} is performing at{" "}
+                  <strong> Grade {studentGrade} </strong>
                   level currently{" "}
                   <Link
                     to={`/parent/my-children/${_id}/manage-account`}
@@ -108,30 +93,6 @@ const ChildDashboard = () => {
                   </Link>
                   .
                 </p>
-                {/* {loading ? (
-                  <img
-                    src="/assets/svg/loading.svg"
-                    alt=""
-                    className="loading"
-                  />
-                ) : english.length > 0 ? (
-                  <div className="data">
-                    {english.map((word) => {
-                      return (
-                        <SingleEnglishWord
-                          wordData={word}
-                          key={word._id}
-                          image={word.Image}
-                        />
-                      );
-                    })}
-                  </div>
-                ) : (
-                  <div className="no-data">
-                    <span>Not data yet! </span>
-                    <Link to={`/AddSubjectData/${_id}/unit`}>Add data</Link>
-                  </div>
-                )} */}
               </div>
               <div className="feadback">
                 <h3>
@@ -143,7 +104,6 @@ const ChildDashboard = () => {
           </div>
         </div>
       </div>
-      {/* <SubjectData/> */}
     </div>
   );
 };

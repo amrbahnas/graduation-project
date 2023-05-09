@@ -33,6 +33,7 @@ const AddSubjectData = () => {
     if (activeStep === 1) {
       const questions = subjectData.map((subject) => ({
         _id: subject._id,
+        type: "word",
         subjectName,
         stadge: childGrade,
         number: "1",

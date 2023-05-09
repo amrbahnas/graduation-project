@@ -1,21 +1,20 @@
-import { useState, useEffect } from "react";
-import "./Common.css";
-import { useDispatch } from "react-redux";
-import { getChildQuestions } from "../../store/slices/questionsDataSlice";
+import { useEffect, useState } from "react";
+import useParentData from "../../hooks/useParentData";
 import DataSelectList from "../Data-select-list/DataSelectList";
-import toast from "react-hot-toast";
 import Loading from "../Full-loading/FullLoading";
+import "./Common.css";
 const DataPreview = ({
   subjectName,
   selectedGrade,
   setSelectedData,
   setEnableBTN,
-  activeStep,
 }) => {
-  const dispatch = useDispatch();
-  const [subjecyData, setsubjectData] = useState([]);
   const [checked, setChecked] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const body = {
+    grade: selectedGrade,
+    subject: subjectName,
+  };
+  const { data, loading, error } = useParentData(body);
 
   useEffect(() => {
     if (checked.length === 6) {
@@ -25,42 +24,22 @@ const DataPreview = ({
     }
   }, [checked]);
 
-  useEffect(() => {
-    if (activeStep !== 4) return;
-    setLoading(true);
-    const data = {
-      grade: selectedGrade,
-      subject: subjectName,
-    };
-    dispatch(getChildQuestions(data))
-      .unwrap()
-      .then((action) => {
-        setLoading(false);
-        setsubjectData(action);
-      })
-      .catch((error) => {
-        setLoading(false);
-      });
-  }, [dispatch, activeStep]);
   return (
     <div style={{ minHeight: "200px" }}>
-      {loading ? (
-        <span></span>
-      ) : (
-        /* <img
-          src="/assets/svg/loading.svg"
-          className=" w-5 h-5 mx-auto mt-32"
-          alt=""
-        /> */
-
+      {loading && (
+        <>
+          <Loading />
+          <span></span>
+        </>
+      )}
+      {
         <DataSelectList
-          data={subjecyData}
+          data={data}
           checked={checked}
           setChecked={setChecked}
           setmainSelection={setSelectedData}
         />
-      )}
-      {loading && <Loading />}
+      }
     </div>
   );
 };

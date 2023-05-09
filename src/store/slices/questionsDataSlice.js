@@ -59,6 +59,7 @@ export const asignTask = createAsyncThunk(
     const headers = {
       "content-type": "application/json; charset=UTF-8",
     };
+    console.log(data);
     try {
       const res = await axios.post(url, data, { headers });
       return res.data;
@@ -105,68 +106,70 @@ export const questionsDataSlice = createSlice({
       state.errorHappen = action.payload;
     },
   },
-  extraReducers: {
+  extraReducers: (builder) => {
     // addQuestion
-    [addChildQuestions.pending]: (state) => {
+    builder.addCase(addChildQuestions.pending, (state) => {
       state.loading = true;
       state.errorHappen = false;
       state.dataIsSend = false;
-    },
-    [addChildQuestions.fulfilled]: (state, action) => {
+    });
+    builder.addCase(addChildQuestions.fulfilled, (state, action) => {
       state.loading = false;
       state.errorHappen = false;
       state.dataIsSend = true;
-    },
-    [addChildQuestions.rejected]: (state, action) => {
+    });
+    builder.addCase(addChildQuestions.rejected, (state, action) => {
       state.loading = false;
       state.dataIsSend = false;
       state.errorHappen = true;
-    },
+    });
 
     // // get Question
-    [getChildQuestions.pending]: (state) => {
+    builder.addCase(getChildQuestions.pending, (state) => {
       state.loading = true;
       state.errorHappen = false;
       state.english = [];
-    },
-    [getChildQuestions.fulfilled]: (state, action) => {
+    });
+    builder.addCase(getChildQuestions.fulfilled, (state, action) => {
       state.loading = false;
       state.errorHappen = false;
       state.english = action.payload.question;
-    },
-    [getChildQuestions.rejected]: (state, action) => {
+    });
+    builder.addCase(getChildQuestions.rejected, (state, action) => {
       state.loading = false;
       state.errorHappen = true;
-    },
+    });
+
     // //  asignTask
-    [asignTask.pending]: (state) => {
+    builder.addCase(asignTask.pending, (state) => {
       state.loading = true;
       state.errorHappen = false;
       state.feedBack = [];
-    },
-    [asignTask.fulfilled]: (state, action) => {
+    });
+    builder.addCase(asignTask.fulfilled, (state, action) => {
       state.loading = false;
       state.errorHappen = false;
-    },
-    [asignTask.rejected]: (state, action) => {
+    });
+    builder.addCase(asignTask.rejected, (state, action) => {
       state.loading = false;
       state.errorHappen = true;
-    },
+    });
+
     // //  getQuestionsFeedback
-    [getQuestionsFeedback.pending]: (state) => {
+    builder.addCase(getQuestionsFeedback.pending, (state) => {
       state.loading = true;
       state.errorHappen = false;
       state.feedBack = [];
-    },
-    [getQuestionsFeedback.fulfilled]: (state, action) => {
+    });
+    builder.addCase(getQuestionsFeedback.fulfilled, (state, action) => {
       state.loading = false;
       state.errorHappen = false;
       state.feedBack = action.payload;
-    },
-    [getQuestionsFeedback.rejected]: (state, action) => {
+    });
+    builder.addCase(getQuestionsFeedback.rejected, (state, action) => {
       state.loading = false;
       state.errorHappen = true;
-    },
+    });
   },
 });
 

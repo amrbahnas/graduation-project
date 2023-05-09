@@ -10,12 +10,13 @@ import SelectGame from "./../../components/asign-task-pages/SelectGame";
 import DataPreview from "./../../components/asign-task-pages/DataPreview";
 import { useDispatch, useSelector } from "react-redux";
 import { asignTask, setLoading } from "../../store/slices/questionsDataSlice";
+import { setChildren } from "../../store/slices/userSlice";
 import toast from "react-hot-toast";
 import Loading from "../../components/Full-loading/FullLoading";
 const AsignTask = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { _id } = useSelector((store) => store.userSlice);
+  const { _id, children } = useSelector((store) => store.userSlice);
   // cancel loading when component unmount (user navigate to another page)
 
   const steps = [
@@ -46,17 +47,36 @@ const AsignTask = () => {
         selectetedDataObj[key] = selectetedData[i];
       }
       const data = {
-        taskno: 3,
         gamename: games,
         subject: subjectName,
-        // selectedGrade,
         ...selectetedDataObj,
       };
 
       selectedChildrens.forEach((childId) => {
-        dispatch(asignTask({ data, _id: childId }))
+        console.log(childId);
+        const { taskCounter } = children.find((child) => child._id === childId);
+        dispatch(
+          asignTask({
+            data: { ...data, taskno: parseInt(taskCounter) + 1 },
+            _id: childId,
+          })
+        )
           .unwrap()
           .then(() => {
+            dispatch(
+              setChildren(
+                children.map((child) => {
+                  if (child._id === childId) {
+                    return {
+                      ...child,
+                      taskCounter: parseInt(child.taskCounter) + 1,
+                    };
+                  } else {
+                    return child;
+                  }
+                })
+              )
+            );
             setLoading(false);
             toast.success("Task Asigned Successfully!");
           })
@@ -105,7 +125,7 @@ const AsignTask = () => {
           <div className={activeStep === 3 ? ` block ` : ` hidden`}>
             <DataSource dataSource={dataSource} setdataSource={setdataSource} />
           </div>
-          <div className={activeStep === 4 ? ` block ` : ` hidden`}>
+          {activeStep === 4 && (
             <DataPreview
               selectedGrade={selectedGrade}
               subjectName={subjectName}
@@ -113,8 +133,7 @@ const AsignTask = () => {
               setEnableBTN={setEnableBTN}
               activeStep={activeStep}
             />
-          </div>
-
+          )}
           <div className="btns">
             {activeStep > 0 && (
               <button className="previous" onClick={prevHandler}>
