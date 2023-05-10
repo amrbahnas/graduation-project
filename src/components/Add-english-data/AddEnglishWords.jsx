@@ -101,23 +101,8 @@ const AddEnglishData = ({ setSubjectData }) => {
     <div className={styles.SubjectData}>
       <div className={styles.wrapper}>
         <div className={styles.word}>
-          {/* <div className={styles.gradeNum}>
-            <span>grade:1</span>
-          </div> */}
           <div className={styles.addWord}>
             <div className={`${styles.image}  dark:border-darkSText`}>
-              {/* {
-                <>
-                  <img src={previewImage} alt="" />
-
-                  <label htmlFor="file">
-                    <span>
-                      {" "}
-                      <AddPhotoAlternateIcon color="orange" /> Upload Img
-                    </span>
-                  </label>
-                </>
-              } */}
               {previewImage && <img src={previewImage} alt="" />}
               {!previewImage && (
                 <label htmlFor="file">
@@ -126,27 +111,6 @@ const AddEnglishData = ({ setSubjectData }) => {
                   </span>
                 </label>
               )}
-              {/* {editWord.state && previewImage ? (
-                <>
-                  <img src={previewImage} alt="" />
-
-                  <label htmlFor="file">
-                    <span>
-                      {" "}
-                      <AddPhotoAlternateIcon color="orange" /> Upload Img
-                    </span>
-                  </label>
-                </>
-              ) : previewImage ? (
-                <img src={previewImage} alt="" />
-              ) : (
-                <label htmlFor="file">
-                  <span>
-                    {" "}
-                    <AddPhotoAlternateIcon color="orange" /> Upload Img
-                  </span>
-                </label>
-              )} */}
 
               <input
                 type="file"

@@ -51,7 +51,7 @@
   @apply py-2 bg-green-600 rounded-md;
 }
 .data {
-  @apply flex-1;
+  @apply flex-1 w-full;
 }
 .data > span {
   @apply block mb-2;

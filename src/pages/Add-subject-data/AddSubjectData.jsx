@@ -10,10 +10,24 @@ import { seterrorHappen } from "../../store/slices/questionsDataSlice";
 import InputStepper from "../../components/InputStepper/InputStepper";
 import SimpleNav from "./../../components/SimpleNav/SimpleNav";
 import SelectSubject from "./../../components/Select-subject/SelectSubject";
-import AddEnglishData from "./../../components/Add-english-data/AddEnglishData";
+import AddEnglishWords from "../../components/Add-english-data/AddEnglishWords";
 import SuccessCheck from "./../../components/SuccessCheck/SuccessCheck";
 import Loading from "../../components/Full-loading/FullLoading";
 import { toast } from "react-hot-toast";
+import RadioChoose from "../../components/Radio-choose/Radiochoose";
+import AddEnglishSentences from "../../components/Add-english-data/AddEnglishSentences";
+
+const choose = [
+  {
+    label: "word",
+    value: "word",
+  },
+  {
+    label: "sentence",
+    value: "sentence",
+  },
+];
+
 const AddSubjectData = () => {
   // variables
   const navigate = useNavigate();
@@ -22,15 +36,16 @@ const AddSubjectData = () => {
   const { loading, dataIsSend, errorHappen } = useSelector(
     (store) => store.questionsDataSlice
   );
-  const [activeStep, setactiveStep] = useState(0);
+  const [activeStep, setactiveStep] = useState(2);
   const [switchResult, setSwitchResult] = useState(null);
-  const steps = ["Subject", "Data"];
+  const steps = ["Subject", "type", "Data"];
   const [subjectName, setSubjectName] = useState("english");
+  const [chooseValue, setChooseValue] = useState("sentence");
   const [subjectData, setSubjectData] = useState([]);
   // const [folderNumber, setfolderNumber] = useState(1);
   const [childGrade, setChildGrade] = useState(1);
   const nextHandler = () => {
-    if (activeStep === 1) {
+    if (activeStep === 2) {
       const questions = subjectData.map((subject) => ({
         _id: subject._id,
         type: "word",
@@ -54,27 +69,9 @@ const AddSubjectData = () => {
       });
       // navigate("/parent/my-children");
     } else {
-      setactiveStep(activeStep < 1 ? activeStep + 1 : activeStep);
+      setactiveStep(activeStep < 2 ? activeStep + 1 : activeStep);
     }
   };
-
-  useEffect(() => {
-    const switchCase = () => {
-      switch (activeStep) {
-        case 0:
-          return (
-            <SelectSubject
-              setChildGrade={setChildGrade}
-              setSubjectName={setSubjectName}
-              selectGrade={true}
-            />
-          );
-        default:
-          return <AddEnglishData setSubjectData={setSubjectData} />;
-      }
-    };
-    setSwitchResult(switchCase);
-  }, [activeStep]);
 
   return (
     /********************************** DOM ************************************************* */
@@ -83,7 +80,31 @@ const AddSubjectData = () => {
       <div className="add-data-wrapper">
         <InputStepper steps={steps} activeStep={activeStep} />
         <div className="page">
-          {switchResult}
+          <div className={activeStep === 0 ? " block" : "hidden"}>
+            <SelectSubject
+              setChildGrade={setChildGrade}
+              setSubjectName={setSubjectName}
+              selectGrade={true}
+            />
+          </div>
+          <div className={activeStep === 1 ? " block" : "hidden"}>
+            <RadioChoose
+              title="Choose type"
+              setChooseValue={(value) => setChooseValue(value)}
+              choose={choose}
+            />
+          </div>
+          <div className={activeStep === 2 ? " block" : "hidden"}>
+            {chooseValue === "word" ? (
+              <AddEnglishWords setSubjectData={setSubjectData} />
+            ) : (
+              <AddEnglishSentences
+                subjectData={subjectData}
+                setSubjectData={setSubjectData}
+              />
+            )}
+          </div>
+
           <div className="btns">
             {activeStep > 0 && (
               <button
@@ -96,7 +117,7 @@ const AddSubjectData = () => {
               </button>
             )}
             <button onClick={nextHandler}>
-              <span>{activeStep === 1 ? "Submit" : "Next"}</span>
+              <span>{activeStep === 2 ? "Submit" : "Next"}</span>
             </button>
           </div>
         </div>

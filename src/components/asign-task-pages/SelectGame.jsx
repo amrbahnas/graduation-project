@@ -4,8 +4,8 @@ import "./Common.css";
 const specialGames = {
   english: [
     {
-      name: "game6",
-      id: "4",
+      name: "game5",
+      id: "5",
     },
   ],
   math: [],
@@ -15,6 +15,10 @@ const specialGames = {
 const games = {
   english: [
     {
+      name: "game0",
+      id: "0",
+    },
+    {
       name: "game1",
       id: "1",
     },
@@ -22,15 +26,15 @@ const games = {
       name: "game2",
       id: "2",
     },
-    {
-      name: "game6",
-      id: "3",
-    },
   ],
   math: [
     {
       name: "game3",
-      id: "1",
+      id: "3",
+    },
+    {
+      name: "game4",
+      id: "4",
     },
   ],
   arabic: [],
