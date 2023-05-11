@@ -26,7 +26,7 @@ const SingleEnglishWord = ({
         <img src={imgUrl} alt="" />
         <span>{wordData.definitionInEn}</span>
         <span>{wordData.definitionInAc}</span>
-        <span>{wordData.sentence?.slice(0, 10) + ".."}</span>
+        <span>{wordData.sentence?.slice(0, 20)}</span>
       </div>
       {!wordData.imageUrl && (
         <div className="controlBTN">

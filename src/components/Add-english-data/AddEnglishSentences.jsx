@@ -4,34 +4,34 @@ import styles from "./AddEnglishData.module.css";
 import { v4 } from "uuid";
 const AddEnglishSentences = ({ subjectData, setSubjectData }) => {
   const [sentence, setsentence] = useState("");
-  const [chooseOne, setchooseOne] = useState("");
-  const [chooseTwo, setChooseTwo] = useState("");
-  const [chooseThree, setChooseThree] = useState("");
+  const [choiceOne, setchoiceOne] = useState("");
+  const [choiceTwo, setchoiceTwo] = useState("");
+  const [choiceThree, setchoiceThree] = useState("");
   // const [subjectData, setSubjectData] = useState([]);
   const [validationError, setValidationError] = useState("");
   const [updateSentenceId, setupdateSentenceId] = useState("");
   const SentenceHandler = () => {
     if (updateSentenceId) {
       const newData = {
-        id: updateSentenceId,
+        _id: updateSentenceId,
         sentence,
-        choose: [chooseOne, chooseTwo, chooseThree],
+        choices: [choiceOne, choiceTwo, choiceThree],
       };
       setSubjectData(
         subjectData.map((word) =>
-          word.id === updateSentenceId ? newData : word
+          word._id === updateSentenceId ? newData : word
         )
       );
       reset();
       return;
     }
     const data = {
-      id: v4(),
+      _id: v4(),
       sentence,
-      choose: [chooseOne, chooseTwo, chooseThree],
+      choices: [choiceOne, choiceTwo, choiceThree],
     };
-    let valid = data.choose.some((choice) => sentence.includes(choice));
-    if (sentence && chooseOne && chooseTwo && chooseThree && valid) {
+    let valid = data.choices.some((choice) => sentence.includes(choice));
+    if (sentence && choiceOne && choiceTwo && choiceThree && valid) {
       setSubjectData((prev) => [...prev, data]);
       setValidationError("");
       setsentence("");
@@ -45,23 +45,23 @@ const AddEnglishSentences = ({ subjectData, setSubjectData }) => {
 
   const reset = () => {
     setsentence("");
-    setchooseOne("");
-    setChooseTwo("");
-    setChooseThree("");
+    setchoiceOne("");
+    setchoiceTwo("");
+    setchoiceThree("");
     setupdateSentenceId("");
   };
 
-  const editSentence = (id) => {
-    const sentence = subjectData.find((word) => word.id === id);
+  const editSentence = (_id) => {
+    const sentence = subjectData.find((word) => word._id === _id);
     setsentence(sentence.sentence);
-    setchooseOne(sentence.choose[0]);
-    setChooseTwo(sentence.choose[1]);
-    setChooseThree(sentence.choose[2]);
-    setupdateSentenceId(id);
+    setchoiceOne(sentence.choices[0]);
+    setchoiceTwo(sentence.choices[1]);
+    setchoiceThree(sentence.choices[2]);
+    setupdateSentenceId(_id);
   };
 
-  const deleteSentence = (id) => {
-    setSubjectData(subjectData.filter((word) => word.id !== id));
+  const deleteSentence = (_id) => {
+    setSubjectData(subjectData.filter((word) => word._id !== _id));
     reset();
     setupdateSentenceId("");
   };
@@ -78,22 +78,22 @@ const AddEnglishSentences = ({ subjectData, setSubjectData }) => {
             label=" sentence"
           />
           <InputText
-            value={chooseOne}
-            setValue={(value) => setchooseOne(value)}
+            value={choiceOne}
+            setValue={(value) => setchoiceOne(value)}
             type="text"
-            label="choose one"
+            label="choices one"
           />
           <InputText
-            value={chooseTwo}
-            setValue={(value) => setChooseTwo(value)}
+            value={choiceTwo}
+            setValue={(value) => setchoiceTwo(value)}
             type="text"
-            label="choose two"
+            label="choices two"
           />
           <InputText
-            value={chooseThree}
-            setValue={(value) => setChooseThree(value)}
+            value={choiceThree}
+            setValue={(value) => setchoiceThree(value)}
             type="text"
-            label="choose three"
+            label="choices three"
           />
           <div>
             <button
@@ -123,25 +123,25 @@ const AddEnglishSentences = ({ subjectData, setSubjectData }) => {
               return (
                 <div
                   className="flex justify-between items-center  p-2 bg-neutral-100 rounded-md"
-                  key={data.id}
+                  key={data._id}
                 >
                   <div className=" flex flex-col">
                     <p>{data.sentence}</p>
                     <div className="flex">
-                      <span>{data.choose[0]}</span>-
-                      <span>{data.choose[1]}</span>-
-                      <span>{data.choose[2]}</span>
+                      <span>{data.choices[0]}</span>-
+                      <span>{data.choices[1]}</span>-
+                      <span>{data.choices[2]}</span>
                     </div>
                   </div>
                   <div className="flex gap-4">
                     <button
-                      onClick={() => editSentence(data.id)}
+                      onClick={() => editSentence(data._id)}
                       className="text-white py-1 px-2 bg-green-600 font-light rounded-md"
                     >
                       {"Edit"}
                     </button>
                     <button
-                      onClick={() => deleteSentence(data.id)}
+                      onClick={() => deleteSentence(data._id)}
                       className="text-white py-1 px-2 bg-red-600 rounded-md font-light"
                     >
                       {"Delete"}

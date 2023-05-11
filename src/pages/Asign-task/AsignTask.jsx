@@ -132,6 +132,7 @@ const AsignTask = () => {
               setSelectedData={setSelectedData}
               setEnableBTN={setEnableBTN}
               activeStep={activeStep}
+              games={games}
             />
           )}
           <div className="btns">

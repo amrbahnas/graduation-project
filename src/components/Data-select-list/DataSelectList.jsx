@@ -45,10 +45,10 @@ const DataSelectList = ({ data, setChecked, checked, setmainSelection }) => {
                   inputProps={{ "aria-labelledby": labelId }}
                 />
               </ListItemIcon>
-
-              {item.studentName ? (
+              {item.studentName && (
                 <ListItemText id={labelId} primary={item.studentName} />
-              ) : (
+              )}
+              {item.type === "word" && (
                 <ListItemText
                   id={labelId}
                   primary={
@@ -59,6 +59,21 @@ const DataSelectList = ({ data, setChecked, checked, setmainSelection }) => {
                       deleteWord={() => {}}
                       editWordHandler={() => {}}
                     />
+                  }
+                />
+              )}
+              {item.type === "sentence" && (
+                <ListItemText
+                  id={labelId}
+                  primary={
+                    <div className="p-2" key={item._id}>
+                      <p>{item.sentence}</p>
+                      <div className="flex flex-row gap-2">
+                        (<div>{item.choices[0]}</div>-
+                        <div>{item.choices[1]}</div>-
+                        <div>{item.choices[2]}</div>)
+                      </div>
+                    </div>
                   }
                 />
               )}

@@ -1,21 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./AddSubjectData.css";
 // react-router
 import { useNavigate } from "react-router-dom";
 // redux
 import { useDispatch, useSelector } from "react-redux";
-import { addChildQuestions } from "../../store/slices/questionsDataSlice";
-import { seterrorHappen } from "../../store/slices/questionsDataSlice";
 // component
-import InputStepper from "../../components/InputStepper/InputStepper";
-import SimpleNav from "./../../components/SimpleNav/SimpleNav";
-import SelectSubject from "./../../components/Select-subject/SelectSubject";
-import AddEnglishWords from "../../components/Add-english-data/AddEnglishWords";
-import SuccessCheck from "./../../components/SuccessCheck/SuccessCheck";
-import Loading from "../../components/Full-loading/FullLoading";
 import { toast } from "react-hot-toast";
-import RadioChoose from "../../components/Radio-choose/Radiochoose";
 import AddEnglishSentences from "../../components/Add-english-data/AddEnglishSentences";
+import AddEnglishWords from "../../components/Add-english-data/AddEnglishWords";
+import Loading from "../../components/Full-loading/FullLoading";
+import InputStepper from "../../components/InputStepper/InputStepper";
+import RadioChoose from "../../components/Radio-choose/Radiochoose";
+import insertQuestions from "../../services/insertQuestions";
+import SelectSubject from "./../../components/Select-subject/SelectSubject";
+import SimpleNav from "./../../components/SimpleNav/SimpleNav";
 
 const choose = [
   {
@@ -31,43 +29,47 @@ const choose = [
 const AddSubjectData = () => {
   // variables
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  const { loading, dataIsSend, errorHappen } = useSelector(
-    (store) => store.questionsDataSlice
-  );
-  const [activeStep, setactiveStep] = useState(2);
-  const [switchResult, setSwitchResult] = useState(null);
+  const { _id } = useSelector((store) => store.userSlice);
+  const [activeStep, setactiveStep] = useState(0);
   const steps = ["Subject", "type", "Data"];
+  const [loading, setLoading] = useState(false);
   const [subjectName, setSubjectName] = useState("english");
   const [chooseValue, setChooseValue] = useState("sentence");
   const [subjectData, setSubjectData] = useState([]);
-  // const [folderNumber, setfolderNumber] = useState(1);
   const [childGrade, setChildGrade] = useState(1);
   const nextHandler = () => {
     if (activeStep === 2) {
       const questions = subjectData.map((subject) => ({
-        _id: subject._id,
-        type: "word",
+        _id: subject?._id,
+        type: chooseValue,
         subjectName,
         stadge: childGrade,
-        number: "1",
-        image: subject.wordImage,
-        definitionInEn: subject.definitionInEn,
-        definitionInAc: subject.definitionInAc,
-        sentence: subject.sentence,
+        number: { num1: 1, num2: 2, operator: "*" },
+        choices: subject?.choices || [],
+        image: subject?.wordImage,
+        definitionInEn: subject?.definitionInEn || "",
+        definitionInAc: subject?.definitionInAc || "",
+        sentence: subject?.sentence || "",
       }));
+
       questions.forEach((word) => {
-        dispatch(addChildQuestions(word))
-          .unwrap()
+        setLoading(true);
+        insertQuestions(word, _id)
           .then((res) => {
+            setLoading(false);
             toast.success("data added successfully");
           })
           .catch((err) => {
+            setLoading(false);
+            console.log(err);
+            if (err.response) {
+              console.log(err.response.data);
+              console.log(err.response.status);
+              console.log(err.response.headers);
+            }
             toast.error("something went wrong");
           });
       });
-      // navigate("/parent/my-children");
     } else {
       setactiveStep(activeStep < 2 ? activeStep + 1 : activeStep);
     }

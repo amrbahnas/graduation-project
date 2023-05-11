@@ -1,7 +1,7 @@
-import useGetData from "./useGetData";
+import useGet from "./useGet";
 
 const useTask = (_id) => {
-  return useGetData("/task/tasks/" + _id);
+  return useGet("/task/tasks/" + _id);
 };
 
 export default useTask;
