@@ -10,7 +10,7 @@ import AddEnglishSentences from "../../components/Add-english-data/AddEnglishSen
 import AddEnglishWords from "../../components/Add-english-data/AddEnglishWords";
 import Loading from "../../components/Full-loading/FullLoading";
 import InputStepper from "../../components/InputStepper/InputStepper";
-import RadioChoose from "../../components/Radio-choose/Radiochoose";
+import RadioChoose from "../../components/Radio-choose/RadioChoose";
 import insertQuestions from "../../services/insertQuestions";
 import SelectSubject from "./../../components/Select-subject/SelectSubject";
 import SimpleNav from "./../../components/SimpleNav/SimpleNav";
