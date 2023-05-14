@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import apiClient from "../services/api-client";
-const useGet = (endPoint) => {
+const useGet = (endPoint, dependant) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -11,7 +11,7 @@ const useGet = (endPoint) => {
     apiClient
       .get(endPoint, { signal: controller.signal })
       .then((res) => {
-        setLoading(true);
+        setLoading(false);
         setData(res.data);
       })
       .catch((err) => {
@@ -20,7 +20,7 @@ const useGet = (endPoint) => {
       });
 
     return () => controller.abort();
-  }, []);
+  }, [...dependant]);
 
   return { data, loading, error };
 };

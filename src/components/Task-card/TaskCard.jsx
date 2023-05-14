@@ -8,8 +8,18 @@ import TaskTable from "../Task-table/TaskTable";
 import "./TaskCard.css";
 /**/
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-const TaskCard = ({ reorder }) => {
-  const defaultList = ["english", "math", "arabic"];
+const TaskCard = ({ reorder, data }) => {
+  const defaultList = [
+    "english",
+    "math",
+    "arabic",
+    "english",
+    "math",
+    "arabic",
+    "english",
+    "math",
+    "arabic",
+  ];
 
   // React state to track order of items
   const [itemList, setItemList] = useState(defaultList);
@@ -53,11 +63,11 @@ const TaskCard = ({ reorder }) => {
                           id="panel1a-header"
                         >
                           <Typography>
-                            Task {index + 1} ( {item})
+                            Task {index + 1} ( {item.Subject})
                           </Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                          <TaskTable />
+                          <TaskTable data={data} />
                         </AccordionDetails>
                       </Accordion>
                     </div>

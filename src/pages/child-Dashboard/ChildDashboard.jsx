@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 // component
 import TaskCard from "../../components/Task-card/TaskCard";
 import "./ChildDashboard.css";
+import Loading from "../../components/Full-loading/FullLoading";
 const ChildDashboard = () => {
   const { _id } = useParams();
   const { children = [], studentGrade } = useSelector(
@@ -47,9 +48,11 @@ const ChildDashboard = () => {
                 <h3>
                   <span>Recent activity</span>
                 </h3>
-                {data?.length === 0 && (
+                {!data?.length > 0 ? (
                   <div className="tasks">
-                    <TaskCard number={"1"} />
+                    <div className="  max-h-[380px]  overflow-scroll">
+                      <TaskCard number={"1"} data={data} />
+                    </div>
                     <div className="btns">
                       <button>
                         <span>Reordring Tasks</span>
@@ -61,8 +64,7 @@ const ChildDashboard = () => {
                       </button>
                     </div>
                   </div>
-                )}
-                {
+                ) : (
                   <div className="no-tasks">
                     <img src="/assets/images/noActivity.svg" alt="" />
                     <span>{studentName} hasn’t Tasks yet</span>
@@ -74,7 +76,7 @@ const ChildDashboard = () => {
                       <Link to="/parent/asigntask">Add Task</Link>
                     </button>
                   </div>
-                }
+                )}
               </div>
               <div className="grade">
                 <h3>
@@ -104,6 +106,7 @@ const ChildDashboard = () => {
           </div>
         </div>
       </div>
+      {loading && <Loading />}
     </div>
   );
 };

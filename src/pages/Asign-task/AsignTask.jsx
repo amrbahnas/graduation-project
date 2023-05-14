@@ -46,6 +46,19 @@ const AsignTask = () => {
         const key = `id${i + 1}`;
         selectetedDataObj[key] = selectetedData[i];
       }
+      // const fakeData = {
+      //   id1: "64605912bd398ca96f5cceca",
+
+      //   id2: "64605912bd398ca96f5ccecc",
+
+      //   id3: "646060468efaa4ff7347edd9",
+      //   id4: "646060468efaa4ff7347edd7",
+      //   id5: "646060468efaa4ff7347eddb",
+
+      //   id6: "646060468efaa4ff7347edd5",
+      //   id7: "646060468efaa4ff7347edd3",
+      // };
+
       const data = {
         gamename: games,
         subject: subjectName,

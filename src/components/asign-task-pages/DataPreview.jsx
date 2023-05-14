@@ -18,6 +18,10 @@ const DataPreview = ({
   const { data, loading, error } = useQuestionData(body);
   const [passedData, setPassedData] = useState([]);
   useEffect(() => {
+    if (subjectName === "math" && data.length > 0) {
+      setPassedData(data);
+      return;
+    }
     if (data.length > 0) {
       const filteredData = games.includes("5")
         ? data
@@ -27,7 +31,7 @@ const DataPreview = ({
       setPassedData(filteredData);
     }
   }, [data]);
-
+  console.log(data);
   useEffect(() => {
     if (checked.length === 6) {
       setEnableBTN(true);

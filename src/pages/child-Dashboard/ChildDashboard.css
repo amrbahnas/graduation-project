@@ -13,8 +13,8 @@
   @apply flex gap-4 px-2 py-3 cursor-pointer;
 }
 .parent-dashboard .dashboard-wrapper .nav ul li:first-child {
-  background-color: #e5ebeb ;
-  @apply dark:bg-darkHover
+  background-color: #e5ebeb;
+  @apply dark:bg-darkHover;
 }
 
 .parent-dashboard .dashboard-wrapper .dashboard {
@@ -32,24 +32,24 @@
   border: 1px solid rgb(235, 234, 232);
   box-shadow: rgb(43 42 41 / 30%) 0px 1px 4px;
   background-color: white;
-  @apply rounded-md mb-4 md:mb-0 dark:bg-darkCard ;
+  @apply rounded-md mb-4 md:mb-0 dark:bg-darkCard;
 }
 .parent-dashboard .dashboard-wrapper .dashboard .activity {
- grid-area: 1 / 1 / 6 / 4;
- overflow: hidden;
- @apply relative
+  grid-area: 1 / 1 / 6 / 4;
+  overflow: hidden;
+  @apply relative;
 }
 .parent-dashboard .dashboard-wrapper .dashboard .activity h3 {
   @apply p-4 border-b text-lg;
 }
 .parent-dashboard .dashboard-wrapper .dashboard .activity .tasks {
-  @apply p-2 ;
+  @apply p-2;
 }
 .parent-dashboard .dashboard-wrapper .dashboard .activity .tasks .btns {
-  @apply absolute bottom-4 right-4 ;
+  @apply absolute bottom-0 py-4 px-6 z-40 w-full bg-white left-0 flex justify-end;
 }
 .parent-dashboard .dashboard-wrapper .dashboard .activity .tasks button {
-  @apply border bg-backBtnColor p-2 rounded-sm hover:bg-backBtnColorHoner shadow-sm ml-3 ;
+  @apply border bg-backBtnColor p-2 rounded-sm hover:bg-backBtnColorHoner shadow-sm ml-3;
 }
 .parent-dashboard .dashboard-wrapper .dashboard .activity .no-tasks {
   padding: 56px 32px;
@@ -75,7 +75,7 @@
 .parent-dashboard .dashboard-wrapper .dashboard .grade {
   grid-area: 1 / 4 / 2 / 6;
   color: #4d4c4b;
-  @apply  relative overflow-hidden p-4 dark:text-darkPText;
+  @apply relative overflow-hidden p-4 dark:text-darkPText;
 }
 /* .parent-dashboard
   .dashboard-wrapper
@@ -92,7 +92,6 @@
   @apply pb-1 text-lg   sticky top-0 bg-white dark:bg-darkCard flex justify-between items-center;
 }
 .parent-dashboard .dashboard-wrapper .dashboard .grade p {
-
   @apply text-sm;
 }
 
@@ -114,7 +113,7 @@
 } */
 
 .parent-dashboard .dashboard-wrapper .dashboard .boxs .feadback {
- grid-area: 2 / 4 / 6 / 6; 
+  grid-area: 2 / 4 / 6 / 6;
 }
 .parent-dashboard .dashboard-wrapper .dashboard .boxs .feadback h3 {
   @apply p-4 border-b text-lg;

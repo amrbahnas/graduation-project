@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./AddSubjectData.css";
 // react-router
 import { useNavigate } from "react-router-dom";
@@ -14,6 +14,7 @@ import RadioChoose from "../../components/Radio-choose/RadioChoose";
 import insertQuestions from "../../services/insertQuestions";
 import SelectSubject from "./../../components/Select-subject/SelectSubject";
 import SimpleNav from "./../../components/SimpleNav/SimpleNav";
+import AddMathData from "../../components/Add-math-data/AddMathData";
 
 const choose = [
   {
@@ -37,14 +38,24 @@ const AddSubjectData = () => {
   const [chooseValue, setChooseValue] = useState("sentence");
   const [subjectData, setSubjectData] = useState([]);
   const [childGrade, setChildGrade] = useState(1);
+
+  useEffect(() => {
+    setSubjectData([]);
+  }, [subjectName]);
+
   const nextHandler = () => {
+    if (activeStep === 0 && subjectName === "math") {
+      setactiveStep(2);
+      return;
+    }
+
     if (activeStep === 2) {
       const questions = subjectData.map((subject) => ({
         _id: subject?._id,
         type: chooseValue,
         subjectName,
         stadge: childGrade,
-        number: { num1: 1, num2: 2, operator: "*" },
+        number: subject?.number || 0,
         choices: subject?.choices || [],
         image: subject?.wordImage,
         definitionInEn: subject?.definitionInEn || "",
@@ -75,6 +86,14 @@ const AddSubjectData = () => {
     }
   };
 
+  const prevHandler = () => {
+    if (activeStep === 2) {
+      setactiveStep(0);
+      return;
+    }
+
+    setactiveStep(activeStep !== 0 ? activeStep - 1 : activeStep);
+  };
   return (
     /********************************** DOM ************************************************* */
     <div className="add-data">
@@ -97,24 +116,29 @@ const AddSubjectData = () => {
             />
           </div>
           <div className={activeStep === 2 ? " block" : "hidden"}>
-            {chooseValue === "word" ? (
-              <AddEnglishWords setSubjectData={setSubjectData} />
-            ) : (
-              <AddEnglishSentences
-                subjectData={subjectData}
-                setSubjectData={setSubjectData}
-              />
-            )}
+            <>
+              {subjectName === "english" &&
+                (chooseValue === "word" ? (
+                  <AddEnglishWords setSubjectData={setSubjectData} />
+                ) : (
+                  <AddEnglishSentences
+                    subjectData={subjectData}
+                    setSubjectData={setSubjectData}
+                  />
+                ))}
+
+              {subjectName === "math" && (
+                <AddMathData
+                  setSubjectData={setSubjectData}
+                  subjectData={subjectData}
+                />
+              )}
+            </>
           </div>
 
           <div className="btns">
             {activeStep > 0 && (
-              <button
-                className="previous"
-                onClick={() =>
-                  setactiveStep(activeStep !== 0 ? activeStep - 1 : activeStep)
-                }
-              >
+              <button className="previous" onClick={prevHandler}>
                 <span>Previous</span>
               </button>
             )}
