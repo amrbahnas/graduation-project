@@ -7,6 +7,7 @@ import ListItemText from "@mui/material/ListItemText";
 import Checkbox from "@mui/material/Checkbox";
 import SingleEnglishWord from "../Single-english-word/SingleEnglishWord";
 const DataSelectList = ({ data, setChecked, checked, setmainSelection }) => {
+  console.log(data);
   const handleToggle = (_id) => () => {
     const currentIndex = checked.indexOf(_id);
     const newChecked = [...checked];
@@ -82,9 +83,9 @@ const DataSelectList = ({ data, setChecked, checked, setmainSelection }) => {
                   primary={
                     <div className="p-2 flex flex-col" key={item._id}>
                       <div className=" flex flex-row items-center gap-5">
-                        <span>numberOne :{item?.number?.num1}</span>
-                        <span>numberTwo :{item?.number?.num1}</span>
-                        <span>operator :{item?.number?.operator}</span>
+                        <span>numberOne :{item?.numbers?.num1}</span>
+                        <span>numberTwo :{item?.numbers?.num1}</span>
+                        <span>operator : {item?.numbers?.operator}</span>
                       </div>
                       <div className="flex flex-row gap-2">
                         (<div>{item?.choices[0]}</div>-

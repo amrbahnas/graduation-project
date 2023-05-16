@@ -41,7 +41,7 @@ const games = {
 };
 
 const SelectGame = ({ setgames, setEnableBTN, subjectName }) => {
-  const [selectedGames, setselectedGames] = useState(["1"]);
+  const [selectedGames, setselectedGames] = useState([]);
   const [specialSelectedGames, setSpecialSelectedGames] = useState([]);
 
   useEffect(() => {

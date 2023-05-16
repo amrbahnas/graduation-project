@@ -22,11 +22,20 @@ const insertQuestions = async (word, _id) => {
     }
 
     const url = `${import.meta.env.VITE_REACT_ADD_QUESTION_API}/${_id}`;
-    const headers = {
-      method: "POST",
-      body: Object.keys(data).length > 0 ? JSON.stringify(data) : formdata,
-      redirect: "follow",
-    };
+    const headers =
+      Object.keys(data).length > 0
+        ? {
+            method: "POST",
+            headers: {
+              "content-type": "application/json; charset=UTF-8",
+            },
+            body: JSON.stringify(data),
+          }
+        : {
+            method: "POST",
+            body: formdata,
+            redirect: "follow",
+          };
     const res = await fetch(url, headers);
     return res;
   } catch (error) {
