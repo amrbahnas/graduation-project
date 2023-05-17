@@ -12,7 +12,7 @@ const specialGames = {
   arabic: [],
 };
 
-const games = {
+export const games = {
   english: [
     {
       name: "game0",

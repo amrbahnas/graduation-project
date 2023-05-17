@@ -1,28 +1,53 @@
 import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { useSelector } from "react-redux";
+import { games } from "../asign-task-pages/SelectGame";
 const TaskTable = ({ task }) => {
-  const { feedBack } = useSelector((store) => store.questionsDataSlice);
+  console.log(task);
+
+  const rows = [];
   const columns = [
-    { field: "word", headerName: "WORD", width: 130 },
-    { field: "game1", headerName: "Game 1", width: 130 },
-    { field: "game2", headerName: "Game 2", width: 130 },
-    { field: "game3", headerName: "Game 3", width: 130 },
+    { field: "word", headerName: "Tasks Questions", width: 130 },
   ];
 
-  const rows = [
-    { id: 1, word: "fish", game1: "2", game2: "3", game3: "0" },
-    { id: 2, word: "apple", game1: "2", game2: "3", game3: "0" },
-  ];
+  if (task.Subject === "english" && task.data1ID.type === "word") {
+    for (let i = 1; i < 7; i++) {
+      rows.push({
+        id: task[`data${i}ID`]._id || "",
+        word: task[`data${i}ID`].definitionInEn || "field",
+      });
+    }
+  } else if (task.Subject === "english" && task.data1ID.type === "sentence") {
+    for (let i = 1; i < 7; i++) {
+      rows.push({
+        id: task[`data${i}ID`]._id || "",
+        word: task[`data${i}ID`].sentence || "field",
+      });
+    }
+  } else if (task.Subject === "math") {
+    for (let i = 1; i < 7; i++) {
+      rows.push({
+        id: task[`data${i}ID`]._id || "",
+        word:
+          `numberOne:  ${task[`data${i}ID`].numbers.num1}  ||  numberTwo: ${
+            task[`data${i}ID`].numbers.num2
+          }  || operator: ${task[`data${i}ID`].numbers.operator}
+              ||  choices: ( ${task[`data${i}ID`].choices[0]}, ${
+            task[`data${i}ID`].choices[1]
+          } ,${task[`data${i}ID`].choices[2]}   )
+
+             ` || "field",
+      });
+    }
+  }
 
   return (
     <div style={{ height: 400, width: "100%" }}>
       <DataGrid
         rows={rows}
         columns={columns}
-        pageSize={4}
-        rowsPerPageOptions={[4]}
-        checkboxSelection
+        pageSize={6}
+        rowsPerPageOptions={[6]}
       />
     </div>
   );
