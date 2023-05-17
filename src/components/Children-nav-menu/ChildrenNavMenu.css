@@ -1,23 +1,23 @@
 /* children*/
 
- .children-nav-menu {
+.children-nav-menu {
   @apply hover:border-none mr-6 hidden md:flex  gap-1 cursor-pointer select-none;
 }
 
- .children-nav-menu > span {
+.children-nav-menu > span {
   @apply flex items-center gap-2 h-full;
 }
- .children-nav-menu .list {
+.children-nav-menu .list {
   @apply relative;
 }
- .children-nav-menu .list .menu {
+.children-nav-menu .list .menu {
   top: 150%;
   @apply absolute  bg-white w-44 -right-4  hidden flex-col gap-1 border rounded-sm shadow-sm;
 }
- .children-nav-menu .list .menu.display {
+.children-nav-menu .list .menu.display {
   @apply flex;
 }
- .children-nav-menu .list .menu::after {
+.children-nav-menu .list .menu::after {
   content: "";
   display: block;
   position: absolute;
@@ -31,10 +31,9 @@
   background: rgb(255, 255, 255);
 }
 
- .children-nav-menu .menu span {
+.children-nav-menu .menu span {
   @apply flex items-center gap-3 justify-start px-4  py-2 hover:bg-slate-100 z-10;
 }
- .children-nav-menu .menu span:not(span:last-child) {
+.children-nav-menu .menu span:not(span:last-child) {
   @apply border-b;
 }
-

@@ -9,8 +9,9 @@ import { useSelector } from "react-redux";
 import TaskCard from "../../components/Task-card/TaskCard";
 import "./ChildDashboard.css";
 import Loading from "../../components/Full-loading/FullLoading";
+import { current } from "@reduxjs/toolkit";
 const ChildDashboard = () => {
-  const { _id } = useParams();
+  const { _id, currentPage } = useParams();
   const { children = [], studentGrade } = useSelector(
     (store) => store.userSlice
   );
@@ -20,7 +21,18 @@ const ChildDashboard = () => {
   )[0];
 
   const { data, loading, error } = useTask(_id);
-  console.log(data);
+  const [tasks, setTasks] = React.useState([]);
+
+  useEffect(() => {
+    if (!data) return;
+    if (currentPage === "alltasks") {
+      console.log("all tasks");
+      setTasks(data);
+      return;
+    }
+    setTasks(data.filter((task) => task?.Subject === currentPage));
+  }, [currentPage, data]);
+
   return (
     <div className="parent-dashboard">
       <DashboardNav position={"dashboard"} />
@@ -48,10 +60,10 @@ const ChildDashboard = () => {
                 <h3>
                   <span>Recent activity</span>
                 </h3>
-                {data?.length > 0 ? (
+                {tasks?.length > 0 ? (
                   <div className="tasks">
-                    <div className="  max-h-[380px]  overflow-scroll">
-                      <TaskCard number={"1"} data={data} />
+                    <div className="  h-[380px]  overflow-scroll">
+                      <TaskCard number={"1"} tasks={tasks} />
                     </div>
                     <div className="btns">
                       <button>

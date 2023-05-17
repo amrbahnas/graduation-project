@@ -9,8 +9,9 @@
   @apply flex gap-4 items-center h-full;
 }
 .dashboard-nav .left .logo {
-  @apply mr-6  md:mr-10;
+  @apply mr-2  md:mr-10;
 }
+
 .dashboard-nav .left .logo img {
   @apply w-32;
 }

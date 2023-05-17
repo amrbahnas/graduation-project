@@ -1,7 +1,7 @@
 import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { useSelector } from "react-redux";
-const TaskTable = ({ data }) => {
+const TaskTable = ({ task }) => {
   const { feedBack } = useSelector((store) => store.questionsDataSlice);
   const columns = [
     { field: "word", headerName: "WORD", width: 130 },

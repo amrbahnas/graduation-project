@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -8,10 +8,13 @@ import TaskTable from "../Task-table/TaskTable";
 import "./TaskCard.css";
 /**/
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-const TaskCard = ({ reorder, data }) => {
+const TaskCard = ({ reorder, tasks }) => {
   // React state to track order of items
-  const [itemList, setItemList] = useState(data);
+  const [itemList, setItemList] = useState(tasks);
 
+  useEffect(() => {
+    setItemList(tasks);
+  }, [tasks]);
   // Function to update list on drop
   const handleDrop = (droppedItem) => {
     // Ignore drop outside droppable container
@@ -36,7 +39,7 @@ const TaskCard = ({ reorder, data }) => {
               ref={provided.innerRef}
             >
               {itemList.map((item, index) => (
-                <Draggable key={item} draggableId={item} index={index}>
+                <Draggable key={item._id} draggableId={item._id} index={index}>
                   {(provided) => (
                     <div
                       ref={provided.innerRef}
@@ -55,7 +58,7 @@ const TaskCard = ({ reorder, data }) => {
                           </Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                          <TaskTable data={data} />
+                          <TaskTable task={item} />
                         </AccordionDetails>
                       </Accordion>
                     </div>

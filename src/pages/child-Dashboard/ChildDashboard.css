@@ -4,7 +4,7 @@
   @apply block lg:grid grid-cols-5   gap-8 bg-transparent my-8 dark:text-darkPText;
 }
 .parent-dashboard .dashboard-wrapper .nav {
-  @apply col-span-1 hidden md:block h-full;
+  @apply col-span-1 hidden lg:block h-full;
 }
 .parent-dashboard .dashboard-wrapper .nav ul {
   @apply flex flex-col gap-2;
@@ -46,7 +46,7 @@
   @apply p-2;
 }
 .parent-dashboard .dashboard-wrapper .dashboard .activity .tasks .btns {
-  @apply absolute bottom-0 py-4 px-6 z-40 w-full bg-white left-0 flex justify-end;
+  @apply absolute bottom-0 py-4 px-6 z-40 w-full bg-white left-0 flex  justify-center lg:justify-end;
 }
 .parent-dashboard .dashboard-wrapper .dashboard .activity .tasks button {
   @apply border bg-backBtnColor p-2 rounded-sm hover:bg-backBtnColorHoner shadow-sm ml-3;
