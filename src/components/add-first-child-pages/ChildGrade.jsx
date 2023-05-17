@@ -9,7 +9,7 @@ import Loading from "./../Full-loading/FullLoading";
 
 const ChildGrade = ({ setpage, name, setuserName, setpassword }) => {
   const dispatch = useDispatch();
-  const [childGrade, setChildGrade] = useState("");
+  const [childGrade, setChildGrade] = useState(1);
   const [errorMessage, seterrorMessage] = useState(false);
   const [loading, setLoading] = useState(false);
 

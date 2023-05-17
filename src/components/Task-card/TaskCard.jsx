@@ -9,20 +9,8 @@ import "./TaskCard.css";
 /**/
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 const TaskCard = ({ reorder, data }) => {
-  const defaultList = [
-    "english",
-    "math",
-    "arabic",
-    "english",
-    "math",
-    "arabic",
-    "english",
-    "math",
-    "arabic",
-  ];
-
   // React state to track order of items
-  const [itemList, setItemList] = useState(defaultList);
+  const [itemList, setItemList] = useState(data);
 
   // Function to update list on drop
   const handleDrop = (droppedItem) => {

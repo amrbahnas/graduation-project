@@ -48,7 +48,7 @@ const ChildDashboard = () => {
                 <h3>
                   <span>Recent activity</span>
                 </h3>
-                {!data?.length > 0 ? (
+                {data?.length > 0 ? (
                   <div className="tasks">
                     <div className="  max-h-[380px]  overflow-scroll">
                       <TaskCard number={"1"} data={data} />
