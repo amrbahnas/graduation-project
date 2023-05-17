@@ -7,7 +7,7 @@ const TaskTable = ({ task }) => {
 
   const rows = [];
   const columns = [
-    { field: "word", headerName: "Tasks Questions", width: 130 },
+    { field: "word", headerName: "Tasks Questions", width: 500 },
   ];
 
   if (task.Subject === "english" && task.data1ID.type === "word") {
