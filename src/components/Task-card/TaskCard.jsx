@@ -5,9 +5,12 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import TaskTable from "../Task-table/TaskTable";
+import DoneAllIcon from "@mui/icons-material/DoneAll";
+import HourglassTopIcon from "@mui/icons-material/HourglassTop";
 import "./TaskCard.css";
 /**/
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import FeedBackTable from "../Feedback-table/FeedBackTable";
 const TaskCard = ({ reorder, tasks }) => {
   // React state to track order of items
   const [itemList, setItemList] = useState(tasks);
@@ -52,12 +55,32 @@ const TaskCard = ({ reorder, tasks }) => {
                           expandIcon={<ExpandMoreIcon />}
                           aria-controls="panel1a-content"
                           id="panel1a-header"
+                          sx={{
+                            backgroundColor: "#eefafd",
+                            overflow: "hidden",
+                            borderRadius: "10px",
+                          }}
                         >
-                          <Typography>
-                            Task {index + 1} ( {item.Subject})
-                          </Typography>
+                          <div className=" flex w-full justify-between mr-3 font-bold">
+                            <Typography>
+                              Task {index + 1} ( {item.Subject})
+                            </Typography>
+                            <Typography>
+                              {item?.done[0] ? (
+                                <span className=" flex items-center gap-2 text-green-800">
+                                  <DoneAllIcon />
+                                  Done
+                                </span>
+                              ) : (
+                                <span alt="wait" className=" text-green-800">
+                                  on Progress
+                                </span>
+                              )}
+                            </Typography>
+                          </div>
                         </AccordionSummary>
                         <AccordionDetails>
+                          {item?.done && <FeedBackTable taskId={item?._id} />}
                           <TaskTable task={item} />
                         </AccordionDetails>
                       </Accordion>

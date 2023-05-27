@@ -87,7 +87,7 @@ const AddSubjectData = () => {
   };
 
   const prevHandler = () => {
-    if (activeStep === 2) {
+    if (activeStep === 2 && subjectName === "math") {
       setactiveStep(0);
       return;
     }

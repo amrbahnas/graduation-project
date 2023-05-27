@@ -1,14 +1,11 @@
 import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import { useSelector } from "react-redux";
-import { games } from "../asign-task-pages/SelectGame";
+
 const TaskTable = ({ task }) => {
   console.log(task);
 
   const rows = [];
-  const columns = [
-    { field: "word", headerName: "Tasks Questions", width: 500 },
-  ];
+  const columns = [{ field: "word", width: 500 }];
 
   if (task.Subject === "english" && task.data1ID.type === "word") {
     for (let i = 1; i < 7; i++) {
@@ -42,7 +39,8 @@ const TaskTable = ({ task }) => {
   }
 
   return (
-    <div style={{ height: 400, width: "100%" }}>
+    <div style={{ height: 400, width: "100%" }} className="bg-[#fefdfb]">
+      <div className=" font-semibold mb-2 w-full ">Task Questions</div>
       <DataGrid
         rows={rows}
         columns={columns}

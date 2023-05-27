@@ -110,7 +110,7 @@ const ChildDashboard = () => {
               </div>
               <div className="feadback">
                 <h3>
-                  <span>Weekly questions answered</span>
+                  <span>Student Activity</span>
                 </h3>
                 <div className="body">not yet</div>
               </div>

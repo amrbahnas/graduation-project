@@ -26,13 +26,15 @@
 
 .parent-dashboard .dashboard-wrapper .dashboard .boxs {
   height: calc(100vh - 200px);
-  @apply block md:grid gap-3 grid-cols-5 grid-rows-5;
+  @apply block md:block gap-3 grid-cols-5 grid-rows-5;
+  /* @apply block md:grid gap-3 grid-cols-5 grid-rows-5; */
 }
 .parent-dashboard .dashboard-wrapper .dashboard .boxs > div {
   border: 1px solid rgb(235, 234, 232);
   box-shadow: rgb(43 42 41 / 30%) 0px 1px 4px;
   background-color: white;
-  @apply rounded-md mb-4 md:mb-0 dark:bg-darkCard;
+  @apply rounded-md mb-4 dark:bg-darkCard;
+  /* @apply rounded-md mb-4 md:mb-0 dark:bg-darkCard; */
 }
 .parent-dashboard .dashboard-wrapper .dashboard .activity {
   grid-area: 1 / 1 / 6 / 4;
@@ -114,6 +116,7 @@
 
 .parent-dashboard .dashboard-wrapper .dashboard .boxs .feadback {
   grid-area: 2 / 4 / 6 / 6;
+  @apply hidden;
 }
 .parent-dashboard .dashboard-wrapper .dashboard .boxs .feadback h3 {
   @apply p-4 border-b text-lg;

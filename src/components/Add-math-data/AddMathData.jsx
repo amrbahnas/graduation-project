@@ -168,7 +168,7 @@ function Calculator({ subjectData, setSubjectData }) {
         </div>
         <div className="flex items-center justify-between">
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className=" bg-green-700 hover:bg-green-600 text-white font-bold py-2 px-6 rounded focus:outline-none focus:shadow-outline"
             type="button"
             onClick={addHandler}
           >
@@ -196,13 +196,13 @@ function Calculator({ subjectData, setSubjectData }) {
                 {subjectData.map(({ number: item }, index) => (
                   <tr key={index}>
                     <td className="border px-4 py-2 text-center">
-                      {item.num1}
+                      {item?.num1}
                     </td>
                     <td className="border px-4 py-2 text-center">
-                      {item.operator}
+                      {item?.operator}
                     </td>
                     <td className="border px-4 py-2 text-center">
-                      {item.num2}
+                      {item?.num2}
                     </td>
                     <td className="border px-4 py-2 text-center flex justify-center gap-2">
                       <button
