@@ -113,6 +113,18 @@ const AsignTask = () => {
     <div className="asign-task">
       <SimpleNav />
       <div className="asign-task-wrapper">
+        <div className="w-fit mx-auto font-bold capitalize">
+          <span className=" font-semibold">Asign Task</span>
+
+          {subjectName && activeStep === 1 && (
+            <span>
+              {" - "}
+              {subjectName}
+            </span>
+          )}
+          {" - "}
+          {selectedGrade && <span>Grade: {selectedGrade}</span>}
+        </div>
         <InputStepper steps={steps} activeStep={activeStep} />
         <div className="page">
           <div className={activeStep === 0 ? ` block ` : ` hidden`}>

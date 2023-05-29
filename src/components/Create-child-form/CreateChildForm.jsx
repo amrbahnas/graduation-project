@@ -10,7 +10,12 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import toast from "react-hot-toast";
 import Loading from "./../Full-loading/FullLoading";
-const CreateChildForm = ({ setuserName, setpassword, setsuccess }) => {
+const CreateChildForm = ({
+  setuserName,
+  setpassword,
+  setsuccess,
+  setChildId,
+}) => {
   const dispatch = useDispatch();
   const [name, setname] = useState("");
   const [childGrade, setchildGrade] = useState("");
@@ -34,6 +39,7 @@ const CreateChildForm = ({ setuserName, setpassword, setsuccess }) => {
         setLoading(false);
         toast.success("Account created successfully");
         dispatch(addChildren(action.student));
+        setChildId(action.student._id);
         setuserName(username);
         setpassword(password);
         setsuccess(true);

@@ -7,7 +7,7 @@ function Calculator({ subjectData, setSubjectData }) {
   const [num2, setNum2] = useState("");
   const [operator, setOperator] = useState("");
   const [choices, setChoices] = useState(["", "", ""]);
-
+  const [editIndex, setEditIndex] = useState(null);
   const handleNum1Change = (e) => {
     setNum1(e.target.value);
   };
@@ -32,7 +32,10 @@ function Calculator({ subjectData, setSubjectData }) {
       toast.error("Please fill all the fields");
       return;
     }
-
+    if (editIndex !== null) {
+      updateHandler();
+      return;
+    }
     setSubjectData((prev) => [
       ...prev,
       {
@@ -51,15 +54,37 @@ function Calculator({ subjectData, setSubjectData }) {
     setChoices(["", "", ""]);
   };
 
+  const updateHandler = () => {
+    setSubjectData((prev) => {
+      const newData = [...prev];
+      newData[editIndex] = {
+        number: {
+          num1: num1,
+          num2: num2,
+          operator: operator,
+        },
+        choices: choices,
+      };
+      return newData;
+    });
+    setNum1("");
+    setNum2("");
+    setOperator("");
+    ("");
+    setChoices(["", "", ""]);
+    setEditIndex(null);
+  };
+
   const editHandler = (index) => {
     const number = subjectData[index];
-    setNum1(number.num1);
-    setNum2(number.num2);
-    setOperator(number.operator);
-    setChoices(number.choices);
+    setEditIndex(index);
+    setNum1(number?.number?.num1);
+    setNum2(number?.number?.num2);
+    setOperator(number?.number?.operator);
+    setChoices(number?.choices);
   };
-  const deleteHandler = (index) => {
-    setSubjectData((prev) => prev.filter((item, index) => index !== index));
+  const deleteHandler = (qIndex) => {
+    setSubjectData((prev) => prev.filter((item, index) => index !== qIndex));
   };
 
   return (
@@ -172,7 +197,7 @@ function Calculator({ subjectData, setSubjectData }) {
             type="button"
             onClick={addHandler}
           >
-            Add
+            {editIndex !== null ? "Update" : "Add"}
           </button>
           <div className="text-gray-700 font-bold">
             {subjectData.length} Entered

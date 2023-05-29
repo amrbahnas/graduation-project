@@ -1,12 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./ChildAccountCreated.css";
-const childAccountCreated = ({ userName, password }) => {
+const childAccountCreated = ({ userName, password, childId }) => {
   const navigate = useNavigate();
 
   const onSubmit = (e) => {
     e.preventDefault();
-    navigate("/parent/my-children", { replace: true });
+    navigate("/parent/my-children/" + childId + "/alltasks/dashboard", {
+      replace: true,
+    });
   };
   return (
     <div className="child-account-created">

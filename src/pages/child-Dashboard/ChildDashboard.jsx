@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import useTask from "../../hooks/useTask";
 import DashboardNav from "../../components/DashboardNav/DashboardNav";
 import { SpeedIcon, LightbulbIcon } from "../../utils/icons";
@@ -10,28 +10,44 @@ import TaskCard from "../../components/Task-card/TaskCard";
 import "./ChildDashboard.css";
 import Loading from "../../components/Full-loading/FullLoading";
 import { current } from "@reduxjs/toolkit";
+import LoadingDots from "./../../components/LoadingDots/LoadingDots";
 const ChildDashboard = () => {
+  const navigate = useNavigate();
   const { _id, currentPage } = useParams();
-  const { children = [], studentGrade } = useSelector(
-    (store) => store.userSlice
-  );
+  const {
+    children = [],
+    studentGrade,
+    _id: parentId,
+  } = useSelector((store) => store.userSlice);
+  const [child, setChild] = useState({});
 
-  const { studentName = "" } = children?.filter(
-    (child) => child?._id === _id
-  )[0];
+  useEffect(() => {
+    const child = children?.filter((child) => child?._id === _id)[0];
+    if (!child) {
+      navigate("/parent/my-children");
+    } else {
+      setChild(child);
+    }
+  }, [_id]);
 
   const { data, loading, error } = useTask(_id);
   const [tasks, setTasks] = React.useState([]);
 
   useEffect(() => {
     if (!data) return;
-    if (currentPage === "alltasks") {
-      console.log("all tasks");
-      setTasks(data);
+    if (data.length === 0) {
+      setTasks([]);
       return;
     }
-    setTasks(data.filter((task) => task?.Subject === currentPage));
-  }, [currentPage, data]);
+    if (currentPage === "alltasks") {
+      console.log("all tasks");
+      console.log("data", data);
+      setTasks(data);
+      return;
+    } else {
+      setTasks(data.filter((task) => task?.Subject === currentPage));
+    }
+  }, [currentPage, data, _id]);
 
   return (
     <div className="parent-dashboard">
@@ -53,14 +69,18 @@ const ChildDashboard = () => {
 
           <div className="dashboard">
             <div className="title">
-              <span>{studentName}'s Dashboard</span>
+              <span>{child?.studentName}'s Dashboard</span>
             </div>
             <div className="boxs">
-              <div className="activity">
+              <div className="activity min-h-[200px]">
                 <h3>
-                  <span>Recent activity</span>
+                  <span>Tasks</span>
                 </h3>
-                {tasks?.length > 0 ? (
+                {loading ? (
+                  <div className=" w-fit mx-auto mt-20">
+                    <LoadingDots />
+                  </div>
+                ) : tasks?.length > 0 ? (
                   <div className="tasks">
                     <div className="  h-[380px]  overflow-scroll">
                       <TaskCard number={"1"} tasks={tasks} />
@@ -79,11 +99,22 @@ const ChildDashboard = () => {
                 ) : (
                   <div className="no-tasks">
                     <img src="/assets/images/noActivity.svg" alt="" />
-                    <span>{studentName} hasn’t Tasks yet</span>
-                    <span className="description">
-                      Once {studentName} starts to play, you will be able to see
-                      what they have worked on here.
-                    </span>
+                    <div className=" flex flex-col gap-1">
+                      <span>{child?.studentName} hasn’t Tasks yet</span>
+                      <span className="description">
+                        Once {child?.studentName} starts to play, you will be
+                        able to see what they have worked on here.
+                      </span>
+                      <span className=" font-normal">
+                        {child?.studentName} hastn't Data Yet ?
+                        <Link
+                          to={"/parent/AddSubjectData/" + parentId}
+                          className="underline cursor-pointer"
+                        >
+                          Add Data
+                        </Link>
+                      </span>
+                    </div>
                     <button>
                       <Link to="/parent/asigntask">Add Task</Link>
                     </button>
@@ -96,9 +127,9 @@ const ChildDashboard = () => {
                 </h3>
 
                 <p>
-                  {studentName} is performing at{" "}
-                  <strong> Grade {studentGrade} </strong>
-                  level currently{" "}
+                  {child?.studentName} is performing at{" "}
+                  <strong> Grade {child.studentGrade} </strong>
+                  currently{" "}
                   <Link
                     to={`/parent/my-children/${_id}/manage-account`}
                     className="underline cursor-pointer"
@@ -118,7 +149,7 @@ const ChildDashboard = () => {
           </div>
         </div>
       </div>
-      {loading && <Loading />}
+      {/* {loading && <Loading />} */}
     </div>
   );
 };

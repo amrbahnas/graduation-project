@@ -92,3 +92,29 @@ button {
   white-space: nowrap;
   overflow-wrap: normal;
   user-select: none; */
+
+.dots {
+  width: 10px;
+  height: 10px;
+  background: #ffffff;
+  color: #eaf1fb;
+  border-radius: 50%;
+  box-shadow: 22.4px 0, -22.4px 0;
+  animation: dots-u8fzftmd 1s infinite linear alternate;
+}
+
+@keyframes dots-u8fzftmd {
+  0% {
+    box-shadow: 22.4px 0, -22.4px 0;
+  }
+
+  33% {
+    box-shadow: 22.4px 0, -22.4px 0 rgba(71, 75, 255, 0.13);
+    background: rgba(71, 75, 255, 0.13);
+  }
+
+  66% {
+    box-shadow: 22.4px 0 rgba(71, 75, 255, 0.13), -22.4px 0;
+    background: rgba(71, 75, 255, 0.13);
+  }
+}

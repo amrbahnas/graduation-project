@@ -68,8 +68,8 @@ const AddEnglishSentences = ({ subjectData, setSubjectData }) => {
 
   return (
     <div className=" w-full flex flex-col items-center justify-center mb-12">
-      <h1 className=" font-bold mb-6">Add English Sentences</h1>
-      <div className=" w-full lg:w-9/12 flex flex-col justify-center items-center gap-6">
+      {/* <h1 className=" font-bold mb-6">Add English Sentences</h1> */}
+      <div className=" w-full lg:w-9/12 flex flex-col justify-center items-center mt-3 gap-6">
         <div className="flex flex-col justify-center items-center w-full gap-4 ">
           <InputText
             setValue={(value) => setsentence(value)}

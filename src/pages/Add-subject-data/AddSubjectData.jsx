@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./AddSubjectData.css";
 // react-router
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // redux
 import { useDispatch, useSelector } from "react-redux";
 // component
@@ -15,7 +15,7 @@ import insertQuestions from "../../services/insertQuestions";
 import SelectSubject from "./../../components/Select-subject/SelectSubject";
 import SimpleNav from "./../../components/SimpleNav/SimpleNav";
 import AddMathData from "../../components/Add-math-data/AddMathData";
-
+import AssignmentIcon from "@mui/icons-material/Assignment";
 const choose = [
   {
     label: "word",
@@ -99,6 +99,25 @@ const AddSubjectData = () => {
     <div className="add-data">
       <SimpleNav />
       <div className="add-data-wrapper">
+        <div
+          className={`flex ${
+            activeStep === 2 ? " justify-between" : " justify-center"
+          } items-center px-10  font-bold capitalize`}
+        >
+          <div>
+            <span className=" font-semibold">Add Subject Data</span>
+            {subjectName && <span> - {subjectName}</span>}
+            {childGrade && <span> - Grade : {childGrade}</span>}
+          </div>
+          {activeStep === 2 && (
+            <Link
+              to="/parent/asigntask"
+              className=" rounded-md px-2 py-2 flex items-center flex-row  gap-2 bg-backBtnColor  font-normal  hover:bg-backBtnColorHoner cursor-pointer"
+            >
+              <AssignmentIcon fontSize="small" /> Asign Task
+            </Link>
+          )}
+        </div>
         <InputStepper steps={steps} activeStep={activeStep} />
         <div className="page">
           <div className={activeStep === 0 ? " block" : "hidden"}>

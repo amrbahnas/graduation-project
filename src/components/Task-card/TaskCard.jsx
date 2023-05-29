@@ -80,7 +80,9 @@ const TaskCard = ({ reorder, tasks }) => {
                           </div>
                         </AccordionSummary>
                         <AccordionDetails>
-                          {item?.done && <FeedBackTable taskId={item?._id} />}
+                          {item?.done[0] && (
+                            <FeedBackTable taskId={item?._id} />
+                          )}
                           <TaskTable task={item} />
                         </AccordionDetails>
                       </Accordion>
