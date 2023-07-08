@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useEffect } from "react";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -6,6 +6,10 @@ import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 
 export default function RadioChoose({ title, setChooseValue, choose }) {
+  useEffect(() => {
+    setChooseValue(choose[0].value);
+  }, [choose]);
+
   return (
     <FormControl sx={{ p: 2, mb: 3 }}>
       <FormLabel id="demo-radio-buttons-group-label" color="primary">
@@ -13,11 +17,11 @@ export default function RadioChoose({ title, setChooseValue, choose }) {
       </FormLabel>
       <RadioGroup
         aria-labelledby="demo-radio-buttons-group-label"
-        defaultValue={choose[1].value}
+        defaultValue={choose[0].value}
         name="radio-buttons-group"
         onChange={(e) => setChooseValue(e.target.value)}
       >
-        {choose.map(({ label, value }) => {
+        {choose?.map(({ label, value }) => {
           return (
             <FormControlLabel
               key={label}

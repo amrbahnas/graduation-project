@@ -32,16 +32,13 @@ const ChildDashboard = () => {
 
   const { data, loading, error } = useTask(_id);
   const [tasks, setTasks] = React.useState([]);
-
   useEffect(() => {
-    if (!data) return;
+    if (!Array.isArray(data)) return;
     if (data.length === 0) {
       setTasks([]);
       return;
     }
     if (currentPage === "alltasks") {
-      console.log("all tasks");
-      console.log("data", data);
       setTasks(data);
       return;
     } else {
@@ -60,10 +57,10 @@ const ChildDashboard = () => {
                 <SpeedIcon />
                 <span> Dashboard</span>
               </li>
-              <li>
+              {/* <li>
                 <LightbulbIcon />
                 <span> Learning</span>
-              </li>
+              </li> */}
             </ul>
           </div>
 
@@ -80,15 +77,15 @@ const ChildDashboard = () => {
                   <div className=" w-fit mx-auto mt-20">
                     <LoadingDots />
                   </div>
-                ) : tasks?.length > 0 ? (
+                ) : tasks?.length ? (
                   <div className="tasks">
                     <div className="  h-[380px]  overflow-scroll">
                       <TaskCard number={"1"} tasks={tasks} />
                     </div>
                     <div className="btns">
-                      <button>
+                      {/* <button>
                         <span>Reordring Tasks</span>
-                      </button>
+                      </button> */}
                       <button>
                         <Link to="/parent/asigntask" className=" w-full h-full">
                           Add Task

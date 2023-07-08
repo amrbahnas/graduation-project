@@ -12,6 +12,7 @@ import { FacebookIcon, GoogleIcon, AppleIcon } from "../../utils/icons";
 // components
 import LoginSignupNav from "../../components/login-signup-nav/LoginSignupNav";
 import toast from "react-hot-toast";
+import TryGames from "../../components/Trying-to-play-game/trying-to-play-game";
 const LogIn = () => {
   // initialize
   const navigate = useNavigate();
@@ -109,6 +110,7 @@ const LogIn = () => {
             />
           </form>
         </div>
+        <TryGames />
       </div>
     </div>
   );

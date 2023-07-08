@@ -13,8 +13,8 @@ const ChildCard = ({ child }) => {
           <h2 className="dark:text-darkPText">{child.studentName}</h2>
         </div>
         <div className="last-play">
-          <span>Last played</span>
-          <span>- -</span>
+          {/* <span>Last played</span>
+          <span>- -</span> */}
         </div>
         <div className="options">
           <Link to={`/parent/my-children/${child._id}/alltasks/dashboard`}>

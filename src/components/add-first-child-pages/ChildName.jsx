@@ -32,10 +32,10 @@ const ChildName = ({ setpage, setname }) => {
               onChange={(e) => setchildName(e.target.value)}
             />
           </div>
-          <div className="input">
+          {/* <div className="input">
             <label>Child's last initial</label>
             <input type="text" />
-          </div>
+          </div> */}
           {errorMessage && <span className="error">Invalied Name</span>}
           <div className="btns-add-first-child">
             <button type="submit">Add name</button>

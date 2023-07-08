@@ -4,7 +4,7 @@ import "./Common.css";
 const specialGames = {
   english: [
     {
-      name: "game5",
+      name: "Choose",
       id: "5",
     },
   ],
@@ -15,29 +15,34 @@ const specialGames = {
 export const games = {
   english: [
     {
-      name: "game0",
+      name: "Match",
       id: "0",
     },
     {
-      name: "game1",
+      name: "Listen",
       id: "1",
     },
     {
-      name: "game2",
+      name: "Arrange",
       id: "2",
     },
   ],
   math: [
     {
-      name: "game3",
+      name: "Compare",
       id: "3",
     },
     {
-      name: "game4",
+      name: "Calculate",
       id: "4",
     },
   ],
-  arabic: [],
+  arabic: [
+    {
+      name: "Choose",
+      id: "6",
+    },
+  ],
 };
 
 const SelectGame = ({ setgames, setEnableBTN, subjectName }) => {

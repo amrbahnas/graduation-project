@@ -72,14 +72,14 @@ const ParentNavMenu = () => {
             <AccessibilityNewIcon />
             <span>My Children</span>
           </span>
-          <span
+          {/* <span
             onClick={() => {
               parentMenuHandler("/");
             }}
           >
             <InfoOutlinedIcon />
             <span>Help Center</span>
-          </span>
+          </span> */}
           <span onClick={signUp}>
             <LogoutOutlinedIcon />
             <span>Logout</span>

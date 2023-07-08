@@ -1,5 +1,5 @@
 .signup-page {
-  min-height: calc(100vh + 250px);
+  min-height: calc(100vh + 200px);
   @apply bg-third dark:bg-darkBody;
 }
 

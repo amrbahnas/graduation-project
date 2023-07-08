@@ -61,7 +61,7 @@ const CreateChildForm = ({
         </div>
         <form onSubmit={onsubmit}>
           <div className="input">
-            <label htmlFor="">First name</label>
+            <label htmlFor="">Child name</label>
             <input
               type="text"
               name=""
@@ -71,10 +71,10 @@ const CreateChildForm = ({
               onChange={(e) => setname(e.target.value)}
             />
           </div>
-          <div className="input">
+          {/* <div className="input">
             <label htmlFor="">Last name initial</label>
             <input type="text" name="" id="" required />
-          </div>
+          </div> */}
           <div className="input select">
             <FormControl fullWidth>
               <InputLabel id="demo-simple-select-label">Grade</InputLabel>

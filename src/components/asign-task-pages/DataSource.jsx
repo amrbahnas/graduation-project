@@ -7,7 +7,7 @@ import FormLabel from "@mui/material/FormLabel";
 
 export default function DataSource({ dataSource, setdataSource }) {
   return (
-    <FormControl sx={{p:2,mb:3 }}>
+    <FormControl sx={{ p: 2, mb: 3 }}>
       <FormLabel id="demo-radio-buttons-group-label" color="primary">
         Task Data From:
       </FormLabel>
@@ -27,11 +27,11 @@ export default function DataSource({ dataSource, setdataSource }) {
           control={<Radio color="primary" />}
           label="Add New Data"
         />
-        <FormControlLabel
+        {/* <FormControlLabel
           value="other"
           control={<Radio color="primary" />}
           label="Other"
-        />
+        /> */}
       </RadioGroup>
     </FormControl>
   );

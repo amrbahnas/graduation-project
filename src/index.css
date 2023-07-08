@@ -118,3 +118,10 @@ button {
     background: rgba(71, 75, 255, 0.13);
   }
 }
+
+.tryGames {
+  background-image: url("./assets/images/games/tryGames.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}

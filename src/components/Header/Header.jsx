@@ -64,7 +64,10 @@ const Header = () => {
             </p>
             <div className="btns">
               <Link to="/signup">Create your free account today</Link>
-              <Link to="">Buy Our Math membership</Link>
+              <Link to="/games" className=" text-left">
+                {" "}
+                Try Our Games Now
+              </Link>
             </div>
           </motion.div>
           <motion.div

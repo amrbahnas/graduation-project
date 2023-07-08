@@ -16,7 +16,9 @@ import SelectSubject from "./../../components/Select-subject/SelectSubject";
 import SimpleNav from "./../../components/SimpleNav/SimpleNav";
 import AddMathData from "../../components/Add-math-data/AddMathData";
 import AssignmentIcon from "@mui/icons-material/Assignment";
-const choose = [
+import AddArabicData from "../../components/Add-arabic-data/AddArabicData";
+
+const englishChoose = [
   {
     label: "word",
     value: "word",
@@ -24,6 +26,16 @@ const choose = [
   {
     label: "sentence",
     value: "sentence",
+  },
+];
+const mathChoose = [
+  {
+    label: "Random Numbers",
+    value: "random",
+  },
+  {
+    label: "Customed Numbers",
+    value: "customed",
   },
 ];
 
@@ -35,7 +47,7 @@ const AddSubjectData = () => {
   const steps = ["Subject", "type", "Data"];
   const [loading, setLoading] = useState(false);
   const [subjectName, setSubjectName] = useState("english");
-  const [chooseValue, setChooseValue] = useState("sentence");
+  const [chooseValue, setChooseValue] = useState("");
   const [subjectData, setSubjectData] = useState([]);
   const [childGrade, setChildGrade] = useState(1);
 
@@ -44,7 +56,7 @@ const AddSubjectData = () => {
   }, [subjectName]);
 
   const nextHandler = () => {
-    if (activeStep === 0 && subjectName === "math") {
+    if (activeStep === 0 && subjectName === "arabic") {
       setactiveStep(2);
       return;
     }
@@ -87,7 +99,7 @@ const AddSubjectData = () => {
   };
 
   const prevHandler = () => {
-    if (activeStep === 2 && subjectName === "math") {
+    if (activeStep === 2 && subjectName === "arabic") {
       setactiveStep(0);
       return;
     }
@@ -102,7 +114,7 @@ const AddSubjectData = () => {
         <div
           className={`flex ${
             activeStep === 2 ? " justify-between" : " justify-center"
-          } items-center px-10  font-bold capitalize`}
+          } items-center px-2 md:px-10 flex-col md:flex-row   font-bold capitalize`}
         >
           <div>
             <span className=" font-semibold">Add Subject Data</span>
@@ -112,7 +124,7 @@ const AddSubjectData = () => {
           {activeStep === 2 && (
             <Link
               to="/parent/asigntask"
-              className=" rounded-md px-2 py-2 flex items-center flex-row  gap-2 bg-backBtnColor  font-normal  hover:bg-backBtnColorHoner cursor-pointer"
+              className="flex rounded-md mt-2 md:mt-0 py-2  items-center flex-row  gap-2 bg-backBtnColor  font-normal  hover:bg-backBtnColorHoner cursor-pointer"
             >
               <AssignmentIcon fontSize="small" /> Asign Task
             </Link>
@@ -127,13 +139,15 @@ const AddSubjectData = () => {
               selectGrade={true}
             />
           </div>
+
           <div className={activeStep === 1 ? " block" : "hidden"}>
             <RadioChoose
               title="Choose type"
               setChooseValue={(value) => setChooseValue(value)}
-              choose={choose}
+              choose={subjectName === "english" ? englishChoose : mathChoose}
             />
           </div>
+
           <div className={activeStep === 2 ? " block" : "hidden"}>
             <>
               {subjectName === "english" &&
@@ -150,6 +164,14 @@ const AddSubjectData = () => {
                 <AddMathData
                   setSubjectData={setSubjectData}
                   subjectData={subjectData}
+                  dataType={chooseValue}
+                />
+              )}
+              {subjectName === "arabic" && (
+                <AddArabicData
+                  setSubjectData={setSubjectData}
+                  subjectData={subjectData}
+                  dataType={chooseValue}
                 />
               )}
             </>

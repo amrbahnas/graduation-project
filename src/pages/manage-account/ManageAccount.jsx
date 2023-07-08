@@ -4,24 +4,53 @@ import "./ManageAccount.css";
 import { useSelector } from "react-redux";
 import DashboardNav from "../../components/DashboardNav/DashboardNav";
 import SelectGrade from "./../../components/Select-grade/SelectGrade";
+
+import { toast } from "react-hot-toast";
+import ChildAccountManage from "./../../services/childAccountManage";
 const ManageAccount = () => {
   const { _id } = useParams();
   const { children } = useSelector((store) => store.userSlice);
-  const { studentUserName, studentPassword, studentGrade } = children.find(
-    (child) => child._id === _id
-  );
+  const { _id: parentId } = useSelector((store) => store.userSlice);
+
+  const { studentName, studentUserName, studentPassword, studentGrade } =
+    children.find((child) => child._id === _id);
 
   const [childGrade, setChildGrade] = useState(studentGrade);
-  const [childName, setChildName] = useState("");
-  const [password, setPassword] = useState("");
-
+  const [childName, setChildName] = useState(studentName);
+  const [password, setPassword] = useState(studentPassword);
+  const childAccountManage = new ChildAccountManage();
+  const updateAccount = (e) => {
+    e.preventDefault();
+    const body = {
+      _id,
+      studentName: childName,
+      studentGrade: childGrade,
+      studentPassword: password,
+    };
+    toast.promise(childAccountManage.updateInfo(body), {
+      loading: "Saving...",
+      success: <b>Account updated successfully.</b>,
+      error: () => {
+        return <b>Something went wrong.</b>;
+      },
+    });
+  };
+  const deleteAccount = () => {
+    toast.promise(childAccountManage.deleteAccount(), {
+      loading: "Deleting...",
+      success: <b>Account deleted successfully.</b>,
+      error: () => {
+        return <b>Something went wrong.</b>;
+      },
+    });
+  };
   return (
     <div className="manage-account">
       <DashboardNav position={"manageaccount"} />
       <div className="theContainer">
         <div className="heading">
           <span>Manage Child</span>
-          <button>Remove Account</button>
+          <button onClick={deleteAccount}>Remove Account</button>
         </div>
         <div className="body">
           <h3>Account Information</h3>
@@ -40,9 +69,9 @@ const ManageAccount = () => {
               Grade: <strong>{studentGrade}</strong>
             </span>
           </div>
-          <form>
+          <form onSubmit={updateAccount}>
             <div className="input">
-              <span>Child's first name and last initial</span>
+              <span>Child Name</span>
               <div>
                 <input
                   type="text"
@@ -55,7 +84,7 @@ const ManageAccount = () => {
               </div>
             </div>
             <div className="input">
-              <span>Password</span>
+              <span>New Password</span>
               <div>
                 <input
                   type="password"
