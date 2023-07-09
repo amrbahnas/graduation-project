@@ -39,7 +39,7 @@ const FeedBackTable = ({ taskId, subject }) => {
   //num1: "60", num2: "10", operator: "*"
 
   return (
-    <div style={{ height: 400, width: "100%" }} className=" mb-14 bg-[#fefdfb]">
+    <div style={{ height: 450, width: "100%" }} className=" mb-14 bg-[#eefafd]">
       <div className=" font-semibold mb-2 w-full ">Task Feedback</div>
       <DataGrid
         rows={rows}

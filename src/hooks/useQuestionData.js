@@ -8,7 +8,7 @@ const useQuestionData = (body) => {
   return useQuery({
     queryKey: ["SUBJECTData", _id],
     queryFn: () => apiClient.post(body),
-    staleTime: 1000 * 60 * 1, // 1 minutes
+    staleTime: 30 * 1000, //  30 seconds
   });
 };
 

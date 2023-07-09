@@ -6,7 +6,7 @@ const useTask = (_id) => {
   return useQuery({
     queryKey: ["tasks", _id],
     queryFn: () => apiClient.get(),
-    staleTime: 1000 * 60 * 1, // 1 minutes
+    staleTime: 30 * 1000, //  30 seconds
   });
 };
 

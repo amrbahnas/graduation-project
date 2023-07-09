@@ -11,33 +11,27 @@ const DataPreview = ({
   games,
 }) => {
   const [checked, setChecked] = useState([]);
+  const [passedData, setPassedData] = useState([]);
   const body = {
     grade: selectedGrade,
     subject: subjectName,
   };
   const { data, isLoading, isError } = useQuestionData(body);
-  if (isError) return <p>Error</p>;
-  if (!data)
-    return (
-      <div className="border-2 shadow-inner mb-4">
-        <span className="block mx-auto mt-16 w-fit">No items found !</span>;
-      </div>
-    );
-  const [passedData, setPassedData] = useState([]);
+
   useEffect(() => {
+    if (!data) return;
+    let filteredData = [];
     if (subjectName === "math" && data) {
-      setPassedData(data);
-      return;
-    }
-    if (data.length) {
-      const filteredData = games.includes("5")
+      filteredData = data;
+    } else if (data.length) {
+      filteredData = games.includes("5")
         ? data
             .filter((item) => item.type === "sentence")
             .map((item) => ({ ...item, choices: item.choices[0].split(",") }))
         : data.filter((item) => item.type === "word");
-      setPassedData(filteredData);
     }
-  }, [data]);
+    setPassedData(filteredData);
+  }, [data, games, subjectName]);
 
   useEffect(() => {
     if (checked.length === 6) {
@@ -46,6 +40,15 @@ const DataPreview = ({
       setEnableBTN(false);
     }
   }, [checked]);
+
+  if (isError) return <p>Error</p>;
+  if (!data) {
+    return (
+      <div className="border-2 shadow-inner mb-4">
+        <span className="block mx-auto mt-16 w-fit">No items found !</span>;
+      </div>
+    );
+  }
 
   return (
     <div style={{ minHeight: "200px" }}>

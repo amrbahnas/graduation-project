@@ -27,25 +27,33 @@ const TaskCard = ({ tasks }) => {
                 borderRadius: "10px",
               }}
             >
-              <div className=" flex w-full justify-between mr-3 font-bold">
+              <div className=" flex w-full justify-between md:mr-3 font-bold ">
                 <Typography>
                   Task {index + 1} ( {item.Subject})
                 </Typography>
                 <Typography>
                   {item?.done[0] ? (
-                    <span className=" flex items-center gap-2 text-green-800">
+                    <span className=" flex items-center gap-1 md:gap-2 text-green-800">
                       <DoneAllIcon />
                       Done
                     </span>
                   ) : (
-                    <span alt="wait" className=" text-green-800">
+                    <span
+                      alt="wait"
+                      className=" text-green-800 text-xs md:text-base "
+                    >
                       on Progress
                     </span>
                   )}
                 </Typography>
               </div>
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails
+              sx={{
+                backgroundColor: "#eefafd",
+                marginBottom: "100px",
+              }}
+            >
               {item?.done[0] && <FeedBackTable taskId={item?._id} />}
               <TaskTable task={item} />
             </AccordionDetails>

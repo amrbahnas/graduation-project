@@ -1,22 +1,35 @@
 import * as React from "react";
 
 import Slider from "@mui/material/Slider";
-import { Button, MenuItem } from "@mui/material";
+import { Button, MenuItem, TextField } from "@mui/material";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import tryGenerate from "../../services/generateMath";
+import generateMath from "../../services/generateMath";
 
-function valuetext(value) {
-  return `${value}°C`;
-}
-
-export default function RandomData() {
+export default function RandomData({ setSubjectData }) {
   const [value, setValue] = React.useState([20, 37]);
   const [operator, setoperator] = React.useState("");
+  const [amount, setAmount] = React.useState(6);
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [isError, setIsError] = React.useState(false);
+  const tryGenerate = async () => {
+    setIsError(false);
+    setIsLoading(true);
+    let array = [];
+    try {
+      const arrayOfData = await generateMath("math", amount, value, operator);
+      array = JSON.parse(arrayOfData);
+    } catch (error) {
+      setIsError(true);
+      setSubjectData([]);
+    }
+    setIsLoading(false);
+    if (array.length > 0) setSubjectData(array);
+  };
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+  const handleChange = (newValue) => {
+    setValue(newValue.target.value);
   };
 
   return (
@@ -25,11 +38,9 @@ export default function RandomData() {
       <div div className=" w-full md:w-[320px] flex items-center gap-4">
         <span>{value[0]}</span>
         <Slider
-          //   getAriaLabel={() => "Temperature range"}
           value={value}
           onChange={handleChange}
           //   valueLabelDisplay="auto"
-          getAriaValueText={valuetext}
         />
         <span>{value[1]}</span>
       </div>
@@ -47,13 +58,24 @@ export default function RandomData() {
           <MenuItem value={"*"}>*</MenuItem>
           <MenuItem value={"/"}>/</MenuItem>
         </Select>
+        <TextField
+          id="outlined-number"
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
+          label="Amount"
+          type="number"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          sx={{
+            marginTop: "35px",
+          }}
+        />
       </FormControl>
-      <Button
-        variant="contained"
-        onClick={() => tryGenerate("math", value, operator)}
-      >
-        Generate
+      <Button variant="contained" onClick={tryGenerate} disabled={isLoading}>
+        {isLoading ? "Loading..." : "Generate"}
       </Button>
+      {isError && <div>Try one more time..</div>}
     </div>
   );
 }

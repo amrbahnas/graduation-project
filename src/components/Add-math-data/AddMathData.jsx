@@ -107,7 +107,7 @@ function Calculator({ subjectData, setSubjectData, dataType }) {
             subjectData={subjectData}
           />
         ) : (
-          <RandomData />
+          <RandomData setSubjectData={setSubjectData} />
         )}
 
         <div className="mt-6">

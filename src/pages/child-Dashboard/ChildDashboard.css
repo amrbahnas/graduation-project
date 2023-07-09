@@ -1,7 +1,6 @@
 .parent-dashboard .dashboard-wrapper {
   color: rgb(77, 76, 75);
-  min-height: calc(100vh -80px);
-  @apply block lg:grid grid-cols-5  gap-8 bg-transparent my-8 dark:text-darkPText;
+  @apply block lg:grid grid-cols-5  gap-8 bg-transparent mt-8 dark:text-darkPText;
 }
 .parent-dashboard .dashboard-wrapper .nav {
   @apply col-span-1 hidden lg:block h-full;
