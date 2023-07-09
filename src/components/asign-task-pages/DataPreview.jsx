@@ -15,14 +15,21 @@ const DataPreview = ({
     grade: selectedGrade,
     subject: subjectName,
   };
-  const { data, loading, error } = useQuestionData(body);
+  const { data, isLoading, isError } = useQuestionData(body);
+  if (isError) return <p>Error</p>;
+  if (!data)
+    return (
+      <div className="border-2 shadow-inner mb-4">
+        <span className="block mx-auto mt-16 w-fit">No items found !</span>;
+      </div>
+    );
   const [passedData, setPassedData] = useState([]);
   useEffect(() => {
-    if (subjectName === "math" && data.length > 0) {
+    if (subjectName === "math" && data) {
       setPassedData(data);
       return;
     }
-    if (data.length > 0) {
+    if (data.length) {
       const filteredData = games.includes("5")
         ? data
             .filter((item) => item.type === "sentence")
@@ -31,7 +38,7 @@ const DataPreview = ({
       setPassedData(filteredData);
     }
   }, [data]);
-  console.log(data);
+
   useEffect(() => {
     if (checked.length === 6) {
       setEnableBTN(true);
@@ -42,7 +49,7 @@ const DataPreview = ({
 
   return (
     <div style={{ minHeight: "200px" }}>
-      {loading && (
+      {isLoading && (
         <>
           <Loading />
           <span></span>

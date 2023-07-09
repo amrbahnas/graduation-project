@@ -7,7 +7,6 @@ import ListItemText from "@mui/material/ListItemText";
 import Checkbox from "@mui/material/Checkbox";
 import SingleEnglishWord from "../Single-english-word/SingleEnglishWord";
 const DataSelectList = ({ data, setChecked, checked, setmainSelection }) => {
-  console.log(data);
   const handleToggle = (_id) => () => {
     const currentIndex = checked.indexOf(_id);
     const newChecked = [...checked];
@@ -24,7 +23,7 @@ const DataSelectList = ({ data, setChecked, checked, setmainSelection }) => {
       className="border-2 shadow-inner"
       sx={{ minHeight: "12rem", maxHeight: "18rem", my: 3, overflow: "auto" }}
     >
-      {data?.length === 0 && (
+      {!data?.length && (
         <span className="block mx-auto mt-16 w-fit">No items found !</span>
       )}
       {data?.map((item) => {

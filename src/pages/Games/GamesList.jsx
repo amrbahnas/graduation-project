@@ -18,11 +18,6 @@ const GamesList = () => {
       imageUrl: "./assets/images/games/forntGame/choose.png",
       title: "choose Game",
     },
-    {
-      id: 4,
-      title: "English Learn Game",
-      imageUrl: "./assets/images/games/forntGame/english.jpg",
-    },
     // Add more games as needed
   ];
 
@@ -51,6 +46,23 @@ const GamesList = () => {
             </div>
           </Link>
         ))}
+        <a
+          className=" shadow-md bg-gray-200 flex-1
+            max-w-[350px] 
+          hover:-translate-y-3 hover:shadow-lg transition-all duration-200 rounded-md  overflow-hidden  border boeder-white
+          "
+          href="https://english-learning-game.vercel.app/"
+          target="_blank"
+        >
+          <img
+            src={"./assets/images/games/forntGame/english.jpg"}
+            alt={"English Learn Game"}
+            className="w-full h-[230px] object-fill"
+          />
+          <div className=" p-3 bg-slate-500 text-white">
+            <h3 className="mt-2 text-lg font-semibold">English Learn Game</h3>
+          </div>
+        </a>
       </div>
     </div>
   );

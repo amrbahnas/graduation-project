@@ -5,6 +5,7 @@ import { Button, MenuItem } from "@mui/material";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import tryGenerate from "../../services/generateMath";
 
 function valuetext(value) {
   return `${value}°C`;
@@ -47,7 +48,12 @@ export default function RandomData() {
           <MenuItem value={"/"}>/</MenuItem>
         </Select>
       </FormControl>
-      <Button variant="contained">Generate</Button>
+      <Button
+        variant="contained"
+        onClick={() => tryGenerate("math", value, operator)}
+      >
+        Generate
+      </Button>
     </div>
   );
 }

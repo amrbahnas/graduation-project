@@ -30,7 +30,7 @@ const ChildDashboard = () => {
     }
   }, [_id]);
 
-  const { data, loading, error } = useTask(_id);
+  const { data, isLoading, isError } = useTask(_id);
   const [tasks, setTasks] = React.useState([]);
   useEffect(() => {
     if (!Array.isArray(data)) return;
@@ -73,7 +73,7 @@ const ChildDashboard = () => {
                 <h3>
                   <span>Tasks</span>
                 </h3>
-                {loading ? (
+                {isLoading ? (
                   <div className=" w-fit mx-auto mt-20">
                     <LoadingDots />
                   </div>

@@ -1,4 +1,4 @@
-import { lazy } from "react";
+import { lazy, Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import LoginNotReq from "../Protected-Routes/LoginNotReq.jsx";
 import LoginReq from "../Protected-Routes/LoginReq.jsx";
@@ -35,8 +35,7 @@ const router = createBrowserRouter([
     path: "/",
     element: (
       <LoginNotReq>
-        {" "}
-        <Home />{" "}
+        <Home />
       </LoginNotReq>
     ),
     errorElement: <Error />,
@@ -44,19 +43,17 @@ const router = createBrowserRouter([
   {
     path: "/games",
     element: (
-      <LoginNotReq>
-        {" "}
-        <GamesList />{" "}
-      </LoginNotReq>
+      <Suspense fallback={<ProcessLoading />}>
+        <GamesList />
+      </Suspense>
     ),
   },
   {
     path: "/games/:id/*",
     element: (
-      <LoginNotReq>
-        {" "}
-        <Game />{" "}
-      </LoginNotReq>
+      <Suspense fallback={<ProcessLoading />}>
+        <Game />
+      </Suspense>
     ),
   },
   {

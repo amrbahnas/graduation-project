@@ -6,19 +6,19 @@ import DashboardNav from "../../components/DashboardNav/DashboardNav";
 import SelectGrade from "./../../components/Select-grade/SelectGrade";
 
 import { toast } from "react-hot-toast";
-import ChildAccountManage from "./../../services/childAccountManage";
+
+import ApiClient from "../../services/api-client";
 const ManageAccount = () => {
   const { _id } = useParams();
   const { children } = useSelector((store) => store.userSlice);
   const { _id: parentId } = useSelector((store) => store.userSlice);
-
   const { studentName, studentUserName, studentPassword, studentGrade } =
     children.find((child) => child._id === _id);
-
   const [childGrade, setChildGrade] = useState(studentGrade);
   const [childName, setChildName] = useState(studentName);
   const [password, setPassword] = useState(studentPassword);
-  const childAccountManage = new ChildAccountManage();
+  // enter the endpoint *************
+  const apiClient = new ApiClient("/endpoint");
   const updateAccount = (e) => {
     e.preventDefault();
     const body = {
@@ -27,7 +27,7 @@ const ManageAccount = () => {
       studentGrade: childGrade,
       studentPassword: password,
     };
-    toast.promise(childAccountManage.updateInfo(body), {
+    toast.promise(apiClient.updateInfo(body), {
       loading: "Saving...",
       success: <b>Account updated successfully.</b>,
       error: () => {
@@ -36,7 +36,7 @@ const ManageAccount = () => {
     });
   };
   const deleteAccount = () => {
-    toast.promise(childAccountManage.deleteAccount(), {
+    toast.promise(apiClient.deleteAccount(), {
       loading: "Deleting...",
       success: <b>Account deleted successfully.</b>,
       error: () => {
