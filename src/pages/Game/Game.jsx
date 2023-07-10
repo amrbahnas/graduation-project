@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import ColorGame from "../../components/Games/ColorGame/ColorGame";
 import MemoryGame from "../../components/Games/Memory/MemoryGame";
 import ConentGame from "../../components/Games/ConentGame/ConentGame";
-import EnglishLearnGame from "../../components/Games/EnglishLearnGame/EnglishLearnGame";
 const Game = () => {
   const { id } = useParams();
 
