@@ -57,8 +57,8 @@ const LogIn = () => {
       {loading && <LinearProgress />}
       <div className="theContainer">
         <div className="login-form">
-          <h3>Log in</h3>
-          <div className="login-socail">
+          <h3>Welcome Back</h3>
+          {/* <div className="login-socail">
             <div className="facebook">
               <FacebookIcon />
               <span>Continue with Facebook</span>
@@ -71,12 +71,12 @@ const LogIn = () => {
               <AppleIcon />
               <span>Continue with Apple</span>
             </div>
-          </div>
-          <div className="login-email">
+          </div> */}
+          {/* <div className="login-email">
             <span></span>
             Or log in with Email
             <span></span>
-          </div>
+          </div> */}
           <form onSubmit={formHandler}>
             <div className="input-form">
               <label htmlFor="">Email</label>

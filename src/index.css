@@ -120,7 +120,7 @@ button {
 }
 
 .tryGames {
-  background-image: url("assets/images/games/tryGames.png");
+  background-image: url("../public/assets/images/games/tryGames.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

@@ -69,7 +69,7 @@ const SignUp = () => {
             back
           </div>
           <h3>Create your free parent account!</h3>
-          <div className="login-socail">
+          {/* <div className="login-socail">
             <div className="facebook">
               <FacebookIcon />
               <span>Continue with Facebook</span>
@@ -83,7 +83,7 @@ const SignUp = () => {
             <span></span>
             Or Sign up with Email
             <span></span>
-          </div>
+          </div> */}
 
           <Formik
             initialValues={initialValues}
@@ -145,7 +145,7 @@ const SignUp = () => {
                     </div>
                   )}
                 </div>
-                <div className="checkbox">
+                <div className="checkbox mt-4">
                   <div className="check">
                     <input type="checkbox" name="agree" value="agree" />
                     <span>By registering, you agree to the</span>
@@ -153,7 +153,7 @@ const SignUp = () => {
                     <span>and</span>
                     <a>privacy policy</a>
                   </div>
-                  <div className="check">
+                  {/* <div className="check">
                     <input
                       type="checkbox"
                       name="Receive"
@@ -163,13 +163,14 @@ const SignUp = () => {
                     <label htmlFor="Receive">
                       Receive emails about Our news and promotions
                     </label>
-                  </div>
+                  </div> */}
                 </div>
                 <input
                   type="submit"
                   value={loading ? "loading" : "create account"}
                   name="commit"
                   disabled={loading}
+                
                 />
               </Form>
             )}
