@@ -111,7 +111,6 @@ const AddEnglishData = ({ setSubjectData }) => {
                   </span>
                 </label>
               )}
-
               <input
                 type="file"
                 name=""

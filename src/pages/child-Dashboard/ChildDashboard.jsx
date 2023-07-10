@@ -75,7 +75,7 @@ const ChildDashboard = () => {
               <span>{child?.studentName}'s Dashboard</span>
             </div>
             <div className="boxs">
-              <div className="activity min-h-[200px]">
+              <div className="activity min-h-[400px]">
                 <h3>
                   <span>Tasks</span>
                 </h3>
@@ -85,7 +85,7 @@ const ChildDashboard = () => {
                   </div>
                 ) : tasks?.length ? (
                   <div className="tasks">
-                    <div className="  h-[380px]  overflow-scroll">
+                    <div className=" min-h-[380px] max-h-[500px] mb-4  overflow-scroll">
                       <TaskCard number={"1"} tasks={tasks} />
                     </div>
                     <div className="btns">

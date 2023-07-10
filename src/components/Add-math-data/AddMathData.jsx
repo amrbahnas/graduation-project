@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import CustomeData from "./CustomeData";
 import RandomData from "./RandomData";
@@ -10,6 +10,9 @@ function Calculator({ subjectData, setSubjectData, dataType }) {
   const [operator, setOperator] = useState("");
   const [choices, setChoices] = useState(["", "", ""]);
   const [editIndex, setEditIndex] = useState(null);
+  useEffect(() => {
+    setSubjectData([]);
+  }, [dataType]);
   const handleNum1Change = (e) => {
     setNum1(e.target.value);
   };
@@ -110,15 +113,15 @@ function Calculator({ subjectData, setSubjectData, dataType }) {
           <RandomData setSubjectData={setSubjectData} />
         )}
 
-        <div className="mt-6">
+        <div className="mt-6 overflow-scroll">
           {subjectData.length === 0 ? (
             <div className=" w-full p-4 border">
               <p className="text-gray-700 text-center">No Data yet</p>
             </div>
           ) : (
-            <table className="table-auto w-full">
+            <table className="table-auto w-full overflow-auto">
               <thead>
-                <tr>
+                <tr className=" whitespace-nowrap">
                   <th className="px-4 py-2">Number 1</th>
                   <th className="px-4 py-2">Operator</th>
                   <th className="px-4 py-2">Number 2</th>
