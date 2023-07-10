@@ -14,6 +14,7 @@ import LoadingDots from "./../../components/LoadingDots/LoadingDots";
 const ChildDashboard = () => {
   const navigate = useNavigate();
   const { _id, currentPage } = useParams();
+  const { data, isLoading, isError } = useTask(_id);
   const {
     children = [],
     studentGrade,
@@ -30,7 +31,6 @@ const ChildDashboard = () => {
     }
   }, [_id]);
 
-  const { data, isLoading, isError } = useTask(_id);
   const [tasks, setTasks] = React.useState([]);
   useEffect(() => {
     if (!Array.isArray(data)) return;
