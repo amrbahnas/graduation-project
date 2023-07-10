@@ -80,6 +80,13 @@ const AsignTask = () => {
             );
             setLoading(false);
             toast.success("Task Asigned Successfully!");
+            setTimeout(() => {
+              if (selectedChildrens.length === 1)
+                navigate(
+                  `/parent/my-children/${selectedChildrens[0]}/alltasks/dashboard`
+                );
+              else navigate("/parent/my-children");
+            }, 2000);
           })
           .catch((err) => {
             setLoading(false);
@@ -143,6 +150,7 @@ const AsignTask = () => {
               selectedGrade={selectedGrade}
               subjectName={subjectName}
               setSelectedData={setSelectedData}
+              selectetedData={selectetedData}
               setEnableBTN={setEnableBTN}
               activeStep={activeStep}
               games={games}

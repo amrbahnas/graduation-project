@@ -6,6 +6,7 @@ import "./Common.css";
 const DataPreview = ({
   subjectName,
   selectedGrade,
+  selectetedData,
   setSelectedData,
   setEnableBTN,
   games,
@@ -34,6 +35,10 @@ const DataPreview = ({
   }, [data, games, subjectName]);
 
   useEffect(() => {
+    setSelectedData([]);
+  }, []);
+
+  useEffect(() => {
     if (checked.length === 6) {
       setEnableBTN(true);
     } else {
@@ -52,6 +57,10 @@ const DataPreview = ({
 
   return (
     <div style={{ minHeight: "200px" }}>
+      <div className=" text-neutral-600 capitalize   ">
+        select only six items {selectetedData.length} of 6
+      </div>
+
       {isLoading && (
         <>
           <Loading />
@@ -66,6 +75,11 @@ const DataPreview = ({
           setmainSelection={setSelectedData}
         />
       }
+      {selectetedData.length > 6 && (
+        <div className="  capitalize text-red-500 flex justify-end  mb-4 text-sm ">
+          you have selected more than 6 items
+        </div>
+      )}
     </div>
   );
 };

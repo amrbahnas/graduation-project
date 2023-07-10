@@ -94,6 +94,9 @@ const SelectGame = ({ setgames, setEnableBTN, subjectName }) => {
 
   return (
     <>
+        <div className=" px-4 text-neutral-800 font-semibold text-lg  capitalize">
+          Word Games
+        </div>
       <div className="select-game" id="game">
         {games[subjectName].map((game) => (
           <Cart
@@ -114,8 +117,8 @@ const SelectGame = ({ setgames, setEnableBTN, subjectName }) => {
       {subjectName === "english" && (
         <div>
           <hr />
-          <div className=" p-4 text-neutral-800 font-semibold text-lg  capitalize">
-            special Games
+          <div className=" px-4 pt-2 text-neutral-800 font-semibold text-lg  capitalize">
+            sentance Games
           </div>
           <div className="select-game" id="game">
             {specialGames[subjectName].map((game) => (

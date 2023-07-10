@@ -15,6 +15,8 @@ const ChildDashboard = () => {
   const navigate = useNavigate();
   const { _id, currentPage } = useParams();
   const { data, isLoading, isError } = useTask(_id);
+
+  console.log("data", data);
   const {
     children = [],
     studentGrade,
@@ -33,11 +35,15 @@ const ChildDashboard = () => {
 
   const [tasks, setTasks] = React.useState([]);
   useEffect(() => {
-    if (!Array.isArray(data)) return;
+    if (!Array.isArray(data)) {
+      setTasks([]);
+      return;
+    }
     if (data.length === 0) {
       setTasks([]);
       return;
     }
+
     if (currentPage === "alltasks") {
       setTasks(data);
       return;
