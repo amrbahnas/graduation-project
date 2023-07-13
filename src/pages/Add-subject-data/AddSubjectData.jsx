@@ -16,7 +16,7 @@ import SelectSubject from "./../../components/Select-subject/SelectSubject";
 import SimpleNav from "./../../components/SimpleNav/SimpleNav";
 import AddMathData from "../../components/Add-math-data/AddMathData";
 import AssignmentIcon from "@mui/icons-material/Assignment";
-import AddArabicData from "../../components/Add-arabic-data/AddArabicData";
+import ArabicData from "../../components/Add-arabic-data/ArabicData";
 
 const englishChoose = [
   {
@@ -168,10 +168,9 @@ const AddSubjectData = () => {
                 />
               )}
               {subjectName === "arabic" && (
-                <AddArabicData
+                <ArabicData
                   setSubjectData={setSubjectData}
                   subjectData={subjectData}
-                  dataType={chooseValue}
                 />
               )}
             </>
