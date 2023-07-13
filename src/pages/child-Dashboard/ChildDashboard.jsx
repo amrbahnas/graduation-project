@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import useTask from "../../hooks/useTask";
+import useTasks from "../../hooks/useTasks";
 import DashboardNav from "../../components/DashboardNav/DashboardNav";
 import { SpeedIcon, LightbulbIcon } from "../../utils/icons";
 import { Link, useParams, useNavigate } from "react-router-dom";
@@ -14,7 +14,7 @@ import LoadingDots from "./../../components/LoadingDots/LoadingDots";
 const ChildDashboard = () => {
   const navigate = useNavigate();
   const { _id, currentPage } = useParams();
-  const { data, isLoading, isError } = useTask(_id);
+  const { data, isLoading, isError } = useTasks(_id);
 
   console.log("data", data);
   const {
