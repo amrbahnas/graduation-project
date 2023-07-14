@@ -18,11 +18,11 @@ const DataPreview = ({
     subject: subjectName,
   };
   const { data, isLoading, isError } = useQuestionData(body);
-
+  console.log(data, "data");
   useEffect(() => {
     if (!data) return;
     let filteredData = [];
-    if (subjectName === "math" && data) {
+    if ((subjectName === "math" || subjectName === "arabic") && data) {
       filteredData = data;
     } else if (data.length) {
       filteredData = games.includes("5")

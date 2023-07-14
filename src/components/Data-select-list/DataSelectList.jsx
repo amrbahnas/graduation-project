@@ -18,6 +18,7 @@ const DataSelectList = ({ data, setChecked, checked, setmainSelection }) => {
     setChecked(newChecked);
     setmainSelection(newChecked);
   };
+  console.log(data, "aas");
   return (
     <List
       className="border-2 shadow-inner"
@@ -71,6 +72,21 @@ const DataSelectList = ({ data, setChecked, checked, setmainSelection }) => {
                         (<div>{item.choices[0]}</div>-
                         <div>{item.choices[1]}</div>-
                         <div>{item.choices[2]}</div>)
+                      </div>
+                    </div>
+                  }
+                />
+              )}
+              {item.type === "random" && item.subjectName === "arabic" && (
+                <ListItemText
+                  id={labelId}
+                  primary={
+                    <div className="p-2" key={item._id}>
+                      <p>{item.sentence}</p>
+                      <div className="flex flex-row gap-2">
+                        {item.choices.map((choice) => (
+                          <div key={choice}>{choice.text}</div>
+                        ))}
                       </div>
                     </div>
                   }
