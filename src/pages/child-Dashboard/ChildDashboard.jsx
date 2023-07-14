@@ -11,6 +11,7 @@ import "./ChildDashboard.css";
 import Loading from "../../components/Full-loading/FullLoading";
 import { current } from "@reduxjs/toolkit";
 import LoadingDots from "./../../components/LoadingDots/LoadingDots";
+import TaskModel from "../../components/TaskModel/TaskModel";
 const ChildDashboard = () => {
   const navigate = useNavigate();
   const { _id, currentPage } = useParams();
@@ -54,6 +55,7 @@ const ChildDashboard = () => {
 
   return (
     <div className="parent-dashboard">
+      <TaskModel />
       <DashboardNav position={"dashboard"} />
       <div className="theContainer">
         <div className="dashboard-wrapper">
