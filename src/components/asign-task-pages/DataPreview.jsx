@@ -26,7 +26,7 @@ const DataPreview = ({
       filteredData = data;
     } else if (subjectName === "arabic" && data) {
       filteredData = games.includes("7")
-        ? data.filter((item) => item.definitionInAc.length > 1)
+        ? data.filter((item) => item.definitionInAc.length >= 1)
         : data.filter((item) => item.definitionInAc.length === 1);
     } else if (data.length) {
       filteredData = games.includes("5")
