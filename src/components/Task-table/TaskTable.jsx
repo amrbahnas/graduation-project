@@ -60,7 +60,7 @@ const TaskTable = ({ task }) => {
     }
   }
   return (
-    <div style={{ height: 430, width: "100%" }} className="bg-[#eefafd]">
+    <div style={{ height: 430, width: "100%" }}>
       <div className=" font-semibold mb-2 w-full ">Task Questions</div>
       <DataGrid
         rows={rows}
