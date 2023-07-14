@@ -1,14 +1,34 @@
 import React, { useEffect, useState } from "react";
 import ArabicSentenceInput from "./ArabicSentenceInput";
 import RenderData from "./RenderData";
+import generateRandomDataWithAi from "../../services/generateRandomDataWithAi";
 
 function ArabicData({ setSubjectData }) {
   const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
   useEffect(() => {
     setSubjectData(data);
   }, [data]);
   const handleAddData = (newData) => {
     setData([...data, newData]);
+  };
+
+  const tryGenerate = async () => {
+    setIsError(false);
+    setIsLoading(true);
+    let array = [];
+    try {
+      const arrayOfData = await generateRandomDataWithAi("arabic", 6);
+      console.log("a");
+      array = JSON.parse(arrayOfData);
+    } catch (error) {
+      setIsError(true);
+      setData([]);
+    }
+    setIsLoading(false);
+    console.log(array);
+    if (array.length > 0) setData(array);
   };
 
   const handleUpdateData = (updatedData, index) => {
@@ -25,7 +45,12 @@ function ArabicData({ setSubjectData }) {
 
   return (
     <div>
-      <ArabicSentenceInput onAddData={handleAddData} />
+      <ArabicSentenceInput
+        onAddData={handleAddData}
+        tryGenerate={tryGenerate}
+        isError={isError}
+        isLoading={isLoading}
+      />
       <div className=" text-base md:text-lg font-semibold mb-4">
         Number of sentences: {data.length}
       </div>

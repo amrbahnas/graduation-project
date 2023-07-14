@@ -5,7 +5,7 @@ import { Button, MenuItem, TextField } from "@mui/material";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import generateMath from "../../services/generateMath";
+import generateRandomDataWithAi from "../../services/generateRandomDataWithAi";
 
 export default function RandomData({ setSubjectData }) {
   const [value, setValue] = React.useState([20, 37]);
@@ -18,7 +18,12 @@ export default function RandomData({ setSubjectData }) {
     setIsLoading(true);
     let array = [];
     try {
-      const arrayOfData = await generateMath("math", amount, value, operator);
+      const arrayOfData = await generateRandomDataWithAi(
+        "math",
+        amount,
+        value,
+        operator
+      );
       array = JSON.parse(arrayOfData);
     } catch (error) {
       setIsError(true);

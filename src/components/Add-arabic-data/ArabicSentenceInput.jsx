@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import { AddIcon, DeleteIcon } from "../../utils/icons";
 import { toast } from "react-hot-toast";
 
-const ArabicSentenceInput = ({ onAddData }) => {
+const ArabicSentenceInput = ({
+  onAddData,
+  tryGenerate,
+  isLoading,
+  isError,
+}) => {
   const [sentence, setSentence] = useState("");
   const [choices, setchoices] = useState([]);
 
@@ -110,14 +115,26 @@ const ArabicSentenceInput = ({ onAddData }) => {
           <AddIcon fontSize="small" />
           Add Option
         </button>
-        <div className="w-full flex my-10 justify-center">
+        <div className="w-full flex flex-col md:flex-row items-center my-10 gap-3 justify-center">
           <button
             className="px-4 w-[300px] md:w-1/2 py-3  text-sm font-semibold text-white bg-green-500 rounded hover:bg-green-600"
             onClick={handleAddData}
           >
             Add Data
           </button>
+          <button
+            className="px-4 w-[300px] md:w-1/2 py-3  text-sm font-semibold text-white bg-green-500 rounded hover:bg-green-600"
+            onClick={tryGenerate}
+            disabled={isLoading}
+          >
+            {isLoading ? "Loading..." : "Generate Data"}
+          </button>
         </div>
+        {isError && (
+          <div className="text-red-500 text-center">
+            try one more time please
+          </div>
+        )}
       </div>
     </div>
   );

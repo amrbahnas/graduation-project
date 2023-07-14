@@ -2,7 +2,7 @@ import { useState } from "react";
 import InputText from "../InputText";
 import styles from "./AddEnglishData.module.css";
 import { v4 } from "uuid";
-import generateMath from "../../services/generateMath";
+import generateRandomDataWithAi from "../../services/generateRandomDataWithAi";
 const AddEnglishSentences = ({ subjectData, setSubjectData }) => {
   const [sentence, setsentence] = useState("");
   const [choiceOne, setchoiceOne] = useState("");
@@ -51,7 +51,7 @@ const AddEnglishSentences = ({ subjectData, setSubjectData }) => {
     setIsLoading(true);
     let array = [];
     try {
-      const arrayOfData = await generateMath("english");
+      const arrayOfData = await generateRandomDataWithAi("english", 6);
       array = JSON.parse(arrayOfData);
     } catch (error) {
       setIsError(true);
@@ -161,7 +161,7 @@ const AddEnglishSentences = ({ subjectData, setSubjectData }) => {
                       <span>{data.choices[2]}</span>
                     </div>
                   </div>
-                  <div className="flex gap-4">
+                  <div className=" gap-4 flex flex-col md:flex-row items-center">
                     <button
                       onClick={() => editSentence(data._id)}
                       className="text-white py-1 px-2 bg-green-600 font-light rounded-md"
