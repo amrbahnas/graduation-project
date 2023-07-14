@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SimpleNav from "./../../components/SimpleNav/SimpleNav";
 import SelectChild from "../../components/asign-task-pages/SelectChild";
 import "./AsignTask.css";
@@ -13,6 +13,7 @@ import { asignTask, setLoading } from "../../store/slices/questionsDataSlice";
 import { setChildren } from "../../store/slices/userSlice";
 import toast from "react-hot-toast";
 import Loading from "../../components/Full-loading/FullLoading";
+import AssignmentIcon from "@mui/icons-material/Assignment";
 const AsignTask = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -108,17 +109,18 @@ const AsignTask = () => {
     <div className="asign-task">
       <SimpleNav />
       <div className="asign-task-wrapper">
-        <div className="w-fit mx-auto font-bold capitalize">
-          <span className=" font-semibold">Asign Task</span>
-
-          {subjectName && activeStep === 1 && (
-            <span>
-              {" - "}
-              {subjectName}
-            </span>
-          )}
-          {" - "}
+        <div className=" relative w-full items-center flex  flex-col md:flex-row justify-center mx-auto font-bold capitalize">
+          <span className=" font-semibold block mr-2">Asign Task</span>
+          {subjectName && activeStep === 1 && <span>{subjectName}</span>}
           {selectedGrade && <span>Grade: {selectedGrade}</span>}
+          {activeStep === 4 && (
+            <Link
+              to="/parent/asigntask"
+              className="flex md:absolute right-10 p-1 rounded-md mt-2 md:mt-0 py-2  items-center flex-row  gap-2 bg-backBtnColor  font-normal  hover:bg-backBtnColorHoner cursor-pointer"
+            >
+              <AssignmentIcon fontSize="small" /> Add Subject
+            </Link>
+          )}
         </div>
         <InputStepper steps={steps} activeStep={activeStep} />
         <div className="page">
