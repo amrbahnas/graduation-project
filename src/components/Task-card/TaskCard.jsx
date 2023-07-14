@@ -40,7 +40,7 @@ const TaskCard = ({ tasks }) => {
       )}
       {tasks?.map((item, index) => (
         <div
-          className=" flex w-full justify-between md:mr-3 font-bold bg-blue-300 p-3 rounded-md "
+          className=" flex w-full justify-between md:mr-3 font-bold bg-[#eefafd] mb-2 shadow-md p-3 rounded-md "
           key={item._id}
         >
           <div
