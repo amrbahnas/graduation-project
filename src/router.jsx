@@ -10,7 +10,9 @@ const MyChildren = lazy(() => import("./pages/MyChildren/MyChildren.jsx"));
 const AddSubjectData = lazy(() =>
   import("./pages/Add-subject-data/AddSubjectData.jsx")
 );
-const Error = lazy(() => import("./pages/Error/Error.jsx"));
+// const Error = lazy(() => import("./pages/Error/Error.jsx"));
+import Error from "./pages/Error/Error.jsx";
+
 const AddFirstChild = lazy(() =>
   import("./pages/Add-first-child/AddFirstChild.jsx")
 );
@@ -59,7 +61,7 @@ const router = createBrowserRouter([
   {
     path: "/parent/my-children",
     element: (
-      <LoginReq>   
+      <LoginReq>
         <MyChildren />
       </LoginReq>
     ),
@@ -68,7 +70,6 @@ const router = createBrowserRouter([
     path: "/parent/AddSubjectData/:_id",
     element: (
       <LoginReq>
-        
         <AddSubjectData />
       </LoginReq>
     ),
@@ -77,7 +78,6 @@ const router = createBrowserRouter([
     path: "/login",
     element: (
       <LoginNotReq>
-        
         <LogIn />
       </LoginNotReq>
     ),
@@ -86,7 +86,6 @@ const router = createBrowserRouter([
     path: "/signup",
     element: (
       <LoginNotReq>
-        
         <SignUp />
       </LoginNotReq>
     ),
@@ -95,7 +94,6 @@ const router = createBrowserRouter([
     path: "/forget-password",
     element: (
       <LoginNotReq>
-        
         <ForgotPassword />
       </LoginNotReq>
     ),
@@ -104,7 +102,6 @@ const router = createBrowserRouter([
     path: "/parent/add-first-child",
     element: (
       <LoginReq>
-        
         <AddFirstChild />
       </LoginReq>
     ),
@@ -113,7 +110,6 @@ const router = createBrowserRouter([
     path: "/parent/my-children/:_id/manage-account",
     element: (
       <LoginReq>
-        
         <ManageAccount />
       </LoginReq>
     ),
@@ -122,7 +118,6 @@ const router = createBrowserRouter([
     path: "/parent/my-children/:_id/:currentPage/dashboard",
     element: (
       <LoginReq>
-        
         <ChildDashboard />
       </LoginReq>
     ),
@@ -131,7 +126,6 @@ const router = createBrowserRouter([
     path: "/parent/AddChild",
     element: (
       <LoginReq>
-        
         <AddChild />
       </LoginReq>
     ),
@@ -140,7 +134,6 @@ const router = createBrowserRouter([
     path: "/parent/asigntask",
     element: (
       <LoginReq>
-        
         <AsignTask />
       </LoginReq>
     ),
@@ -149,7 +142,6 @@ const router = createBrowserRouter([
     path: "/error-construction",
     element: (
       <LoginReq>
-        
         <ErrorConstruction />
       </LoginReq>
     ),
@@ -158,7 +150,6 @@ const router = createBrowserRouter([
     path: "/loading",
     element: (
       <LoginReq>
-        
         <ProcessLoading />
       </LoginReq>
     ),
