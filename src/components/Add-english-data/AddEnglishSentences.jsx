@@ -117,17 +117,17 @@ const AddEnglishSentences = ({ subjectData, setSubjectData }) => {
             type="text"
             label="choices three"
           />
-          <div className="flex gap-4">
+          <div className=" w-full flex gap-6 md:gap-4 flex-col my-4 md:flex-row">
             <button
               onClick={SentenceHandler}
-              className="text-white py-2 px-20 bg-green-600 rounded-md mt-4 hover:bg-green-500 "
+              className="text-white flex-1 py-2 px-20 bg-green-600 rounded-md  hover:bg-green-500 "
             >
               {updateSentenceId ? "Update" : "Add"}
             </button>
             <button
               disabled={isLoading}
               onClick={tryGenerate}
-              className="text-white py-2 px-20 bg-green-600 rounded-md mt-4 hover:bg-green-500 "
+              className="text-white flex-1 py-2 px-20 bg-green-600 rounded-md  hover:bg-green-500 "
             >
               {isLoading ? "Loading..." : "Generate"}
             </button>
