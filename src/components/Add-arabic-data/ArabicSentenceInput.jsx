@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { AddIcon, DeleteIcon } from "../../utils/icons";
 import { toast } from "react-hot-toast";
+import { FormControlLabel, Switch } from "@mui/material";
 
 const ArabicSentenceInput = ({
   onAddData,
@@ -10,6 +11,7 @@ const ArabicSentenceInput = ({
 }) => {
   const [sentence, setSentence] = useState("");
   const [choices, setchoices] = useState([]);
+  const [multiChoose, setMultiChoose] = useState(true);
 
   const handleSentenceChange = (event) => {
     setSentence(event.target.value);
@@ -18,7 +20,7 @@ const ArabicSentenceInput = ({
   const handleOptionTextChange = (event, optionId) => {
     const updatedchoices = choices.map((option) => {
       if (option.id === optionId) {
-        return { ...option, text: event.target.value };
+        return { ...option, answer: event.target.value };
       }
       return option;
     });
@@ -27,11 +29,9 @@ const ArabicSentenceInput = ({
 
   const handleOptionChange = (optionId) => {
     const updatedchoices = choices.map((option) => {
-      if (option.id === optionId) {
-        return { ...option, correct: true };
-      } else {
-        return { ...option, correct: false };
-      }
+      if (option.id === optionId) return { ...option, correct: true };
+      else if (multiChoose) return option;
+      else return { ...option, correct: false };
     });
     setchoices(updatedchoices);
   };
@@ -60,7 +60,7 @@ const ArabicSentenceInput = ({
 
   const handleAddOption = () => {
     const newOptionId = choices.length + 1;
-    const newOption = { id: newOptionId, text: "", correct: false };
+    const newOption = { id: newOptionId, answer: "", correct: false };
     setchoices([...choices, newOption]);
   };
 
@@ -69,12 +69,27 @@ const ArabicSentenceInput = ({
     setchoices(updatedchoices);
   };
 
+  const multiChooseHandler = () => {
+    setMultiChoose(!multiChoose);
+  };
+
   return (
     <div className="p-1 md:p-4">
       <div className="mb-4">
-        <label className="block mb-2 text-lg font-semibold" htmlFor="sentence">
-          Arabic Sentence
-        </label>
+        <div className=" w-full mb-2 flex flex-col md:flex-row items-center justify-between">
+          <label
+            className=" whitespace-nowrap md:text-lg font-semibold"
+            htmlFor="sentence"
+          >
+            Arabic Sentence
+          </label>
+          <div className=" hidden md:block">
+            <FormControlLabel
+              control={<Switch defaultChecked onChange={multiChooseHandler} />}
+              label="Multi chooses"
+            />
+          </div>
+        </div>
         <input
           id="sentence"
           className="w-full rtl  p-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
@@ -87,7 +102,7 @@ const ArabicSentenceInput = ({
         {choices.map((option) => (
           <div key={option.id} className="flex items-center mb-2">
             <input
-              type="radio"
+              type={multiChoose ? "checkBox" : "radio"}
               id={`option${option.id}`}
               className="mr-2 rtl"
               checked={option.correct}
@@ -96,7 +111,7 @@ const ArabicSentenceInput = ({
             <input
               type="text"
               className="w-full p-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
-              value={option.text}
+              value={option.answer}
               onChange={(event) => handleOptionTextChange(event, option.id)}
               placeholder={`Option ${option.id}`}
             />
@@ -115,6 +130,18 @@ const ArabicSentenceInput = ({
           <AddIcon fontSize="small" />
           Add Option
         </button>
+        <div className=" block md:hidden mt-4">
+          <FormControlLabel
+            control={
+              <Switch
+                size="small"
+                defaultChecked
+                onChange={multiChooseHandler}
+              />
+            }
+            label="Multi chooses"
+          />
+        </div>
         <div className="w-full flex flex-col md:flex-row items-center my-10 gap-3 justify-center">
           <button
             className="px-4 w-[300px] md:w-1/2 py-3  text-sm font-semibold text-white bg-green-500 rounded hover:bg-green-600"

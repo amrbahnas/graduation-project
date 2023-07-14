@@ -15,7 +15,7 @@ const generateRandomDataWithAi = async (
       content = ` Generate with out explain json array for ${amount} english  problems for kids  ex: iam a boy, choices: [am, is, are], each with full sentence  and three options one of it inside the sentence, in the format: "{_id,<_id>,sentence:<sentence>, choices: [<choice1>, <choice2>, <choice3>]}" all problems inside one array.`;
       break;
     case "arabic":
-      content = ` Generate with out explain json array for ${amount} arabic  problems for kids , each with  three options , in the format: "{sentence:<sentence>, choices: [<{id:number,text:"text",correct:bollean}>, <{id:number,text:"text",correct:bollean}}>, <{id:number,text:"text",correct:bollean}>]}" all problems inside one array.`;
+      content = ` Generate with out explain json array for ${amount} arabic  problems for kids , each with  three options , in the format: "{sentence:<sentence>, choices: [<{id:number,answer:"text",correct:bollean}>, <{id:number,answer:"text",correct:bollean}}>, <{id:number,answer:"text",correct:bollean}>]}" all problems inside one array.`;
   }
 
   const options = {

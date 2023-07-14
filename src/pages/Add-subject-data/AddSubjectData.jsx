@@ -60,7 +60,6 @@ const AddSubjectData = () => {
       setactiveStep(2);
       return;
     }
-
     if (activeStep === 2) {
       const questions = subjectData.map((subject) => ({
         _id: subject?._id,
@@ -71,10 +70,16 @@ const AddSubjectData = () => {
         choices: subject?.choices || [],
         image: subject?.wordImage,
         definitionInEn: subject?.definitionInEn || "",
-        definitionInAc: subject?.definitionInAc || "",
+        definitionInAc:
+          subjectName === "arabic"
+            ? subject.choices
+                .map((el, indx) => el.correct && indx)
+                .filter((el) => el !== false)
+                .join("")
+            : subject?.definitionInAc || "",
         sentence: subject?.sentence || "",
       }));
-
+      console.log(questions);
       questions.forEach((word) => {
         setLoading(true);
         insertQuestions(word, _id)

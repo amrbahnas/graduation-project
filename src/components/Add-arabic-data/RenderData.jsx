@@ -31,7 +31,7 @@ function RenderData({ data, onDelete, onUpdate }) {
     const value = event.target.value;
     setUpdatedData((prevData) => {
       const choices = [...prevData.choices];
-      choices[index].text = value;
+      choices[index].answer = value;
       return {
         ...prevData,
         choices: choices,
@@ -67,7 +67,7 @@ function RenderData({ data, onDelete, onUpdate }) {
               <li key={index} className="mb-2 relative">
                 <input
                   type="text"
-                  value={option.text}
+                  value={option.answer}
                   onChange={(event) => handleOptionTextChange(event, index)}
                   className="w-full p-2 border rounded focus:outline-none focus:ring focus:border-blue-300 rtl text-right"
                 />
@@ -104,7 +104,7 @@ function RenderData({ data, onDelete, onUpdate }) {
           <ul>
             {data.choices.map((option, index) => (
               <li key={index} className="mb-2 rtl">
-                {option.text}{" "}
+                {option.answer}{" "}
                 {option.correct && (
                   <CheckIcon className="w-5 h-5 text-green-500 inline ml-2" />
                 )}
