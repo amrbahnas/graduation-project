@@ -4,8 +4,10 @@ import useFeedback from "../../hooks/useFeedback";
 // import { games } from "../asign-task-pages/SelectGame";
 
 const FeedBackTable = ({ taskId, subject }) => {
-  const { data } = useFeedback(taskId);
-  console.log(data);
+  const { data, isLoading } = useFeedback(taskId);
+  if (!data) return null;
+  console.log(data, "data");
+  if (isLoading) return <div className="text-center">Loading...</div>;
   const games = data.map((game) => game.gameName);
   const columns = [{ field: "word", headerName: "WORD", width: 130 }];
 
@@ -40,13 +42,13 @@ const FeedBackTable = ({ taskId, subject }) => {
 
   return (
     <div style={{ height: 450, width: "100%" }} className=" mb-14 bg-[#eefafd]">
-      <div className=" font-semibold mb-2 w-full ">Task Feedback</div>
+      {/* <div className=" font-semibold mb-2 w-full ">Task Feedback</div>
       <DataGrid
         rows={rows}
         columns={columns}
         pageSize={6}
         rowsPerPageOptions={[6]}
-      />
+      /> */}
     </div>
   );
 };

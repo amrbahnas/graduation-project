@@ -26,7 +26,7 @@ const TaskCard = ({ tasks }) => {
     useUpdateTask();
 
   const handleUpdateTask = (task) => {
-    // updateTask(task._id, { ...task, done: [true] });
+    // updateTask({ _id: task._id, newData: { ...task, done: [true] } });
   };
 
   const handelTaskModel = (_id) => {
@@ -40,11 +40,11 @@ const TaskCard = ({ tasks }) => {
       )}
       {tasks?.map((item, index) => (
         <div
-          className=" flex w-full justify-between md:mr-3 font-bold bg-[#eefafd] mb-2 shadow-md p-3 rounded-md "
+          className=" flex w-full justify-between md:mr-3 font-bold bg-[#eefafd] mb-3 shadow-md p-3 rounded-md "
           key={item._id}
         >
           <div
-            className="flex flex-col gap-2 flex-1 "
+            className="flex flex-col gap-2 flex-1 cursor-pointer "
             onClick={() => handelTaskModel(item._id)}
           >
             <Typography>
@@ -66,32 +66,34 @@ const TaskCard = ({ tasks }) => {
               )}
             </Typography>
           </div>
-          <div className="flex items-center gap-6">
-            <div>
-              {updateTaskIsLoading ? (
-                <CircularProgress size={16} />
-              ) : (
-                <EditIcon
-                  size={16}
-                  onClick={() => handleUpdateTask(item)}
-                  className=" hover:scale-[1.1] hover:text-green-600  "
-                />
-              )}
+          {!item.done[0] && (
+            <div className="flex items-center gap-6">
+              <div>
+                {updateTaskIsLoading ? (
+                  <CircularProgress size={16} />
+                ) : (
+                  <EditIcon
+                    size={16}
+                    onClick={() => handleUpdateTask(item)}
+                    className=" hover:scale-[1.1] hover:text-green-600  "
+                  />
+                )}
+              </div>
+              <div>
+                {deleteTaskIsLoading ? (
+                  <CircularProgress size={16} />
+                ) : (
+                  <DeleteIcon
+                    size={16}
+                    onClick={() => {
+                      deleteTask(item._id);
+                    }}
+                    className=" hover:scale-[1.1] hover:text-red-500  cursor-pointer "
+                  />
+                )}
+              </div>
             </div>
-            <div>
-              {deleteTaskIsLoading ? (
-                <CircularProgress size={16} />
-              ) : (
-                <DeleteIcon
-                  size={16}
-                  onClick={() => {
-                    deleteTask(item._id);
-                  }}
-                  className=" hover:scale-[1.1] hover:text-red-500  "
-                />
-              )}
-            </div>
-          </div>
+          )}
         </div>
       ))}
     </div>

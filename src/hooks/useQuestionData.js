@@ -8,7 +8,6 @@ const useQuestionData = (body) => {
   return useQuery({
     queryKey: ["SUBJECTData", body.subject, body.grade, _id],
     queryFn: () => apiClient.post(body),
-    staleTime: 30 * 1000, //  30 seconds
   });
 };
 

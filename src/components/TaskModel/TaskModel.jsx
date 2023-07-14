@@ -3,6 +3,7 @@ import TaskTable from "../Task-table/TaskTable";
 import FeedBackTable from "../Feedback-table/FeedBackTable";
 
 const TaskModel = ({ currentTask, setTaskModel }) => {
+  console.log(currentTask, "Task");
   const [currentPage, setCurrentTask] = useState("data");
   return (
     <div className="fixed z-50 inset-0 flex items-center justify-center bg-black/50">

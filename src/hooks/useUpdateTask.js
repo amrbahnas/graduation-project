@@ -2,13 +2,18 @@ import React from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import ApiClient from "../services/api-client";
 import { toast } from "react-hot-toast";
+import { useParams } from "react-router-dom";
 
-const useUpdateTask = (_id, newData) => {
-  const apiClient = new ApiClient("/task/tasks/" + _id);
+const useUpdateTask = () => {
   const queryClient = useQueryClient();
+  const { _id: childId } = useParams();
+
   const { mutate, error, isLoading } = useMutation({
-    mutationFn: () => apiClient.post(newData),
-    onSuccess: (res, bodyReq) => {
+    mutationFn: ({ _id, newData }) => {
+      const apiClient = new ApiClient("/updateTask/:taskId/" + _id);
+      return apiClient.post({ newData });
+    },
+    onSuccess: () => {
       toast.success("Task Updated Successfully");
       // queryClient.setQueriesData(["tasks", _id], (tasks) => [
       //   ...tasks.map((task) => {
@@ -19,7 +24,7 @@ const useUpdateTask = (_id, newData) => {
       //   }),
       // ]);
       queryClient.invalidateQueries({
-        queryKey: ["tasks", _id],
+        queryKey: ["tasks", childId],
       });
     },
     onError: (err) => {

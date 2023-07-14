@@ -8,7 +8,6 @@ const useFeedback = (taskID) => {
   return useQuery({
     queryKey: ["tasks", _id],
     queryFn: () => apiclient.get(),
-    staleTime: 30 * 1000, //  30 seconds
   });
 };
 
