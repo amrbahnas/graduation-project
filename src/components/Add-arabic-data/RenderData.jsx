@@ -1,9 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CheckIcon } from "../../utils/icons";
+import { toast } from "react-hot-toast";
 
-function RenderData({ data, onDelete, onUpdate }) {
+function RenderData({ data, onDelete, onUpdate, multiChoose }) {
   const [editing, setEditing] = useState(false);
   const [updatedData, setUpdatedData] = useState(data);
+
+  useEffect(() => {
+    setUpdatedData((prev) => {
+      return {
+        ...prev,
+        choices: prev.choices.map((option) => ({ ...option, correct: false })),
+      };
+    });
+  }, [multiChoose]);
 
   const handleEdit = () => {
     setEditing(true);
@@ -11,11 +21,19 @@ function RenderData({ data, onDelete, onUpdate }) {
   };
 
   const handleUpdate = () => {
+    if (!updatedData.choices.some((option) => option.correct)) {
+      toast.error("Please select the correct Answer");
+      return;
+    }
     onUpdate(updatedData);
     setEditing(false);
   };
 
   const handleCancel = () => {
+    if (!updatedData.choices.some((option) => option.correct)) {
+      toast.error("Please select the correct Answer");
+      return;
+    }
     setEditing(false);
   };
 
@@ -44,7 +62,8 @@ function RenderData({ data, onDelete, onUpdate }) {
     setUpdatedData((prevData) => {
       const choices = [...prevData.choices];
       choices.forEach((option, i) => {
-        choices[i].correct = i === index ? value : false;
+        choices[i].correct =
+          i === index ? value : multiChoose ? choices[i].correct : false;
       });
       return {
         ...prevData,
@@ -73,7 +92,7 @@ function RenderData({ data, onDelete, onUpdate }) {
                 />
                 <label className="ml-2 absolute left-0 top-3 ">
                   <input
-                    type="checkbox"
+                    type={multiChoose ? "checkbox" : "radio"}
                     checked={option.correct}
                     onChange={(event) => handleOptionChange(event, index)}
                   />

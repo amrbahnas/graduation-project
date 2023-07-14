@@ -180,6 +180,7 @@ const AddSubjectData = () => {
               )}
               {subjectName === "arabic" && (
                 <ArabicData
+                  activeStep={activeStep}
                   setSubjectData={setSubjectData}
                   subjectData={subjectData}
                 />

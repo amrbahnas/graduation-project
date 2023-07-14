@@ -55,7 +55,7 @@ const ChildDashboard = () => {
 
   return (
     <div className="parent-dashboard">
-      <TaskModel />
+      {/* <TaskModel /> */}
       <DashboardNav position={"dashboard"} />
       <div className="theContainer">
         <div className="dashboard-wrapper">

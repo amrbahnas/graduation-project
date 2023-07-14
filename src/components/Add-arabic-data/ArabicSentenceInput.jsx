@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AddIcon, DeleteIcon } from "../../utils/icons";
 import { toast } from "react-hot-toast";
 import { FormControlLabel, Switch } from "@mui/material";
@@ -13,6 +13,10 @@ const ArabicSentenceInput = ({
 }) => {
   const [sentence, setSentence] = useState("");
   const [choices, setchoices] = useState([]);
+
+  useEffect(() => {
+    setchoices(choices.map((option) => ({ ...option, correct: false })));
+  }, [multiChoose]);
 
   const handleSentenceChange = (event) => {
     setSentence(event.target.value);

@@ -3,7 +3,7 @@ import ArabicSentenceInput from "./ArabicSentenceInput";
 import RenderData from "./RenderData";
 import generateRandomDataWithAi from "../../services/generateRandomDataWithAi";
 
-function ArabicData({ setSubjectData }) {
+function ArabicData({ setSubjectData, activeStep }) {
   const [data, setData] = useState([]);
   const [multiChoose, setMultiChoose] = useState(false);
 
@@ -12,6 +12,10 @@ function ArabicData({ setSubjectData }) {
   useEffect(() => {
     setSubjectData(data);
   }, [data]);
+  useEffect(() => {
+    setData([]);
+  }, [activeStep]);
+
   const handleAddData = (newData) => {
     setData([...data, newData]);
   };
@@ -70,6 +74,7 @@ function ArabicData({ setSubjectData }) {
             data={item}
             onDelete={() => handleDeleteData(index)}
             onUpdate={(updatedData) => handleUpdateData(updatedData, index)}
+            multiChoose={multiChoose}
           />
         ))}
       </div>

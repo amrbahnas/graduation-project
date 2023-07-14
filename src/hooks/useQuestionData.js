@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 const useQuestionData = (body) => {
   const { _id } = useSelector((store) => store.userSlice);
-  const apiClient = new ApiClient("/FSE/TakeData/" + _id);
+  const apiClient = new ApiClient("/data/TakeData/" + _id);
   return useQuery({
     queryKey: ["SUBJECTData", body.subject, body.grade, _id],
     queryFn: () => apiClient.post(body),
