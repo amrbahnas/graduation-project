@@ -18,7 +18,7 @@ const DataSelectList = ({ data, setChecked, checked, setmainSelection }) => {
     setChecked(newChecked);
     setmainSelection(newChecked);
   };
-  console.log(data, "aas");
+
   return (
     <List
       className="border-2 shadow-inner"
@@ -48,36 +48,37 @@ const DataSelectList = ({ data, setChecked, checked, setmainSelection }) => {
               {item.studentName && (
                 <ListItemText id={labelId} primary={item.studentName} />
               )}
-              {item.type === "word" && (
-                <ListItemText
-                  id={labelId}
-                  primary={
-                    <SingleEnglishWord
-                      wordData={item}
-                      key={item._id}
-                      singleWordStyle={false}
-                      deleteWord={() => {}}
-                      editWordHandler={() => {}}
-                    />
-                  }
-                />
-              )}
-              {item.type === "sentence" && item.subjectName === "english" && (
-                <ListItemText
-                  id={labelId}
-                  primary={
-                    <div className="p-2" key={item._id}>
-                      <p>{item.sentence}</p>
-                      <div className="flex flex-row gap-2">
-                        (<div>{item.choices[0]}</div>-
-                        <div>{item.choices[1]}</div>-
-                        <div>{item.choices[2]}</div>)
+              {item.subjectName === "english" &&
+                (item.type === "word" ? (
+                  <ListItemText
+                    id={labelId}
+                    primary={
+                      <SingleEnglishWord
+                        wordData={item}
+                        key={item._id}
+                        singleWordStyle={false}
+                        deleteWord={() => {}}
+                        editWordHandler={() => {}}
+                      />
+                    }
+                  />
+                ) : (
+                  <ListItemText
+                    id={labelId}
+                    primary={
+                      <div className="p-2" key={item._id}>
+                        <p>{item.sentence}</p>
+                        <div className="flex flex-row gap-2">
+                          (<div>{item.choices[0]}</div>-
+                          <div>{item.choices[1]}</div>-
+                          <div>{item.choices[2]}</div>)
+                        </div>
                       </div>
-                    </div>
-                  }
-                />
-              )}
-              {item.type === "random" && item.subjectName === "arabic" && (
+                    }
+                  />
+                ))}
+
+              {item.subjectName === "arabic" && (
                 <ListItemText
                   id={labelId}
                   primary={
