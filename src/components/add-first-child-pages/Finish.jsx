@@ -25,11 +25,11 @@ const Finish = ({ setpage, name }) => {
 
         <div className="body">
           <div className="box">
-            <img src="assets/images/right.svg" alt="" />
+            <img src="/assets/images/right.svg" alt="" />
             <span>You'll know {name}'s strongest skills</span>
           </div>
           <div className="box">
-            <img src="assets/images/clock.svg" alt="" />
+            <img src="/assets/images/clock.svg" alt="" />
             <span>You'll know when {name} needs more practice</span>
           </div>
         </div>

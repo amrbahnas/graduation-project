@@ -77,7 +77,7 @@ const ChildGrade = ({ setpage, name, setuserName, setpassword }) => {
           </div>
           <div className="footer">
             <span>Your information is safe. Read our </span>
-            <a href="#f" target="_new" class="sc-fzoYkl fPtstd">
+            <a href="#f" target="_new" className="sc-fzoYkl fPtstd">
               <span>Privacy Policy.</span>
             </a>
           </div>
