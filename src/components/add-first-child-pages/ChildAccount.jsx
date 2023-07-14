@@ -1,8 +1,12 @@
 import React from "react";
 import "./CommonStyle.css";
+import { useNavigate } from "react-router-dom";
 const ChildAccount = ({ setpage, name, userName, password }) => {
+  const navigate = useNavigate();
   const onclickHandler = () => {
-    setpage(5);
+    // setpage(5);
+    navigate("/parent/my-children", { replace: true });
+    setpage(1);
   };
   return (
     <>

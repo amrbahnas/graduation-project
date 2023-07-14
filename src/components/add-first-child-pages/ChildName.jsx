@@ -39,7 +39,7 @@ const ChildName = ({ setpage, setname }) => {
           {errorMessage && <span className="error">Invalied Name</span>}
           <div className="btns-add-first-child">
             <button type="submit">Add name</button>
-            <button type="button" onClick={(e) => dispatch(setpage(1))}>
+            <button type="button" onClick={(e) => setpage(1)}>
               Back
             </button>
           </div>

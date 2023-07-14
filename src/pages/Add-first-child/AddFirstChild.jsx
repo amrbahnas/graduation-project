@@ -8,8 +8,9 @@ import ChildAccount from "../../components/add-first-child-pages/ChildAccount";
 import Notes from "../../components/add-first-child-pages/Notes";
 import Finish from "./../../components/add-first-child-pages/Finish";
 import { useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const AddFirstChild = () => {
+  const navigate = useNavigate();
   const [page, setpage] = useState(1);
   const [name, setname] = useState("");
   const [userName, setuserName] = useState("");
@@ -21,9 +22,10 @@ const AddFirstChild = () => {
 
   useEffect(() => {
     if (parentChildren.length) {
-      <Navigate to={"/parent/my-children"} />;
+      navigate("/parent/my-children", { replace: true });
     }
   }, []);
+
   useEffect(() => {
     const switchCase = (() => {
       switch (page) {

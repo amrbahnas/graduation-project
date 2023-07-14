@@ -112,7 +112,7 @@
 .child-account .process span {
   background-color: #cae090;
   border: 1px solid #6b9f27;
-  @apply w-3/5 block h-3 rounded-sm dark:bg-orange dark:border-orange;
+  @apply w-[95%] block h-3 rounded-sm dark:bg-orange dark:border-orange;
 }
 
 .child-account span.title {
