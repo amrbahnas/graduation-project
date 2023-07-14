@@ -50,6 +50,7 @@ const AddSubjectData = () => {
   const [chooseValue, setChooseValue] = useState("");
   const [subjectData, setSubjectData] = useState([]);
   const [childGrade, setChildGrade] = useState(1);
+  const [disabled, setDisabled] = useState(false);
 
   useEffect(() => {
     setSubjectData([]);
@@ -85,7 +86,12 @@ const AddSubjectData = () => {
         insertQuestions(word, _id)
           .then((res) => {
             setLoading(false);
+            setDisabled(true);
             toast.success("data added successfully");
+            setTimeout(() => {
+              setactiveStep(0);
+              setDisabled(false);
+            }, 2000);
           })
           .catch((err) => {
             setLoading(false);
@@ -187,7 +193,7 @@ const AddSubjectData = () => {
                 <span>Previous</span>
               </button>
             )}
-            <button onClick={nextHandler}>
+            <button onClick={nextHandler} disabled={disabled}>
               <span>{activeStep === 2 ? "Submit" : "Next"}</span>
             </button>
           </div>
