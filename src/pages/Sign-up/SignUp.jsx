@@ -133,7 +133,7 @@ const SignUp = () => {
                   <Field
                     type="password"
                     name="password"
-                    placeholder="at least 8 characters"
+                    placeholder="at least 6 characters"
                     className={
                       errors.password && touched.password ? "bg-red-100" : ""
                     }
@@ -170,7 +170,6 @@ const SignUp = () => {
                   value={loading ? "loading" : "create account"}
                   name="commit"
                   disabled={loading}
-                
                 />
               </Form>
             )}
