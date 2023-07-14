@@ -7,6 +7,7 @@ const SingleEnglishWord = ({
   deleteWord,
   editWordHandler,
   singleWordStyle,
+  preview,
 }) => {
   let imgUrl = null;
   if (wordData.imageUrl) {
@@ -28,7 +29,7 @@ const SingleEnglishWord = ({
         <span>{wordData.definitionInAc}</span>
         <span>{wordData.sentence?.slice(0, 20)}</span>
       </div>
-      {!wordData.imageUrl && (
+      {!preview && (
         <div className="controlBTN">
           <span onClick={(e) => editWordHandler(wordData._id, e)}>
             <EditIcon />

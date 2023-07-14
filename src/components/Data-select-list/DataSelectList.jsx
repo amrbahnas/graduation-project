@@ -59,6 +59,7 @@ const DataSelectList = ({ data, setChecked, checked, setmainSelection }) => {
                         singleWordStyle={false}
                         deleteWord={() => {}}
                         editWordHandler={() => {}}
+                        preview
                       />
                     }
                   />
