@@ -6,7 +6,7 @@ const useFeedback = (taskID) => {
   const { _id } = useParams();
   const apiclient = new ApiClient("/feedback/" + _id + "/" + taskID);
   return useQuery({
-    queryKey: ["tasks", _id],
+    queryKey: ["tasksFeedBack", _id, taskID],
     queryFn: () => apiclient.get(),
   });
 };
