@@ -26,7 +26,7 @@ const ErrorBoundary = ({ children }) => {
     console.log("Global error:", event);
     setHasError(true);
     toast.error("Server error: please try again");
-    navigate(0);
+    navigate("/");
   };
 
   const handleOnError = () => {
