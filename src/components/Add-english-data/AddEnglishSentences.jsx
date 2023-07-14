@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import InputText from "../InputText";
 import styles from "./AddEnglishData.module.css";
 import { v4 } from "uuid";
@@ -13,6 +13,7 @@ const AddEnglishSentences = ({ subjectData, setSubjectData }) => {
   const [updateSentenceId, setupdateSentenceId] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+
   const SentenceHandler = () => {
     if (updateSentenceId) {
       const newData = {
@@ -51,7 +52,10 @@ const AddEnglishSentences = ({ subjectData, setSubjectData }) => {
     setIsLoading(true);
     let array = [];
     try {
-      const arrayOfData = await generateRandomDataWithAi("english", 6);
+      const arrayOfData = await generateRandomDataWithAi({
+        subjectname: "english",
+        amount: 6,
+      });
       array = JSON.parse(arrayOfData);
     } catch (error) {
       setIsError(true);

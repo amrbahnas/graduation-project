@@ -8,10 +8,11 @@ const ArabicSentenceInput = ({
   tryGenerate,
   isLoading,
   isError,
+  multiChoose,
+  setMultiChoose,
 }) => {
   const [sentence, setSentence] = useState("");
   const [choices, setchoices] = useState([]);
-  const [multiChoose, setMultiChoose] = useState(true);
 
   const handleSentenceChange = (event) => {
     setSentence(event.target.value);
@@ -85,7 +86,12 @@ const ArabicSentenceInput = ({
           </label>
           <div className=" hidden md:block">
             <FormControlLabel
-              control={<Switch defaultChecked onChange={multiChooseHandler} />}
+              control={
+                <Switch
+                  defaultChecked={multiChoose}
+                  onChange={multiChooseHandler}
+                />
+              }
               label="Multi chooses"
             />
           </div>

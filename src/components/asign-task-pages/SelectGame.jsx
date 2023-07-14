@@ -9,7 +9,12 @@ const specialGames = {
     },
   ],
   math: [],
-  arabic: [],
+  arabic: [
+    {
+      name: "ArabicManyChoices",
+      id: "7",
+    },
+  ],
 };
 
 export const games = {
@@ -39,7 +44,7 @@ export const games = {
   ],
   arabic: [
     {
-      name: "Choose",
+      name: "ArabicMCQ",
       id: "6",
     },
   ],
@@ -94,9 +99,9 @@ const SelectGame = ({ setgames, setEnableBTN, subjectName }) => {
 
   return (
     <>
-        <div className=" px-4 text-neutral-800 font-semibold text-lg  capitalize">
-          Word Games
-        </div>
+      <div className=" px-4 text-neutral-800 font-semibold text-lg  capitalize">
+        {subjectName === "arabic" ? "MCQ Games" : "Word Games"}
+      </div>
       <div className="select-game" id="game">
         {games[subjectName].map((game) => (
           <Cart
@@ -114,11 +119,11 @@ const SelectGame = ({ setgames, setEnableBTN, subjectName }) => {
       <Cart game={"game5"} id={"6"} key={"5"} />
       <Cart game={"game6"} id={"1"} key={"6"} /> */}
       </div>
-      {subjectName === "english" && (
+      {(subjectName === "english" || subjectName === "arabic") && (
         <div>
           <hr />
           <div className=" px-4 pt-2 text-neutral-800 font-semibold text-lg  capitalize">
-            sentance Games
+            {subjectName === "english" ? "Sentance Games" : "Many Choices Game"}
           </div>
           <div className="select-game" id="game">
             {specialGames[subjectName].map((game) => (

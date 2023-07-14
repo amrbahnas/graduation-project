@@ -22,8 +22,12 @@ const DataPreview = ({
   useEffect(() => {
     if (!data) return;
     let filteredData = [];
-    if ((subjectName === "math" || subjectName === "arabic") && data) {
+    if (subjectName === "math" && data) {
       filteredData = data;
+    } else if (subjectName === "arabic" && data) {
+      filteredData = games.includes("7")
+        ? data.filter((item) => item.definitionInAc.length > 1)
+        : data.filter((item) => item.definitionInAc.length === 1);
     } else if (data.length) {
       filteredData = games.includes("5")
         ? data

@@ -1,11 +1,12 @@
 import axios from "axios";
 
-const generateRandomDataWithAi = async (
+const generateRandomDataWithAi = async ({
   subjectname,
   amount,
   range,
-  operator
-) => {
+  operator,
+  multiChoose,
+}) => {
   let content = "";
   switch (subjectname) {
     case "math":
@@ -15,7 +16,12 @@ const generateRandomDataWithAi = async (
       content = ` Generate with out explain json array for ${amount} english  problems for kids  ex: iam a boy, choices: [am, is, are], each with full sentence  and three options one of it inside the sentence, in the format: "{_id,<_id>,sentence:<sentence>, choices: [<choice1>, <choice2>, <choice3>]}" all problems inside one array.`;
       break;
     case "arabic":
-      content = ` Generate with out explain json array for ${amount} arabic  problems for kids , each with  three options , in the format: "{sentence:<sentence>, choices: [<{id:number,answer:"text",correct:bollean}>, <{id:number,answer:"text",correct:bollean}}>, <{id:number,answer:"text",correct:bollean}>]}" all problems inside one array.`;
+      if (!multiChoose) {
+        content = `Generate without explanation a JSON array for ${amount} Arabic problems for kids, each with three or more options, in the format: "{sentence:<sentence>, choices: [<{id:number,answer:"text",correct:boolean}>, <{id:number,answer:"text",correct:boolean}}>, <{id:number,answer:"text",correct:boolean}>]}" all problems inside one array.`;
+      } else {
+        content = `Generate without explanation a JSON array for ${amount} Arabic (one or more correct answer) problems for kids, each with three or more options, in the format: "{sentence:<sentence>, choices: [<{id:number,answer:"text",correct:true}>, <{id:number,answer:"text",correct:false}}>, <{id:number,answer:"text",correct:true}>]}" all problems inside one array.`;
+      }
+      break;
   }
 
   const options = {

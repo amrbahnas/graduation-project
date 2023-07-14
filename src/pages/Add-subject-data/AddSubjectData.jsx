@@ -53,7 +53,7 @@ const AddSubjectData = () => {
 
   useEffect(() => {
     setSubjectData([]);
-  }, [subjectName]);
+  }, [subjectName, activeStep]);
 
   const nextHandler = () => {
     if (activeStep === 0 && subjectName === "arabic") {

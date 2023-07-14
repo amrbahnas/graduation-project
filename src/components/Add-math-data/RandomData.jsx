@@ -7,7 +7,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import generateRandomDataWithAi from "../../services/generateRandomDataWithAi";
 
-export default function RandomData({ setSubjectData }) {
+function RandomData({ setSubjectData }) {
   const [value, setValue] = React.useState([20, 37]);
   const [operator, setoperator] = React.useState("");
   const [amount, setAmount] = React.useState(6);
@@ -15,15 +15,17 @@ export default function RandomData({ setSubjectData }) {
   const [isError, setIsError] = React.useState(false);
   const tryGenerate = async () => {
     setIsError(false);
+    setSubjectData([]);
     setIsLoading(true);
     let array = [];
     try {
-      const arrayOfData = await generateRandomDataWithAi(
-        "math",
+      const arrayOfData = await generateRandomDataWithAi({
+        subjectname: "math",
         amount,
-        value,
-        operator
-      );
+        range: value,
+        operator,
+      });
+      console.log("tryGenerate");
       array = JSON.parse(arrayOfData);
     } catch (error) {
       setIsError(true);
@@ -84,3 +86,5 @@ export default function RandomData({ setSubjectData }) {
     </div>
   );
 }
+
+export default RandomData;

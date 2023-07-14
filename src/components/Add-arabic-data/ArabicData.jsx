@@ -5,6 +5,8 @@ import generateRandomDataWithAi from "../../services/generateRandomDataWithAi";
 
 function ArabicData({ setSubjectData }) {
   const [data, setData] = useState([]);
+  const [multiChoose, setMultiChoose] = useState(false);
+
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   useEffect(() => {
@@ -16,10 +18,15 @@ function ArabicData({ setSubjectData }) {
 
   const tryGenerate = async () => {
     setIsError(false);
+    setData([]);
     setIsLoading(true);
     let array = [];
     try {
-      const arrayOfData = await generateRandomDataWithAi("arabic", 6);
+      const arrayOfData = await generateRandomDataWithAi({
+        subjectname: "arabic",
+        amount: 6,
+        multiChoose,
+      });
       console.log("a");
       array = JSON.parse(arrayOfData);
     } catch (error) {
@@ -50,6 +57,8 @@ function ArabicData({ setSubjectData }) {
         tryGenerate={tryGenerate}
         isError={isError}
         isLoading={isLoading}
+        multiChoose={multiChoose}
+        setMultiChoose={setMultiChoose}
       />
       <div className=" text-base md:text-lg font-semibold mb-4">
         Number of sentences: {data.length}
