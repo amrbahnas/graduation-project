@@ -51,8 +51,14 @@ const TaskTable = ({ task }) => {
         //      ` || "field",
       });
     }
+  } else {
+    for (let i = 1; i < 7; i++) {
+      rows.push({
+        id: task[`data${i}ID`]?._id || "",
+        word: task[`data${i}ID`].sentence || "field",
+      });
+    }
   }
-
   return (
     <div style={{ height: 430, width: "100%" }} className="bg-[#eefafd]">
       <div className=" font-semibold mb-2 w-full ">Task Questions</div>
