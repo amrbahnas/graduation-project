@@ -2,6 +2,7 @@ import { useState } from "react";
 import InputText from "../InputText";
 import styles from "./AddEnglishData.module.css";
 import { v4 } from "uuid";
+import generateMath from "../../services/generateMath";
 const AddEnglishSentences = ({ subjectData, setSubjectData }) => {
   const [sentence, setsentence] = useState("");
   const [choiceOne, setchoiceOne] = useState("");
@@ -10,6 +11,8 @@ const AddEnglishSentences = ({ subjectData, setSubjectData }) => {
   // const [subjectData, setSubjectData] = useState([]);
   const [validationError, setValidationError] = useState("");
   const [updateSentenceId, setupdateSentenceId] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
   const SentenceHandler = () => {
     if (updateSentenceId) {
       const newData = {
@@ -41,6 +44,21 @@ const AddEnglishSentences = ({ subjectData, setSubjectData }) => {
     } else {
       setValidationError("All fields are required");
     }
+  };
+
+  const tryGenerate = async () => {
+    setIsError(false);
+    setIsLoading(true);
+    let array = [];
+    try {
+      const arrayOfData = await generateMath("english");
+      array = JSON.parse(arrayOfData);
+    } catch (error) {
+      setIsError(true);
+      setSubjectData([]);
+    }
+    setIsLoading(false);
+    if (array.length > 0) setSubjectData(array);
   };
 
   const reset = () => {
@@ -95,17 +113,27 @@ const AddEnglishSentences = ({ subjectData, setSubjectData }) => {
             type="text"
             label="choices three"
           />
-          <div>
+          <div className="flex gap-4">
             <button
               onClick={SentenceHandler}
               className="text-white py-2 px-20 bg-green-600 rounded-md mt-4 hover:bg-green-500 "
             >
               {updateSentenceId ? "Update" : "Add"}
             </button>
+            <button
+              disabled={isLoading}
+              onClick={tryGenerate}
+              className="text-white py-2 px-20 bg-green-600 rounded-md mt-4 hover:bg-green-500 "
+            >
+              {isLoading ? "Loading..." : "Generate"}
+            </button>
             {validationError && (
               <span className="text-red-600 ml-3">{validationError}</span>
             )}
           </div>
+          {isError && (
+            <span className="text-red-600 ml-3">try one more time</span>
+          )}
         </div>
 
         <div className={`${styles.data}`}>

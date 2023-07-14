@@ -4,7 +4,7 @@ const generateMath = async (subjectname, amount, range, operator) => {
   const content =
     subjectname === "math"
       ? ` Generate with out explain json array for ${amount} ${operator} problems within the range of ${range[0]} to ${range[1]}, each with three options, in the format: "{number: {num1: <num1>, num2: <num2>, operator: '<operator>'}, choices: [<choice1>, <choice2>, <choice3>]}" all problems inside one array.`
-      : "";
+      : ` Generate with out explain json array for english grammer problems for kids , each with complete sentence and three options one of it inside the sentence, in the format: "{_id,<_id>,sentence:<sentence>, choices: [<choice1>, <choice2>, <choice3>]}" all problems inside one array.`;
 
   const options = {
     method: "POST",

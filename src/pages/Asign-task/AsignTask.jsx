@@ -115,7 +115,7 @@ const AsignTask = () => {
           {selectedGrade && <span>Grade: {selectedGrade}</span>}
           {activeStep === 4 && (
             <Link
-              to="/parent/asigntask"
+              to={"/parent/AddSubjectData/" + _id}
               className="flex md:absolute right-10 p-1 rounded-md mt-2 md:mt-0 py-2  items-center flex-row  gap-2 bg-backBtnColor  font-normal  hover:bg-backBtnColorHoner cursor-pointer"
             >
               <AssignmentIcon fontSize="small" /> Add Subject

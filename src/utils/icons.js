@@ -19,5 +19,5 @@ export { default as SpeedIcon } from "@mui/icons-material/Speed";
 export { default as LightbulbIcon } from "@mui/icons-material/Lightbulb";
 export { default as EditIcon } from "@mui/icons-material/Edit";
 export { default as DeleteIcon } from "@mui/icons-material/Delete";
-export { default as AddIcon } from "@mui/icons-material/add";
+export { default as AddIcon } from "@mui/icons-material/Add";
 export { default as CheckIcon } from "@mui/icons-material/Check";
