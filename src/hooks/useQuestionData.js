@@ -6,7 +6,7 @@ const useQuestionData = (body) => {
   const { _id } = useSelector((store) => store.userSlice);
   const apiClient = new ApiClient("/FSE/TakeData/" + _id);
   return useQuery({
-    queryKey: ["SUBJECTData", body.subject, _id],
+    queryKey: ["SUBJECTData", body.subject, body.grade, _id],
     queryFn: () => apiClient.post(body),
     staleTime: 30 * 1000, //  30 seconds
   });
