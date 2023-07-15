@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const insertQuestions = async (word, _id) => {
   try {
     const formdata = new FormData();
@@ -25,18 +27,17 @@ const insertQuestions = async (word, _id) => {
     const headers =
       Object.keys(data).length > 0
         ? {
-            method: "POST",
             headers: {
-              "content-type": "application/json; charset=UTF-8",
+              "Content-Type": "application/json; charset=UTF-8",
             },
-            body: JSON.stringify(data),
           }
-        : {
-            method: "POST",
-            body: formdata,
-            redirect: "follow",
-          };
-    const res = await fetch(url, headers);
+        : {};
+
+    const res = await axios.post(url, data, {
+      ...headers,
+      ...(word.image ? { data: formdata } : {}),
+    });
+
     return res;
   } catch (error) {
     console.log(error);

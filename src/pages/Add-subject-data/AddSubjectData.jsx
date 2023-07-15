@@ -95,13 +95,10 @@ const AddSubjectData = () => {
           })
           .catch((err) => {
             setLoading(false);
-            console.log(err);
-            if (err.response) {
-              console.log(err.response.data);
-              console.log(err.response.status);
-              console.log(err.response.headers);
-            }
-            toast.error("something went wrong");
+            const asSting = err.toString();
+            if (asSting.includes("status code 400")) {
+              toast.error("data already exist");
+            } else toast.error("something went wrong");
           });
       });
     } else {

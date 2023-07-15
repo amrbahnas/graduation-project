@@ -98,10 +98,15 @@ const ChildDashboard = () => {
                       <TaskCard number={"1"} tasks={tasks} />
                     </div>
                     <div className="btns">
-                      {/* <button>
-                        <span>Reordring Tasks</span>
-                      </button> */}
                       <button>
+                        <Link
+                          to={"/parent/AddSubjectData/" + parentId}
+                          className="w-full h-full"
+                        >
+                          Add Data
+                        </Link>
+                      </button>
+                      <button className=" border-yellow shadow-md">
                         <Link to="/parent/asigntask" className=" w-full h-full">
                           Add Task
                         </Link>
