@@ -10,8 +10,7 @@
 
 .sugestion-create-account .wrapper .left {
   min-height: 148px;
-  background: url("..//../../public/assets/images/home page/5.png") no-repeat
-    center bottom;
+  background: url("/assets/images/home page/5.png") no-repeat center bottom;
   background-size: contain;
   @apply flex-1 relative;
 }

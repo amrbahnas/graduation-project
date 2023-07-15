@@ -26,8 +26,7 @@ header .left a:last-child {
 
 header .wrapper .right {
   min-height: 240px;
-  background: url("..//../../public/assets/images/home page/2.png") no-repeat
-    center bottom;
+  background: url("/assets/images/home page/2.png") no-repeat center bottom;
   background-size: contain;
   @apply col-span-1 md:mt-8;
 }
