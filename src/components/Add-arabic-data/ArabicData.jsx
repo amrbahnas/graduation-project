@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import ArabicSentenceInput from "./ArabicSentenceInput";
 import RenderData from "./RenderData";
 import generateRandomDataWithAi from "../../services/generateRandomDataWithAi";
+import { toast } from "react-hot-toast";
+import { InfoIcon } from "../../utils/icons";
 
 function ArabicData({ setSubjectData, activeStep }) {
   const [data, setData] = useState([]);
@@ -35,6 +37,9 @@ function ArabicData({ setSubjectData, activeStep }) {
       array = JSON.parse(arrayOfData);
     } catch (error) {
       setIsError(true);
+      toast("Please try again.", {
+        icon: <InfoIcon />,
+      });
       setData([]);
     }
     setIsLoading(false);

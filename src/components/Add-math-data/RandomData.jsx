@@ -6,6 +6,8 @@ import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import generateRandomDataWithAi from "../../services/generateRandomDataWithAi";
+import { toast } from "react-hot-toast";
+import { InfoIcon } from "../../utils/icons";
 
 function RandomData({ setSubjectData }) {
   const [value, setValue] = React.useState([20, 37]);
@@ -29,10 +31,15 @@ function RandomData({ setSubjectData }) {
       array = JSON.parse(arrayOfData);
     } catch (error) {
       setIsError(true);
+      toast("Please try again.", {
+        icon: <InfoIcon />,
+      });
       setSubjectData([]);
     }
     setIsLoading(false);
-    if (array.length > 0) setSubjectData(array);
+    if (array.length > 0) {
+      setSubjectData(array);
+    }
   };
 
   const handleChange = (newValue) => {

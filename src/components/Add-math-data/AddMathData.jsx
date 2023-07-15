@@ -25,6 +25,27 @@ function Calculator({ subjectData, setSubjectData, dataType }) {
     setOperator(e.target.value);
   };
 
+  const searchForCorrectAnswer = () => {
+    let result;
+    if (operator === "+") {
+      result = parseInt(num1) + parseInt(num2);
+    } else if (operator === "-") {
+      result = parseInt(num1) - parseInt(num2);
+    } else if (operator === "*") {
+      result = parseInt(num1) * parseInt(num2);
+    } else if (operator === "/") {
+      result = parseInt(num1) / parseInt(num2);
+    }
+
+    let correctAnswer = false;
+    choices.forEach((choice) => {
+      if (parseInt(choice) === result) {
+        correctAnswer = true;
+      }
+    });
+    return correctAnswer;
+  };
+
   const addHandler = () => {
     if (
       num1 === "" ||
@@ -37,6 +58,12 @@ function Calculator({ subjectData, setSubjectData, dataType }) {
       toast.error("Please fill all the fields");
       return;
     }
+
+    if (!searchForCorrectAnswer()) {
+      toast.error("Please make sure one of the choices is correct");
+      return;
+    }
+
     if (editIndex !== null) {
       updateHandler();
       return;
@@ -60,6 +87,10 @@ function Calculator({ subjectData, setSubjectData, dataType }) {
   };
 
   const updateHandler = () => {
+    if (!searchForCorrectAnswer()) {
+      toast.error("Please make sure one of the choices is correct");
+      return;
+    }
     setSubjectData((prev) => {
       const newData = [...prev];
       newData[editIndex] = {
@@ -141,12 +172,14 @@ function Calculator({ subjectData, setSubjectData, dataType }) {
                       {item?.num2}
                     </td>
                     <td className="border px-4 py-2 text-center flex justify-center gap-2">
-                      <button
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                        onClick={() => editHandler(index)}
-                      >
-                        Edit
-                      </button>
+                      {dataType === "customed" && (
+                        <button
+                          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                          onClick={() => editHandler(index)}
+                        >
+                          Edit
+                        </button>
+                      )}
                       <button
                         className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                         onClick={() => deleteHandler(index)}

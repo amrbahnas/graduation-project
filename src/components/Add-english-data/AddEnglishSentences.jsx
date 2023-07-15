@@ -3,6 +3,8 @@ import InputText from "../InputText";
 import styles from "./AddEnglishData.module.css";
 import { v4 } from "uuid";
 import generateRandomDataWithAi from "../../services/generateRandomDataWithAi";
+import { InfoIcon } from "../../utils/icons";
+import { toast } from "react-hot-toast";
 const AddEnglishSentences = ({ subjectData, setSubjectData }) => {
   const [sentence, setsentence] = useState("");
   const [choiceOne, setchoiceOne] = useState("");
@@ -60,6 +62,9 @@ const AddEnglishSentences = ({ subjectData, setSubjectData }) => {
       array = JSON.parse(arrayOfData);
     } catch (error) {
       setIsError(true);
+      toast("Please try again.", {
+        icon: <InfoIcon />,
+      });
       setSubjectData([]);
     }
     setIsLoading(false);
