@@ -42,7 +42,7 @@ function RandomData({ setSubjectData }) {
   return (
     <div className=" w-full flex flex-col gap-10 items-center justify-center     mb-4">
       <div>Enter Number Range</div>
-      <div div className=" w-full md:w-[320px] flex items-center gap-4">
+      <div className=" w-full md:w-[320px] flex items-center gap-4">
         <span>{value[0]}</span>
         <Slider
           value={value}

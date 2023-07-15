@@ -54,7 +54,7 @@ const DataPreview = ({
   if (!data) {
     return (
       <div className="border-2 shadow-inner mb-4">
-        <span className="block mx-auto mt-16 w-fit">No items found !</span>;
+        <span className="block mx-auto mt-16 w-fit">No items found !</span>
       </div>
     );
   }
