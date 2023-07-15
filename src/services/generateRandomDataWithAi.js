@@ -6,6 +6,7 @@ const generateRandomDataWithAi = async ({
   range,
   operator,
   multiChoose,
+  sentence,
 }) => {
   let content = "";
   switch (subjectname) {
@@ -13,7 +14,11 @@ const generateRandomDataWithAi = async ({
       content = ` Generate with out explain json array for ${amount} ${operator} problems within the range of ${range[0]} to ${range[1]}, each with three options, in the format: "{number: {num1: <num1>, num2: <num2>, operator: '<operator>'}, choices: [<choice1>, <choice2>, <choice3>]}" all problems inside one array.`;
       break;
     case "english":
-      content = ` Generate with out explain json array for ${amount} english  problems for kids  ex: iam a boy, choices: [am, is, are], each with full sentence  and three options one of it inside the sentence, in the format: "{_id,<_id>,sentence:<sentence>, choices: [<choice1>, <choice2>, <choice3>]}" all problems inside one array.`;
+      if (sentence) {
+        content = ` Generate with out explain a question sentence based on ${sentence} word,the correct choose inside the sentence, in the format: "[{_id,<_id>,sentence:<sentence>, choices: [<choice1>, <choice2>, <choice3>]}]" json array include one object`;
+      } else {
+        content = ` Generate with out explain json array for ${amount} english  problems for kids  ex: iam a boy, choices: [am, is, are], each with full sentence  and three options one of it inside the sentence, in the format: "{_id,<_id>,sentence:<sentence>, choices: [<choice1>, <choice2>, <choice3>]}" all problems inside one array.`;
+      }
       break;
     case "arabic":
       if (!multiChoose) {

@@ -55,6 +55,7 @@ const AddEnglishSentences = ({ subjectData, setSubjectData }) => {
       const arrayOfData = await generateRandomDataWithAi({
         subjectname: "english",
         amount: 6,
+        sentence,
       });
       array = JSON.parse(arrayOfData);
     } catch (error) {
