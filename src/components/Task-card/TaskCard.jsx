@@ -68,7 +68,7 @@ const TaskCard = ({ tasks }) => {
           </div>
           {!item.done[0] && (
             <div className="flex items-center gap-6">
-              <div>
+              {/* <div>
                 {updateTaskIsLoading ? (
                   <CircularProgress size={16} />
                 ) : (
@@ -78,7 +78,7 @@ const TaskCard = ({ tasks }) => {
                     className=" hover:scale-[1.1] hover:text-green-600  "
                   />
                 )}
-              </div>
+              </div> */}
               <div>
                 {deleteTaskIsLoading ? (
                   <CircularProgress size={16} />
@@ -86,9 +86,10 @@ const TaskCard = ({ tasks }) => {
                   <DeleteIcon
                     size={16}
                     onClick={() => {
-                      deleteTask(item._id);
+                      const status = confirm("Are you sure you want to delete");
+                      if (status) deleteTask(item._id);
                     }}
-                    className=" hover:scale-[1.1] hover:text-red-500  cursor-pointer "
+                    className=" hover:scale-[1.1] hover:text-red-500  cursor-pointer mr-4 "
                   />
                 )}
               </div>

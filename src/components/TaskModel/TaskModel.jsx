@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import TaskTable from "../Task-table/TaskTable";
 import FeedBackTable from "../Feedback-table/FeedBackTable";
+import { CloseIcon } from "../../utils/icons";
 
 const TaskModel = ({ currentTask, setTaskModel }) => {
   console.log(currentTask, "Task");
@@ -8,12 +9,9 @@ const TaskModel = ({ currentTask, setTaskModel }) => {
   return (
     <div className="fixed z-50 inset-0 flex items-center justify-center bg-black/50">
       <div className="bg-white p-4 border border-gray-300 rounded-lg shadow-md w-[95%] md:w-2/4  h-[90%]  overflow-hidden  ">
-        <div className="header flex justify-end ">
-          <div
-            className=" cursor-pointer capitalize hover:scale-110  "
-            onClick={() => setTaskModel(false)}
-          >
-            close
+        <div className="header flex justify-end">
+          <div className=" cursor-pointer " onClick={() => setTaskModel(false)}>
+            <CloseIcon />
           </div>
         </div>
         <div className=" flex items-center border py-4 my-4 px-2 gap-4">
