@@ -12,6 +12,7 @@ const AddSubjectData = lazy(() =>
 );
 // const Error = lazy(() => import("./pages/Error/Error.jsx"));
 import Error from "./pages/Error/Error.jsx";
+import ResetPassword from "./pages/ResetPassword/ResetPassword.jsx";
 
 const AddFirstChild = lazy(() =>
   import("./pages/Add-first-child/AddFirstChild.jsx")
@@ -153,6 +154,10 @@ const router = createBrowserRouter([
         <ProcessLoading />
       </LoginReq>
     ),
+  },
+  {
+    path: "/resetPassword/:token",
+    element: <ResetPassword />,
   },
 ]);
 export default router;

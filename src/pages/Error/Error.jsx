@@ -11,7 +11,7 @@ const Error = () => {
   const error = useRouteError();
   return (
     <div className="error-page">
-      <SimpleNav pageName={"addfirstchild"} />
+      <SimpleNav pageName={"error"} />
       <div className="theContainer">
         <div className="error-page-wrapper">
           <div className="image">

@@ -18,10 +18,12 @@ const SimpleNav = ({ pageName }) => {
           <span>Logout</span>
         </div>
       ) : (
-        <div className="btn" onClick={(e) => navigate(-1)}>
-          <ArrowBackIosIcon />
-          <span>back</span>
-        </div>
+        !(pageName === "error") && (
+          <div className="btn" onClick={(e) => navigate(-1)}>
+            <ArrowBackIosIcon />
+            <span>back</span>
+          </div>
+        )
       )}
 
       <img
