@@ -69,11 +69,11 @@ const DataSelectList = ({ data, setChecked, checked, setmainSelection }) => {
                     primary={
                       <div className="p-2" key={item._id}>
                         <p>{item.sentence}</p>
-                        <div className="flex flex-row gap-2">
+                        {/* <div className="flex flex-row gap-2">
                           (<div>{item.choices[0]}</div>-
                           <div>{item.choices[1]}</div>-
                           <div>{item.choices[2]}</div>)
-                        </div>
+                        </div> */}
                       </div>
                     }
                   />
