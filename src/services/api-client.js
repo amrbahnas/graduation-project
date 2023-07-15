@@ -18,6 +18,9 @@ class ApiClient {
   post = (body) =>
     axiosInstance.post(this.endpoint, body).then((response) => response.data);
 
+  patch = (body) =>
+    axiosInstance.patch(this.endpoint, body).then((response) => response.data);
+
   delete = (body) =>
     axiosInstance.delete(this.endpoint, body).then((response) => response.data);
 

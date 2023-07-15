@@ -7,6 +7,7 @@ import ApiClient from "../../services/api-client";
 import { resetAll, setParentinfo } from "../../store/slices/userSlice";
 import usePasswordFunction from "./../../hooks/usePasswordFunction";
 import "./ManageParentAccount.css";
+import { ArrowBackIcon } from "../../utils/icons";
 const ManageParentAccount = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -59,6 +60,12 @@ const ManageParentAccount = () => {
     <div className="manage-parent-account">
       <DashboardNav position={"manageParentAccount"} />
       <div className="theContainer">
+        <div className="my-6">
+          <ArrowBackIcon
+            className="cursor-pointer"
+            onClick={() => navigate(-1)}
+          />
+        </div>
         <div className="heading">
           <span>Manage Account</span>
           <button onClick={deleteAccount}>Remove Account</button>

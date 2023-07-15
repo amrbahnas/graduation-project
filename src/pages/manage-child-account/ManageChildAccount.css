@@ -1,5 +1,5 @@
 .manage-account .heading {
-  @apply flex justify-between items-center mt-12 mb-6;
+  @apply flex justify-between items-center  mb-6;
 }
 .manage-account .heading span {
   color: rgb(77, 76, 75);

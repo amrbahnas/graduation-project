@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useTasks from "../../hooks/useTasks";
 import DashboardNav from "../../components/DashboardNav/DashboardNav";
-import { SpeedIcon, LightbulbIcon } from "../../utils/icons";
+import { SpeedIcon, LightbulbIcon, ArrowBackIcon } from "../../utils/icons";
 import { Link, useParams, useNavigate } from "react-router-dom";
 /// redux
 import { useSelector } from "react-redux";
@@ -60,9 +60,17 @@ const ChildDashboard = () => {
         <div className="dashboard-wrapper">
           <div className="nav">
             <ul>
-              <li>
+              <li className=" cursor-pointer">
                 <SpeedIcon />
                 <span> Dashboard</span>
+              </li>
+              <li>
+                <div className=" ml-8 mt-6">
+                  <ArrowBackIcon
+                    className="cursor-pointer"
+                    onClick={() => navigate(-1)}
+                  />
+                </div>
               </li>
               {/* <li>
                 <LightbulbIcon />

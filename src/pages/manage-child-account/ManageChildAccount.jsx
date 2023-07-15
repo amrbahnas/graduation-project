@@ -8,6 +8,7 @@ import { toast } from "react-hot-toast";
 import ApiClient from "../../services/api-client";
 import { useDispatch } from "react-redux";
 import { deleteChildren, updateChildren } from "../../store/slices/userSlice";
+import { ArrowBackIcon } from "../../utils/icons";
 const ManageChildAccount = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -31,7 +32,7 @@ const ManageChildAccount = () => {
       newname: childName,
       newstage: childGrade,
     };
-    toast.promise(apiClient.post(body), {
+    toast.promise(apiClient.patch(body), {
       loading: "Saving...",
       success: () => {
         dispatch(updateChildren(body));
@@ -47,7 +48,7 @@ const ManageChildAccount = () => {
     const body = {
       newpassword: password,
     };
-    toast.promise(apiClientTwo.post(body), {
+    toast.promise(apiClientTwo.patch(body), {
       loading: "Saving...",
       success: () => {
         dispatch(updateChildren(body));
@@ -78,6 +79,12 @@ const ManageChildAccount = () => {
     <div className="manage-account">
       <DashboardNav position={"manageaccount"} />
       <div className="theContainer ">
+        <div className="my-6">
+          <ArrowBackIcon
+            className="cursor-pointer"
+            onClick={() => navigate(-1)}
+          />
+        </div>
         <div className="heading">
           <span>Manage Child</span>
           <button onClick={deleteAccount}>Remove Account</button>
