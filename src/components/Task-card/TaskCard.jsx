@@ -34,7 +34,7 @@ const TaskCard = ({ tasks }) => {
     setTaskModel(true);
   };
   return (
-    <div className="">
+    <div className="min-h-[280px] h-[420px]  pb-20  overflow-x-hidden overflow-y-scroll ">
       {taskModel && (
         <TaskModel currentTask={currentTask} setTaskModel={setTaskModel} />
       )}

@@ -54,7 +54,7 @@ const ChildDashboard = () => {
   }, [currentPage, data, _id]);
 
   return (
-    <div className="parent-dashboard">
+    <div className="parent-dashboard mb-20 ">
       <DashboardNav position={"dashboard"} />
       <div className="theContainer">
         <div className="dashboard-wrapper">
@@ -84,7 +84,7 @@ const ChildDashboard = () => {
               <span>{child?.studentName}'s Dashboard</span>
             </div>
             <div className="boxs">
-              <div className="activity min-h-[400px]">
+              <div className="activity min-h-[400px]   relative ">
                 <h3>
                   <span>Tasks</span>
                 </h3>
@@ -93,8 +93,8 @@ const ChildDashboard = () => {
                     <LoadingDots />
                   </div>
                 ) : tasks?.length ? (
-                  <div className="tasks">
-                    <div className=" min-h-[380px] max-h-[500px] mb-4  overflow-scroll">
+                  <div className="tasks ">
+                    <div className=" mb-4">
                       <TaskCard number={"1"} tasks={tasks} />
                     </div>
                     <div className="btns">
