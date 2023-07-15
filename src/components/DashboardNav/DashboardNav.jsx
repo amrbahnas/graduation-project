@@ -1,12 +1,32 @@
 import React from "react";
-import { Link } from "react-router-dom"
-// components
+import { Link, useNavigate } from "react-router-dom";
 import NightMode from "./../NightMode/NightMode";
 import ParentNavMenu from "../Parent-nav-menu/ParentNavMenu";
 import ChildrenNavMenu from "../Children-nav-menu/ChildrenNavMenu";
 import AllTasksNav from "../All-tasks-nav/AllTasksNav";
+import { HomeIcon } from "../../utils/icons";
 import "./DashboardNav.css";
+
 const DashboardNav = ({ position }) => {
+  const navigate = useNavigate();
+
+  const renderChildrenNavAndAllTasksNav = () => {
+    return (
+      <>
+        <ChildrenNavMenu position={position} />
+        <AllTasksNav />
+      </>
+    );
+  };
+
+  const renderHomeIcon = () => {
+    return (
+      <HomeIcon
+        className="cursor-pointer"
+        onClick={() => navigate("/parent/my-children")}
+      />
+    );
+  };
 
   return (
     <div className="dashboard-nav">
@@ -17,13 +37,13 @@ const DashboardNav = ({ position }) => {
               <img src="/assets/brand/logo.svg" alt="" />
             </Link>
           </span>
-          {position === "mychildren" || position === "AddSubjectData" ? (
-            ""
+
+          {position === "mychildren" ||
+          position === "AddSubjectData" ||
+          position === "manageParentAccount" ? (
+            renderHomeIcon()
           ) : position !== "manageaccount" ? (
-            <>
-              <ChildrenNavMenu position={position} />
-              <AllTasksNav />
-            </>
+            renderChildrenNavAndAllTasksNav()
           ) : (
             <ChildrenNavMenu position={position} />
           )}

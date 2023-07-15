@@ -11,9 +11,11 @@ const MyChildren = lazy(() => import("./pages/MyChildren/MyChildren.jsx"));
 const AddSubjectData = lazy(() =>
   import("./pages/Add-subject-data/AddSubjectData.jsx")
 );
-// const Error = lazy(() => import("./pages/Error/Error.jsx"));
-import Error from "./pages/Error/Error.jsx";
-import ResetPassword from "./pages/ResetPassword/ResetPassword.jsx";
+const Error = lazy(() => import("./pages/Error/Error.jsx"));
+
+const ResetPassword = lazy(() =>
+  import("./pages/ResetPassword/ResetPassword.jsx")
+);
 
 const AddFirstChild = lazy(() =>
   import("./pages/Add-first-child/AddFirstChild.jsx")
@@ -22,8 +24,11 @@ const ChildDashboard = lazy(() =>
   import("./pages/child-Dashboard/ChildDashboard.jsx")
 );
 const AddChild = lazy(() => import("./pages/Add-child/AddChild.jsx"));
-const ManageAccount = lazy(() =>
-  import("./pages/manage-account/ManageAccount.jsx")
+const ManageParentAccount = lazy(() =>
+  import("./pages/Manage-parent-account/ManageParentAccount.jsx")
+);
+const ManageChildAccount = lazy(() =>
+  import("./pages/manage-child-account/ManageChildAccount.jsx")
 );
 const AsignTask = lazy(() => import("./pages/Asign-task/AsignTask.jsx"));
 const ForgotPassword = lazy(() =>
@@ -112,7 +117,7 @@ const router = createBrowserRouter([
     path: "/parent/my-children/:_id/manage-account",
     element: (
       <LoginReq>
-        <ManageAccount />
+        <ManageChildAccount />
       </LoginReq>
     ),
   },
@@ -137,6 +142,14 @@ const router = createBrowserRouter([
     element: (
       <LoginReq>
         <AsignTask />
+      </LoginReq>
+    ),
+  },
+  {
+    path: "/parent/manageAccount",
+    element: (
+      <LoginReq>
+        <ManageParentAccount />
       </LoginReq>
     ),
   },

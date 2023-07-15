@@ -1,10 +1,10 @@
 .manage-account .heading {
-  @apply flex justify-between items-center mt-12 mb-6 ;
+  @apply flex justify-between items-center mt-12 mb-6;
 }
 .manage-account .heading span {
   color: rgb(77, 76, 75);
   @apply text-2xl font-bold dark:text-darkPText;
-    overflow: hidden;
+  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow-wrap: normal;
@@ -34,7 +34,7 @@
   color: #4d4c4b;
   border: 1px solid rgb(235, 234, 232);
   box-shadow: rgb(43 42 41 / 30%) 0px 1px 4px;
-  @apply max-w-xl mx-auto mt-12 p-4  md:p-6 bg-white rounded-md dark:bg-darkCard dark:border-none;
+  @apply max-w-xl w-full  mt-12 p-4  md:p-6 bg-white rounded-md dark:bg-darkCard dark:border-none;
 }
 
 .manage-account .body h3 {
@@ -64,10 +64,10 @@
   border: 1px solid rgb(109, 108, 106);
   border-radius: 3px;
   font-size: 16px;
-  @apply  w-3/4  md:w-2/3 mr-3;
+  @apply w-3/4  md:w-2/3 mr-3;
 }
 .manage-account .body form .input div .select-grade {
-  @apply  w-3/4  md:w-2/3  mr-3 mt-2;
+  @apply w-3/4  md:w-2/3  mr-3 mt-2;
 }
 
 .manage-account .body form .input div button {

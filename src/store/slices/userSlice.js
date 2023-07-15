@@ -80,6 +80,10 @@ export const userSlice = createSlice({
     setLoginState: (state, action) => {
       state.login = action.payload;
     },
+    setParentinfo: (state, action) => {
+      state.parentName = action.payload.parentName;
+      state.parentMail = action.payload.parentMail;
+    },
     setParentName: (state, action) => {
       state.parentName = action.payload;
     },
@@ -94,6 +98,20 @@ export const userSlice = createSlice({
     },
     addChildren: (state, action) => {
       state.children.push(action.payload);
+    },
+    updateChildren: (state, action) => {
+      state.children = state.children.map((child) => {
+        if (child._id === action.payload._id) {
+          return { ...child, ...action.payload };
+        } else {
+          return child;
+        }
+      });
+    },
+    deleteChildren: (state, action) => {
+      state.children = state.children.filter(
+        (child) => child._id !== action.payload
+      );
     },
     setChildren: (state, action) => {
       state.children = action.payload;
@@ -182,12 +200,15 @@ export const userSlice = createSlice({
 export const {
   setLoading,
   setLoginState,
+  setParentinfo,
   setParentName,
   setParentMail,
   setParentPic,
   resetUserChildren,
   addChildren,
   setChildren,
+  updateChildren,
+  deleteChildren,
   resetAll,
 } = userSlice.actions;
 export default userSlice.reducer;

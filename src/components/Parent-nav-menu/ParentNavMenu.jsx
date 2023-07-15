@@ -57,7 +57,7 @@ const ParentNavMenu = () => {
         <div className="menu" ref={parentList}>
           <span
             onClick={() => {
-              parentMenuHandler("/");
+              parentMenuHandler("/parent/manageAccount");
             }}
           >
             <SettingsOutlinedIcon />
