@@ -65,10 +65,8 @@ const ManageChildAccount = () => {
     toast.promise(apiClientThree.delete(), {
       loading: "Deleting...",
       success: () => {
+        navigate("/parent/my-children");
         dispatch(deleteChildren(_id));
-        setTimeout(() => {
-          navigate("/parent/my-children");
-        }, 2000);
         return <b>Account deleted successfully.</b>;
       },
       error: () => {
