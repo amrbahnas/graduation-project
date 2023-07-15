@@ -20,15 +20,16 @@ const ManageParentAccount = () => {
 
   // enter the endpoint *************
   // update
-  const apiClient = new ApiClient("/endpoint");
+  const apiClient = new ApiClient("/parent/updateParentInfo/" + _id);
   // delete
-  const apiClientTwo = new ApiClient("/endpoint");
+  const apiClientTwo = new ApiClient("/parent/deleteAccount/" + _id);
   const updateAccount = (e) => {
     e.preventDefault();
     const body = {
-      _id,
       parentName: name,
       parentMail: mail,
+      parentPhoneNumber: "01012345675",
+      parentAge: 20,
     };
     toast.promise(apiClient.post(body), {
       loading: "Saving...",

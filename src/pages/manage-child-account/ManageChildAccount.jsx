@@ -7,7 +7,11 @@ import SelectGrade from "../../components/Select-grade/SelectGrade";
 import { toast } from "react-hot-toast";
 import ApiClient from "../../services/api-client";
 import { useDispatch } from "react-redux";
-import { deleteChildren, updateChildren } from "../../store/slices/userSlice";
+import {
+  deleteChildren,
+  updateChildren,
+  updateChildrenPassword,
+} from "../../store/slices/userSlice";
 import { ArrowBackIcon } from "../../utils/icons";
 const ManageChildAccount = () => {
   const dispatch = useDispatch();
@@ -28,14 +32,14 @@ const ManageChildAccount = () => {
   const updateAccount = (e) => {
     e.preventDefault();
     const body = {
-      newusername: childUserName,
-      newname: childName,
-      newstage: childGrade,
+      studentUserName: childUserName,
+      studentName: childName,
+      studentGrade: parseInt(childGrade),
     };
     toast.promise(apiClient.patch(body), {
       loading: "Saving...",
       success: () => {
-        dispatch(updateChildren(body));
+        dispatch(updateChildren({ body, _id }));
         return <b>Account updated successfully.</b>;
       },
       error: () => {
@@ -46,12 +50,13 @@ const ManageChildAccount = () => {
   const updatePassword = (e) => {
     e.preventDefault();
     const body = {
+      _id,
       newpassword: password,
     };
-    toast.promise(apiClientTwo.patch(body), {
+    toast.promise(apiClientTwo.post(body), {
       loading: "Saving...",
       success: () => {
-        dispatch(updateChildren(body));
+        dispatch(updateChildrenPassword(body));
         return <b>password updated successfully.</b>;
       },
       error: () => {

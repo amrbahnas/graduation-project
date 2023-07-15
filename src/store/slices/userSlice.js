@@ -102,7 +102,27 @@ export const userSlice = createSlice({
     updateChildren: (state, action) => {
       state.children = state.children.map((child) => {
         if (child._id === action.payload._id) {
-          return { ...child, ...action.payload };
+          const { studentUserName, studentName, studentGrade } =
+            action.payload.body;
+          return {
+            ...child,
+            studentUserName,
+            studentName,
+            studentGrade,
+          };
+        } else {
+          return child;
+        }
+      });
+    },
+    updateChildrenPassword: (state, action) => {
+      state.children = state.children.map((child) => {
+        if (child._id === action.payload._id) {
+          const { newpassword } = action.payload;
+          return {
+            ...child,
+            studentPassword: newpassword,
+          };
         } else {
           return child;
         }
@@ -208,6 +228,7 @@ export const {
   addChildren,
   setChildren,
   updateChildren,
+  updateChildrenPassword,
   deleteChildren,
   resetAll,
 } = userSlice.actions;
