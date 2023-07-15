@@ -22,7 +22,7 @@
 }
 
 .SubjectData .image img {
-  @apply w-full h-full object-cover -z-10;
+  @apply w-full h-full   object-contain -z-10;
 }
 .SubjectData .image label {
   @apply absolute w-full h-full top-0 left-0  flex justify-center items-center cursor-pointer;

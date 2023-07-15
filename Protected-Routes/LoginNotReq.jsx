@@ -14,10 +14,7 @@ const LoginNotReq = ({ children }) => {
       <Navigate to="/parent/my-children" />
     )
   ) : (
-    <Suspense fallback={<ProcessLoading />}>
-      <ErrorBoundary>{children}</ErrorBoundary>
-      {/* {children} */}
-    </Suspense>
+    <Suspense fallback={<ProcessLoading />}>{children}</Suspense>
   );
 };
 export default LoginNotReq;

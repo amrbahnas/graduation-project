@@ -3,7 +3,7 @@ import InputText from "../InputText";
 import styles from "./AddEnglishData.module.css";
 import { v4 } from "uuid";
 import generateRandomDataWithAi from "../../services/generateRandomDataWithAi";
-import { InfoIcon } from "../../utils/icons";
+import { InfoIcon, SmartToyIcon } from "../../utils/icons";
 import { toast } from "react-hot-toast";
 const AddEnglishSentences = ({ subjectData, setSubjectData }) => {
   const [sentence, setsentence] = useState("");
@@ -133,9 +133,16 @@ const AddEnglishSentences = ({ subjectData, setSubjectData }) => {
             <button
               disabled={isLoading}
               onClick={tryGenerate}
-              className="text-white flex-1 py-2 px-20 bg-green-600 rounded-md  hover:bg-green-500 "
+              className="text-white flex-1 py-2 px-10 bg-blue-600 rounded-md  hover:bg-blue-700 "
             >
-              {isLoading ? "Loading..." : "Generate"}
+              {isLoading ? (
+                "Loading..."
+              ) : (
+                <span>
+                  {" "}
+                  <SmartToyIcon /> Generate Data
+                </span>
+              )}
             </button>
             {validationError && (
               <span className="text-red-600 ml-3">{validationError}</span>

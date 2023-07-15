@@ -18,7 +18,7 @@ const DataSelectList = ({ data, setChecked, checked, setmainSelection }) => {
     setChecked(newChecked);
     setmainSelection(newChecked);
   };
-
+  console.log(data, "data");
   return (
     <List
       className="border-2 shadow-inner"

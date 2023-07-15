@@ -8,9 +8,7 @@ const ProtectedRoutes = ({ children }) => {
     (store) => store.userSlice
   );
   return login ? (
-    <Suspense fallback={<ProcessLoading />}>
-      <ErrorBoundary>{children}</ErrorBoundary>
-    </Suspense>
+    <Suspense fallback={<ProcessLoading />}>{children}</Suspense>
   ) : (
     <Navigate to={"/login"} />
   );

@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { v4 } from "uuid";
 import styles from "./AddEnglishData.module.css";
 // components
 import SingleEnglishWord from "../Single-english-word/SingleEnglishWord";
 //icons
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+import { toast } from "react-hot-toast";
 
 /******************************start********************************** */
-const AddEnglishData = ({ setSubjectData }) => {
+const AddEnglishData = ({ setSubjectData, activeStep }) => {
   const [editWord, seteditWord] = useState({ state: false, _id: "" });
   const [enteredWords, setenteredWords] = useState([]);
   const [previewImage, setpreviewImage] = useState(null);
@@ -15,6 +16,7 @@ const AddEnglishData = ({ setSubjectData }) => {
   const [definitionInEn, setdefinitionInEn] = useState("");
   const [definitionInAc, setdefinitionInAc] = useState("");
   const [sentence, setsentence] = useState("");
+
   // take img from input file then show it
   const previewImg = (files) => {
     if (files.length > 0) {
@@ -32,10 +34,22 @@ const AddEnglishData = ({ setSubjectData }) => {
     setdefinitionInEn("");
     setsentence("");
     setwordImage(null);
-    setpreviewImage("");
+    setpreviewImage(null);
   };
   // add new words or update
   const addOrUpdateWord = () => {
+    // check for that all fields are filled
+    if (
+      !definitionInAc ||
+      !definitionInEn ||
+      !sentence ||
+      !wordImage ||
+      !previewImage
+    ) {
+      toast.error("you must fill all fields");
+      return;
+    }
+
     if (editWord.state) {
       const newData = {
         _id: v4(),
@@ -45,12 +59,8 @@ const AddEnglishData = ({ setSubjectData }) => {
         sentence,
         definitionInAc,
       };
-      setenteredWords(
-        enteredWords.map((word) => (word._id === editWord._id ? newData : word))
-      );
-      setSubjectData(
-        enteredWords.map((word) => (word._id === editWord._id ? newData : word))
-      );
+      setenteredWords([...enteredWords, newData]);
+      setSubjectData([...enteredWords, newData]);
       seteditWord({ state: false, _id: "" });
       cleanInputs();
     } else {
@@ -70,6 +80,8 @@ const AddEnglishData = ({ setSubjectData }) => {
 
   // edit word
   const editWordHandler = (_id, e) => {
+    // remove word from enteredWords
+    setenteredWords(enteredWords.filter((word) => word._id !== _id));
     // style
     document.querySelectorAll("#words div").forEach((word) => {
       word.style.border = "none";
@@ -92,6 +104,8 @@ const AddEnglishData = ({ setSubjectData }) => {
   };
   // delete word
   const deleteWord = (_id) => {
+    setwordImage(null);
+    setpreviewImage(null);
     setenteredWords(enteredWords.filter((word) => word._id !== _id));
     setSubjectData(enteredWords.filter((word) => word._id !== _id));
   };
@@ -104,13 +118,14 @@ const AddEnglishData = ({ setSubjectData }) => {
           <div className={styles.addWord}>
             <div className={`${styles.image}  dark:border-darkSText`}>
               {previewImage && <img src={previewImage} alt="" />}
-              {!previewImage && (
-                <label htmlFor="file">
-                  <span>
-                    <AddPhotoAlternateIcon color="orange" /> Upload Img
-                  </span>
-                </label>
-              )}
+              <label
+                htmlFor="file"
+                className={previewImage ? "opacity-0" : " opacity-[1]"}
+              >
+                <span>
+                  <AddPhotoAlternateIcon color="orange" /> Upload Img
+                </span>
+              </label>
               <input
                 type="file"
                 name=""

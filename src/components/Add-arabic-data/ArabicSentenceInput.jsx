@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { AddIcon, DeleteIcon } from "../../utils/icons";
+import { AddIcon, DeleteIcon, SmartToyIcon } from "../../utils/icons";
 import { toast } from "react-hot-toast";
 import { FormControlLabel, Switch } from "@mui/material";
 
@@ -160,11 +160,18 @@ const ArabicSentenceInput = ({
             Add Data
           </button>
           <button
-            className="px-4 w-[300px] md:w-1/2 py-3  text-sm font-semibold text-white bg-green-500 rounded hover:bg-green-600"
+            className="px-4 w-[300px] md:w-1/2 py-3  text-sm font-semibold text-white bg-blue-500 rounded hover:bg-blue-700"
             onClick={tryGenerate}
             disabled={isLoading}
           >
-            {isLoading ? "Loading..." : "Generate Data"}
+            {isLoading ? (
+              "Loading..."
+            ) : (
+              <span>
+                {" "}
+                <SmartToyIcon /> Generate Data
+              </span>
+            )}
           </button>
         </div>
         {isError && (

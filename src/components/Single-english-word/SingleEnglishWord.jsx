@@ -11,7 +11,7 @@ const SingleEnglishWord = ({
 }) => {
   let imgUrl = null;
   if (wordData.imageUrl) {
-    imgUrl = "https://gamebasedlearning-ot4m.onrender.com/" + wordData.imageUrl;
+    imgUrl = `${import.meta.env.VITE_REACT_SERVER_DOMAIL}/${wordData.imageUrl}`;
   } else {
     imgUrl = wordData.previewImage;
   }
@@ -24,7 +24,13 @@ const SingleEnglishWord = ({
       } `}
     >
       <div className="info">
-        <img src={imgUrl} alt="" />
+        <img
+          src={imgUrl}
+          alt=""
+          onError={(e) => {
+            e.target.src = "/assets/placeholder-image.png";
+          }}
+        />
         <span>{wordData.definitionInEn}</span>
         <span>{wordData.definitionInAc}</span>
         <span>{wordData.sentence?.slice(0, 20)}</span>

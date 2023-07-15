@@ -66,7 +66,7 @@ const AddSubjectData = () => {
         _id: subject?._id,
         type: chooseValue,
         subjectName,
-        stadge: childGrade,
+        stadge: childGrade || 1,
         number: subject?.number || 0,
         choices: subject?.choices || [],
         image: subject?.wordImage,
@@ -95,10 +95,7 @@ const AddSubjectData = () => {
           })
           .catch((err) => {
             setLoading(false);
-            const asSting = err.toString();
-            if (asSting.includes("status code 400")) {
-              toast.error("data already exist");
-            } else toast.error("something went wrong");
+            toast.error("data already exist");
           });
       });
     } else {
@@ -165,6 +162,7 @@ const AddSubjectData = () => {
                   <AddEnglishSentences
                     subjectData={subjectData}
                     setSubjectData={setSubjectData}
+                    activeStep={activeStep}
                   />
                 ))}
 

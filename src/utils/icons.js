@@ -22,3 +22,4 @@ export { default as DeleteIcon } from "@mui/icons-material/Delete";
 export { default as AddIcon } from "@mui/icons-material/Add";
 export { default as CheckIcon } from "@mui/icons-material/Check";
 export { default as CloseIcon } from "@mui/icons-material/Close";
+export { default as SmartToyIcon } from "@mui/icons-material/SmartToy";
