@@ -32,7 +32,7 @@ const ChildrenNavMenu = ({ position }) => {
     if (_id) {
       setcurrentChild(children.filter((child) => child._id === _id)[0]);
     }
-  }, [_id]);
+  }, [_id, children]);
   useEffect(() => {
     const handler = (e) => {
       //if the element which clicked not in the menu then
