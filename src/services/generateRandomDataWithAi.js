@@ -17,7 +17,7 @@ const generateRandomDataWithAi = async ({
       if (sentence) {
         content = ` Generate with out explain a question sentence based on ${sentence} word,the correct choose inside the sentence, in the format: "[{_id,<_id>,sentence:<sentence>, choices: [<choice1>, <choice2>, <choice3>]}]" json array include one object`;
       } else {
-        content = ` Generate with out explain json array for ${amount} english  problems for kids  ex: iam a boy, choices: [am, is, are], each with full sentence  and three options one of it inside the sentence, in the format: "{_id,<_id>,sentence:<sentence>, choices: [<choice1>, <choice2>, <choice3>]}" all problems inside one array.`;
+        content = ` Generate with out explain json array for ${amount} english  problems for kids  example:( iam a boy), choices: [am, is, are] important sentance must include the correct choice, each with full sentence  and three options one of it inside the sentence, in the format: "{_id,<_id>,sentence:<sentence>, choices: [<choice1>, <choice2>, <choice3>]}" all problems inside one array.`;
       }
       break;
     case "arabic":
