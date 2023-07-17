@@ -84,7 +84,7 @@ const AboutUs = () => {
     {
       image: "hassan.jpg",
       title: "Hassan Ahmed Abdel-fatah ",
-      role: "Team Leader, UI/UX designer",
+      role: "UI/UX designer",
       linkedin: "https://www.linkedin.com/in/hassan-ahmed-03256a227",
       github: "https://github.com/johndoe",
     },
@@ -94,28 +94,6 @@ const AboutUs = () => {
       role: "Team Leader, Front End developer",
       linkedin: "https://www.linkedin.com/in/amr-elbahnsawy/",
       github: "https://github.com/amrbahnas",
-    },
-    {
-      image: "ahmedEsmael.jpg",
-      title: "Ahmed Esmael Galal Eldien",
-      role: "Team Leader, Mobile developer",
-      linkedin: "https://www.linkedin.com/in/ahmed-esmail-078978214",
-      github: "https://github.com/Elcomi",
-    },
-    {
-      image: "fady.jpg",
-      title: "fady Raouf sabh hana",
-      role: "Team Leader, BackEnd developer",
-      linkedin: "https://www.linkedin.com/in/fady-raouf-434a62199",
-      github: "https://github.com/fady231",
-    },
-
-    {
-      image: "saeed.jpg",
-      title: "saeed abdelhasib saeed",
-      role: "Team Leader, Ai developer",
-      linkedin: "https://www.linkedin.com/in/saeed-abdelhaseeb-2b625a1a9",
-      github: "https://github.com/saeedabdelhasib",
     },
     {
       image: "usama.jpg",
@@ -131,7 +109,13 @@ const AboutUs = () => {
       linkedin: "https://www.linkedin.com/in/ghada-mohammed-12a61a241",
       github: "https://github.com/engghadamohammed",
     },
-
+    {
+      image: "ahmedEsmael.jpg",
+      title: "Ahmed Esmael Galal Eldien",
+      role: "Team Leader, Mobile developer",
+      linkedin: "https://www.linkedin.com/in/ahmed-esmail-078978214",
+      github: "https://github.com/Elcomi",
+    },
     {
       image: "omar.jpg",
       title: "Omar Ahmed Ibrahim Mohamed",
@@ -139,6 +123,14 @@ const AboutUs = () => {
       linkedin: "https://www.linkedin.com",
       github: "https://github.com",
     },
+    {
+      image: "fady.jpg",
+      title: "fady Raouf sabh hana",
+      role: "Team Leader, BackEnd developer",
+      linkedin: "https://www.linkedin.com/in/fady-raouf-434a62199",
+      github: "https://github.com/fady231",
+    },
+
     {
       image: "ahmed.jpg",
       title: "Ahmed Adbelsalam Tawfik",
@@ -153,7 +145,13 @@ const AboutUs = () => {
       linkedin: "https://www.linkedin.com/in/janesmith",
       github: "https://github.com/janesmith",
     },
-
+    {
+      image: "saeed.jpg",
+      title: "saeed abdelhasib saeed",
+      role: "Team Leader, Ai developer",
+      linkedin: "https://www.linkedin.com/in/saeed-abdelhaseeb-2b625a1a9",
+      github: "https://github.com/saeedabdelhasib",
+    },
     {
       image: "kareem.jpg",
       title: "kareem abdelrahman shaaban",
