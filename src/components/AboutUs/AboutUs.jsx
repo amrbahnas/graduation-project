@@ -13,7 +13,7 @@ const Doctor = () => {
         <div className="p-4">
           <h2 className="text-lg font-semibold">Dr.Amr Elzamel</h2>
           <h2 className=" text-base">Supervised</h2>
-          <div className="flex justify-center mt-5 gap-5">
+          <div className="flex justify-center flex-col md:flex-row mt-5 gap-5">
             <a
               href={""}
               target="_blank"
