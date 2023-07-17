@@ -3,17 +3,17 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
 const Doctor = () => {
   return (
-    <div className="w-full  lg:w-2/4 p-4">
-      <div className="bg-white rounded-lg shadow-lg flex ">
+    <div className="w-full lg:w-2/4 ">
+      <div className="bg-white rounded-lg shadow-lg flex flex-col md:flex-row overflow-hidden ">
         <img
           src={"assets/images/team/dr.png"}
           alt={"amr elzamel"}
-          className="w-1/2 h-64 rounded-t-lg  object-cover object-top  "
+          className="w-full md:w-1/2 h-64 rounded-t-lg  md:object-cover object-top  object-fill "
         />
         <div className="p-4">
           <h2 className="text-lg font-semibold">Dr.Amr Elzamel</h2>
           <h2 className=" text-base">Supervised</h2>
-          <div className="flex justify-center flex-col md:flex-row mt-5 gap-5">
+          <div className="flex justify-center  mt-5 gap-5">
             <a
               href={""}
               target="_blank"
@@ -186,7 +186,7 @@ const AboutUs = () => {
           Our Team Members
         </h2>
       </div>
-      <div className=" flex justify-center mb-4">
+      <div className="w-full flex justify-center mb-4">
         <Doctor />
       </div>
       <div className="flex flex-wrap justify-center -mx-4">
