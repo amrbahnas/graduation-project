@@ -5,6 +5,7 @@ import Planning from "../../components/Planning/Planning";
 import SugestionCreateAccount from "../../components/SugestionCreateAccount/SugestionCreateAccount";
 import Nav from "../../components/Nav/Nav";
 import Footer from "../../components/Footer/Footer";
+import AboutUs from "../../components/AboutUs/AboutUs";
 const Home = () => {
   return (
     <div>
@@ -13,6 +14,7 @@ const Home = () => {
       <OurMission />
       <Planning />
       <SugestionCreateAccount />
+      <AboutUs />
       <Footer />
     </div>
   );

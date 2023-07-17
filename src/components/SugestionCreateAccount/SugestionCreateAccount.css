@@ -1,6 +1,6 @@
 .sugestion-create-account {
   min-height: 348px;
-  @apply bg-secondry mb-52;
+  @apply bg-secondry;
 }
 
 .sugestion-create-account .wrapper {
