@@ -120,14 +120,14 @@ const AboutUs = () => {
     {
       image: "usama.jpg",
       title: "Usama Abdel-Alim Elshazly",
-      role: " Front end developer",
+      role: " Front End developer",
       linkedin: "https://www.linkedin.com/in/janesmith",
       github: "https://github.com/janesmith",
     },
     {
       image: "ghada.jpg",
       title: "Ghada Mohamed fathi",
-      role: " Front end developer",
+      role: " Front End developer",
       linkedin: "https://www.linkedin.com/in/ghada-mohammed-12a61a241",
       github: "https://github.com/engghadamohammed",
     },
@@ -157,7 +157,7 @@ const AboutUs = () => {
     {
       image: "kareem.jpg",
       title: "kareem abdelrahman shaaban",
-      role: "Ai developer",
+      role: "AI developer",
       linkedin: "https://www.linkedin.com/in/kareemelhawagry/",
       github: "https://github.com/kareemelhawagry",
     },
