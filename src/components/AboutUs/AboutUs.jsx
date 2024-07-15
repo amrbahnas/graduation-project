@@ -82,13 +82,6 @@ const AboutUs = () => {
       github: "https://github.com/abdullah0saeed",
     },
     {
-      image: "hassan.jpg",
-      title: "Hassan Ahmed Abdel-fatah ",
-      role: "UI/UX designer",
-      linkedin: "https://www.linkedin.com/in/hassan-ahmed-03256a227",
-      github: "https://github.com/johndoe",
-    },
-    {
       image: "amr.jpg",
       title: "Amr Mohamed El-bahnsawy",
       role: "Team Leader, Front End developer",
@@ -102,6 +95,14 @@ const AboutUs = () => {
       linkedin: "https://www.linkedin.com/in/janesmith",
       github: "https://github.com/janesmith",
     },
+    {
+      image: "hassan.jpg",
+      title: "Hassan Ahmed Abdel-fatah ",
+      role: "UI/UX designer",
+      linkedin: "https://www.linkedin.com/in/hassan-ahmed-03256a227",
+      github: "https://github.com/johndoe",
+    },
+
     {
       image: "ghada.jpg",
       title: "Ghada Mohamed fathi",
